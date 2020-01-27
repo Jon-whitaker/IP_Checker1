@@ -1,0 +1,1726 @@
+lad-grl-vpn-asa-02# show run
+: Saved
+:
+: Serial Number: JMX1604X0UF
+: Hardware:   ASA5520, 2048 MB RAM, CPU Pentium 4 Celeron 2000 MHz
+:
+ASA Version 8.4(7)28
+!
+terminal width 250
+hostname lad-grl-vpn-asa-02
+domain-name ladbrokes.co.uk
+enable password yq2eJWLHxAsismP2 encrypted
+passwd 1EfkqSbupg768SAN encrypted
+no names
+!
+interface GigabitEthernet0/0
+ description << Connected to lad-grl-sw-03 Gi0/7 >>
+ speed 1000
+ duplex full
+ nameif internet-uservpn
+ security-level 0
+ ip address 31.222.54.164 255.255.255.240
+!
+interface GigabitEthernet0/1
+ description << connected to lad-grl-sw-05 Gi1/0/11 >>
+ speed 1000
+ duplex full
+ nameif str-user-out
+ security-level 50
+ ip address 10.32.4.46 255.255.255.224
+!
+interface GigabitEthernet0/2
+ shutdown
+ no nameif
+ no security-level
+ no ip address
+!
+interface GigabitEthernet0/3
+ shutdown
+ no nameif
+ no security-level
+ no ip address
+!
+interface Management0/0
+ description << connected to lad-grl-sw-09 Gi1/0/11 >>
+ speed 100
+ duplex full
+ nameif grl-mgmt-sig
+ security-level 25
+ ip address 10.34.8.15 255.255.255.224
+ management-only
+!
+banner motd ***********  Cable & Wireless WorldWide Security Warning  **********************
+banner motd *                                                                              *
+banner motd * If you proceed any further, you will be deemed bound by the company's rules  *
+banner motd * for computer use. These rules can be found in the IT Security Handbook.      *
+banner motd *                                                                              *
+banner motd * For questions regarding this system, please contact CW on +44 (0)800 0728048.*
+banner motd *                                                                              *
+banner motd * Any attempt at unauthorised access or modification of any computer material  *
+banner motd * whatsoever is a criminal offence under the Computer Misuse Act, 1990.        *
+banner motd * If you wish to proceed, type in your Username and Password at the logon      *
+banner motd * prompt. To abandon login, take no action: timeout will occur automatically   *
+banner motd *                                                                              *
+banner motd ********************************************************************************
+boot system disk0:/asa847-28-k8.bin
+ftp mode passive
+dns domain-lookup internet-uservpn
+dns domain-lookup str-user-out
+dns domain-lookup grl-mgmt-sig
+dns server-group DefaultDNS
+ name-server 10.33.0.5
+ name-server 10.33.0.6
+ name-server 10.35.0.5
+ name-server 10.35.0.6
+ domain-name ladbrokes.co.uk
+same-security-traffic permit inter-interface
+object network BETDAQUSER-REMOTE-1
+ subnet 192.168.33.0 255.255.255.0
+object network BETDAQUSER-REMOTE-2
+ subnet 192.168.34.0 255.255.255.0
+object network BETDAQUSER-REMOTE-3
+ subnet 192.168.35.0 255.255.255.0
+object network TELAVIV-REMOTE-1
+ subnet 172.30.30.0 255.255.255.0
+object network TELAVIV-REMOTE-2
+ subnet 172.30.32.0 255.255.255.0
+object network AUSTRALIA-REMOTE-1
+ subnet 192.168.1.0 255.255.255.0
+object network ldswvcoradsp001
+ host 10.33.0.5
+object network ldswvcoradsp002
+ host 10.33.0.6
+object network ldgwvcoradsp001
+ host 10.35.0.5
+object network ldgwvcoradsp002
+ host 10.35.0.6
+object network ldswvcoradsp101
+ host 10.33.0.17
+object network ldswvcoradsp102
+ host 10.33.0.18
+object network ldgwvcoradsp101
+ host 10.35.0.17
+object network ldgwvcoradsp102
+ host 10.35.0.18
+object network BETDAQUSER-REMOTE-4
+ subnet 10.121.33.0 255.255.255.0
+object network BETDAQUSER-REMOTE-5
+ subnet 10.121.34.0 255.255.255.0
+object network BETDAQUSER-REMOTE-6
+ subnet 10.121.35.0 255.255.255.0
+object network pmsapp01
+ host 10.22.1.107
+ description pmsapp01.ladbrokes.com
+object-group network CW-NETISM-MSL_PUB
+ description Melbourne Street Netcool ISM internet facing IP addresses
+ network-object host 195.92.180.72
+ network-object host 195.92.180.107
+object-group network CW-NETISM-GRL_PUB
+ description Gotts Road Netcool ISM internet facing IP addresses
+ network-object host 195.92.253.128
+ network-object host 195.92.253.129
+object-group network CW-NETISM-IWW_PUB
+ description Watford Netcool ISM internet facing IP addresses
+ network-object host 62.25.104.143
+ network-object host 62.25.104.144
+object-group network CW-NETISM-DUB_PUB
+ description Dublin Netcool ISM internet facing IP addresses
+ network-object host 195.218.113.17
+ network-object host 195.218.113.18
+object-group network CW-NETISM-SWI_PUB
+ description Swindon Netcool ISM internet facing IP addresses
+ network-object host 212.137.64.21
+object-group network CW-NETISM-PRL_PUB
+ description Park Royal Netcool ISM internet facing IP addresses
+ network-object host 212.62.26.188
+object-group network CW-NETISM-GRP_PUB
+ description All Netcool ISM internet facing IP addresses
+ group-object CW-NETISM-MSL_PUB
+ group-object CW-NETISM-GRL_PUB
+ group-object CW-NETISM-IWW_PUB
+ group-object CW-NETISM-DUB_PUB
+ group-object CW-NETISM-SWI_PUB
+ group-object CW-NETISM-PRL_PUB
+object-group network CW-MAN_PUB
+ description Operational Support internet facing IP addresses
+ network-object host 195.92.70.130
+ network-object host 62.25.105.12
+object-group network CW-ICMP-GRP_PUB
+ description Trusted IP addresses permitted for ICMP monitoring and troubleshooting
+ group-object CW-NETISM-GRP_PUB
+ group-object CW-MAN_PUB
+object-group network CW-DNS-GRP_PUB
+ description Internet facing DNS servers
+ network-object host 195.92.195.92
+ network-object host 195.92.195.93
+ network-object host 212.137.64.13
+ network-object host 212.137.64.14
+object-group network CW-AUTH-GRP_PUB
+ description Internet facing authentication servers
+ network-object host 195.92.227.201
+ network-object host 195.92.253.37
+object-group service HTTP-HTTPS_TCP tcp
+ port-object eq www
+ port-object eq https
+object-group service NOISE-AND-DENIED-SERVICES_UDP udp
+ port-object eq bootps
+ port-object eq 136
+ port-object eq netbios-ns
+ port-object eq netbios-dgm
+object-group service CW-AUTH_TCP tcp
+ description Standard TCP authentication service ports
+ port-object eq 5500
+ port-object eq 5400
+ port-object eq ldap
+ port-object eq tacacs
+object-group service CW-AUTH_UDP udp
+ description Standard UDP authentication service ports
+ port-object eq 5500
+ port-object eq 5400
+ port-object eq 1812
+ port-object eq radius
+object-group service CW-NETISM-IN_TCP tcp
+ description TCP services monitored as standard via Netcool ISMs
+ port-object eq www
+ port-object eq https
+ port-object eq smtp
+ port-object eq pop3
+ port-object eq nntp
+ port-object eq ftp
+object-group service CW-NETISM-IN_UDP udp
+ description UDP services monitored as standard via Netcool ISMs
+ port-object eq domain
+ port-object eq ntp
+object-group network MADRIDEC-LOCAL1
+ network-object 10.192.0.0 255.255.0.0
+ network-object 10.193.0.0 255.255.255.0
+ network-object 10.21.0.0 255.255.0.0
+ network-object 10.208.0.0 255.255.0.0
+ network-object 10.31.0.0 255.255.0.0
+ network-object 10.22.0.0 255.255.252.0
+ network-object 10.195.0.0 255.255.0.0
+object-group network MADRIDEC-LOCAL-ENCDOM
+ network-object 10.0.0.0 255.0.0.0
+object-group network MADRIDEC-REMOTE1
+ network-object 10.194.179.0 255.255.255.0
+object-group network LOCAL-MONITORING-VLAN
+ network-object 10.33.2.0 255.255.255.0
+object-group network BETDAQUSER-LOCAL1
+ network-object 10.192.0.0 255.254.0.0
+ network-object 10.21.0.0 255.255.0.0
+ network-object 10.208.0.0 255.254.0.0
+ network-object 10.31.0.0 255.255.0.0
+ network-object 10.24.0.0 255.255.0.0
+ network-object 10.20.0.0 255.255.0.0
+ network-object 10.22.0.0 255.255.0.0
+ network-object 10.195.0.0 255.255.0.0
+object-group network BETDAQUSER-LOCAL2
+ description heartbeat.ladbrokes.co.uk intranet
+ network-object 10.224.133.0 255.255.255.0
+object-group network BETDAQUSER-LOCAL3
+ description https://ladbrokes-ebs.logicapayroll.com/
+ network-object host 10.224.144.63
+object-group network BETDAQUSER-LOCAL-ENDCOM
+ description local encryption domain for Betdaq User VPN
+ network-object 10.192.0.0 255.254.0.0
+ network-object 10.21.0.0 255.255.0.0
+ network-object 10.32.0.0 255.252.0.0
+ network-object 10.208.0.0 255.254.0.0
+ network-object 10.31.0.0 255.255.0.0
+ network-object 10.24.0.0 255.255.0.0
+ network-object 10.224.0.0 255.255.0.0
+ network-object 10.20.0.0 255.255.0.0
+ network-object 10.22.0.0 255.255.0.0
+ network-object 10.195.0.0 255.255.0.0
+object-group network BETDAQUSER-REMOTE-1-NAT
+ network-object 10.194.168.0 255.255.255.0
+object-group network BETDAQUSER-REMOTE-2-NAT
+ network-object 10.194.169.0 255.255.255.0
+object-group network BETDAQUSER-REMOTE-3-NAT
+ network-object 10.194.170.0 255.255.255.0
+object-group network BETDAQUSER-REMOTE-ENCDOM
+ description remote encryption domain for Betdaq User VPN
+ network-object 192.168.33.0 255.255.255.0
+ network-object 192.168.34.0 255.255.255.0
+ network-object 192.168.35.0 255.255.255.0
+ network-object 10.121.33.0 255.255.255.0
+ network-object 10.121.34.0 255.255.255.0
+ network-object 10.121.35.0 255.255.255.0
+object-group network TELAVIV-LOCAL1
+ network-object 10.0.0.0 255.0.0.0
+object-group network TELAVIV-LOCAL-ENCDOM
+ description local encryption domain for TelAviv User VPN
+ network-object 10.0.0.0 255.0.0.0
+object-group network TELAVIV-REMOTE-1-NAT
+ network-object 10.194.172.0 255.255.255.0
+object-group network TELAVIV-REMOTE-2-NAT
+ network-object 10.194.174.0 255.255.255.0
+object-group network TELAVIV-REMOTE-ENCDOM
+ description remote encryption domain for TelAviv User VPN
+ network-object 172.30.30.0 255.255.255.0
+ network-object 172.30.32.0 255.255.255.0
+object-group network FARRINGDON-REMOTE-1
+ network-object 10.194.177.0 255.255.255.0
+object-group network FARRINGDON-LOCAL1
+ network-object 10.0.0.0 255.0.0.0
+object-group network FARRINGDON-LOCAL-ENCDOM
+ description local encryption domain for Farringdon User VPN
+ network-object 10.0.0.0 255.0.0.0
+object-group network FARRINGDON-REMOTE-ENCDOM
+ description remote encryption domain for Farringdon User VPN
+ network-object 10.194.177.0 255.255.255.0
+object-group network WEMBLEY-REMOTE1
+ network-object 10.194.166.0 255.255.254.0
+object-group network WEMBLEY-LOCAL1
+ network-object 10.0.0.0 255.0.0.0
+object-group network WEMBLEY-LOCAL-ENCDOM
+ description local encryption domain for Wembley User VPN
+ network-object 10.0.0.0 255.0.0.0
+object-group network WEMBLEY-REMOTE-ENCDOM
+ description remote encryption domain for Wembley User VPN
+ network-object 10.194.166.0 255.255.254.0
+object-group network AUSTRALIA-REMOTE-1-NAT
+ network-object 10.194.164.0 255.255.255.0
+object-group network AUSTRALIA-LOCAL1
+ network-object host 10.35.16.11
+ network-object host 10.35.16.12
+ network-object host 10.35.16.13
+ network-object host 10.35.16.14
+ network-object host 10.35.16.21
+ network-object host 10.35.16.22
+ network-object host 10.35.16.23
+ network-object host 10.35.16.24
+ network-object host 10.35.16.6
+ network-object host 10.35.16.7
+ network-object host 10.33.16.41
+ network-object host 10.33.16.42
+ network-object host 10.33.16.43
+ network-object host 10.33.16.44
+object-group network AUSTRALIA-LOCAL2
+ network-object host 10.192.76.139
+ network-object host 10.192.76.194
+ network-object host 10.192.76.195
+object-group network AUSTRALIA-LOCAL-ENCDOM
+ description local encryption domain for Australia User VPN
+ network-object 10.0.0.0 255.0.0.0
+object-group network AUSTRALIA-REMOTE-ENCDOM
+ description remote encryption domain for Australia User VPN
+ network-object 10.194.164.0 255.255.255.0
+ network-object 192.168.1.0 255.255.255.0
+object-group service TIBCO-PORTS_TCP tcp
+ port-object range 9601 9610
+ port-object range 11000 11999
+ port-object eq 8091
+ port-object eq 8092
+ port-object range 21100 21299
+ port-object range 9601 9611
+ port-object eq 4369
+ port-object eq 18091
+ port-object eq 18092
+ port-object eq 9766
+ port-object eq 9775
+ port-object eq 3389
+object-group network BETDAQUSER-LOCAL4
+ description <flowmation web server>
+ network-object host 10.33.8.8
+object-group network LAD-SWI-VPN-ASA-03_INSIDE
+ description << lad-swi-vpn-asa-03_inside >>
+ network-object host 10.32.4.76
+ network-object host 10.32.4.77
+object-group network LAD-GRL-VPN-ASA-03_INSIDE
+ description << lad-grl-vpn-asa-03_inside >>
+ network-object host 10.32.4.78
+object-group network LAD-SWI-VPN-ASA-02_INSIDE
+ description << lad-swi-vpn-asa-02_inside >>
+ network-object host 10.32.4.44
+ network-object host 10.32.4.45
+object-group network LAD-GRL-VPN-ASA-02_INSIDE
+ description << lad-grl-vpn-asa-02_inside >>
+ network-object host 10.32.4.46
+object-group network LAD-VPN-ASA-03_INSIDE
+ group-object LAD-SWI-VPN-ASA-03_INSIDE
+ group-object LAD-GRL-VPN-ASA-03_INSIDE
+object-group network LAD-VPN-ASA-02_INSIDE
+ group-object LAD-SWI-VPN-ASA-02_INSIDE
+ group-object LAD-GRL-VPN-ASA-02_INSIDE
+object-group network vpn_User_Facing_Internal
+ description << Object to map VPN users into the standard object User_Facing_Internal >>
+ network-object 10.194.240.0 255.255.248.0
+object-group network vpn_Admin_Backend
+ description << Object to map VPN users into the standard object Admin_Backend >>
+ network-object 10.194.248.0 255.255.255.0
+object-group network VPN_USER_FACING_INTERNAL
+ description <<labrokes swi & grl ssl-vpn user ip range>>
+ network-object 10.194.240.0 255.255.248.0
+object-group network VPN_ADMIN_BACKEND
+ description <<ladbrokes swi & grl ssl-vpn admin ip range>>
+ network-object 10.194.248.0 255.255.255.0
+object-group network VPN_GROUPS
+ description <<ladbrokes admin & user vpn ip address ranges>>
+ group-object VPN_ADMIN_BACKEND
+ group-object VPN_USER_FACING_INTERNAL
+object-group network RFC-1918
+ network-object 10.0.0.0 255.0.0.0
+ network-object 172.16.0.0 255.240.0.0
+ network-object 192.168.0.0 255.255.0.0
+object-group network USER-VRF
+ network-object 10.194.0.0 255.255.0.0
+ network-object host 10.32.4.44
+ network-object host 10.32.4.45
+ network-object host 10.32.4.46
+object-group network SHOPS-3RDPARTY
+ network-object 10.171.0.0 255.255.0.0
+object-group network 3RDPARTY-RANGES
+ network-object 10.20.0.0 255.255.0.0
+ network-object 10.224.0.0 255.255.0.0
+ network-object 192.168.100.0 255.255.255.0
+object-group network LADBROKES-INTERNAL-USERS
+ network-object 10.192.0.0 255.254.0.0
+ network-object 10.194.0.0 255.255.0.0
+ network-object 10.208.240.0 255.255.248.0
+ network-object 10.195.0.0 255.255.0.0
+object-group network RL-OLD-DMZ
+ network-object 192.168.100.0 255.255.255.0
+object-group network OLD-DATACENTRES
+ network-object 10.21.0.0 255.255.0.0
+ network-object 10.192.0.0 255.255.0.0
+ network-object 10.31.0.0 255.255.0.0
+ network-object 10.208.0.0 255.255.0.0
+ network-object 10.224.16.0 255.255.255.0
+ network-object 10.195.0.0 255.255.0.0
+object-group network SHOPS
+ description << E-commerce >>
+ network-object 10.128.0.0 255.192.0.0
+object-group network LADBROKES-INTERNET-SITES
+ network-object 212.118.245.0 255.255.255.0
+ network-object 195.217.141.0 255.255.255.0
+ network-object 195.244.204.0 255.255.255.0
+ network-object 212.120.251.0 255.255.255.0
+ network-object 31.222.50.16 255.255.255.252
+ network-object 31.222.56.0 255.255.252.0
+ network-object 31.222.60.0 255.255.252.0
+ network-object 62.41.189.0 255.255.255.240
+ network-object 193.128.133.128 255.255.255.240
+ network-object 109.202.119.128 255.255.255.128
+ network-object 94.125.61.64 255.255.255.224
+object-group network RFC1918
+ network-object 10.0.0.0 255.0.0.0
+ network-object 192.168.0.0 255.255.0.0
+ network-object 172.16.0.0 255.240.0.0
+object-group network MERAKI-CONTROL
+ network-object 64.156.192.0 255.255.255.0
+ network-object 74.50.51.0 255.255.255.0
+ network-object 184.72.22.0 255.255.255.0
+ network-object 64.62.142.0 255.255.255.0
+object-group service MERAKI-CONTROL-UDP udp
+ port-object eq 7351
+ port-object eq 19350
+object-group service MERAKI-CONTROL-TCP tcp
+ port-object eq www
+ port-object eq https
+ port-object eq 7734
+ port-object eq 7752
+object-group network LDGWVSCSWWWD001
+ network-object host 10.35.96.17
+object-group network LDGWVSCSWWWD002
+ network-object host 10.35.96.18
+object-group network WEBSCHEDULER-RULE1-DST
+ group-object LDGWVSCSWWWD001
+ group-object LDGWVSCSWWWD002
+object-group service AD_PROTOCOLS_TCP tcp
+ description <<AD TCP Protocols>>
+ port-object eq domain
+ port-object eq 67
+ port-object eq 88
+ port-object eq 135
+ port-object eq netbios-ssn
+ port-object eq ldap
+ port-object eq 445
+ port-object eq 464
+ port-object eq ldaps
+ port-object eq 1025
+ port-object eq 1026
+ port-object eq 3268
+ port-object eq 3269
+ port-object range 49148 49154
+ port-object range 5000 5999
+object-group service AD_PROTOCOLS_UDP udp
+ description <<AD UDP Protocols>>
+ port-object eq domain
+ port-object eq bootps
+ port-object eq 88
+ port-object eq ntp
+ port-object eq netbios-ns
+ port-object eq netbios-dgm
+ port-object eq 389
+ port-object eq 464
+ port-object eq 636
+ port-object eq 1025
+ port-object eq 1026
+object-group network LAD-ADSVRS
+ network-object host 10.33.0.5
+ network-object host 10.33.0.6
+ network-object host 10.35.0.5
+ network-object host 10.35.0.6
+ network-object host 10.33.0.17
+ network-object host 10.33.0.18
+ network-object host 10.35.0.17
+ network-object host 10.35.0.18
+object-group network LAD-SWI-BCSG-01_PROXY-INNER
+ network-object host 10.32.6.51
+object-group network LAD-SWI-BCSG-02_PROXY-INNER
+ network-object host 10.32.6.52
+object-group network PROXY3.LADBROKES.CO.UK
+ network-object host 10.32.6.115
+object-group network GRL-SQUID-PROXY
+ network-object host 10.34.18.58
+object-group network PROXY-RULE
+ group-object LAD-SWI-BCSG-01_PROXY-INNER
+ group-object LAD-SWI-BCSG-02_PROXY-INNER
+ group-object PROXY3.LADBROKES.CO.UK
+ group-object GRL-SQUID-PROXY
+ network-object host 10.32.6.165
+ network-object host 10.32.6.166
+ network-object host 10.32.6.167
+ network-object host 10.32.6.168
+object-group network BETDAQUSER-REMOTE-4-NAT
+ network-object 10.194.160.0 255.255.255.0
+object-group network BETDAQUSER-REMOTE-5-NAT
+ network-object 10.194.161.0 255.255.255.0
+object-group network BETDAQUSER-REMOTE-6-NAT
+ network-object 10.194.162.0 255.255.255.0
+object-group network BIGIP-VIP-RANGES
+ network-object 10.32.16.0 255.255.248.0
+ network-object 10.34.16.0 255.255.248.0
+object-group service TIBCO-PORTS_2_TCP tcp
+ port-object range 11000 11999
+ port-object eq 8091
+ port-object eq 8092
+object-group network AUSTRALIA-LOCAL3
+ network-object host 10.192.76.193
+ network-object host 10.192.76.194
+object-group network AUSTRALIA-LOCAL4
+ network-object 10.33.4.0 255.255.255.0
+ network-object 10.33.5.0 255.255.255.0
+ network-object host 10.192.242.19
+ network-object host 10.192.242.20
+object-group service COUCHBASE-PORTS_TCP tcp
+ port-object range 11000 11999
+ port-object range 21100 21299
+ port-object range 9601 9611
+ port-object eq 8091
+ port-object eq 8092
+ port-object eq 4369
+ port-object eq 18091
+ port-object eq 18092
+ port-object eq 9766
+ port-object eq 9775
+ port-object eq 3389
+object-group network AUSTRALIA-LOCAL6
+ network-object 10.192.242.0 255.255.255.0
+ network-object 10.194.142.64 255.255.255.224
+object-group network swi_vpn_pci_cde_user_internal
+ description Object to map PCI/CDE Users into the standard object User_internal
+ network-object 10.194.249.0 255.255.255.128
+object-group network grl_vpn_pci_cde_user_internal
+ description Object to map PCI/CDE Users into the standard object User_internal
+ network-object 10.194.249.128 255.255.255.128
+object-group network MERAKI-GRL
+ network-object host 10.34.6.140
+ network-object host 10.34.6.143
+ network-object host 10.34.6.144
+ network-object host 10.34.6.146
+ network-object host 10.34.6.147
+object-group service MERAKI-ADMIN-TCP tcp
+ port-object eq www
+ port-object eq https
+ port-object eq ftp
+ port-object eq ssh
+ port-object eq telnet
+object-group network Couchbase-Prod-Servers
+ network-object host 10.33.16.98
+ network-object host 10.33.16.100
+ network-object host 10.35.16.58
+ network-object host 10.35.16.59
+ network-object host 10.35.16.60
+ network-object host 10.35.16.61
+object-group service Couchbase-Flow-Access tcp
+ port-object eq ssh
+ port-object eq 11211
+ port-object eq 11210
+ port-object eq 11209
+ port-object eq 4369
+ port-object eq 8091
+ port-object eq 8092
+ port-object eq 18091
+ port-object eq 18092
+ port-object eq 11214
+ port-object eq 11215
+ port-object range 21100 21299
+ port-object range 9601 9620
+object-group network swi_vpn_3rdparty_service_provider_user
+ description Object to map PCI/CDE Users into the standard object User_internal
+ network-object 10.224.248.0 255.255.255.128
+object-group network grl_vpn_3rdparty_service_provider_user
+ description Object to map PCI/CDE Users into the standard object User_internal
+ network-object 10.224.248.128 255.255.255.128
+object-group network SCCP-DNS
+ network-object host 10.21.5.11
+ network-object host 10.21.5.12
+ network-object host 10.208.242.1
+ network-object host 10.208.242.2
+ network-object host 10.192.64.1
+ network-object host 10.192.64.2
+object-group network SCCP-SEP
+ network-object host 10.192.65.85
+ network-object host 10.192.65.86
+ network-object host 10.192.65.89
+ network-object host 10.192.65.189
+object-group service SCC-SEP-TCP tcp
+ port-object eq 2967
+ port-object eq 8014
+ port-object eq www
+ port-object eq https
+ port-object eq 445
+ port-object eq netbios-ssn
+ port-object eq 7070
+object-group network INTRANET-3
+ network-object host 10.33.8.48
+object-group network SWI-WEBSENSE
+ network-object host 10.32.6.165
+ network-object host 10.32.6.166
+ network-object host 10.32.6.167
+ network-object host 10.32.6.168
+object-group service HTTP_HTTPS_8080_TCP tcp
+ port-object eq www
+ port-object eq https
+ port-object eq 8080
+object-group network GRL-WEBSENSE
+ network-object host 10.34.18.58
+object-group network SCCP-AD
+ network-object host 10.33.0.5
+ network-object host 10.33.0.6
+ network-object host 10.35.0.5
+ network-object host 10.35.0.6
+ network-object host 10.192.1.35
+ network-object host 10.192.1.36
+ network-object host 10.192.64.132
+ network-object host 10.192.64.133
+ network-object host 10.192.64.1
+ network-object host 10.192.64.2
+ network-object host 10.21.5.11
+ network-object host 10.21.5.12
+ network-object host 10.194.180.67
+ network-object host 10.208.242.1
+ network-object host 10.208.242.2
+ network-object host 10.208.242.3
+ network-object host 10.208.242.4
+object-group service SCC-AD-TCP tcp
+ port-object eq domain
+ port-object eq 88
+ port-object eq 123
+ port-object eq 135
+ port-object eq netbios-ssn
+ port-object eq ldap
+ port-object eq 445
+ port-object eq 464
+ port-object eq ldaps
+ port-object eq 3389
+ port-object range 1024 1040
+ port-object range 3268 3269
+ port-object range 49152 65535
+object-group service SCC-AD-UDP udp
+ port-object eq domain
+ port-object eq 88
+ port-object eq ntp
+ port-object eq netbios-ns
+ port-object eq netbios-dgm
+ port-object eq 389
+ port-object eq 445
+ port-object eq 464
+object-group network SCC-MONITORING
+ network-object 10.32.2.0 255.255.255.0
+ network-object 10.21.5.0 255.255.255.0
+ network-object 10.192.138.0 255.255.255.0
+ network-object 10.195.128.0 255.255.255.0
+object-group service CWW-BMCADDM-OUT
+ service-object icmp echo
+ service-object tcp destination eq ssh
+ service-object udp destination eq snmp
+ service-object tcp destination eq 902
+ service-object udp destination eq 902
+ service-object tcp destination eq 903
+ service-object tcp destination eq sqlnet
+object-group service CWW-HPSIM-OUT
+ service-object icmp echo
+ service-object tcp destination eq ssh
+ service-object tcp destination eq www
+ service-object udp destination eq snmp
+ service-object tcp destination eq https
+ service-object tcp destination eq 2301
+ service-object tcp destination eq 2381
+object-group service JONTEST-PRT tcp-udp
+ description d1
+ port-object eq 34342
+ port-object range 21100 21299
+ port-object range 1 3
+ port-object range 10 20
+ port-object range 4 16
+ port-object eq bootps
+ port-object eq ntp
+object-group service SERVICE-OBJ-GRP-TEST1 tcp
+ port-object eq ntp
+ port-object eq domain
+ group-object TIBCO-PORTS_TCP
+object-group service SERVICE-OBJ-GRP-TEST2
+ group-object CWW-HPSIM-OUT
+ group-object JONTEST-PRT
+ group-object SERVICE-OBJ-GRP-TEST1
+ 
+object-group icmp-type icmp-allow
+ icmp-object echo
+ icmp-object echo-reply
+ icmp-object unreachable
+ icmp-object time-exceeded
+ icmp-object traceroute
+ 
+object-group protocol tcp_udp_icmp
+ protocol-object tcp
+ protocol-object udp
+ protocol-object icmp
+ protocol-object rtp
+
+access-list str-user-out_acl remark << Lan to Internet outbound interface ACL >>
+access-list str-user-out_acl extended permit udp any object-group CW-DNS-GRP_PUB eq domain
+access-list str-user-out_acl extended permit udp any object-group CW-AUTH-GRP_PUB object-group CW-AUTH_UDP
+access-list str-user-out_acl extended permit tcp any object-group CW-AUTH-GRP_PUB object-group CW-AUTH_TCP
+access-list str-user-out_acl remark << madridec-rule-1 >>
+access-list str-user-out_acl extended permit icmp object-group LOCAL-MONITORING-VLAN object-group MADRIDEC-REMOTE1
+access-list str-user-out_acl remark << madridec-rule-3 >>
+access-list str-user-out_acl extended permit ip object-group MADRIDEC-LOCAL1 object-group MADRIDEC-REMOTE1
+access-list str-user-out_acl remark << betdaquser-rule-2 >>
+access-list str-user-out_acl remark << betdaquser-rule-6 >>
+access-list str-user-out_acl extended permit ip object-group BETDAQUSER-LOCAL1 object BETDAQUSER-REMOTE-3
+access-list str-user-out_acl extended permit icmp object-group LOCAL-MONITORING-VLAN object BETDAQUSER-REMOTE-1
+access-list str-user-out_acl extended permit icmp object-group LOCAL-MONITORING-VLAN object BETDAQUSER-REMOTE-2
+access-list str-user-out_acl extended permit icmp object-group LOCAL-MONITORING-VLAN object BETDAQUSER-REMOTE-3
+access-list str-user-out_acl extended permit ip object-group BETDAQUSER-LOCAL1 object BETDAQUSER-REMOTE-1
+access-list str-user-out_acl extended permit ip object-group BETDAQUSER-LOCAL1 object BETDAQUSER-REMOTE-2
+access-list str-user-out_acl remark << telaviv-rule-1 >>
+access-list str-user-out_acl extended permit icmp object-group LOCAL-MONITORING-VLAN object TELAVIV-REMOTE-1
+access-list str-user-out_acl extended permit icmp object-group LOCAL-MONITORING-VLAN object TELAVIV-REMOTE-2
+access-list str-user-out_acl remark << telaviv-rule-3 >>
+access-list str-user-out_acl extended permit ip object-group TELAVIV-LOCAL1 object TELAVIV-REMOTE-1
+access-list str-user-out_acl extended permit ip object-group TELAVIV-LOCAL1 object TELAVIV-REMOTE-2
+access-list str-user-out_acl remark << farringdon-rule-2 >>
+access-list str-user-out_acl remark << farringdon-rule-2 >>
+access-list str-user-out_acl extended permit icmp object-group LOCAL-MONITORING-VLAN object-group FARRINGDON-REMOTE-1
+access-list str-user-out_acl remark << farringdon-rule-3 >>
+access-list str-user-out_acl extended permit ip object-group FARRINGDON-LOCAL1 object-group FARRINGDON-REMOTE-1
+access-list str-user-out_acl remark << wembley-rule-1 >>
+access-list str-user-out_acl extended permit icmp object-group LOCAL-MONITORING-VLAN object-group WEMBLEY-REMOTE1
+access-list str-user-out_acl remark << wembley-rule-2 >>
+access-list str-user-out_acl extended permit ip object-group WEMBLEY-LOCAL1 object-group WEMBLEY-REMOTE1
+access-list str-user-out_acl extended permit icmp object-group LOCAL-MONITORING-VLAN object AUSTRALIA-REMOTE-1
+access-list str-user-out_acl extended permit icmp object-group AUSTRALIA-LOCAL1 object AUSTRALIA-REMOTE-1
+access-list str-user-out_acl extended permit tcp object-group AUSTRALIA-LOCAL1 object AUSTRALIA-REMOTE-1 object-group TIBCO-PORTS_TCP
+access-list str-user-out_acl extended permit tcp object-group AUSTRALIA-LOCAL2 object AUSTRALIA-REMOTE-1 eq 3389
+access-list str-user-out_acl extended permit tcp object-group AUSTRALIA-LOCAL2 object AUSTRALIA-REMOTE-1 eq ssh
+access-list str-user-out_acl extended permit icmp object-group AUSTRALIA-LOCAL2 object AUSTRALIA-REMOTE-1
+access-list str-user-out_acl extended permit tcp host 10.33.1.5 object AUSTRALIA-REMOTE-1 eq ssh
+access-list str-user-out_acl extended permit tcp host 10.35.1.5 object AUSTRALIA-REMOTE-1 eq ssh
+access-list str-user-out_acl remark << RAS-rule-1 anyconnect shared licensing rule  >>
+access-list str-user-out_acl extended permit tcp object-group LAD-VPN-ASA-03_INSIDE object-group LAD-VPN-ASA-02_INSIDE eq 50554
+access-list str-user-out_acl remark << RAS-rule-5 Any traffic allowed to pass the ASA as it is secured by the next hop >>
+access-list str-user-out_acl extended permit ip object-group LAD-VPN-ASA-02_INSIDE any
+access-list str-user-out_acl extended permit ip object-group vpn_User_Facing_Internal any
+access-list str-user-out_acl extended permit ip object-group vpn_Admin_Backend any
+access-list str-user-out_acl extended permit tcp object-group VPN_GROUPS object-group LAD-ADSVRS object-group AD_PROTOCOLS_TCP
+access-list str-user-out_acl extended permit udp object-group VPN_GROUPS object-group LAD-ADSVRS object-group AD_PROTOCOLS_UDP
+access-list str-user-out_acl extended permit ip object-group BETDAQUSER-LOCAL1 object BETDAQUSER-REMOTE-6
+access-list str-user-out_acl extended permit icmp object-group LOCAL-MONITORING-VLAN object BETDAQUSER-REMOTE-4
+access-list str-user-out_acl extended permit icmp object-group LOCAL-MONITORING-VLAN object BETDAQUSER-REMOTE-5
+access-list str-user-out_acl extended permit icmp object-group LOCAL-MONITORING-VLAN object BETDAQUSER-REMOTE-6
+access-list str-user-out_acl extended permit ip object-group BETDAQUSER-LOCAL1 object BETDAQUSER-REMOTE-4
+access-list str-user-out_acl extended permit ip object-group BETDAQUSER-LOCAL1 object BETDAQUSER-REMOTE-5
+access-list str-user-out_acl extended permit tcp object-group AUSTRALIA-LOCAL3 object AUSTRALIA-REMOTE-1 object-group TIBCO-PORTS_2_TCP
+access-list str-user-out_acl extended permit icmp object-group AUSTRALIA-LOCAL3 object AUSTRALIA-REMOTE-1
+access-list str-user-out_acl extended permit tcp object-group AUSTRALIA-LOCAL4 object AUSTRALIA-REMOTE-1 object-group COUCHBASE-PORTS_TCP
+access-list str-user-out_acl remark << CHG000000243387 >>
+access-list str-user-out_acl extended permit tcp object-group AUSTRALIA-LOCAL6 object AUSTRALIA-REMOTE-1 object-group COUCHBASE-PORTS_TCP
+access-list str-user-out_acl remark << RAS-rule-6>>
+access-list str-user-out_acl extended permit ip object-group grl_vpn_pci_cde_user_internal any
+access-list str-user-out_acl remark << CHG000000254802 RAS Meraki Admin >>
+access-list str-user-out_acl extended permit icmp object-group MERAKI-GRL 10.194.248.0 255.255.255.0
+access-list str-user-out_acl extended permit udp object-group MERAKI-GRL 10.194.248.0 255.255.255.0 eq syslog
+access-list str-user-out_acl remark << CHG000000254802 RAS Meraki Admin >>
+access-list str-user-out_acl extended permit tcp object-group Couchbase-Prod-Servers object AUSTRALIA-REMOTE-1 object-group Couchbase-Flow-Access
+access-list str-user-out_acl remark << RAS-rule-6>>
+access-list str-user-out_acl extended permit ip object-group grl_vpn_3rdparty_service_provider_user any
+access-list str-user-out_acl remark << CHG000000261767 SCC Symantec Anti-malware, Firewall and IPS Access >>
+access-list str-user-out_acl extended permit tcp object-group SCCP-SEP object-group grl_vpn_3rdparty_service_provider_user object-group SCC-SEP-TCP
+access-list str-user-out_acl remark << CHG000000261767 SCC AD >>
+access-list str-user-out_acl extended permit tcp object-group SCCP-AD object-group grl_vpn_3rdparty_service_provider_user object-group SCC-AD-TCP
+access-list str-user-out_acl extended permit udp object-group SCCP-AD object-group grl_vpn_3rdparty_service_provider_user object-group SCC-AD-UDP
+access-list internet-uservpn_acl remark << Inbound Internet Interface Access-lists >>
+access-list internet-uservpn_acl extended permit icmp object-group CW-ICMP-GRP_PUB any echo
+access-list internet-uservpn_acl extended permit tcp object-group CW-NETISM-GRP_PUB any object-group CW-NETISM-IN_TCP
+access-list internet-uservpn_acl extended permit udp object-group CW-NETISM-GRP_PUB any object-group CW-NETISM-IN_UDP
+access-list internet-uservpn_acl remark << madridec-rule-2 >>
+access-list internet-uservpn_acl extended permit icmp object-group MADRIDEC-REMOTE1 object-group LOCAL-MONITORING-VLAN
+access-list internet-uservpn_acl remark << madridec-rule-4 >>
+access-list internet-uservpn_acl extended permit ip object-group MADRIDEC-REMOTE1 object-group MADRIDEC-LOCAL1
+access-list internet-uservpn_acl remark << betdaquser-rule-1 >>
+access-list internet-uservpn_acl extended permit icmp object BETDAQUSER-REMOTE-1 object-group LOCAL-MONITORING-VLAN
+access-list internet-uservpn_acl extended permit icmp object BETDAQUSER-REMOTE-2 object-group LOCAL-MONITORING-VLAN
+access-list internet-uservpn_acl extended permit icmp object BETDAQUSER-REMOTE-3 object-group LOCAL-MONITORING-VLAN
+access-list internet-uservpn_acl remark << betdaquser-rule-3 >>
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-1 object-group BETDAQUSER-LOCAL2 object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-2 object-group BETDAQUSER-LOCAL2 object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-3 object-group BETDAQUSER-LOCAL2 object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl remark << betdaquser-rule-4 >>
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-1 object-group BETDAQUSER-LOCAL3 eq https
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-2 object-group BETDAQUSER-LOCAL3 eq https
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-3 object-group BETDAQUSER-LOCAL3 eq https
+access-list internet-uservpn_acl remark << betdaquser-rule-5 >>
+access-list internet-uservpn_acl extended permit ip object BETDAQUSER-REMOTE-1 object-group BETDAQUSER-LOCAL1
+access-list internet-uservpn_acl extended permit ip object BETDAQUSER-REMOTE-2 object-group BETDAQUSER-LOCAL1
+access-list internet-uservpn_acl extended permit ip object BETDAQUSER-REMOTE-3 object-group BETDAQUSER-LOCAL1
+access-list internet-uservpn_acl remark << telaviv-rule-2 >>
+access-list internet-uservpn_acl extended permit ip object TELAVIV-REMOTE-1 object-group TELAVIV-LOCAL1
+access-list internet-uservpn_acl extended permit ip object TELAVIV-REMOTE-2 object-group TELAVIV-LOCAL1
+access-list internet-uservpn_acl remark << betdaquser-rule-3 >>
+access-list internet-uservpn_acl remark << farringdon-rule-3 >>
+access-list internet-uservpn_acl extended permit ip object-group FARRINGDON-REMOTE-1 object-group FARRINGDON-LOCAL1
+access-list internet-uservpn_acl remark << wembley-rule-3 >>
+access-list internet-uservpn_acl extended permit ip object-group WEMBLEY-REMOTE1 object-group WEMBLEY-LOCAL1
+access-list internet-uservpn_acl extended permit icmp object AUSTRALIA-REMOTE-1 object-group LOCAL-MONITORING-VLAN
+access-list internet-uservpn_acl extended permit icmp object AUSTRALIA-REMOTE-1 object-group AUSTRALIA-LOCAL1
+access-list internet-uservpn_acl extended permit tcp object AUSTRALIA-REMOTE-1 object-group AUSTRALIA-LOCAL1 object-group TIBCO-PORTS_TCP
+access-list internet-uservpn_acl extended permit tcp object AUSTRALIA-REMOTE-1 object-group AUSTRALIA-LOCAL2 eq 3389
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-1 object-group BETDAQUSER-LOCAL4 object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-2 object-group BETDAQUSER-LOCAL4 object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-3 object-group BETDAQUSER-LOCAL4 object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl extended permit icmp object AUSTRALIA-REMOTE-1 object-group AUSTRALIA-LOCAL2
+access-list internet-uservpn_acl remark <<LAD-USER-SSL-VPN any-connect user-vrf network access>>
+access-list internet-uservpn_acl extended permit ip object-group USER-VRF object-group SHOPS-3RDPARTY
+access-list internet-uservpn_acl extended permit ip object-group USER-VRF object-group 3RDPARTY-RANGES
+access-list internet-uservpn_acl extended permit ip object-group USER-VRF object-group LADBROKES-INTERNAL-USERS
+access-list internet-uservpn_acl extended permit ip object-group USER-VRF object-group RL-OLD-DMZ
+access-list internet-uservpn_acl extended permit ip object-group USER-VRF object-group OLD-DATACENTRES
+access-list internet-uservpn_acl extended permit ip object-group USER-VRF object-group SHOPS
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF object-group LADBROKES-INTERNET-SITES eq www
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF object-group LADBROKES-INTERNET-SITES eq https
+access-list internet-uservpn_acl extended permit icmp object-group RFC-1918 object-group RFC-1918
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF object-group PROXY-RULE eq www
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF object-group PROXY-RULE eq https
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF object-group PROXY-RULE eq 8080
+access-list internet-uservpn_acl extended permit icmp object-group USER-VRF object-group PROXY-RULE
+access-list internet-uservpn_acl extended permit udp object-group USER-VRF object-group MERAKI-CONTROL object-group MERAKI-CONTROL-UDP
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF object-group MERAKI-CONTROL object-group MERAKI-CONTROL-TCP
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF object-group WEBSCHEDULER-RULE1-DST eq www
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF object-group WEBSCHEDULER-RULE1-DST eq https
+access-list internet-uservpn_acl extended permit udp object-group USER-VRF object-group LAD-ADSVRS object-group AD_PROTOCOLS_UDP
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF object-group LAD-ADSVRS object-group AD_PROTOCOLS_TCP
+access-list internet-uservpn_acl extended deny udp any any object-group NOISE-AND-DENIED-SERVICES_UDP
+access-list internet-uservpn_acl extended permit icmp object BETDAQUSER-REMOTE-4 object-group LOCAL-MONITORING-VLAN
+access-list internet-uservpn_acl extended permit icmp object BETDAQUSER-REMOTE-5 object-group LOCAL-MONITORING-VLAN
+access-list internet-uservpn_acl extended permit icmp object BETDAQUSER-REMOTE-6 object-group LOCAL-MONITORING-VLAN
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-4 object-group BETDAQUSER-LOCAL2 object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-5 object-group BETDAQUSER-LOCAL2 object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-6 object-group BETDAQUSER-LOCAL2 object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-4 object-group BETDAQUSER-LOCAL3 eq https
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-5 object-group BETDAQUSER-LOCAL3 eq https
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-6 object-group BETDAQUSER-LOCAL3 eq https
+access-list internet-uservpn_acl extended permit ip object BETDAQUSER-REMOTE-4 object-group BETDAQUSER-LOCAL1
+access-list internet-uservpn_acl extended permit ip object BETDAQUSER-REMOTE-5 object-group BETDAQUSER-LOCAL1
+access-list internet-uservpn_acl extended permit ip object BETDAQUSER-REMOTE-6 object-group BETDAQUSER-LOCAL1
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-4 object-group BETDAQUSER-LOCAL4 object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-5 object-group BETDAQUSER-LOCAL4 object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl extended permit tcp object BETDAQUSER-REMOTE-6 object-group BETDAQUSER-LOCAL4 object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF object-group BIGIP-VIP-RANGES object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl extended permit icmp object AUSTRALIA-REMOTE-1 object-group AUSTRALIA-LOCAL3
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF object pmsapp01 eq 8080
+access-list internet-uservpn_acl remark << CHG000000244196 >>
+access-list internet-uservpn_acl extended permit tcp object AUSTRALIA-REMOTE-1 10.192.242.0 255.255.255.0 range 9601 9620
+access-list internet-uservpn_acl extended permit tcp object AUSTRALIA-REMOTE-1 10.33.16.0 255.255.255.0 range 9601 9620
+access-list internet-uservpn_acl remark << CHG000000249634 RAS Meraki Admin >>
+access-list internet-uservpn_acl extended permit tcp 10.194.248.0 255.255.255.0 object-group MERAKI-GRL object-group MERAKI-ADMIN-TCP
+access-list internet-uservpn_acl remark << CHG000000254802 RAS Meraki Admin >>
+access-list internet-uservpn_acl extended permit icmp 10.194.248.0 255.255.255.0 object-group MERAKI-GRL
+access-list internet-uservpn_acl extended permit udp 10.194.248.0 255.255.255.0 object-group MERAKI-GRL eq snmp
+access-list internet-uservpn_acl remark << CHG000000254802 RAS Meraki Admin >>
+access-list internet-uservpn_acl remark << CHG000000257401 >>
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF host 10.33.2.9 eq https
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF host 10.208.65.61 eq https
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF host 10.31.65.61 eq https
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF host 10.31.65.44 eq https
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF host 10.33.8.50 eq https
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF host 10.33.8.50 eq 9443
+access-list internet-uservpn_acl extended permit tcp object-group USER-VRF object-group Couchbase-Prod-Servers object-group Couchbase-Flow-Access
+access-list internet-uservpn_acl remark << CHG000000261767 SCC DNS Access >>
+access-list internet-uservpn_acl extended permit udp object-group grl_vpn_3rdparty_service_provider_user object-group SCCP-DNS eq domain
+access-list internet-uservpn_acl remark << CHG000000261767 SCC Symantec Anti-malware, Firewall and IPS Access >>
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user object-group SCCP-SEP object-group SCC-SEP-TCP
+access-list internet-uservpn_acl remark << CHG000000261767 SCC Swindon Websense >>
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user object-group INTRANET-3 eq www
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user object-group SWI-WEBSENSE object-group HTTP_HTTPS_8080_TCP
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user host 10.33.8.50 object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user object-group GRL-WEBSENSE object-group HTTP_HTTPS_8080_TCP
+access-list internet-uservpn_acl remark << CHG000000261767 SCC SNAPCOM >>
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user host 10.33.20.15 object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl remark << CHG000000261767 SCC AD >>
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user object-group SCCP-AD object-group SCC-AD-TCP
+access-list internet-uservpn_acl extended permit udp object-group grl_vpn_3rdparty_service_provider_user object-group SCCP-AD object-group SCC-AD-UDP
+access-list internet-uservpn_acl remark << CHG000000261767 SCC APP & FILESHARE >>
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user host 10.192.148.57 eq 135
+access-list internet-uservpn_acl extended permit udp object-group grl_vpn_3rdparty_service_provider_user host 10.192.148.57 eq 135
+access-list internet-uservpn_acl extended permit udp object-group grl_vpn_3rdparty_service_provider_user host 10.192.148.57 eq 139
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user 10.192.0.0 255.252.0.0 eq 6129
+access-list internet-uservpn_acl remark << CHG000000261767 SCC MONITORING>>
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user object-group SCC-MONITORING object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user object-group SHOPS eq 5900
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user host 10.192.148.57 eq 445
+access-list internet-uservpn_acl extended permit udp object-group grl_vpn_3rdparty_service_provider_user 10.192.0.0 255.252.0.0 eq netbios-ns
+access-list internet-uservpn_acl extended permit udp object-group grl_vpn_3rdparty_service_provider_user 10.192.0.0 255.252.0.0 eq 6129
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user 10.192.0.0 255.252.0.0 eq 135
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user 10.192.0.0 255.252.0.0 eq 445
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user host 10.192.64.111 object-group HTTP-HTTPS_TCP
+access-list internet-uservpn_acl extended permit tcp object-group grl_vpn_3rdparty_service_provider_user 10.224.133.0 255.255.255.0 object-group HTTP-HTTPS_TCP
+access-list madridec-vpn_acl remark << MADRID ECOM >>
+access-list madridec-vpn_acl extended permit ip object-group MADRIDEC-LOCAL-ENCDOM object-group MADRIDEC-REMOTE1
+access-list betdaquser-vpn_acl remark << Betdaq User VPN >>
+access-list betdaquser-vpn_acl extended permit ip object-group BETDAQUSER-LOCAL-ENDCOM object-group BETDAQUSER-REMOTE-ENCDOM
+access-list telaviv-vpn_acl remark << Tel-Aviv User VPN >>
+access-list telaviv-vpn_acl extended permit ip object-group TELAVIV-LOCAL-ENCDOM object-group TELAVIV-REMOTE-ENCDOM
+access-list farringdon-vpn_acl remark << Farringdon User VPN >>
+access-list farringdon-vpn_acl extended permit ip object-group FARRINGDON-LOCAL-ENCDOM object-group FARRINGDON-REMOTE-ENCDOM
+access-list wembley-vpn_acl extended permit ip object-group WEMBLEY-LOCAL-ENCDOM object-group WEMBLEY-REMOTE-ENCDOM
+access-list australia-vpn_acl extended permit ip object-group AUSTRALIA-LOCAL-ENCDOM object-group AUSTRALIA-REMOTE-ENCDOM
+access-list australia-vpn_acl extended permit ip 10.0.0.0 255.0.0.0 10.194.164.0 255.255.255.0
+access-list RASTraders_exclude_acl extended permit ip any host 87.117.228.117
+access-list RASTraders_exclude_acl extended permit ip any host 213.163.76.11
+access-list RASUserSplitTunnel_include_acl standard permit 10.0.0.0 255.0.0.0
+access-list RASUserSplitTunnel_include_acl standard permit 172.16.0.0 255.240.0.0
+access-list AnyConnect_Client_Local_Print extended deny ip any any
+access-list AnyConnect_Client_Local_Print extended permit tcp any any eq lpd
+access-list AnyConnect_Client_Local_Print remark IPP: Internet Printing Protocol
+access-list AnyConnect_Client_Local_Print extended permit tcp any any eq 631
+access-list AnyConnect_Client_Local_Print remark Windows' printing port
+access-list AnyConnect_Client_Local_Print extended permit tcp any any eq 9100
+access-list AnyConnect_Client_Local_Print remark mDNS: multicast DNS protocol
+access-list AnyConnect_Client_Local_Print extended permit udp any host 224.0.0.251 eq 5353
+access-list AnyConnect_Client_Local_Print remark LLMNR: Link Local Multicast Name Resolution protocol
+access-list AnyConnect_Client_Local_Print extended permit udp any host 224.0.0.252 eq 5355
+access-list AnyConnect_Client_Local_Print remark TCP/NetBIOS protocol
+access-list AnyConnect_Client_Local_Print extended permit tcp any any eq 137
+access-list AnyConnect_Client_Local_Print extended permit udp any any eq netbios-ns
+access-list RASUserSplitTunnel_exclude_acl standard permit 192.168.0.0 255.255.255.0
+access-list RASUserSplitTunnel_exclude_acl standard permit 192.168.1.0 255.255.255.0
+pager lines 23
+logging enable
+logging timestamp
+logging list securetrack message 106100
+logging list securetrack message 106023
+logging list securetrack message 111008
+logging console debugging
+logging buffered informational
+logging trap informational
+logging history alerts
+logging asdm informational
+logging facility 17
+logging device-id context-name
+logging host grl-mgmt-sig 217.135.3.84
+logging host grl-mgmt-sig 217.135.3.45
+mtu internet-uservpn 1500
+mtu str-user-out 1500
+mtu grl-mgmt-sig 1500
+ip local pool Leeds-vpn_User_Facing_Internal_pool 10.194.244.1-10.194.247.255 mask 255.255.252.0
+ip local pool Leeds-vpn_Admin_Backend 10.194.248.129-10.194.248.254 mask 255.255.255.128
+ip local pool Leeds-vpn_pci_cde_User_Internal_pool 10.194.249.129-10.194.249.254 mask 255.255.255.128
+ip local pool Leeds-vpn_3rdparty_service_provider_userl_pool 10.224.248.129-10.224.248.254 mask 255.255.255.128
+ip verify reverse-path interface internet-uservpn
+ip verify reverse-path interface str-user-out
+ip verify reverse-path interface grl-mgmt-sig
+no failover
+icmp unreachable rate-limit 1 burst-size 1
+icmp permit host 195.92.180.72 echo internet-uservpn
+icmp permit host 195.92.180.107 echo internet-uservpn
+icmp permit host 62.25.104.143 echo internet-uservpn
+icmp permit host 62.25.104.144 echo internet-uservpn
+icmp permit host 195.218.113.17 echo internet-uservpn
+icmp permit host 195.218.113.18 echo internet-uservpn
+icmp permit host 195.92.70.130 echo internet-uservpn
+icmp permit host 62.25.105.12 echo internet-uservpn
+icmp permit host 212.62.26.188 echo internet-uservpn
+icmp permit host 212.137.64.21 echo internet-uservpn
+icmp permit host 195.92.251.128 echo internet-uservpn
+icmp permit host 195.92.253.129 echo internet-uservpn
+icmp permit host 31.222.54.161 echo-reply internet-uservpn
+icmp permit host 31.222.54.161 unreachable internet-uservpn
+icmp permit host 31.222.54.161 time-exceeded internet-uservpn
+icmp permit host 10.224.247.68 echo str-user-out
+icmp permit host 10.224.247.68 unreachable str-user-out
+icmp permit host 10.224.247.68 time-exceeded str-user-out
+icmp permit host 10.224.247.68 echo-reply str-user-out
+icmp permit any echo str-user-out
+icmp permit any echo-reply str-user-out
+icmp permit any unreachable str-user-out
+icmp permit any time-exceeded str-user-out
+icmp permit host 10.192.138.6 echo str-user-out
+icmp permit host 10.192.138.15 echo str-user-out
+icmp permit host 10.31.65.115 echo str-user-out
+icmp permit host 10.33.2.25 echo str-user-out
+icmp permit any echo grl-mgmt-sig
+icmp permit any echo-reply grl-mgmt-sig
+icmp permit any unreachable grl-mgmt-sig
+icmp permit any time-exceeded grl-mgmt-sig
+asdm image disk0:/asdm-714.bin
+no asdm history enable
+arp timeout 14400
+no arp permit-nonconnected
+!
+object network BETDAQUSER-REMOTE-1
+ nat (internet-uservpn,str-user-out) static BETDAQUSER-REMOTE-1-NAT
+object network BETDAQUSER-REMOTE-2
+ nat (internet-uservpn,str-user-out) static BETDAQUSER-REMOTE-2-NAT
+object network BETDAQUSER-REMOTE-3
+ nat (internet-uservpn,str-user-out) static BETDAQUSER-REMOTE-3-NAT
+object network TELAVIV-REMOTE-1
+ nat (internet-uservpn,str-user-out) static TELAVIV-REMOTE-1-NAT
+object network TELAVIV-REMOTE-2
+ nat (internet-uservpn,str-user-out) static TELAVIV-REMOTE-2-NAT
+object network AUSTRALIA-REMOTE-1
+ nat (internet-uservpn,str-user-out) static AUSTRALIA-REMOTE-1-NAT
+object network BETDAQUSER-REMOTE-4
+ nat (internet-uservpn,str-user-out) static BETDAQUSER-REMOTE-4-NAT
+object network BETDAQUSER-REMOTE-5
+ nat (internet-uservpn,str-user-out) static BETDAQUSER-REMOTE-5-NAT
+object network BETDAQUSER-REMOTE-6
+ nat (internet-uservpn,str-user-out) static BETDAQUSER-REMOTE-6-NAT
+access-group internet-uservpn_acl in interface internet-uservpn
+access-group str-user-out_acl in interface str-user-out
+license-server address 10.32.4.44 secret *****
+license-server backup enable str-user-out
+route internet-uservpn 0.0.0.0 0.0.0.0 31.222.54.161 1
+route str-user-out 10.0.0.0 255.0.0.0 10.32.4.43 1
+route grl-mgmt-sig 10.32.8.0 255.255.248.0 10.34.8.1 1
+route internet-uservpn 10.194.166.0 255.255.254.0 31.222.54.161 1
+route internet-uservpn 10.194.177.0 255.255.255.0 31.222.54.161 1
+route internet-uservpn 10.194.179.0 255.255.255.0 31.222.54.161 1
+route str-user-out 10.224.247.68 255.255.255.255 10.32.4.33 1
+route str-user-out 10.224.247.69 255.255.255.255 10.32.4.33 1
+route str-user-out 172.16.0.0 255.240.0.0 10.32.4.43 1
+route internet-uservpn 172.30.30.0 255.255.255.0 31.222.54.161 1
+route internet-uservpn 172.30.32.0 255.255.255.0 31.222.54.161 1
+route str-user-out 192.168.0.0 255.255.0.0 10.32.4.43 1
+route internet-uservpn 192.168.33.0 255.255.255.0 31.222.54.161 1
+route internet-uservpn 192.168.34.0 255.255.255.0 31.222.54.161 1
+route internet-uservpn 192.168.35.0 255.255.255.0 31.222.54.161 1
+route grl-mgmt-sig 216.239.216.0 255.255.254.0 10.34.8.1 1
+route grl-mgmt-sig 217.135.0.0 255.255.248.0 10.34.8.1 1
+route grl-mgmt-sig 217.135.9.0 255.255.255.0 10.34.8.1 1
+route grl-mgmt-sig 217.135.39.0 255.255.255.0 10.34.8.1 1
+timeout xlate 3:00:00
+timeout pat-xlate 0:00:30
+timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02
+timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00
+timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00
+timeout sip-provisional-media 0:02:00 uauth 0:05:00 absolute
+timeout tcp-proxy-reassembly 0:01:00
+timeout floating-conn 0:00:00
+ldap attribute-map group-map
+  map-name  memberOf Group-Policy
+  map-value memberOf "CN=RASAdmin,OU=Global Groups,OU=LADBROKES PLC,DC=ladbrokes,DC=co,DC=uk" RASAdmin
+  map-value memberOf "CN=RASCde,OU=Global Groups,OU=LADBROKES PLC,DC=ladbrokes,DC=co,DC=uk" RASCde
+  map-value memberOf "CN=RASScc,OU=Global Groups,OU=LADBROKES PLC,DC=ladbrokes,DC=co,DC=uk" RASScc
+  map-value memberOf "CN=RASSmartTunnel,OU=Global Groups,OU=LADBROKES PLC,DC=ladbrokes,DC=co,DC=uk" RASSmartTunnel
+  map-value memberOf "CN=RASTraders,OU=Global Groups,OU=LADBROKES PLC,DC=ladbrokes,DC=co,DC=uk" RASTraders
+  map-value memberOf "CN=RASUser,OU=Global Groups,OU=LADBROKES PLC,DC=ladbrokes,DC=co,DC=uk" RASUser
+  map-value memberOf "CN=RASUserSplitTunnel,OU=Global Groups,OU=LADBROKES PLC,DC=ladbrokes,DC=co,DC=uk" RASUserSplitTunnel
+dynamic-access-policy-record DfltAccessPolicy
+ webvpn
+  url-list value Heartbeat
+aaa-server TACACS+ protocol tacacs+
+ accounting-mode simultaneous
+ reactivation-mode depletion deadtime 1
+aaa-server TACACS+ (grl-mgmt-sig) host 217.135.0.104
+ timeout 3
+ key *****
+aaa-server TACACS+ (grl-mgmt-sig) host 217.135.1.104
+ timeout 3
+ key *****
+aaa-server VUA protocol radius
+aaa-server VUA (str-user-out) host 10.224.247.68
+ timeout 20
+ key *****
+ authentication-port 1812
+ accounting-port 1812
+aaa-server VUA (str-user-out) host 10.224.247.69
+ timeout 20
+ key *****
+ authentication-port 1812
+ accounting-port 1812
+aaa-server ladbrokes.co.uk protocol ldap
+aaa-server ladbrokes.co.uk (str-user-out) host 10.35.0.5
+ ldap-base-dn DC=ladbrokes,DC=co,DC=uk
+ ldap-scope subtree
+ ldap-naming-attribute sAMAccountName
+ ldap-login-password *****
+ ldap-login-dn ladbrokes\RAS_ASAService
+ server-type auto-detect
+ ldap-attribute-map group-map
+aaa-server ladbrokes.co.uk (str-user-out) host 10.35.0.6
+ ldap-base-dn DC=ladbrokes,DC=co,DC=uk
+ ldap-scope subtree
+ ldap-naming-attribute sAMAccountName
+ ldap-login-password *****
+ ldap-login-dn RAS_ASAService
+ server-type auto-detect
+ ldap-attribute-map group-map
+aaa-server ladbrokes.co.uk (str-user-out) host 10.33.0.5
+ ldap-base-dn DC=ladbrokes,DC=co,DC=uk
+ ldap-scope subtree
+ ldap-naming-attribute sAMAccountName
+ ldap-login-password *****
+ ldap-login-dn DC=ladbrokes,DC=co,DC=uk
+ server-type auto-detect
+ ldap-attribute-map group-map
+aaa-server ladbrokes.co.uk (str-user-out) host 10.33.0.6
+ ldap-base-dn DC=ladbrokes,DC=co,DC=uk
+ ldap-scope subtree
+ ldap-naming-attribute sAMAccountName
+ ldap-login-password *****
+ ldap-login-dn RAS_ASAService
+ server-type auto-detect
+ ldap-attribute-map group-map
+user-identity default-domain LOCAL
+eou allow none
+aaa authentication ssh console TACACS+ LOCAL
+aaa authentication enable console TACACS+ LOCAL
+aaa authentication http console TACACS+ LOCAL
+aaa authorization command TACACS+ LOCAL
+aaa accounting command TACACS+
+http server enable
+http 217.135.2.0 255.255.255.0 grl-mgmt-sig
+http 217.135.0.0 255.255.255.0 grl-mgmt-sig
+http redirect internet-uservpn 80
+snmp-server host grl-mgmt-sig 10.32.11.131 community *****
+snmp-server host grl-mgmt-sig 10.32.11.132 community *****
+snmp-server host grl-mgmt-sig 10.32.11.139 community *****
+snmp-server host grl-mgmt-sig 10.32.11.67 poll community *****
+snmp-server host grl-mgmt-sig 217.135.2.19 poll community *****
+snmp-server host grl-mgmt-sig 217.135.2.20 poll community *****
+snmp-server host grl-mgmt-sig 217.135.2.36 poll community *****
+snmp-server host grl-mgmt-sig 217.135.2.37 trap community *****
+snmp-server host grl-mgmt-sig 217.135.2.38 trap community *****
+snmp-server host grl-mgmt-sig 217.135.2.49 poll community *****
+snmp-server host grl-mgmt-sig 217.135.2.50 poll community *****
+snmp-server host grl-mgmt-sig 217.135.3.19 poll community *****
+snmp-server host grl-mgmt-sig 217.135.3.20 poll community *****
+snmp-server host grl-mgmt-sig 217.135.3.22 poll community *****
+snmp-server host grl-mgmt-sig 217.135.3.36 poll community *****
+snmp-server host grl-mgmt-sig 217.135.3.37 trap community *****
+snmp-server host grl-mgmt-sig 217.135.3.38 trap community *****
+snmp-server host grl-mgmt-sig 217.135.3.49 poll community *****
+snmp-server host grl-mgmt-sig 217.135.3.50 poll community *****
+snmp-server host str-user-out 10.192.138.15 poll community *****
+snmp-server host str-user-out 10.192.138.6 poll community *****
+snmp-server host str-user-out 10.31.65.115 poll community *****
+snmp-server host str-user-out 10.33.2.25 poll community *****
+no snmp-server location
+snmp-server contact HSS-Security-Support
+snmp-server community *****
+snmp-server enable traps snmp authentication linkup linkdown coldstart
+snmp-server enable traps syslog
+no sysopt connection permit-vpn
+no service resetoutbound
+crypto ipsec ikev1 transform-set ESP-AES-256-SHA esp-aes-256 esp-sha-hmac
+crypto ipsec df-bit clear-df internet-uservpn
+crypto ipsec df-bit clear-df str-user-out
+crypto map outside_map 10 match address madridec-vpn_acl
+crypto map outside_map 10 set pfs
+crypto map outside_map 10 set peer 195.235.247.115
+crypto map outside_map 10 set ikev1 transform-set ESP-AES-256-SHA
+crypto map outside_map 10 set security-association lifetime seconds 3600
+crypto map outside_map 10 set security-association lifetime kilobytes 65535
+crypto map outside_map 20 match address betdaquser-vpn_acl
+crypto map outside_map 20 set pfs
+crypto map outside_map 20 set peer 92.51.195.210
+crypto map outside_map 20 set ikev1 transform-set ESP-AES-256-SHA
+crypto map outside_map 20 set security-association lifetime seconds 3600
+crypto map outside_map 20 set security-association lifetime kilobytes 4608000
+crypto map outside_map 30 match address telaviv-vpn_acl
+crypto map outside_map 30 set pfs
+crypto map outside_map 30 set peer 192.116.120.67
+crypto map outside_map 30 set ikev1 transform-set ESP-AES-256-SHA
+crypto map outside_map 30 set security-association lifetime seconds 3600
+crypto map outside_map 30 set security-association lifetime kilobytes 4608000
+crypto map outside_map 40 match address farringdon-vpn_acl
+crypto map outside_map 40 set pfs
+crypto map outside_map 40 set peer 195.11.161.139
+crypto map outside_map 40 set ikev1 transform-set ESP-AES-256-SHA
+crypto map outside_map 40 set security-association lifetime seconds 3600
+crypto map outside_map 40 set security-association lifetime kilobytes 4608000
+crypto map outside_map 50 match address wembley-vpn_acl
+crypto map outside_map 50 set pfs
+crypto map outside_map 50 set peer 109.238.64.94
+crypto map outside_map 50 set ikev1 transform-set ESP-AES-256-SHA
+crypto map outside_map 50 set security-association lifetime seconds 3600
+crypto map outside_map 50 set security-association lifetime kilobytes 4608000
+crypto map outside_map 60 match address australia-vpn_acl
+crypto map outside_map 60 set pfs
+crypto map outside_map 60 set peer 118.127.88.49
+crypto map outside_map 60 set ikev1 transform-set ESP-AES-256-SHA
+crypto map outside_map 60 set security-association lifetime seconds 3600
+crypto map outside_map 60 set security-association lifetime kilobytes 4608000
+crypto map outside_map interface internet-uservpn
+crypto ca trustpoint ASDM_TrustPoint0
+ enrollment terminal
+ crl configure
+crypto ca trustpoint ASDM_TrustPoint1
+ id-usage code-signer
+ crl configure
+crypto ca trustpoint ASDM_TrustPoint2
+ crl configure
+crypto ca trustpoint ASDM_TrustPoint3
+ crl configure
+crypto ca trustpoint ASDM_TrustPoint4
+ keypair ASDM_TrustPoint4
+ no client-types
+ crl configure
+crypto ca trustpoint ASDM_TrustPoint5
+ keypair ASDM_TrustPoint4
+ no client-types
+ id-usage code-signer
+ crl configure
+crypto ca certificate chain ASDM_TrustPoint0
+ certificate ca 1690c329b6780607511f05b0344846cb
+    308204fc 308203e4 a0030201 02021016 90c329b6 78060751 1f05b034 4846cb30
+    0d06092a 864886f7 0d010105 0500306f 310b3009 06035504 06130253 45311430
+    12060355 040a130b 41646454 72757374 20414231 26302406 0355040b 131d4164
+    64547275 73742045 78746572 6e616c20 54545020 4e657477 6f726b31 22302006
+    03550403 13194164 64547275 73742045 78746572 6e616c20 43412052 6f6f7430
+    1e170d31 30303431 36303030 3030305a 170d3230 30353330 31303438 33385a30
+    8189310b 30090603 55040613 02474231 1b301906 03550408 13124772 65617465
+    72204d61 6e636865 73746572 3110300e 06035504 07130753 616c666f 7264311a
+    30180603 55040a13 11434f4d 4f444f20 4341204c 696d6974 6564312f 302d0603
+    55040313 26434f4d 4f444f20 48696768 2d417373 7572616e 63652053 65637572
+    65205365 72766572 20434130 82012230 0d06092a 864886f7 0d010101 05000382
+    010f0030 82010a02 82010100 e787dac0 77e4bb3a fa6a24c8 8041acd2 1613153d
+    faf7f82a 76dca82d 3908ce48 4abe0f7d f0debabb 47d5bd2d d71bab0f 20812308
+    72b1c011 950de6ea a987ffc7 6e1e4f66 32ba53bc 05aa1c2c 0cef4d37 476b100c
+    dbc5a098 7e58db37 d6aee906 bdd7a865 f337b9c7 6dce77c7 26e0d774 1fa69816
+    bb0c6bc8 be77d0ef 58a729a0 b9b86905 36cbb2da 58a30b75 ad3d8b22 82203e70
+    86991cb9 4fcf77a4 071a2363 d1385684 ecbf8fc5 4ef41896 9b1ae893 ec8daf15
+    9c24f05a 3be80fb9 a85a01d3 b21c60c9 9c5204dd 92a7fe0c ace2458d 0361bc79
+    e0772e87 413c585f cbf5c577 f258c84d 28d09afa f3730924 6874bc20 4cd82cb0
+    aae8d94e 6df28c24 d3935d91 02030100 01a38201 77308201 73301f06 03551d23
+    04183016 8014adbd 987a34b4 26f7fac4 2654ef03 bde024cb 541a301d 0603551d
+    0e041604 143fd5b5 d0d64479 504a17a3 9b8c4adc b8b02264 6b300e06 03551d0f
+    0101ff04 04030201 06301206 03551d13 0101ff04 08300601 01ff0201 00301106
+    03551d20 040a3008 30060604 551d2000 30440603 551d1f04 3d303b30 39a037a0
+    35863368 7474703a 2f2f6372 6c2e7573 65727472 7573742e 636f6d2f 41646454
+    72757374 45787465 726e616c 4341526f 6f742e63 726c3081 b306082b 06010505
+    07010104 81a63081 a3303f06 082b0601 05050730 02863368 7474703a 2f2f6372
+    742e7573 65727472 7573742e 636f6d2f 41646454 72757374 45787465 726e616c
+    4341526f 6f742e70 37633039 06082b06 01050507 3002862d 68747470 3a2f2f63
+    72742e75 73657274 72757374 2e636f6d 2f416464 54727573 7455544e 53474343
+    412e6372 74302506 082b0601 05050730 01861968 7474703a 2f2f6f63 73702e75
+    73657274 72757374 2e636f6d 300d0609 2a864886 f70d0101 05050003 82010100
+    13851f52 8018c953 f7fe2e1a afccd90b 3cc2d385 8110f028 8db9407e 2c9e8fd6
+    36860a4c 142dd697 43924119 374b969e eba93079 1295b302 3657ed2b b91d981a
+    a3180a3f 9b398bcd a149294c 2ff9d095 8cc84d95 baa843cf 33aa252a 5a0eaa27
+    c94e6bb1 e6731fb3 7404c3f3 4ce2a8eb 67b75db8 08051a56 9a542985 f5294e80
+    3b95d07b 53961156 c102d3ea b27fca8f 9c704a14 8d5ab916 6075d6cd 271e16cd
+    5b338e79 40cf2848 e7dc7116 4e749175 b92a8cf1 70ac26dd 04b940c2 85de1c93
+    40d0cc6e c39baaef 6065df60 22f05aa5 7aa22fe4 7073ee3c d4262b68 07c1207a
+    e8985a3e 7b9f028b 62c08581 8060357e a51d0cd2 9cdf6245 0ddbfc37 fbf52522
+  quit
+crypto ca certificate chain ASDM_TrustPoint4
+ certificate 00cafdb0a513c28c28cdd5eac4b9a73fcb
+    308205c3 308204ab a0030201 02021100 cafdb0a5 13c28c28 cdd5eac4 b9a73fcb
+    300d0609 2a864886 f70d0101 05050030 8189310b 30090603 55040613 02474231
+    1b301906 03550408 13124772 65617465 72204d61 6e636865 73746572 3110300e
+    06035504 07130753 616c666f 7264311a 30180603 55040a13 11434f4d 4f444f20
+    4341204c 696d6974 6564312f 302d0603 55040313 26434f4d 4f444f20 48696768
+    2d417373 7572616e 63652053 65637572 65205365 72766572 20434130 1e170d31
+    33303931 38303030 3030305a 170d3138 30393137 32333539 35395a30 81d5310b
+    30090603 55040613 02474231 0f300d06 03550411 13064841 32374a57 31123010
+    06035504 0813094d 6964646c 65736578 310f300d 06035504 07130648 6172726f
+    77312730 25060355 0409131e 496d7065 7269616c 20486f75 73652c20 496d7065
+    7269616c 20447269 7665312d 302b0603 55040a13 244c6164 62726f6b 65732049
+    5420616e 64205368 61726564 20536572 76696365 73204c74 64311c30 1a060355
+    040b1313 5072656d 69756d53 534c2057 696c6463 61726431 1a301806 03550403
+    14112a2e 6c616462 726f6b65 732e636f 2e756b30 82012230 0d06092a 864886f7
+    0d010101 05000382 010f0030 82010a02 82010100 ac33fc4f 4d0a1f6a e7e65447
+    4baa9577 c8d8955d b895d40f c43169d4 7dcbf701 36d1589a 920ae9f1 21fabc82
+    70c6bcb2 50e2ae2b 56f0386e eedb08ad 13e06a61 7525e50a c7c46d39 fa5f2b64
+    cb63a55f d77215b9 f9f70933 ef1cfe64 9ea2173e 0fba2b2a b2590c0d b40a9735
+    f77ea639 aba988a3 20f4cede 568aac1d e9c51f0e 8496b62a bced8952 91da20be
+    153df633 b50067d6 80920e0e cbce8360 d4b21c2a 895e8df1 08e51931 15278bc7
+    0c3ee545 12448965 3da338fd 71a2568f 6a07c3a6 a5327c2d 5de8feb7 072a90fc
+    113ead7e e92124fc 8ca5be42 099fd6e5 b591f237 33166d91 7b36f7af 1f01e2b5
+    b6cb7934 38090c1a 092e5a61 1ba07cd5 45275a17 02030100 01a38201 d6308201
+    d2301f06 03551d23 04183016 80143fd5 b5d0d644 79504a17 a39b8c4a dcb8b022
+    646b301d 0603551d 0e041604 14fc8f77 6c084a17 9a67dda2 7222b613 f9aec768
+    7f300e06 03551d0f 0101ff04 04030205 a0300c06 03551d13 0101ff04 02300030
+    1d060355 1d250416 30140608 2b060105 05070301 06082b06 01050507 03023050
+    0603551d 20044930 47303b06 0c2b0601 0401b231 01020103 04302b30 2906082b
+    06010505 07020116 1d687474 70733a2f 2f736563 7572652e 636f6d6f 646f2e63
+    6f6d2f43 50533008 06066781 0c010202 304f0603 551d1f04 48304630 44a042a0
+    40863e68 7474703a 2f2f6372 6c2e636f 6d6f646f 63612e63 6f6d2f43 4f4d4f44
+    4f486967 682d4173 73757261 6e636553 65637572 65536572 76657243 412e6372
+    6c308180 06082b06 01050507 01010474 3072304a 06082b06 01050507 3002863e
+    68747470 3a2f2f63 72742e63 6f6d6f64 6f63612e 636f6d2f 434f4d4f 444f4869
+    67682d41 73737572 616e6365 53656375 72655365 72766572 43412e63 72743024
+    06082b06 01050507 30018618 68747470 3a2f2f6f 6373702e 636f6d6f 646f6361
+    2e636f6d 302d0603 551d1104 26302482 112a2e6c 61646272 6f6b6573 2e636f2e
+    756b820f 6c616462 726f6b65 732e636f 2e756b30 0d06092a 864886f7 0d010105
+    05000382 010100ab bb14cd53 55cb4295 62a7f34b 7c4163bb feac5095 cb629593
+    a0d66d92 d038b8fa 1d1f21f1 da4acdaa 663e272e 813fa557 b3356d8d 378ec077
+    2df01810 11822276 01786968 f4afc25e a41df236 a4dd7e54 c1987231 7714a4b0
+    b69bcea2 cf2d8e77 a2cf8010 a31510fb 52ad114b b6f03fae 5d2034b3 abab455a
+    acf472d0 5913532a 4e4e5385 a9c0d5a3 44f8a515 0cb277e7 747bf28e 3e7fad88
+    325097da f3af15f6 a741d6df eb6af7b1 9f681550 06220c45 df37a9fc 714270b5
+    3063cef3 846cbc19 71a76ca5 5968ffaf 216d27b9 e0c35bc4 c93c86ac 9eead5b7
+    85199155 a4290591 18581d94 a3272379 c906d19d 9e07de8a 017c217c 25bab795
+    0bb15be6 2a3c7b
+  quit
+ certificate ca 1690c329b6780607511f05b0344846cb
+    308204fc 308203e4 a0030201 02021016 90c329b6 78060751 1f05b034 4846cb30
+    0d06092a 864886f7 0d010105 0500306f 310b3009 06035504 06130253 45311430
+    12060355 040a130b 41646454 72757374 20414231 26302406 0355040b 131d4164
+    64547275 73742045 78746572 6e616c20 54545020 4e657477 6f726b31 22302006
+    03550403 13194164 64547275 73742045 78746572 6e616c20 43412052 6f6f7430
+    1e170d31 30303431 36303030 3030305a 170d3230 30353330 31303438 33385a30
+    8189310b 30090603 55040613 02474231 1b301906 03550408 13124772 65617465
+    72204d61 6e636865 73746572 3110300e 06035504 07130753 616c666f 7264311a
+    30180603 55040a13 11434f4d 4f444f20 4341204c 696d6974 6564312f 302d0603
+    55040313 26434f4d 4f444f20 48696768 2d417373 7572616e 63652053 65637572
+    65205365 72766572 20434130 82012230 0d06092a 864886f7 0d010101 05000382
+    010f0030 82010a02 82010100 e787dac0 77e4bb3a fa6a24c8 8041acd2 1613153d
+    faf7f82a 76dca82d 3908ce48 4abe0f7d f0debabb 47d5bd2d d71bab0f 20812308
+    72b1c011 950de6ea a987ffc7 6e1e4f66 32ba53bc 05aa1c2c 0cef4d37 476b100c
+    dbc5a098 7e58db37 d6aee906 bdd7a865 f337b9c7 6dce77c7 26e0d774 1fa69816
+    bb0c6bc8 be77d0ef 58a729a0 b9b86905 36cbb2da 58a30b75 ad3d8b22 82203e70
+    86991cb9 4fcf77a4 071a2363 d1385684 ecbf8fc5 4ef41896 9b1ae893 ec8daf15
+    9c24f05a 3be80fb9 a85a01d3 b21c60c9 9c5204dd 92a7fe0c ace2458d 0361bc79
+    e0772e87 413c585f cbf5c577 f258c84d 28d09afa f3730924 6874bc20 4cd82cb0
+    aae8d94e 6df28c24 d3935d91 02030100 01a38201 77308201 73301f06 03551d23
+    04183016 8014adbd 987a34b4 26f7fac4 2654ef03 bde024cb 541a301d 0603551d
+    0e041604 143fd5b5 d0d64479 504a17a3 9b8c4adc b8b02264 6b300e06 03551d0f
+    0101ff04 04030201 06301206 03551d13 0101ff04 08300601 01ff0201 00301106
+    03551d20 040a3008 30060604 551d2000 30440603 551d1f04 3d303b30 39a037a0
+    35863368 7474703a 2f2f6372 6c2e7573 65727472 7573742e 636f6d2f 41646454
+    72757374 45787465 726e616c 4341526f 6f742e63 726c3081 b306082b 06010505
+    07010104 81a63081 a3303f06 082b0601 05050730 02863368 7474703a 2f2f6372
+    742e7573 65727472 7573742e 636f6d2f 41646454 72757374 45787465 726e616c
+    4341526f 6f742e70 37633039 06082b06 01050507 3002862d 68747470 3a2f2f63
+    72742e75 73657274 72757374 2e636f6d 2f416464 54727573 7455544e 53474343
+    412e6372 74302506 082b0601 05050730 01861968 7474703a 2f2f6f63 73702e75
+    73657274 72757374 2e636f6d 300d0609 2a864886 f70d0101 05050003 82010100
+    13851f52 8018c953 f7fe2e1a afccd90b 3cc2d385 8110f028 8db9407e 2c9e8fd6
+    36860a4c 142dd697 43924119 374b969e eba93079 1295b302 3657ed2b b91d981a
+    a3180a3f 9b398bcd a149294c 2ff9d095 8cc84d95 baa843cf 33aa252a 5a0eaa27
+    c94e6bb1 e6731fb3 7404c3f3 4ce2a8eb 67b75db8 08051a56 9a542985 f5294e80
+    3b95d07b 53961156 c102d3ea b27fca8f 9c704a14 8d5ab916 6075d6cd 271e16cd
+    5b338e79 40cf2848 e7dc7116 4e749175 b92a8cf1 70ac26dd 04b940c2 85de1c93
+    40d0cc6e c39baaef 6065df60 22f05aa5 7aa22fe4 7073ee3c d4262b68 07c1207a
+    e8985a3e 7b9f028b 62c08581 8060357e a51d0cd2 9cdf6245 0ddbfc37 fbf52522
+  quit
+crypto ca certificate chain ASDM_TrustPoint5
+ certificate 00cafdb0a513c28c28cdd5eac4b9a73fcb
+    308205c3 308204ab a0030201 02021100 cafdb0a5 13c28c28 cdd5eac4 b9a73fcb
+    300d0609 2a864886 f70d0101 05050030 8189310b 30090603 55040613 02474231
+    1b301906 03550408 13124772 65617465 72204d61 6e636865 73746572 3110300e
+    06035504 07130753 616c666f 7264311a 30180603 55040a13 11434f4d 4f444f20
+    4341204c 696d6974 6564312f 302d0603 55040313 26434f4d 4f444f20 48696768
+    2d417373 7572616e 63652053 65637572 65205365 72766572 20434130 1e170d31
+    33303931 38303030 3030305a 170d3138 30393137 32333539 35395a30 81d5310b
+    30090603 55040613 02474231 0f300d06 03550411 13064841 32374a57 31123010
+    06035504 0813094d 6964646c 65736578 310f300d 06035504 07130648 6172726f
+    77312730 25060355 0409131e 496d7065 7269616c 20486f75 73652c20 496d7065
+    7269616c 20447269 7665312d 302b0603 55040a13 244c6164 62726f6b 65732049
+    5420616e 64205368 61726564 20536572 76696365 73204c74 64311c30 1a060355
+    040b1313 5072656d 69756d53 534c2057 696c6463 61726431 1a301806 03550403
+    14112a2e 6c616462 726f6b65 732e636f 2e756b30 82012230 0d06092a 864886f7
+    0d010101 05000382 010f0030 82010a02 82010100 ac33fc4f 4d0a1f6a e7e65447
+    4baa9577 c8d8955d b895d40f c43169d4 7dcbf701 36d1589a 920ae9f1 21fabc82
+    70c6bcb2 50e2ae2b 56f0386e eedb08ad 13e06a61 7525e50a c7c46d39 fa5f2b64
+    cb63a55f d77215b9 f9f70933 ef1cfe64 9ea2173e 0fba2b2a b2590c0d b40a9735
+    f77ea639 aba988a3 20f4cede 568aac1d e9c51f0e 8496b62a bced8952 91da20be
+    153df633 b50067d6 80920e0e cbce8360 d4b21c2a 895e8df1 08e51931 15278bc7
+    0c3ee545 12448965 3da338fd 71a2568f 6a07c3a6 a5327c2d 5de8feb7 072a90fc
+    113ead7e e92124fc 8ca5be42 099fd6e5 b591f237 33166d91 7b36f7af 1f01e2b5
+    b6cb7934 38090c1a 092e5a61 1ba07cd5 45275a17 02030100 01a38201 d6308201
+    d2301f06 03551d23 04183016 80143fd5 b5d0d644 79504a17 a39b8c4a dcb8b022
+    646b301d 0603551d 0e041604 14fc8f77 6c084a17 9a67dda2 7222b613 f9aec768
+    7f300e06 03551d0f 0101ff04 04030205 a0300c06 03551d13 0101ff04 02300030
+    1d060355 1d250416 30140608 2b060105 05070301 06082b06 01050507 03023050
+    0603551d 20044930 47303b06 0c2b0601 0401b231 01020103 04302b30 2906082b
+    06010505 07020116 1d687474 70733a2f 2f736563 7572652e 636f6d6f 646f2e63
+    6f6d2f43 50533008 06066781 0c010202 304f0603 551d1f04 48304630 44a042a0
+    40863e68 7474703a 2f2f6372 6c2e636f 6d6f646f 63612e63 6f6d2f43 4f4d4f44
+    4f486967 682d4173 73757261 6e636553 65637572 65536572 76657243 412e6372
+    6c308180 06082b06 01050507 01010474 3072304a 06082b06 01050507 3002863e
+    68747470 3a2f2f63 72742e63 6f6d6f64 6f63612e 636f6d2f 434f4d4f 444f4869
+    67682d41 73737572 616e6365 53656375 72655365 72766572 43412e63 72743024
+    06082b06 01050507 30018618 68747470 3a2f2f6f 6373702e 636f6d6f 646f6361
+    2e636f6d 302d0603 551d1104 26302482 112a2e6c 61646272 6f6b6573 2e636f2e
+    756b820f 6c616462 726f6b65 732e636f 2e756b30 0d06092a 864886f7 0d010105
+    05000382 010100ab bb14cd53 55cb4295 62a7f34b 7c4163bb feac5095 cb629593
+    a0d66d92 d038b8fa 1d1f21f1 da4acdaa 663e272e 813fa557 b3356d8d 378ec077
+    2df01810 11822276 01786968 f4afc25e a41df236 a4dd7e54 c1987231 7714a4b0
+    b69bcea2 cf2d8e77 a2cf8010 a31510fb 52ad114b b6f03fae 5d2034b3 abab455a
+    acf472d0 5913532a 4e4e5385 a9c0d5a3 44f8a515 0cb277e7 747bf28e 3e7fad88
+    325097da f3af15f6 a741d6df eb6af7b1 9f681550 06220c45 df37a9fc 714270b5
+    3063cef3 846cbc19 71a76ca5 5968ffaf 216d27b9 e0c35bc4 c93c86ac 9eead5b7
+    85199155 a4290591 18581d94 a3272379 c906d19d 9e07de8a 017c217c 25bab795
+    0bb15be6 2a3c7b
+  quit
+ certificate ca 1690c329b6780607511f05b0344846cb
+    308204fc 308203e4 a0030201 02021016 90c329b6 78060751 1f05b034 4846cb30
+    0d06092a 864886f7 0d010105 0500306f 310b3009 06035504 06130253 45311430
+    12060355 040a130b 41646454 72757374 20414231 26302406 0355040b 131d4164
+    64547275 73742045 78746572 6e616c20 54545020 4e657477 6f726b31 22302006
+    03550403 13194164 64547275 73742045 78746572 6e616c20 43412052 6f6f7430
+    1e170d31 30303431 36303030 3030305a 170d3230 30353330 31303438 33385a30
+    8189310b 30090603 55040613 02474231 1b301906 03550408 13124772 65617465
+    72204d61 6e636865 73746572 3110300e 06035504 07130753 616c666f 7264311a
+    30180603 55040a13 11434f4d 4f444f20 4341204c 696d6974 6564312f 302d0603
+    55040313 26434f4d 4f444f20 48696768 2d417373 7572616e 63652053 65637572
+    65205365 72766572 20434130 82012230 0d06092a 864886f7 0d010101 05000382
+    010f0030 82010a02 82010100 e787dac0 77e4bb3a fa6a24c8 8041acd2 1613153d
+    faf7f82a 76dca82d 3908ce48 4abe0f7d f0debabb 47d5bd2d d71bab0f 20812308
+    72b1c011 950de6ea a987ffc7 6e1e4f66 32ba53bc 05aa1c2c 0cef4d37 476b100c
+    dbc5a098 7e58db37 d6aee906 bdd7a865 f337b9c7 6dce77c7 26e0d774 1fa69816
+    bb0c6bc8 be77d0ef 58a729a0 b9b86905 36cbb2da 58a30b75 ad3d8b22 82203e70
+    86991cb9 4fcf77a4 071a2363 d1385684 ecbf8fc5 4ef41896 9b1ae893 ec8daf15
+    9c24f05a 3be80fb9 a85a01d3 b21c60c9 9c5204dd 92a7fe0c ace2458d 0361bc79
+    e0772e87 413c585f cbf5c577 f258c84d 28d09afa f3730924 6874bc20 4cd82cb0
+    aae8d94e 6df28c24 d3935d91 02030100 01a38201 77308201 73301f06 03551d23
+    04183016 8014adbd 987a34b4 26f7fac4 2654ef03 bde024cb 541a301d 0603551d
+    0e041604 143fd5b5 d0d64479 504a17a3 9b8c4adc b8b02264 6b300e06 03551d0f
+    0101ff04 04030201 06301206 03551d13 0101ff04 08300601 01ff0201 00301106
+    03551d20 040a3008 30060604 551d2000 30440603 551d1f04 3d303b30 39a037a0
+    35863368 7474703a 2f2f6372 6c2e7573 65727472 7573742e 636f6d2f 41646454
+    72757374 45787465 726e616c 4341526f 6f742e63 726c3081 b306082b 06010505
+    07010104 81a63081 a3303f06 082b0601 05050730 02863368 7474703a 2f2f6372
+    742e7573 65727472 7573742e 636f6d2f 41646454 72757374 45787465 726e616c
+    4341526f 6f742e70 37633039 06082b06 01050507 3002862d 68747470 3a2f2f63
+    72742e75 73657274 72757374 2e636f6d 2f416464 54727573 7455544e 53474343
+    412e6372 74302506 082b0601 05050730 01861968 7474703a 2f2f6f63 73702e75
+    73657274 72757374 2e636f6d 300d0609 2a864886 f70d0101 05050003 82010100
+    13851f52 8018c953 f7fe2e1a afccd90b 3cc2d385 8110f028 8db9407e 2c9e8fd6
+    36860a4c 142dd697 43924119 374b969e eba93079 1295b302 3657ed2b b91d981a
+    a3180a3f 9b398bcd a149294c 2ff9d095 8cc84d95 baa843cf 33aa252a 5a0eaa27
+    c94e6bb1 e6731fb3 7404c3f3 4ce2a8eb 67b75db8 08051a56 9a542985 f5294e80
+    3b95d07b 53961156 c102d3ea b27fca8f 9c704a14 8d5ab916 6075d6cd 271e16cd
+    5b338e79 40cf2848 e7dc7116 4e749175 b92a8cf1 70ac26dd 04b940c2 85de1c93
+    40d0cc6e c39baaef 6065df60 22f05aa5 7aa22fe4 7073ee3c d4262b68 07c1207a
+    e8985a3e 7b9f028b 62c08581 8060357e a51d0cd2 9cdf6245 0ddbfc37 fbf52522
+  quit
+crypto ikev2 remote-access trustpoint ASDM_TrustPoint4
+crypto ikev1 enable internet-uservpn
+crypto ikev1 am-disable
+crypto ikev1 policy 10
+ authentication pre-share
+ encryption aes-256
+ hash sha
+ group 5
+ lifetime 10800
+telnet timeout 5
+ssh scopy enable
+ssh 217.135.39.108 255.255.255.255 grl-mgmt-sig
+ssh 217.135.39.111 255.255.255.255 grl-mgmt-sig
+ssh 217.135.39.117 255.255.255.255 grl-mgmt-sig
+ssh 217.135.0.67 255.255.255.255 grl-mgmt-sig
+ssh 217.135.0.77 255.255.255.255 grl-mgmt-sig
+ssh 217.135.2.67 255.255.255.255 grl-mgmt-sig
+ssh 217.135.0.21 255.255.255.255 grl-mgmt-sig
+ssh 217.135.5.67 255.255.255.255 grl-mgmt-sig
+ssh 217.135.3.84 255.255.255.255 grl-mgmt-sig
+ssh 217.135.3.22 255.255.255.255 grl-mgmt-sig
+ssh timeout 9
+ssh version 2
+ssh key-exchange group dh-group1-sha1
+console timeout 5
+threat-detection basic-threat
+threat-detection statistics access-list
+no threat-detection statistics tcp-intercept
+ntp server 217.135.9.9 source grl-mgmt-sig prefer
+ntp server 217.135.9.168 source grl-mgmt-sig
+ntp server 217.135.9.102 source grl-mgmt-sig
+ssl trust-point ASDM_TrustPoint4 internet-uservpn
+webvpn
+ enable internet-uservpn
+ http-proxy pac http://intranet2.ladbrokes.co.uk/ras_test.pac
+ anyconnect image disk0:/anyconnect-win-3.1.04072-k9.zip 1 regex "Windows NT"
+ anyconnect image disk0:/anyconnect-macosx-i386-3.1.04074-k9.pkg 2 regex "Intel Mac OS X"
+ anyconnect enable
+ smart-tunnel list RASAdmin_Tunnel_List firefox firefox.exe platform windows
+ smart-tunnel list RASAdmin_Tunnel_List Putty putty.exe platform windows
+ smart-tunnel list RASAdmin_Tunnel_List RDP mstsc.exe platform windows
+ smart-tunnel list RASAdmin_Tunnel_List internet_explorer iexplore.exe platform windows
+ smart-tunnel list RASAdmin_Tunnel_List chrome chrome.exe platform windows
+ smart-tunnel list RASAdmin_Tunnel_List chrome google-chrome platform mac
+ smart-tunnel list RASAdmin_Tunnel_List Safari Safari platform mac
+ smart-tunnel list RASAdmin_Tunnel_List Chrome google-chrome platform mac
+ smart-tunnel list RASAdmin_Tunnel_List internet-explorer iexplore.exe platform windows
+ smart-tunnel list RASAdmin_Tunnel_List putty putty.exe platform windows
+ smart-tunnel list RASAdmin_Tunnel_List safari safari platform mac
+ smart-tunnel list RASAdmin_Tunnel_List PuTTY putty.exe platform windows
+ smart-tunnel list RASAdmin_Tunnel_List MSRDP mstsc.exe platform windows
+ smart-tunnel list RASUser_Tunnel_List firefox firefox.exe platform windows
+ smart-tunnel list RASUser_Tunnel_List internet_explorer iexplore.exe platform windows
+ smart-tunnel list RASUser_Tunnel_List chrome chrome.exe platform windows
+ smart-tunnel list RASUser_Tunnel_List chrome google-chrome platform mac
+ smart-tunnel list RASUser_Tunnel_List safari Safari platform mac
+ smart-tunnel list RASUser_Tunnel_List Firefox Firefox.exe platform windows
+ smart-tunnel list RASUser_Tunnel_List Safari Safari platform mac
+ smart-tunnel list RASUser_Tunnel_List Chrome Chrome.exe platform windows
+ smart-tunnel list RASUser_Tunnel_List Chrome google-chrome platform mac
+ smart-tunnel list RASUser_Tunnel_List Chrome chrome.exe platform windows
+ smart-tunnel list RASUser_Tunnel_List Internet_Explorer iexplore.exe platform windows
+ smart-tunnel list AllExternalApplications All-Applications * platform windows
+ smart-tunnel list RASCde-Tunnel-List Firefox Firefox.exe platform windows
+ smart-tunnel list RASCde-Tunnel-List Safari Safari platform mac
+ smart-tunnel list RASCde-Tunnel-List Chrome Chrome.exe platform windows
+ smart-tunnel list RASCde-Tunnel-List Chrome google-chrome platform mac
+ smart-tunnel list RASCde-Tunnel-List chrome chrome.exe platform windows
+ smart-tunnel list RASCde-Tunnel-List Internet_Explorer iexplore.exe platform windows
+ smart-tunnel list RASScc-Tunnel-List Firefox Firefox.exe platform windows
+ smart-tunnel list RASScc-Tunnel-List Safari Safari platform mac
+ smart-tunnel list RASScc-Tunnel-List Chrome Chrome.exe platform windows
+ smart-tunnel list RASScc-Tunnel-List Chrome google-chrome platform mac
+ smart-tunnel list RASScc-Tunnel-List chrome chrome.exe platform windows
+ smart-tunnel list RASScc-Tunnel-List Internet_Explorer iexplore.exe platform windows
+ smart-tunnel network RFC-1918 ip 10.0.0.0 255.0.0.0
+ smart-tunnel network RFC-1918 ip 192.168.0.0 255.255.0.0
+ smart-tunnel network RFC-1918 ip 172.16.0.0 255.240.0.0
+group-policy DfltGrpPolicy attributes
+ wins-server value 10.33.0.5
+ dns-server value 10.33.0.5
+ vpn-tunnel-protocol ikev1 l2tp-ipsec
+ default-domain value ladbrokes.co.uk
+ webvpn
+  url-list value Heartbeat
+  customization value ladbrokes_cust
+  smart-tunnel enable RASUser_Tunnel_List
+group-policy RASTraders internal
+group-policy RASTraders attributes
+ split-tunnel-policy excludespecified
+ split-tunnel-network-list value RASTraders_exclude_acl
+ address-pools value Leeds-vpn_User_Facing_Internal_pool
+ webvpn
+  url-list value Heartbeat
+  customization value ladbrokes_cust
+  smart-tunnel enable RASUser_Tunnel_List
+group-policy RASScc internal
+group-policy RASScc attributes
+ wins-server value 10.35.0.5
+ dns-server value 10.35.0.5 10.35.0.6
+ vpn-simultaneous-logins 250
+ vpn-tunnel-protocol ssl-client ssl-clientless
+ default-domain value ladbrokes.co.uk
+ msie-proxy method use-pac use-server
+ msie-proxy pac-url value http://intranet2.ladbrokes.co.uk/ladbrokes.pac
+ address-pools value Leeds-vpn_3rdparty_service_provider_userl_pool
+ webvpn
+  url-list value Heartbeat
+  homepage use-smart-tunnel
+  anyconnect ask none default anyconnect
+  customization value ladbrokes_cust
+  smart-tunnel enable RASScc-Tunnel-List
+  smart-tunnel tunnel-policy tunnelspecified RFC-1918
+group-policy RASUser internal
+group-policy RASUser attributes
+ wins-server value 10.33.0.5
+ dns-server value 10.33.0.5 10.33.0.6
+ vpn-simultaneous-logins 250
+ vpn-tunnel-protocol ssl-client ssl-clientless
+ split-tunnel-policy excludespecified
+ split-tunnel-network-list value RASUserSplitTunnel_exclude_acl
+ msie-proxy method use-pac
+ msie-proxy pac-url value http://intranet2.ladbrokes.co.uk/ladbrokes.pac
+ address-pools value Leeds-vpn_User_Facing_Internal_pool
+ webvpn
+  url-list value Heartbeat
+  homepage use-smart-tunnel
+  anyconnect ask none default anyconnect
+  customization value ladbrokes_cust
+  smart-tunnel enable RASUser_Tunnel_List
+  smart-tunnel tunnel-policy tunnelspecified RFC-1918
+group-policy RASCde internal
+group-policy RASCde attributes
+ wins-server value 10.35.0.5
+ dns-server value 10.35.0.5 10.35.0.6
+ vpn-simultaneous-logins 50
+ vpn-tunnel-protocol ssl-client ssl-clientless
+ split-tunnel-policy excludespecified
+ split-tunnel-network-list value RASUserSplitTunnel_exclude_acl
+ default-domain value ladbrokes.co.uk
+ msie-proxy method use-pac use-server
+ msie-proxy pac-url value http://intranet2.ladbrokes.co.uk/ladbrokes.pac
+ address-pools value Leeds-vpn_pci_cde_User_Internal_pool
+ webvpn
+  url-list value Heartbeat
+  homepage use-smart-tunnel
+  anyconnect ask none default anyconnect
+  customization value ladbrokes_cust
+  smart-tunnel enable RASCde-Tunnel-List
+  smart-tunnel tunnel-policy tunnelspecified RFC-1918
+group-policy RASAdmin internal
+group-policy RASAdmin attributes
+ wins-server value 10.33.0.5
+ dns-server value 10.33.0.5 10.33.0.6
+ vpn-simultaneous-logins 100
+ vpn-session-timeout none
+ vpn-tunnel-protocol ssl-client ssl-clientless
+ split-tunnel-policy excludespecified
+ split-tunnel-network-list value RASUserSplitTunnel_exclude_acl
+ msie-proxy method use-pac
+ msie-proxy pac-url value http://intranet2.ladbrokes.co.uk/ladbrokes.pac
+ address-pools value Leeds-vpn_Admin_Backend
+ webvpn
+  url-list value Heartbeat
+  homepage use-smart-tunnel
+  anyconnect ask none default anyconnect
+  customization value ladbrokes_cust
+  smart-tunnel enable RASAdmin_Tunnel_List
+  smart-tunnel tunnel-policy tunnelspecified RFC-1918
+group-policy RASUserSplitTunnel internal
+group-policy RASUserSplitTunnel attributes
+ vpn-simultaneous-logins 250
+ vpn-tunnel-protocol ssl-client
+ split-tunnel-policy tunnelspecified
+ split-tunnel-network-list value RASUserSplitTunnel_include_acl
+ msie-proxy pac-url value http://intranet2.ladbrokes.co.uk/ladbrokes.pac
+ address-pools value Leeds-vpn_User_Facing_Internal_pool
+ webvpn
+  url-list value Heartbeat
+  anyconnect ask none default anyconnect
+  customization value ladbrokes_cust
+  smart-tunnel auto-start RASAdmin_Tunnel_List
+  smart-tunnel tunnel-policy tunnelspecified RFC-1918
+group-policy RASSmartTunnel internal
+group-policy RASSmartTunnel attributes
+ wins-server value 10.33.0.5
+ dns-server value 10.33.0.5 10.33.0.6
+ vpn-simultaneous-logins 150
+ vpn-session-timeout none
+ vpn-tunnel-protocol ssl-clientless
+ split-tunnel-policy tunnelspecified
+ split-tunnel-network-list value RASUserSplitTunnel_include_acl
+ msie-proxy server value 10.34.18.58:8080
+ msie-proxy method use-pac
+ msie-proxy except-list value 10.224.133.248;10.32.18.4;10.34.18.4
+ msie-proxy local-bypass enable
+ msie-proxy pac-url value http://intranet2.ladbrokes.co.uk/ladbrokes.pac
+ webvpn
+  url-list value Heartbeat
+  homepage use-smart-tunnel
+  anyconnect keep-installer none
+  anyconnect ask none default webvpn
+  customization value Lad-SmartTun-Cust
+  smart-tunnel auto-start RASAdmin_Tunnel_List
+  smart-tunnel tunnel-policy tunnelspecified RFC-1918
+  always-on-vpn disable
+group-policy GroupPolicy1 internal
+group-policy GroupPolicy1 attributes
+ wins-server value 10.33.0.5
+ dns-server value 10.33.0.5
+ vpn-simultaneous-logins 0
+ vpn-tunnel-protocol ssl-client ssl-clientless
+ group-lock value Ladbrokes
+ default-domain value ladbrokes.co.uk
+ msie-proxy method use-pac
+ msie-proxy pac-url value http://intranet2.ladbrokes.co.uk/ladbrokes.pac
+ address-pools none
+ webvpn
+  url-list value Heartbeat
+  anyconnect ask none default anyconnect
+  customization value ladbrokes_cust
+  activex-relay enable
+username sso-admin password SiIOfK70yG3EqQUh encrypted privilege 15
+tunnel-group DefaultRAGroup general-attributes
+ authentication-server-group VUA
+ secondary-authentication-server-group ladbrokes.co.uk use-primary-username
+ authorization-server-group ladbrokes.co.uk
+ authorization-required
+tunnel-group DefaultWEBVPNGroup general-attributes
+ authentication-server-group VUA
+ secondary-authentication-server-group ladbrokes.co.uk use-primary-username
+ authorization-server-group ladbrokes.co.uk
+tunnel-group 195.235.247.115 type ipsec-l2l
+tunnel-group 195.235.247.115 ipsec-attributes
+ ikev1 pre-shared-key *****
+tunnel-group 92.51.195.210 type ipsec-l2l
+tunnel-group 92.51.195.210 ipsec-attributes
+ ikev1 pre-shared-key *****
+tunnel-group 192.116.120.67 type ipsec-l2l
+tunnel-group 192.116.120.67 ipsec-attributes
+ ikev1 pre-shared-key *****
+tunnel-group 195.11.161.139 type ipsec-l2l
+tunnel-group 195.11.161.139 ipsec-attributes
+ ikev1 pre-shared-key *****
+tunnel-group 118.127.88.49 type ipsec-l2l
+tunnel-group 118.127.88.49 ipsec-attributes
+ ikev1 pre-shared-key *****
+tunnel-group Ladbrokes type remote-access
+tunnel-group Ladbrokes general-attributes
+ address-pool Leeds-vpn_User_Facing_Internal_pool
+ authentication-server-group VUA
+ secondary-authentication-server-group ladbrokes.co.uk use-primary-username
+ authorization-server-group ladbrokes.co.uk
+ default-group-policy GroupPolicy1
+ authentication-attr-from-server secondary
+ authenticated-session-username secondary
+tunnel-group Ladbrokes webvpn-attributes
+ customization Lad-SmartTun-Cust
+ radius-reject-message
+ group-alias rasl.ladbrokes.co.uk enable
+ group-url http://rasl.ladbrokes.co.uk enable
+ group-url https://rasl.ladbrokes.co.uk enable
+tunnel-group 109.238.64.94 type ipsec-l2l
+tunnel-group 109.238.64.94 ipsec-attributes
+ ikev1 pre-shared-key *****
+!
+class-map default-inspection
+ description Default traffic inspection
+ match default-inspection-traffic
+class-map dcerpc_class
+ match port tcp eq 135
+!
+!
+policy-map type inspect dns dns_inspect
+ parameters
+  message-length maximum 1280
+policy-map type inspect dcerpc dcerpc_inspect
+ parameters
+  endpoint-mapper lookup-operation
+policy-map global-policy
+ class default-inspection
+  inspect dns dns_inspect
+  inspect ftp
+  inspect http
+  inspect ils
+  inspect netbios
+  inspect rsh
+  inspect rtsp
+  inspect icmp
+  inspect sqlnet
+  inspect sunrpc
+  inspect tftp
+  inspect xdmcp
+ class dcerpc_class
+  inspect dcerpc dcerpc_inspect
+!
+service-policy global-policy global
+prompt hostname context
+no call-home reporting anonymous
+Cryptochecksum:55e7bc2793834ea19eb6b2fac812ce43
+: end
+lad-grl-vpn-asa-02#

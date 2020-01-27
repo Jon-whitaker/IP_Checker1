@@ -1,0 +1,21 @@
+
+import ipaddress
+
+def network_chk(prompt):
+    while True:
+        try:
+           value = ipaddress.IPv4Network(str(input(prompt)))
+        except ValueError as e:
+            print("\n" + str(e) + "\n" + "\n" + "Now try typing it in properly you fat fingered spastic! "+"\n")  ### need a list of insults for a %s situation
+            continue
+
+        chk = input("You typed " + str(value) + " is that correct? (Y/N)")
+        if chk.lower() not in ('y', 't', 'u'):
+            continue
+        else:
+            break
+
+    print(value)
+    return value
+
+adrs = network_chk(" What's the network address? i.e. (192.168.1.0/24) ")

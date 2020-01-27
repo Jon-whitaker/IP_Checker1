@@ -1,0 +1,356 @@
+
+
+import pdb
+import readline
+import rlcompleter
+import atexit
+import os
+
+# tab completion
+readline.parse_and_bind('tab: complete')
+
+# history file
+histfile = os.path.join(os.environ['HOME'], '.pythonhistory')
+
+try:
+    readline.read_history_file(histfile)
+except IOError:
+    pass
+
+#move these to the end of the file I think
+atexit.register(readline.write_history_file, histfile)
+del os, histfile, readline, rlcompleter
+
+
+ def path_check():
+     try:
+         #theoretically this should tab complete from the home directory.
+         config = input(
+             " please copy/paste the name (including .txt) and file path of the file you wish to check. "
+             "Hint: put it in the same location as this checker, then you can just enter the filename  ")
+
+         config_path_check = input(
+             "is the following filename and path correct? " + config + " ")
+
+
+        if config_path_check.lower() != ('y', 't', 'u') :
+         try:
+            config
+            except ValueError:
+            # need to run some sort of test on the file path to make sure it's accurate, also maybe need to come back with an error message saying the file path is wrong or unable to find.
+        elif config_path_check.lower() == ('y', 't', 'u') :
+           try:
+                #ah, here is where I need to run the path check test, also a y/n response.
+           except:
+               pass
+
+
+###################
+
+
+def adrs_check():
+    try:
+        adrs = input(
+        " Using an IPv4 format, please enter the base NETWORK address of the subnet you're checking, including the CIDR notation, i.e. (192.168.1.0/24) ")
+
+        address_chk = input(
+        " Y/N, is the following address & subnet mask correct? " + adrs + "  ")  # what if they answer with anything other than y or n?
+
+        for ip in IPNetwork(adrs).iter_hosts():
+            free_ips.append(str(ip))
+
+
+    if address_chk.lower() != ('y', 't', 'u')  :
+        try:
+            adrs
+        except:
+            pass
+    elif address_chk.lower() == ('y', 't', 'u') :
+        print(random.shuffle(loading_messages))
+        time.sleep(10)
+        source_file_IP_checker(f)
+        address_check(used_ip_set)
+
+
+###################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ >> > import os
+
+ >> > os.path.exists("A")
+
+ False
+
+ >> > os.path.exists("C:\temp")
+
+ False
+
+ >> > os.path.exists("C:\temp\")
+
+ File
+ "<stdin>", line
+ 1
+
+ os.path.exists("C:\temp\")
+
+                ^
+
+                SyntaxError: EOL
+ while scanning string literal
+
+ >> > os.path.exists("C:\temp")
+
+ False
+
+ >> > os.path.exists("C:\\temp")
+
+ True
+
+ >> > os.environ("HOME")
+
+ Traceback(most
+ recent
+ call
+ last):
+
+
+ File
+ "<stdin>", line
+ 1, in < module >
+
+ TypeError: '_Environ'
+ object is not callable
+
+ >> > os.environ["HOME"}
+
+
+ File
+ "<stdin>", line
+ 1
+
+ os.environ["HOME"}
+
+ ^
+
+ SyntaxError: invalid
+ syntax
+
+ >> > os.environ["HOME"]
+
+ Traceback(most
+ recent
+ call
+ last):
+
+
+ File
+ "<stdin>", line
+ 1, in < module >
+
+ raise KeyError(key) from None
+
+ KeyError: 'HOME'
+
+ >> > os.environ["USERPROFILE"]
+
+ 'C:\\Users\\Gre'
+
+ >> > if os.path.exists("%s" % (os.environ["USERPROFILE"]))
+
+
+     File
+     "<stdin>", line
+     1
+
+     if os.path.exists("%s" % (os.environ["USERPROFILE"]))
+
+
+         ^
+
+     SyntaxError: invalid
+     syntax
+
+     >> > if os.path.exists(":path" % (os.environ["USERPROFILE"]))
+
+
+         File
+         "<stdin>", line
+         1
+
+         if os.path.exists(":path" % (os.environ["USERPROFILE"]))
+
+
+             ^
+
+         SyntaxError: invalid
+         syntax
+
+         >> > if os.path.exists("%s" % (os.environ["USERPROFILE"]))
+
+
+             File
+             "<stdin>", line
+             1
+
+             if os.path.exists("%s" % (os.environ["USERPROFILE"]))
+
+
+                 ^
+
+             SyntaxError: invalid
+             syntax
+
+             >> > if os.path.exists("%s" % os.environ["USERPROFILE"])
+
+
+                 File
+                 "<stdin>", line
+                 1
+
+                 if os.path.exists("%s" % os.environ["USERPROFILE"])
+
+
+                     ^
+
+                 SyntaxError: invalid
+                 syntax
+
+                 >> > if os.path.exists("%s" % os.environ["USERPROFILE"])
+
+
+                     File
+                     "<stdin>", line
+                     1
+
+                     if os.path.exists("%s" % os.environ["USERPROFILE"])
+
+
+                         ^
+
+                     SyntaxError: invalid
+                     syntax
+
+                     >> > if os.path.exists("{os.environ["USERPROFILE"]}")
+
+                     File
+                     "<stdin>", line
+                     1
+
+                     if os.path.exists("{os.environ["USERPROFILE"]}")
+
+                     ^
+
+                     SyntaxError: invalid
+                     syntax
+
+                     >> > if os.path.exists("{os.environ[\"USERPROFILE\"]}")
+
+
+                         File
+                         "<stdin>", line
+                         1
+
+                         if os.path.exists("{os.environ[\"USERPROFILE\"]}")
+
+
+                             ^
+
+                         SyntaxError: invalid
+                         syntax
+
+                         >> > if os.path.exists("%s" % (os.environ["USERPROFILE"],))
+
+
+                             File
+                             "<stdin>", line
+                             1
+
+                             if os.path.exists("%s" % (os.environ["USERPROFILE"],))
+
+
+                                 ^
+
+                             SyntaxError: invalid
+                             syntax
+
+                             >> > if os.path.exists('%s' % (os.environ["USERPROFILE"],))
+
+
+                                 File
+                                 "<stdin>", line
+                                 1
+
+                                 if os.path.exists('%s' % (os.environ["USERPROFILE"],))
+
+
+                                     ^
+
+                                 SyntaxError: invalid
+                                 syntax
+
+                                 >> > '%s' % (os.environ["USERPROFILE"],)
+
+                                 'C:\\Users\\Gre'
+
+                                 >> > if os.path.exists('%s' % (os.environ["USERPROFILE"],)):
+
+                                 ...
+                                 print
+                                 "Found!"
+
+                                 File
+                                 "<stdin>", line
+                                 2
+
+                                 print
+                                 "Found!"
+
+                                 ^
+
+                                 IndentationError: expected
+                                 an
+                                 indented
+                                 block
+
+                                 >> > if os.path.exists('%s' % (os.environ["USERPROFILE"],)):
+
+                                 ...
+                                 print("Found!")
+
+                                 ...
+
+                                 Found!
+
+                                 >> >
+
+                                 os.path.exists("FILE") and os.path.isfile("FILE")
+

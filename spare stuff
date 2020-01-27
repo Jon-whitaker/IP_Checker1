@@ -1,0 +1,38 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+def accuracy_check():
+    if address_chk.lower() == ('n', 'b', 'm') :
+        try:
+            adrs + address_chk
+        except:
+            pass
+    elif address_chk.lower() == ('y', 't', 'u') :
+        print(random.shuffle(loading_messages))
+        time.sleep(10)
+        PPrint(free_ips)
+
+
+
+
+
+
+pprint(free_ips)
+
+
+
+
+
+pprint.pprint(sorted(ip_list))
+
+#if ip not in subnet_lst:
