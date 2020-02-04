@@ -1,0 +1,5067 @@
+cen-swi-asa-02/sec/act# more disk0:/admin.cfg
+: Saved
+: Written by w131899 at 12:42:37.055 UTC Tue Sep 25 2018
+!
+ASA Version 8.4(2)8 <context>
+!
+terminal width 250
+hostname ciscoasa
+domain-name vodafone.com
+enable password no.w4y-in
+passwd no.w4y-in
+no names
+!
+interface Port-channel1.1000
+ mac-address 503d.e5a2.95cf
+ nameif cascade
+ security-level 35
+ ip address 10.99.99.99 255.255.255.248 standby 10.99.99.100
+!
+interface GigabitEthernet1/5
+ nameif cwmgmt
+ security-level 25
+ ip address 10.250.95.151 255.255.254.0 standby 10.250.95.152
+!
+banner login ********************************************************************************
+banner login *                                                                              *
+banner login * This computer system is the property of Vodafone Limited.                    *
+banner login *                                                                              *
+banner login * Only authorised users are entitled to connect and/or login to this           *
+banner login * computer system. If you are not sure whether you are authorised, then you    *
+banner login * should DISCONNECT IMMEDIATELY and seek advice from your line manager.        *
+banner login *                                                                              *
+banner login ********************************************************************************
+dns server-group DefaultDNS
+ domain-name vodafone.com
+same-security-traffic permit inter-interface
+object network hst-10.216.180.72
+ host 10.216.180.72
+object network hst-10.216.180.107
+ host 10.216.180.107
+object network hst-10.11.216.137
+ host 10.11.216.137
+object network hst-10.11.216.163
+ host 10.11.216.163
+object network hst-10.216.180.8
+ host 10.216.180.8
+object network hst-10.11.216.172
+ host 10.11.216.172
+object network hst-10.216.180.106
+ host 10.216.180.106
+object network hst-10.216.64.1
+ host 10.216.64.1
+object network hst-10.11.216.160
+ host 10.11.216.160
+object network hst-10.12.192.35
+ host 10.12.192.35
+object network hst-10.216.180.235
+ host 10.216.180.235
+object network hst-10.216.180.236
+ host 10.216.180.236
+object network hst-10.216.180.237
+ host 10.216.180.237
+object network hst-10.11.216.156
+ host 10.11.216.156
+object network hst-10.11.216.157
+ host 10.11.216.157
+object network hst-10.11.216.158
+ host 10.11.216.158
+object network hst-10.216.180.108
+ host 10.216.180.108
+object network hst-10.216.180.109
+ host 10.216.180.109
+object network hst-10.11.216.173
+ host 10.11.216.173
+object network hst-10.11.216.174
+ host 10.11.216.174
+object network hst-10.11.216.135
+ host 10.11.216.135
+object network hst-10.11.216.161
+ host 10.11.216.161
+object network hst-10.218.253.62
+ host 10.218.253.62
+object network hst-10.225.104.147
+ host 10.225.104.147
+object network hst-10.216.180.68
+ host 10.216.180.68
+object network hst-10.218.253.245
+ host 10.218.253.245
+object network hst-10.225.104.142
+ host 10.225.104.142
+object network hst-10.11.216.51
+ host 10.11.216.51
+object network hst-10.11.217.145
+ host 10.11.217.145
+object network hst-10.11.217.146
+ host 10.11.217.146
+object network hst-10.11.217.140
+ host 10.11.217.140
+object network hst-10.11.217.156
+ host 10.11.217.156
+object network hst-10.216.16.113
+ host 10.216.16.113
+object network hst-10.12.9.72
+ host 10.12.9.72
+object network hst-10.216.16.114
+ host 10.216.16.114
+object network hst-10.12.9.71
+ host 10.12.9.71
+object network hst-10.216.180.81
+ host 10.216.180.81
+object network hst-10.218.253.77
+ host 10.218.253.77
+object network hst-10.12.11.36
+ host 10.12.11.36
+object network hst-10.12.11.37
+ host 10.12.11.37
+object network hst-10.12.194.1
+ host 10.12.194.1
+object network hst-10.216.180.98
+ host 10.216.180.98
+object network hst-10.12.11.40
+ host 10.12.11.40
+object network hst-10.12.11.41
+ host 10.12.11.41
+object network hst-10.12.194.4
+ host 10.12.194.4
+object network hst-10.12.11.33
+ host 10.12.11.33
+object network hst-10.12.11.34
+ host 10.12.11.34
+object network hst-10.12.194.6
+ host 10.12.194.6
+object network hst-10.216.180.232
+ host 10.216.180.232
+object network hst-10.216.180.96
+ host 10.216.180.96
+object network hst-10.12.9.65
+ host 10.12.9.65
+object network hst-10.216.180.79
+ host 10.216.180.79
+object network hst-10.218.253.63
+ host 10.218.253.63
+object network hst-10.11.216.18
+ host 10.11.216.18
+object network hst-10.11.216.19
+ host 10.11.216.19
+object network hst-10.11.216.31
+ host 10.11.216.31
+object network hst-10.11.216.32
+ host 10.11.216.32
+object network hst-10.11.235.40
+ host 10.11.235.40
+object network hst-10.11.235.50
+ host 10.11.235.50
+object network hst-10.11.235.58
+ host 10.11.235.58
+object network hst-10.11.235.59
+ host 10.11.235.59
+object network hst-10.11.235.65
+ host 10.11.235.65
+object network hst-10.11.235.66
+ host 10.11.235.66
+object network hst-10.11.216.68
+ host 10.11.216.68
+object network hst-10.11.216.22
+ host 10.11.216.22
+object network hst-10.11.216.20
+ host 10.11.216.20
+object network hst-10.11.216.50
+ host 10.11.216.50
+object network hst-10.218.253.128
+ host 10.218.253.128
+object network hst-10.218.253.129
+ host 10.218.253.129
+object network hst-10.225.104.143
+ host 10.225.104.143
+object network hst-10.225.104.144
+ host 10.225.104.144
+object network hst-10.12.192.33
+ host 10.12.192.33
+object network hst-10.12.192.34
+ host 10.12.192.34
+object network hst-10.218.253.130
+ host 10.218.253.130
+object network hst-10.218.253.131
+ host 10.218.253.131
+object network hst-10.12.192.36
+ host 10.12.192.36
+object network hst-10.12.192.37
+ host 10.12.192.37
+object network hst-10.216.5.67
+ host 10.216.5.67
+object network hst-10.216.5.68
+ host 10.216.5.68
+object network hst-10.11.217.141
+ host 10.11.217.141
+object network hst-10.11.217.142
+ host 10.11.217.142
+object network hst-10.216.6.236
+ host 10.216.6.236
+object network hst-10.11.216.103
+ host 10.11.216.103
+object network hst-10.216.6.96
+ host 10.216.6.96
+object network hst-10.216.180.82
+ host 10.216.180.82
+object network hst-10.216.180.182
+ host 10.216.180.182
+object network hst-10.225.70.3
+ host 10.225.70.3
+object network hst-10.221.113.17
+ host 10.221.113.17
+object network hst-10.221.113.18
+ host 10.221.113.18
+object network hst-10.216.6.90
+ host 10.216.6.90
+object network hst-10.216.6.92
+ host 10.216.6.92
+object network hst-10.216.6.94
+ host 10.216.6.94
+object network hst-10.225.104.156
+ host 10.225.104.156
+object network hst-10.11.216.75
+ host 10.11.216.75
+object network hst-10.12.8.158
+ host 10.12.8.158
+object network hst-10.11.216.66
+ host 10.11.216.66
+object network hst-216.239.217.60
+ host 216.239.217.60
+object network hst-10.216.1.1
+ host 10.216.1.1
+object network hst-10.11.216.145
+ host 10.11.216.145
+object network hst-10.225.104.157
+ host 10.225.104.157
+object network hst-10.225.104.158
+ host 10.225.104.158
+object network hst-10.225.104.159
+ host 10.225.104.159
+object network hst-10.11.216.13
+ host 10.11.216.13
+object network hst-10.11.216.14
+ host 10.11.216.14
+object network hst-10.11.216.37
+ host 10.11.216.37
+object network hst-10.11.216.38
+ host 10.11.216.38
+object network hst-10.11.216.39
+ host 10.11.216.39
+object network hst-10.11.216.40
+ host 10.11.216.40
+object network hst-10.11.216.41
+ host 10.11.216.41
+object network hst-10.11.216.42
+ host 10.11.216.42
+object network hst-10.12.192.65
+ host 10.12.192.65
+object network hst-10.12.192.66
+ host 10.12.192.66
+object network hst-10.12.192.87
+ host 10.12.192.87
+object network hst-10.216.4.203
+ host 10.216.4.203
+object network hst-10.216.4.204
+ host 10.216.4.204
+object network hst-10.12.192.97
+ host 10.12.192.97
+object network hst-10.11.235.41
+ host 10.11.235.41
+object network hst-10.11.235.51
+ host 10.11.235.51
+object network hst-10.11.235.60
+ host 10.11.235.60
+object network hst-10.12.208.65
+ host 10.12.208.65
+object network hst-10.12.208.66
+ host 10.12.208.66
+object network hst-10.11.216.151
+ host 10.11.216.151
+object network hst-10.216.180.248
+ host 10.216.180.248
+object network hst-10.225.104.154
+ host 10.225.104.154
+object network hst-10.11.235.55
+ host 10.11.235.55
+object network hst-10.12.192.116
+ host 10.12.192.116
+object network hst-10.13.10.21
+ host 10.13.10.21
+object network hst-10.216.180.184
+ host 10.216.180.184
+object network hst-10.216.180.239
+ host 10.216.180.239
+object network hst-10.216.180.240
+ host 10.216.180.240
+object network hst-10.216.8.181
+ host 10.216.8.181
+object network hst-10.225.104.167
+ host 10.225.104.167
+object network hst-10.225.7.23
+ host 10.225.7.23
+object network hst-216.239.195.65
+ host 216.239.195.65
+object network hst-216.239.195.66
+ host 216.239.195.66
+object network hst-216.239.195.73
+ host 216.239.195.73
+object network hst-216.239.217.50
+ host 216.239.217.50
+object network hst-10.11.135.33
+ host 10.11.135.33
+object network hst-10.11.135.34
+ host 10.11.135.34
+object network hst-10.11.135.35
+ host 10.11.135.35
+object network hst-10.11.135.36
+ host 10.11.135.36
+object network hst-10.11.135.37
+ host 10.11.135.37
+object network hst-10.11.135.38
+ host 10.11.135.38
+object network hst-10.11.235.33
+ host 10.11.235.33
+object network hst-10.11.235.34
+ host 10.11.235.34
+object network hst-10.11.235.35
+ host 10.11.235.35
+object network hst-10.11.235.36
+ host 10.11.235.36
+object network hst-10.11.235.37
+ host 10.11.235.37
+object network hst-10.11.235.38
+ host 10.11.235.38
+object network hst-10.11.216.150
+ host 10.11.216.150
+object network hst-10.12.192.43
+ host 10.12.192.43
+object network hst-10.11.216.140
+ host 10.11.216.140
+object network hst-10.12.194.9
+ host 10.12.194.9
+object network cen-swi-bigip-01
+ host 10.80.9.5
+object network cen-swi-bigip-02
+ host 10.80.9.6
+object network cen-swi-gtm-01
+ host 10.80.9.7
+object network cen-swi-sw-03
+ host 10.80.9.10
+object network cen-swi-sw-04
+ host 10.80.9.11
+object network cen-swi-sw-05
+ host 10.80.9.12
+object network cen-swi-sw-06
+ host 10.80.9.13
+object network cen-swi-sw-07
+ host 10.80.9.14
+object network cen-swi-sw-08
+ host 10.80.9.15
+object network cen-swi-sw-09
+ host 10.80.9.16
+object network cen-swi-sw-10
+ host 10.80.9.17
+object network cen-swi-sw-11
+ host 10.80.9.18
+object network cen-swi-sw-12
+ host 10.80.9.19
+object network cen-swi-ids-01
+ host 10.80.0.69
+object network censwipprosip01
+ host 10.80.6.132
+object network censwipprosip02
+ host 10.80.6.133
+object network censwipprosip03
+ host 10.80.6.134
+object network censwipprosip04
+ host 10.80.6.135
+object network censwipprormg01
+ host 10.80.1.196
+object network censwipprormg02
+ host 10.80.1.197
+object network censwipproweb01
+ host 10.80.3.68
+object network censwipproweb02
+ host 10.80.3.69
+object network censwipproswb01
+ host 10.80.12.4
+object network censwipproswb02
+ host 10.80.12.5
+object network censwippronan01
+ host 10.80.5.4
+object network censwippronan02
+ host 10.80.5.5
+object network censwippromcp01
+ host 10.80.5.6
+object network censwippromcp02
+ host 10.80.5.7
+object network censwippromcp03
+ host 10.80.5.8
+object network censwippromcp04
+ host 10.80.5.9
+object network censwipprosta01
+ host 10.80.5.10
+object network censwipprosta02
+ host 10.80.5.11
+object network censwipproico01
+ host 10.80.5.12
+object network censwipproico02
+ host 10.80.5.13
+object network censwipprogim01
+ host 10.80.5.14
+object network censwipprocms01
+ host 10.80.5.15
+object network censwipprours01
+ host 10.80.5.16
+object network censwipprours02
+ host 10.80.5.17
+object network censwippromcp05
+ host 10.80.5.18
+object network censwippromcp06
+ host 10.80.5.19
+object network censwipproiis01
+ host 10.80.5.20
+object network censwipproadv02
+ host 10.80.5.22
+object network censwipproadv03
+ host 10.80.5.23
+object network censwipproadv04
+ host 10.80.5.24
+object network censwipproadv05
+ host 10.80.5.25
+object network censwipproadv06
+ host 10.80.5.26
+object network censwipproadv07
+ host 10.80.5.27
+object network censwipprocms02
+ host 10.80.5.28
+object network censwipprocat01
+ host 10.80.5.29
+object network censwipprocat02
+ host 10.80.5.30
+object network censwipprocat04
+ host 10.80.5.32
+object network censwipproora02
+ host 10.80.11.5
+object network censwipproads01
+ host 10.80.3.227
+object network censwipproads01-iLO
+ host 10.80.3.228
+object network censwipproads02
+ host 10.80.3.229
+object network censwipproads02-iLO
+ host 10.80.3.230
+object network cen-swi-dc-01
+ host 10.80.7.7
+object network cen-swi-dc-01-iLO
+ host 10.80.7.8
+object network cen-swi-dc-02
+ host 10.80.7.9
+object network cen-swi-dc-02-iLO
+ host 10.80.7.10
+object network cen-swi-vc-01
+ host 10.80.7.5
+object network cen-swi-sim-01
+ host 10.80.0.67
+object network cen-swi-sim-01-iLO
+ host 10.80.0.68
+object network cen-swi-bh-01
+ host 10.80.7.11
+object network cen-swi-bh-01-iLO
+ host 10.80.7.12
+object network cen-swi-prob-01
+ host 10.80.7.3
+object network cen-swi-prob-0-iLO
+ host 10.80.7.4
+object network cen-swi-media-01
+ host 10.80.8.4
+object network cen-swi-media-01-iLO
+ host 10.80.8.5
+object network cen-swi-media-02
+ host 10.80.8.6
+object network cen-swi-media-02-iLO
+ host 10.80.8.7
+object network censwivpresip01
+ host 10.80.16.196
+object network censwivpresip02
+ host 10.80.16.197
+object network censwivpresip03
+ host 10.80.16.198
+object network censwivpresip04
+ host 10.80.16.199
+object network censwivprermg01
+ host 10.80.16.84
+object network censwivprermg02
+ host 10.80.16.85
+object network censwivprenan01
+ host 10.80.17.132
+object network censwivprenan02
+ host 10.80.17.133
+object network censwivpremcp01
+ host 10.80.17.134
+object network censwivpremcp02
+ host 10.80.17.135
+object network censwivpreico01
+ host 10.80.17.136
+object network censwivprecms01
+ host 10.80.17.137
+object network censwivprecms02
+ host 10.80.17.138
+object network censwivpreurs01
+ host 10.80.17.139
+object network censwivpreurs02
+ host 10.80.17.140
+object network censwivpreivr01
+ host 10.80.17.141
+object network censwivpreivr02
+ host 10.80.17.142
+object network censwivpresql01
+ host 10.80.17.143
+object network censwivprevht01
+ host 10.80.17.144
+object network censwivprevht02
+ host 10.80.17.145
+object network censwivpreiis01
+ host 10.80.17.146
+object network censwivpreadv01
+ host 10.80.17.147
+object network censwivpreadv02
+ host 10.80.17.148
+object network censwivpreadv03
+ host 10.80.17.149
+object network censwipre-esx01
+ host 10.80.8.196
+object network censwipre-esx02
+ host 10.80.8.198
+object network esx01console
+object network esx02console
+ host 10.80.8.198
+object network cen-swi-sw-01-VSS-BackMgmt
+ host 10.80.8.169
+object network censwipproora01-iLo
+ host 10.80.11.6
+object network censwipproora02-iLo
+ host 10.80.11.7
+object network censwipproora01
+ host 10.80.11.4
+object network censwipprocat03
+ host 10.80.5.31
+object network cen-swi-vc-01-iLO
+ host 10.80.7.6
+object network censwipre-esx01-iLO
+ host 10.80.8.197
+object network censwipre-esx02-iLO
+ host 10.80.8.199
+object network hst-10.11.217.158
+ host 10.11.217.158
+object network cen-swi-asa-02-inside-pri
+ host 10.99.99.97
+object network cen-swi-asa-02-inside-sec
+ host 10.99.99.98
+object network censwipiptesx01
+ host 10.80.15.10
+object network censwipiptesx02
+ host 10.80.15.11
+object network censwipproadv01
+ host 10.80.5.21
+object network censwipaspavp01
+ host 10.80.30.4
+object network censwipaspavp01_iLO
+ host 10.80.30.104
+object network censwipaspavp02
+ host 10.80.30.5
+object network censwipaspavp02_iLO
+ host 10.80.30.105
+object network censwipaspavp03
+ host 10.80.30.6
+object network censwipaspavp03_iLO
+ host 10.80.30.106
+object network censwipaspavp04
+ host 10.80.30.7
+object network censwipaspavp04_iLO
+ host 10.80.30.107
+object network censwipaspavp05
+ host 10.80.30.8
+object network censwipaspavp05_iLO
+ host 10.80.30.108
+object network censwipaspavp06
+ host 10.80.30.9
+object network censwipaspavp06_iLO
+ host 10.80.30.109
+object network censwipaspts01
+ host 10.80.30.10
+object network censwipaspts01_iLO
+ host 10.80.30.110
+object network censwipaspwa01
+ host 10.80.30.11
+object network censwipaspwa01_iLO
+ host 10.80.30.111
+object network censwipaspalm01
+ host 10.80.30.12
+object network censwipaspalm01_iLO
+ host 10.80.30.112
+object network censwivaspaod01
+ host 10.80.30.13
+object network censwivaspawcs01
+ host 10.80.30.14
+object network censwivasppdm01
+ host 10.80.30.15
+object network censwivasprdm02
+ host 10.80.30.16
+object network censwivaspexs01
+ host 10.80.30.17
+object network censwivaspexs02
+ host 10.80.30.18
+object network censwivaspexs03
+ host 10.80.30.19
+object network censwivaspexs04
+ host 10.80.30.20
+object network censwivaspexs05
+ host 10.80.30.21
+object network censwivaspexd01
+ host 10.80.30.22
+object network censwivaspcs01
+ host 10.80.30.23
+object network censwivaspcs02
+ host 10.80.30.24
+object network censwivasptas05
+ host 10.80.31.8
+object network censwivaspcti01
+ host 10.80.30.26
+object network censwivaspcti02
+ host 10.80.30.27
+object network censwivaspucc02
+ host 10.80.30.29
+object network censwivasppc01
+ host 10.80.30.30
+object network censwivaspalb01
+ host 10.80.30.31
+object network censwivasprec01
+ host 10.80.30.32
+object network censwivasptas01
+ host 10.80.31.4
+object network censwivasptas02
+ host 10.80.31.5
+object network censwivasptas03
+ host 10.80.31.6
+object network censwivasptas04
+ host 10.80.31.7
+object network censwipaspesx01
+ host 10.80.15.4
+object network censwipaspesx02
+ host 10.80.15.5
+object network censwipaspesx03
+ host 10.80.15.6
+object network censwipaspesx04
+ host 10.80.15.7
+object network censwipaspesx05
+ host 10.80.15.8
+object network censwipaspesx06
+ host 10.80.15.9
+object network hst-148.185.143.149
+ host 148.185.143.149
+object network hst-148.185.183.33
+ host 148.185.183.33
+object network hst-148.185.143.147
+ host 148.185.143.147
+object network hst-10.250.94.137
+ host 10.250.94.137
+object network hst-10.250.94.154
+ host 10.250.94.154
+object network hst-10.250.94.160
+ host 10.250.94.160
+object network censwipiptesx03
+ host 10.80.15.12
+object network censwipiptesx04
+ host 10.80.15.13
+object network cen-swi-cuc01
+ host 10.80.21.20
+object network cen-swi-ccm01
+ host 10.80.21.4
+object network cen-swi-ccm02
+ host 10.80.21.5
+object network cen-swi-iprec-01
+ host 10.80.21.21
+object network cen-swi-t-svr-01
+ host 10.80.21.22
+object network cen-swi-mtp-01
+ host 10.80.21.30
+object network cen-swi-unify-1
+ host 10.80.21.23
+object network censwippreora01
+ host 10.80.18.132
+object network censwippreora01-ilo
+ host 10.80.18.134
+object network censwippreora02
+ host 10.80.18.133
+object network censwippreora02-ilo
+ host 10.80.18.135
+object network censwisanmg01
+ host 10.80.8.21
+object network censwisanmg01-iLo
+ host 10.80.8.22
+object network cen-swi-vnx_spa
+ host 10.80.8.10
+object network cen-swi-vnx_spb
+ host 10.80.8.11
+object network censwipmtpesx01
+ host 10.80.15.14
+object network censwivmtpwcs01
+ host 10.80.22.132
+object network censwipmtpacs01
+ host 10.80.22.133
+object network censwipmtpckp01
+ host 10.80.22.135
+object network cen-swi-iprec-2
+ host 10.80.21.24
+object network cen-swi-iprec-2-iLO
+ host 10.80.21.25
+object network cen-swi-anlyz-1
+ host 10.80.21.26
+object network cen-swi-anlyz-1-ilo
+ host 10.80.21.126
+object network hst-10.80.28.4
+ host 10.80.28.4
+object network hst-10.80.28.5
+ host 10.80.28.5
+object network hst-10.80.28.6
+ host 10.80.28.6
+object network hst-10.80.28.7
+ host 10.80.28.7
+object network hst-10.80.28.8
+ host 10.80.28.8
+object network hst-10.80.28.9
+ host 10.80.28.9
+object network hst-10.80.28.10
+ host 10.80.28.10
+object network hst-10.80.28.11
+ host 10.80.28.11
+object network hst-10.80.28.12
+ host 10.80.28.12
+object network hst-10.80.28.13
+ host 10.80.28.13
+object network hst-10.80.28.14
+ host 10.80.28.14
+object network hst-10.80.28.15
+ host 10.80.28.15
+object network hst-10.80.28.16
+ host 10.80.28.16
+object network hst-10.80.28.17
+ host 10.80.28.17
+object network hst-10.80.28.18
+ host 10.80.28.18
+object network hst-10.80.28.19
+ host 10.80.28.19
+object network hst-10.80.28.20
+ host 10.80.28.20
+object network hst-10.80.28.21
+ host 10.80.28.21
+object network hst-10.80.28.22
+ host 10.80.28.22
+object network hst-10.80.28.23
+ host 10.80.28.23
+object network hst-10.80.28.24
+ host 10.80.28.24
+object network hst-10.80.28.26
+ host 10.80.28.26
+object network hst-10.80.28.27
+ host 10.80.28.27
+object network hst-10.80.28.29
+ host 10.80.28.29
+object network hst-10.80.28.30
+ host 10.80.28.30
+object network hst-10.80.28.31
+ host 10.80.28.31
+object network hst-10.80.28.32
+ host 10.80.28.32
+object network cen-swi-mgt-01
+ host 10.80.21.10
+object network cen-swi-iprec-3
+ host 10.80.21.28
+object network cen-swi-iprec-3-ilo
+ host 10.80.21.29
+object network cen-swi-iprec-4
+ host 10.80.21.30
+object network cen-swi-iprec-4-ilo
+ host 10.80.21.31
+object network cen-swi-iprec-5
+ host 10.80.21.32
+object network cen-swi-iprec-5-ilo
+ host 10.80.21.33
+object network cen-swi-iprec-6
+ host 10.80.21.34
+object network cen-swi-iprec-6-ilo
+ host 10.80.21.35
+object network cen-swi-mtp-02
+ host 10.80.21.36
+object network censwivaspucc01
+ host 10.80.28.28
+object network cen-swi-ccm03
+ host 10.80.21.6
+object network cen-swi-mtp-03
+ host 10.80.21.37
+object network hst-10.80.5.33
+ host 10.80.5.33
+object network censwipprocat05
+ host 10.80.5.34
+object network censwipprocat06
+ host 10.80.5.35
+object network cen-swi-ccm04
+ host 10.80.21.7
+object network cen-swi-ccm05
+ host 10.80.21.8
+object network cen-swi-mtp-04
+ host 10.80.21.38
+object network cen-swi-mtp-05
+ host 10.80.21.39
+object network cen-swi-iprec-7
+ host 10.80.21.44
+object network cen-swi-iprec-7-ilo
+ host 10.80.21.144
+object network cen-swi-iprec-8
+ host 10.80.21.45
+object network cen-swi-iprec-8-ilo
+ host 10.80.21.145
+object network cen-swi-iprec-9
+ host 10.80.21.46
+object network cen-swi-iprec-9-ilo
+ host 10.80.21.146
+object network cen-swi-iprec-10
+ host 10.80.21.47
+object network cen-swi-iprec-10-ilo
+ host 10.80.21.147
+object network cen-swi-iprec-11
+ host 10.80.21.48
+object network cen-swi-iprec-11-ilo
+ host 10.80.21.148
+object network hst-10.80.22.138
+ host 10.80.22.138
+object network hst-10.80.22.139
+ host 10.80.22.139
+object network cen-swi-sw-17_mgmt
+ host 10.80.9.23
+object network cen-swi-sw-18_mgmt
+ host 10.80.9.24
+object network cen-swi-sw-15_mgmt
+ host 10.202.252.165
+object network cen-swi-sw-16_mgmt
+ host 10.202.252.166
+object network cen-swi-nok-01-pri_mgmt
+ host 10.202.252.163
+object network cen-swi-nok-01-sec_mgmt
+ host 10.202.252.164
+object network cen-swi-asa-01-pri-admin_mgmt
+ host 10.80.9.25
+object network cen-swi-asa-01-sec-admin_mgmt
+ host 10.80.9.26
+object network cen-swi-asa-01-pri-sig_mgmt
+ host 10.80.9.27
+object network cen-swi-asa-01-sec-sig_mgmt
+ host 10.80.9.28
+object network cen-swi-asa-01-pri-mvccolo_mgmt
+ host 10.80.9.29
+object network cen-swi-asa-01-sec-mvccolo_mgmt
+ host 10.80.9.30
+object network censwipiptesx-05_mgmt
+ host 10.80.15.15
+object network censwivmvcsub01_mgmt
+ host 10.202.252.116
+object network censwivmvctms01_mgmt
+ host 10.202.252.68
+object network censwivmvcsql01_mgmt
+ host 10.202.252.36
+object network cen-swi-unify-2
+ host 10.80.21.41
+object network cen-swi-unify-3
+ host 10.80.21.42
+object network censwipiptesx06_mgmt
+ host 10.80.15.16
+object network censwipiptesx07_mgmt
+ host 10.80.15.17
+object network cen-swi-ccm06_mgmt
+ host 10.80.21.9
+object network cen-swi-moh01_mgmt
+ host 10.80.21.12
+object network centverswncam
+ host 10.80.191.2
+object network centverswndb
+ host 10.80.191.3
+object network centverswndc
+ host 10.80.191.4
+object network centverswndp1
+ host 10.80.191.5
+object network centverswndp2
+ host 10.80.191.6
+object network centverswndpd
+ host 10.80.191.7
+object network centverswnsr
+ host 10.80.191.8
+object network centverswnufy
+ host 10.80.191.9
+object network censwipiptesx08
+ host 10.80.15.18
+object network censwipiptesx09
+ host 10.80.15.19
+object network censwipmvresx01
+ host 10.80.15.32
+object network censwipmvresx02
+ host 10.80.15.33
+object network censwipmvresx03
+ host 10.80.15.34
+object network censwipmvresx04
+ host 10.80.15.35
+object network censwipmvresx05
+ host 10.80.15.36
+object network censwipmvresx05-ilo
+ host 10.80.15.37
+object network censwipmvresx06
+ host 10.80.15.38
+object network censwipmvresx06-ilo
+ host 10.80.15.39
+object network censwipmvresx07
+ host 10.80.15.40
+object network censwipmvresx07-ilo
+ host 10.80.15.41
+object network censwipmvresx08
+ host 10.80.15.42
+object network censwipmvresx08-ilo
+ host 10.80.15.43
+object network censwipmvresx09
+ host 10.80.15.44
+object network censwipmvresx09-ilo
+ host 10.80.15.45
+object network censwipmvresx10
+ host 10.80.15.46
+object network censwipmvresx10-ilo
+ host 10.80.15.47
+object network cen-swi-ccmb01
+ host 10.132.254.132
+object network cen-swi-ccmb02
+ host 10.132.254.133
+object network cen-swi-ccmb03
+ host 10.132.254.134
+object network cen-swi-ccmb04
+ host 10.132.254.135
+object network cen-swi-ccmb05
+ host 10.132.254.136
+object network cen-swi-ccmt01
+ host 10.132.255.132
+object network cen-swi-mohb01
+ host 10.132.254.137
+object network cen-swi-tsvr-02
+ host 10.132.254.150
+object network cen-swi-mtpb-01
+ host 10.132.254.158
+object network cen-swi-mtpb-02
+ host 10.132.254.159
+object network cen-swi-mtpb-03
+ host 10.132.254.160
+object network cen-swi-mtpb-04
+ host 10.132.254.161
+object network cen-swi-mtpt-01
+ host 10.132.255.158
+object network censwipmvrprs01
+ host 10.80.23.131
+object network censwipmvrprs01-ilo
+ host 10.80.23.143
+object network censwipmvrprs02
+ host 10.80.23.132
+object network censwipmvrprs02-ilo
+ host 10.80.23.144
+object network censwipmvrprs03
+ host 10.80.23.133
+object network censwipmvrprs03-ilo
+ host 10.80.23.145
+object network censwipmvrprs04
+ host 10.80.23.134
+object network censwipmvrprs04-ilo
+ host 10.80.23.146
+object network censwipmvrprs05
+ host 10.80.23.135
+object network censwipmvrprs05-ilo
+ host 10.80.23.147
+object network censwipmvrprs06
+ host 10.80.23.136
+object network censwipmvrprs06-ilo
+ host 10.80.23.148
+object network censwipmvrprs07
+ host 10.80.23.137
+object network censwipmvrprs07-ilo
+ host 10.80.23.149
+object network censwipmvrprs11
+ host 10.80.23.141
+object network censwipmvrprs11-ilo
+ host 10.80.23.150
+object network censwipmvrprs12
+ host 10.80.23.142
+object network censwipmvrprs12-ilo
+ host 10.80.23.151
+object network censwipmvrtad01
+ host 10.80.23.196
+object network censwipmvrtad01-ilo
+ host 10.80.23.201
+object network censwipmvrtad02
+ host 10.80.23.197
+object network censwipmvrtad02-ilo
+ host 10.80.23.202
+object network censwivmvrprs08
+ host 10.80.23.138
+object network censwivmvrprs09
+ host 10.80.23.139
+object network censwivmvrpas01
+ host 10.80.23.180
+object network censwivmvrpas02
+ host 10.80.23.181
+object network censwivmvrprs10
+ host 10.80.23.140
+object network censwivmvrpdb01
+ host 10.80.23.228
+object network censwivmvrpdb02
+ host 10.80.23.229
+object network censwivmvrpdb03
+ host 10.80.23.230
+object network censwivmvrpdb04
+ host 10.80.23.231
+object network censwivmvrpdb05
+ host 10.80.23.232
+object network censwivmvrpdb06
+ host 10.80.23.233
+object network censwivmvrpdb07
+ host 10.80.23.234
+object network censwivmvrpdb08
+ host 10.80.23.235
+object network censwivmvrpdb09
+ host 10.80.23.236
+object network censwivmvrpdb10
+ host 10.80.23.237
+object network censwivmvrpdb11
+ host 10.80.23.238
+object network censwivmvrpdb12
+ host 10.80.23.239
+object network censwivmvrpdb13
+ host 10.80.23.240
+object network censwivmvrpap01
+ host 10.80.23.164
+object network censwivmvrpap02
+ host 10.80.23.165
+object network censwivmvrpap03
+ host 10.80.23.166
+object network censwivmvrpap04
+ host 10.80.23.167
+object network censwivmvrpap05
+ host 10.80.23.168
+object network hst-10.80.15.20
+ host 10.80.15.20
+object network hst-10.132.254.168
+ host 10.132.254.168
+object network cen-swi-rm01_mgmt
+ host 10.80.8.28
+object network cen-swi-rm01_ilo
+ host 10.80.8.29
+object network cen-swi-rpa01_mgt
+ host 10.80.8.26
+object network cen-swi-rpa02_mgt
+ host 10.80.8.27
+object network cen-swi-vnx1_CSVIPmgmt
+ host 10.80.8.30
+object network cen-swi-vnx1_CS0mgmt
+ host 10.80.8.31
+object network cen-swi-vnx1_CS1mgmt
+ host 10.80.8.32
+object network cen-swi-vnx1_Spamgmt
+ host 10.80.8.33
+object network cen-swi-vnx1_Spbmgmt
+ host 10.80.8.34
+object network cen-swi-asa-04-pri
+ host 10.80.9.31
+object network cen-swi-asa-04-sec
+ host 10.80.9.32
+object network hst-10.80.8.36
+ host 10.80.8.36
+object network cen-swi-asa-01-pri-pci_mgmt
+ host 10.80.9.33
+object network cen-swi-asa-01-sec-pci_mgmt
+ host 10.80.9.34
+object network censwipmvresx11
+ host 10.80.15.48
+object network censwivmvrpap06
+ host 10.80.23.169
+object network censwivmvrpap07
+ host 10.80.23.170
+object network cen-swi-alb-01
+ host 10.80.24.16
+object network cen-swi-alb-02
+ host 10.80.24.17
+object network censwipaspesx07
+ host 10.80.15.60
+object network censwipaspesx08
+ host 10.80.15.61
+object network censwipaspesx09
+ host 10.80.15.62
+object network censwipaspesx10
+ host 10.80.15.63
+object network censwipewfmdb01
+ host 10.80.30.130
+object network censwipewfmdb02
+ host 10.80.30.131
+object network censwivewfmas01
+ host 10.80.30.132
+object network censwivewfmas02
+ host 10.80.30.133
+object network censwivewfmas03
+ host 10.80.30.134
+object network censwivewfmce01
+ host 10.80.30.135
+object network censwivewfmce02
+ host 10.80.30.136
+object network censwivewfmce03
+ host 10.80.30.137
+object network censwivewfmce04
+ host 10.80.30.138
+object network censwivewfmce05
+ host 10.80.30.139
+object network censwivewfmse01
+ host 10.80.30.140
+object network censwivewfmse02
+ host 10.80.30.141
+object network censwivewfmbu01
+ host 10.80.30.142
+object network censwivewfmbu02
+ host 10.80.30.143
+object network censwivewfmbu03
+ host 10.80.30.144
+object network censwivewfmce06
+ host 10.80.30.145
+object network censwivewfmas04
+ host 10.80.30.146
+object network censwipaspesx11
+ host 10.80.15.64
+object network cen-msl-tsvr-03
+ host 10.132.255.133
+object network sysm-swi-sig
+ host 10.13.253.4
+object network hst-10.80.14.31
+ host 10.80.14.31
+object network cen-sw-asa-01-phj-pri
+ host 10.80.9.35
+object network cen-sw-asa-01-phj-sec
+ host 10.80.9.36
+object network cen-swi-cta-1a
+ host 10.80.8.14
+object network cen-swi-cta-1b
+ host 10.80.8.15
+object network censwippcispw01
+ host 10.207.96.1
+object network hst-10.80.9.37
+ host 10.80.9.37
+object network hst-10.80.9.38
+ host 10.80.9.38
+object network censwippcispw01-ilo
+ host 10.207.96.3
+object network cenmslppcispw02
+ host 10.22.224.2
+object network cenmslppcispw02-ilo
+ host 10.22.224.4
+object network censwippremag01
+ host 10.80.15.235
+object network censwippremag01_ilo
+ host 10.80.15.236
+object network censwivmvctms02_mgmt
+ host 10.202.252.69
+object network censwivmvcsql02_mgmt
+ host 10.202.252.39
+object network censwivmvcsql03_mgmt
+ host 10.202.252.40
+object network censwipprovtt01
+ host 10.80.3.70
+object network censwipprovtt02
+ host 10.80.3.71
+object network cen-swi-rtr-01
+ host 10.80.9.40
+object network cen-swi-rtr-02
+ host 10.80.9.41
+object network hst-217.135.0.39
+ host 217.135.0.39
+object network censwipmvrprs21_ILO
+ host 10.80.15.50
+object network censwipmvrprs22_ILO
+ host 10.80.15.51
+object network censwipmvrprs23_ILO
+ host 10.80.15.52
+object network censwipmvrprs24_ILO
+ host 10.80.15.53
+object network censwipmvrprs25_ILO
+ host 10.80.15.54
+object network censwipmvrprs26_ILO
+ host 10.80.15.55
+object network censwipmvrprs27_ILO
+ host 10.80.15.56
+object network censwipmvrtad06_ILO
+ host 10.80.15.57
+object network censwipmvrtad06
+ host 10.80.23.203
+object network cen-swi-tsvr-04
+ host 10.80.21.51
+object network cen-swi-tsvr-05
+ host 10.132.254.162
+object network cen-swi-tsvr-06
+ host 10.132.255.137
+object network censwipmvrvrs21
+ host 10.80.23.171
+object network censwipmvrtad07
+ host 10.80.23.204
+object network censwipmvrvrs22
+ host 10.80.23.172
+object network censwipmvrtad08
+ host 10.80.23.205
+object network censwipmvrprs21
+ host 10.80.23.152
+object network censwipmvrprs22
+ host 10.80.23.153
+object network censwipmvrprs23
+ host 10.80.23.154
+object network censwipmvrprs24
+ host 10.80.23.155
+object network censwipmvrprs25
+ host 10.80.23.156
+object network censwipmvrprs26
+ host 10.80.23.157
+object network censwipmvrprs27
+ host 10.80.23.158
+object network cen-swi-ssl-asa-01
+ host 10.80.9.39
+object network censwippcispw02
+ host 10.207.96.2
+object network censwippcispw02-ilo
+ host 10.207.96.4
+object network cen-swi-cta-1a_cwmgmt
+ host 10.80.8.14
+object network cen-swi-cta-1b_cwmgmt
+ host 10.80.8.15
+object network CallRec-SWI-VNX-CSOa_cwmgmt
+ host 10.80.8.10
+object network CallRec-SWI-VNX-CSOb_cwmgmt
+ host 10.80.8.11
+object network CallRec-SWI-VNX-CSOc_cwmgmt
+ host 10.80.8.12
+object network emc-uxb-dpa-03
+ host 10.231.0.43
+object network cen-swi-coesx01
+ host 10.202.253.6
+object network cen-swi-vcon-01
+ host 10.202.253.130
+object network hst-10.202.253.13
+ host 10.202.253.13
+object network hst-10.202.252.71
+ host 10.202.252.71
+object network hst-10.202.252.72
+ host 10.202.252.72
+object network censwipgapesx01
+ host 10.80.15.58
+object network cenmslpgapesx02
+ host 10.80.15.59
+object network cen-swi-ucm-DMZ01-a
+ host 10.232.193.3
+object network censwiedgdmzesx03
+ host 10.80.15.67
+object network censwipbcmsgdb01
+ host 10.232.192.248
+object network censwivprogvp01
+ host 10.80.3.72
+object network cen-swi-ucm-DMZ01-VIP
+ host 10.232.193.5
+object network hst_censwipbcmsapp01
+ host 10.232.192.250
+ description censwipbcmsapp01 Server
+object network cen-swi-ucm-DMZ01-b
+ host 10.232.193.4
+object network censwivprovht01
+ host 10.80.6.136
+object network censwivprovht02
+ host 10.80.6.137
+object network censwivprovht03
+ host 10.80.6.138
+object network censwivprovht04
+ host 10.80.6.139
+object network censwivprovht05
+ host 10.80.6.140
+object network censwivprovht06
+ host 10.80.6.141
+object network censwivprovht07
+ host 10.80.6.142
+object network censwivprovht08
+ host 10.80.6.143
+object service smtp_port
+ service tcp destination eq smtp
+object network cen-swi-cta-1a_cwmgmt-nat
+ host 10.13.96.83
+object network censwiedgdmzesx01
+ host 10.232.192.215
+object network censwiedgdmzesx02
+ host 10.232.192.216
+object network censg-swi-sw-01
+ host 10.202.252.167
+object network censg-swi-sw-02
+ host 10.202.252.168
+object network censg-swimsl-nok-01-pri
+ host 10.202.252.169
+object network censg-swimsl-nok-01-sec
+ host 10.202.252.170
+object network censg-swimsl-nok-01-pri-ilo
+ host 10.202.252.171
+object network censg-swimsl-nok-01-sec-ilo
+ host 10.202.252.172
+object network cen-swi-pp-asa-01-Mgmt-pri
+ host 10.232.193.67
+object network cen-swi-pp-asa-01-Mgmt-sec
+ host 10.232.193.68
+object network cen-swi-pp-asa-01-PrePod-pri
+ host 10.232.193.73
+object network cen-swi-pp-asa-01-PrePod-sec
+ host 10.232.193.74
+object network cen-swi-pp-asa-01-BackUp-sec
+ host 10.232.193.70
+object network cen-swi-pp-sw-26-1
+ host 10.232.193.145
+object network cen-swi-pp-sw-26-2
+ host 10.232.193.146
+object network cen-swi-pp-esx01
+ host 10.232.193.228
+object network cen-swi-pp-esx01-ilo
+ host 10.232.193.211
+object network cen-swi-pp-esx02
+ host 10.232.193.229
+object network cen-swi-pp-esx02-ilo
+ host 10.232.193.212
+object network cen-swi-pp-esx03
+ host 10.232.194.92
+object network cen-swi-pp-esx03-ilo
+ host 10.232.194.76
+object network cen-swi-pp-esx04
+ host 10.232.194.93
+object network cen-swi-pp-esx04-ilo
+ host 10.232.194.77
+object network cen-swi-v-pre-v-app1-site1
+ host 10.232.193.155
+object network cen-swi-v-pre-v-app2-site1
+ host 10.232.193.156
+object network cen-swi-v-pre-v-dpa1-site1
+ host 10.232.193.157
+object network cen-swi-v-pre-v-dpa2-site1
+ host 10.232.193.158
+object network cen-swi-v-pre-v-ris1-site1
+ host 10.232.193.163
+object network cen-swi-v-pre-v-ris2-site1
+ host 10.232.193.164
+object network cen-swi-v-pre-v-ems-site1
+ host 10.232.193.165
+object network cen-swi-v-pre-v-rec1-site1
+ host 10.232.193.166
+object network cen-swi-v-pre-v-rec2-site1
+ host 10.232.193.167
+object network cen-swi-v-pre-v-arch-site1
+ host 10.232.193.195
+object network cen-swi-v-pre-v-dpadb1-site1
+ host 10.232.193.203
+object network cen-swi-v-pre-v-dpadb2-site1
+ host 10.232.193.204
+object network cen-swi-v-pre-v-db1-site1
+ host 10.232.193.205
+object network cen-swi-v-pre-v-db2-site1
+ host 10.232.193.206
+object network cen-swi-v-pre-v-dc1-site1
+ host 10.232.193.178
+object network cen-swi-v-pre-v-dc2-site1
+ host 10.232.193.179
+object network cen-swi-v-pre-v-bst-site1
+ host 10.232.193.180
+object network cen-swi-v-pre-v-dbms-site1
+ host 10.232.193.181
+object network cen-swi-v-pre-v-adplus-site1
+ host 10.232.193.182
+object network cen-swi-p-pre-med-serv
+ host 10.232.193.234
+object network cen-swi-v-pre-v-app1-site2
+ host 10.232.194.10
+object network cen-swi-v-pre-v-app2-site2
+ host 10.232.194.11
+object network cen-swi-v-pre-v-dpa1-site2
+ host 10.232.194.12
+object network cen-swi-v-pre-v-dpa2-site2
+ host 10.232.194.13
+object network cen-swi-v-pre-v-ris1-site2
+ host 10.232.194.18
+object network cen-swi-v-pre-v-ris2-site2
+ host 10.232.194.19
+object network cen-swi-v-pre-v-ems-site2
+ host 10.232.194.20
+object network cen-swi-v-pre-v-rec1-site2
+ host 10.232.194.21
+object network cen-swi-v-pre-v-rec2-site2
+ host 10.232.194.22
+object network cen-swi-v-pre-v-arch-site2
+ host 10.232.194.51
+object network cen-swi-v-pre-v-dpadb1-site2
+ host 10.232.194.59
+object network cen-swi-v-pre-v-dpadb2-site2
+ host 10.232.194.60
+object network cen-swi-v-pre-v-db1-site2
+ host 10.232.194.61
+object network cen-swi-v-pre-v-db2-site2
+ host 10.232.194.62
+object network cen-swi-v-pre-v-dc1-site2
+ host 10.232.194.35
+object network cen-swi-v-pre-v-dc2-site2
+ host 10.232.194.36
+object network cen-swi-v-pre-v-bst-site2
+ host 10.232.194.37
+object network cen-swi-v-pre-v-dbms-site2
+ host 10.232.194.38
+object network cen-swi-v-pre-v-adplus-site2
+ host 10.232.194.39
+object network cen-swi-v-pre-lb-site1
+ host 10.232.193.147
+object network cen-swi-pp-v-lb-site2
+ host 10.232.194.6
+object network cen-swi-pp-v-swire-site1
+ host 10.232.193.243
+object network cen-swi-pp-v-swire-site2
+ host 10.232.194.107
+object network censwivmvrvrs23
+ host 10.80.23.173
+object network cen-swi-p-pre-med-serv-ilo
+ host 10.232.194.99
+object network censwipbcssyslg01
+ host 10.232.192.243
+object network hst-10.13.96.214
+ host 10.13.96.214
+object network censwivasppc02
+ host 10.80.30.50
+object network censwivproadlds01
+ host 10.80.3.198
+object network censwivproadlds02
+ host 10.80.3.199
+object network censwivprowwb01_mgmt
+ host 10.80.12.6
+object network hst-10.132.255.134
+ host 10.132.255.134
+object network hst-10.132.255.135
+ host 10.132.255.135
+object network hst-10.80.21.43
+ host 10.80.21.43
+object network hst-10.132.254.176
+ host 10.132.254.176
+object network cen-swi-sw-21_mgmt
+ host 10.80.9.42
+object network cen-swi-sw-22_mgmt
+ host 10.80.9.43
+object network cen-swi-sw-23_mgmt
+ host 10.80.9.44
+object network cen-swi-sw-24_mgmt
+ host 10.80.9.45
+object network cen-swi-sw-25_mgmt
+ host 10.80.9.46
+object network cen-swi-esx-m03
+ host 10.80.7.13
+object network cen-swi-esx-m03-ILO
+ host 10.80.7.14
+object network cen-swi-esx-m04
+ host 10.80.7.15
+object network cen-swi-esx-m04-ILO
+ host 10.80.7.16
+object network cen-swi-asa-01-pri-intrdm_mgmt
+ host 10.80.9.47
+object network cen-swi-asa-01-sec-intrdm_mgmt
+ host 10.80.9.48
+object network censwivprogap01
+ host 10.232.208.10
+object network censwivprogap02
+ host 10.232.208.11
+object network censwivprogap03
+ host 10.232.208.12
+object network censwivprogap04
+ host 10.232.208.13
+object network censwiiptldsca01
+ host 10.80.3.201
+object network censg-swi-coll-01
+ host 10.80.7.17
+object network censwivasppdm02
+ host 10.80.28.33
+object network cen-swi-pp-27
+ host 10.232.193.149
+object network cen-swi-pp-28
+ host 10.232.193.150
+object network cen-swi-v-pre-lbs12
+ host 10.232.193.148
+object network cen-swi-sw-09-new
+ host 10.80.9.240
+object network hst-10.216.1.32
+ host 10.216.1.32
+object network censwivjmp02
+ host 10.80.22.141
+object network cen-swi-gtm-01-new
+ host 10.80.9.61
+object network cen-swi-bigip-01-new
+ host 10.80.9.62
+object network cen-swi-bigip-02-new
+ host 10.80.9.63
+object network cen-swi-asa-05-pri-admin_mgmt
+ host 10.80.9.115
+object network cen-swi-asa-05-sec-admin_mgmt
+ host 10.80.9.110
+object network cen-swi-asa-05-pri-sig_mgmt
+ host 10.80.9.81
+object network cen-swi-asa-05-sec-sig_mgmt
+ host 10.80.9.82
+object network cen-swi-asa-05-pri-intrdm_mgmt
+ host 10.80.9.83
+object network cen-swi-asa-05-sec-intrdm_mgmt
+ host 10.80.9.84
+object network cen-swi-ucm-01-aNew
+ host 10.80.9.241
+object network cen-swi-ucm-01-bNew
+ host 10.80.9.242
+object network censwipproswb01-tmp
+ host 10.80.12.7
+object network cen-swimsl-sw-27
+ host 10.80.9.64
+object network hb2-swi-sat-02
+ host 217.135.0.117
+object network hst-10.80.15.22
+ host 10.80.15.22
+object network hst-10.80.15.21
+ host 10.80.15.21
+object network censwivpronan01
+ host 10.80.5.36
+object network censwivpronan02
+ host 10.80.5.37
+object network censwivpronan03
+ host 10.80.5.38
+object network censwivpronan04
+ host 10.80.5.39
+object network censwivpronan05
+ host 10.80.5.40
+object network censwivpronan06
+ host 10.80.5.41
+object network censwipgapesx04
+ host 10.80.15.75
+object network censwipgapesx05
+ host 10.80.15.76
+object network censg-swi-fmc-01
+ host 10.80.0.70
+object network cen-swi-bigip-03
+ host 10.80.9.58
+object network cen-swi-bigip-04
+ host 10.80.9.59
+object network hst-10.80.7.136
+ host 10.80.7.136
+object network cen-swi-sw-13
+ host 10.80.8.40
+object network cen-swi-sw-13-temp
+ host 10.80.8.123
+object network cen-swi-sw-14
+ host 10.80.8.41
+object network cen-swi-sw-14-temp
+ host 10.80.8.122
+object network CENSWIPPROWEB01-TMP
+ host 10.80.3.73
+object network CENSWIPPROWEB02-TMP
+ host 10.80.3.74
+object network CENSWIPPROSIP02-TMP
+ host 10.80.6.145
+object network CENSWIPPROSIP01-TMP
+ host 10.80.6.144
+object network CENSWIPPRORMG02-TMP
+ host 10.80.1.199
+object network CENSWIPPRORMG01-TMP
+ host 10.80.1.198
+object network CENSWIPPROMCP01-TMP
+ host 10.80.5.56
+object network CENSWIPPROMCP02-TMP
+ host 10.80.5.57
+object network censg-swi-sw-03
+ host 10.80.9.67
+object network censg-swi-sw-04
+ host 10.80.9.68
+object network censg-swi-sw-05
+ host 10.80.9.65
+object network censg-swi-sw-06
+ host 10.80.9.66
+object network cen-swi-ucm-01
+ host 10.232.206.4
+object network cen-swi-ucm-02
+ host 10.232.206.5
+object network cen-swi-ucm-01-02VIP
+ host 10.232.206.3
+object network CENSWIPPROMCP03-TMP
+ host 10.80.5.58
+object network CENSWIPPROMCP04-TMP
+ host 10.80.5.59
+object network cenmslvmvctms05-mgmt
+ host 10.202.252.89
+object network censwivmvcsx01-mgmt
+ host 10.202.252.183
+object network censwimvcpub02-mgmt
+ host 10.202.252.117
+object network censwimvcpub01-mgmt
+ host 10.202.252.118
+object network CENSWIPPROMCP05-TMP
+ host 10.80.5.60
+object network CENSWIPPROMCP06-TMP
+ host 10.80.5.61
+object network CENSWIPPROMCP07-TMP
+ host 10.80.5.62
+object network hst-10.104.199.132
+ host 10.104.199.132
+object network hst-10.80.7.132
+ host 10.80.7.132
+object network CENSWIPPROGIM01-TMP
+ host 10.80.5.53
+object-group service HTTP-HTTPS_TCP tcp
+ port-object eq www
+ port-object eq https
+object-group service NOISE-AND-DENIED-SERVICES_UDP udp
+ port-object eq bootps
+ port-object eq 136
+ port-object eq netbios-ns
+ port-object eq netbios-dgm
+object-group service CW-AUTH_TCP tcp
+ description Standard TCP authentication service ports
+ port-object eq 5500
+ port-object eq 5400
+ port-object eq ldap
+ port-object eq tacacs
+object-group service CW-AUTH_UDP udp
+ description Standard UDP authentication service ports
+ port-object eq 5500
+ port-object eq 5400
+ port-object eq 1812
+ port-object eq radius
+object-group service CW-NETISM-IN_TCP tcp
+ description TCP services monitored as standard via Netcool ISMs
+ port-object eq www
+ port-object eq https
+ port-object eq smtp
+ port-object eq pop3
+ port-object eq nntp
+ port-object eq ftp
+object-group service CW-NETISM-IN_UDP udp
+ description UDP services monitored as standard via Netcool ISMs
+ port-object eq domain
+ port-object eq ntp
+object-group network CW-NETISM-MSL_CWMGMT
+ description Netcool ISM Servers at Melbourne Street
+ network-object host 10.216.180.72
+ network-object host 10.216.180.107
+object-group network CW-NETISM-GRL_CWMGMT
+ description Netcool ISM Servers at Gotts Road
+ network-object host 10.218.253.128
+ network-object host 10.218.253.129
+object-group network CW-NETISM-IWW_CWMGMT
+ description Netcool ISM Servers at Watford
+ network-object host 10.225.104.143
+ network-object host 10.225.104.144
+object-group network CW-NETISM-DUB_CWMGMT
+ description Netcool ISM Servers at Dublin
+ network-object host 10.221.113.17
+ network-object host 10.221.113.18
+object-group network CW-NETISM-SWI_CWMGMT
+ description Netcool ISM Servers at Swindon
+ network-object host 10.11.216.137
+ network-object host 10.11.216.163
+ network-object host 10.250.94.137
+ network-object host 10.250.94.154
+object-group network CW-NETISM-PRL_CWMGMT
+ description Netcool ISM Servers at Park Royal
+ network-object host 10.12.192.33
+ network-object host 10.12.192.34
+object-group network CW-NETISM-GRP_CWMGMT
+ description Netcool ISM Servers at all locations
+ group-object CW-NETISM-MSL_CWMGMT
+ group-object CW-NETISM-GRL_CWMGMT
+ group-object CW-NETISM-IWW_CWMGMT
+ group-object CW-NETISM-DUB_CWMGMT
+ group-object CW-NETISM-SWI_CWMGMT
+ group-object CW-NETISM-PRL_CWMGMT
+object-group network CW-BMC-GRP_CWMGMT
+ description BMC Console and Distribution Servers
+ network-object host 10.216.180.8
+ network-object host 10.11.216.172
+object-group network CW-EMCSMARTS-GRP_CWMGMT
+ description EMC Smarts and BMC Dashboard collectors
+ network-object host 10.216.180.106
+ network-object host 10.216.64.1
+ network-object host 10.225.70.3
+ network-object host 10.11.216.160
+ network-object host 10.12.192.35
+ network-object host 10.250.94.160
+object-group network CW-BMC-RSM-MSL_CWMGMT
+ description BMC Remote Service Monitor Servers at Melbourne Street
+ network-object host 10.216.180.235
+ network-object host 10.216.180.236
+ network-object host 10.216.180.237
+object-group network CW-BMC-RSM-IWW_CWMGMT
+ description BMC Remote Service Monitor Servers at Watford
+ network-object host 10.225.104.157
+ network-object host 10.225.104.158
+ network-object host 10.225.104.159
+object-group network CW-BMC-RSM-SWI_CWMGMT
+ description BMC Remote Service Monitor Servers at Swindon
+ network-object host 10.11.216.156
+ network-object host 10.11.216.157
+ network-object host 10.11.216.158
+object-group network CW-BMC-RSM-GRP_CWMGMT
+ description BMC Remote Service Monitor Servers at all locations
+ group-object CW-BMC-RSM-MSL_CWMGMT
+ group-object CW-BMC-RSM-IWW_CWMGMT
+ group-object CW-BMC-RSM-SWI_CWMGMT
+object-group network CW-BMC-RT-MSL_CWMGMT
+ description BMC RT servers at Melbourne Street
+ network-object host 10.216.180.108
+ network-object host 10.216.180.109
+object-group network CW-BMC-RT-GRL_CWMGMT
+ description BMC RT servers at Gotts Road
+ network-object host 10.218.253.130
+ network-object host 10.218.253.131
+object-group network CW-BMC-RT-IWW_CWMGMT
+ description BMC RT servers at Watford
+ network-object host 10.225.104.143
+ network-object host 10.225.104.144
+object-group network CW-BMC-RT-DUB_CWMGMT
+ description BMC RT servers at Dublin
+ network-object host 10.221.113.17
+ network-object host 10.221.113.18
+object-group network CW-BMC-RT-SWI_CWMGMT
+ description BMC RT servers at Swindon
+ network-object host 10.11.216.173
+ network-object host 10.11.216.174
+object-group network CW-BMC-RT-PRL_CWMGMT
+ description BMC RT servers at Park Royal
+ network-object host 10.12.192.36
+ network-object host 10.12.192.37
+object-group network CW-BMC-RT-GRP_CWMGMT
+ description BMC RT Servers at all locations
+ group-object CW-BMC-RT-MSL_CWMGMT
+ group-object CW-BMC-RT-GRL_CWMGMT
+ group-object CW-BMC-RT-IWW_CWMGMT
+ group-object CW-BMC-RT-DUB_CWMGMT
+ group-object CW-BMC-RT-SWI_CWMGMT
+ group-object CW-BMC-RT-PRL_CWMGMT
+object-group network CW-NETPROBE-MSL_CWMGMT
+ description Netcool Probe servers at Melbourne Street
+ network-object host 10.216.180.108
+ network-object host 10.216.180.109
+object-group network CW-NETPROBE-GRL_CWMGMT
+ description Netcool Probe servers at Gotts Road
+ network-object host 10.218.253.130
+ network-object host 10.218.253.131
+object-group network CW-NETPROBE-IWW_CWMGMT
+ description Netcool Probe servers at Watford
+ network-object host 10.225.104.143
+ network-object host 10.225.104.144
+object-group network CW-NETPROBE-DUB_CWMGMT
+ description Netcool Probe servers at Dublin
+ network-object host 10.221.113.17
+ network-object host 10.221.113.18
+object-group network CW-NETPROBE-SWI_CWMGMT
+ description Netcool Probe servers at Swindon
+ network-object host 10.11.216.135
+ network-object host 10.11.216.161
+object-group network CW-NETPROBE-PRL_CWMGMT
+ description Netcool Probe servers at Park Royal
+ network-object host 10.12.192.33
+ network-object host 10.12.192.34
+object-group network CW-NETPROBE-GRP_CWMGMT
+ description Netcool Probe Servers at all locations
+ group-object CW-NETPROBE-MSL_CWMGMT
+ group-object CW-NETPROBE-GRL_CWMGMT
+ group-object CW-NETPROBE-IWW_CWMGMT
+ group-object CW-NETPROBE-DUB_CWMGMT
+ group-object CW-NETPROBE-SWI_CWMGMT
+ group-object CW-NETPROBE-PRL_CWMGMT
+object-group network CW-UNIXGW-GRP_CWMGMT
+ description UNIX Gateway Servers
+ network-object host 10.216.180.82
+ network-object host 10.218.253.62
+ network-object host 10.225.104.147
+ network-object host 10.12.9.65
+object-group network CW-BMCPROBE-GRP_CWMGMT
+ group-object CW-NETPROBE-GRP_CWMGMT
+ group-object CW-BMC-RSM-GRP_CWMGMT
+object-group network CW-SYSLOG-GRP_CWMGMT
+ description Syslog Servers
+ group-object CW-NETPROBE-GRP_CWMGMT
+ group-object CW-UNIXGW-GRP_CWMGMT
+object-group network CW-HPIM-GRP_CWMGMT
+ description HP Systems Insight Manager Servers
+ network-object host 10.216.180.68
+ network-object host 10.218.253.245
+ network-object host 10.225.104.142
+ network-object host 10.11.216.51
+object-group network CW-SNMPTRAP-GRP_CWMGMT
+ description SNMP Trap Servers
+ group-object CW-NETPROBE-GRP_CWMGMT
+ group-object CW-HPIM-GRP_CWMGMT
+ group-object CW-EMCSMARTS-GRP_CWMGMT
+object-group network CW-NTP-SWI_CWMGMT
+ description NTP Servers in Swindon
+ network-object host 10.11.217.145
+ network-object host 10.11.217.146
+ network-object host 10.11.217.139
+ network-object host 10.11.217.140
+ network-object host 10.11.217.156
+object-group network CW-NTP-PRL_CWMGMT
+ description NTP Servers in Park Royal
+ network-object host 216.239.195.65
+ network-object host 216.239.195.66
+object-group network CW-MDC2003-SWI_CWMGMT
+ description Microsoft Windows 2003 domain controllers in Swindon
+ network-object 10.11.235.32 255.255.255.248
+ network-object host 10.11.235.40
+ network-object host 10.11.235.50
+ network-object host 10.11.235.65
+ network-object host 10.11.235.66
+object-group network CW-MDC2003-MSL_CWMGMT
+ description Microsoft Windows 2003 domain controllers in Melbourne Street
+ network-object host 10.216.4.203
+ network-object host 10.216.4.204
+object-group network CW-MDC2003-GRP_CWMGMT
+ group-object CW-MDC2003-SWI_CWMGMT
+ group-object CW-MDC2003-MSL_CWMGMT
+object-group network CW-MVA2008-SWI_CWMGMT
+ description Microsoft Windows 2008 Volume Activation Servers in Swindon
+ network-object host 10.11.235.41
+object-group network CW-MVA2008-GRP_CWMGMT
+ group-object CW-MVA2008-SWI_CWMGMT
+object-group network CW-DNS-MSL_CWMGMT
+ network-object host 10.216.5.67
+ network-object host 10.216.5.68
+object-group network CW-DNS-SWI_CWMGMT
+ network-object host 10.11.217.141
+ network-object host 10.11.217.142
+ network-object host 10.11.217.145
+ network-object host 10.11.217.146
+object-group network CW-DNS-GRP_CWMGMT
+ description DNS Servers
+ group-object CW-UNIXGW-GRP_CWMGMT
+ group-object CW-DNS-MSL_CWMGMT
+ group-object CW-DNS-SWI_CWMGMT
+ group-object CW-MDC2003-GRP_CWMGMT
+object-group network CW-STOR-MSL_CWMGMT
+ description Shared Storage Reporting Servers in Melbourne Street
+ network-object host 10.216.6.90
+ network-object host 10.216.6.92
+ network-object host 10.216.6.94
+ network-object host 10.216.6.96
+object-group network CW-STOR-GRP_CWMGMT
+ group-object CW-STOR-MSL_CWMGMT
+object-group network CW-AVMGMT-GRP_CWMGMT
+ description SOHOS Anti-Virus Management Servers
+ network-object host 10.216.16.113
+ network-object host 10.12.9.72
+object-group network CW-AVUPDATE-GRP_CWMGMT
+ description SOHOS Anti-Virus Update Servers
+ network-object host 10.216.16.114
+ network-object host 10.12.9.71
+object-group network CW-UNIX-MAN-GRP_CWMGMT
+ description UNIX Bastion Hosts
+ network-object host 10.216.180.81
+ network-object host 10.218.253.77
+ network-object host 10.12.11.36
+ network-object host 10.12.11.37
+ network-object host 10.12.194.1
+object-group network CW-MSFT-MAN-GRP_CWMGMT
+ description Microsoft Team Bastion Hosts
+ network-object host 10.216.180.98
+ network-object host 10.12.11.40
+ network-object host 10.12.11.41
+ network-object host 10.12.194.4
+object-group network CW-NETSEC-MAN-GRP_CWMGMT
+ description Network and Security Bastion Hosts
+ network-object host 10.12.11.33
+ network-object host 10.12.11.34
+ network-object host 10.12.194.6
+ network-object host 216.239.217.60
+ network-object host 10.11.216.103
+ network-object host 10.216.180.239
+ network-object host 10.216.180.240
+ network-object host 10.11.216.150
+object-group network CW-ADMIN-GRP_CWMGMT
+ description Admin Network PAT addresses
+ network-object host 10.216.1.1
+object-group network CW-BASTION-MAN-GRP_CWMGMT
+ description All Bastion hosts on management network
+ group-object CW-UNIX-MAN-GRP_CWMGMT
+ group-object CW-MSFT-MAN-GRP_CWMGMT
+ group-object CW-NETSEC-MAN-GRP_CWMGMT
+ group-object CW-ADMIN-GRP_CWMGMT
+object-group network CW-USUS-GRP_CWMGMT
+ description UNIX Secure Update Servers
+ network-object host 10.216.180.232
+object-group network CW-MSUS-GRP_CWMGMT
+ description Microsoft Secure Update Server
+ network-object host 10.216.180.96
+ network-object host 10.216.180.182
+ network-object host 10.12.9.65
+object-group network CW-BIGSTAT-GRP_CWMGMT
+ network-object host 10.216.180.79
+ network-object host 10.218.253.63
+object-group network CW-SNMPMON-GRP_CWMGMT
+ description SNMP Monitoring Server Groups
+ group-object CW-NETISM-GRP_CWMGMT
+ group-object CW-EMCSMARTS-GRP_CWMGMT
+ group-object CW-BMC-RSM-GRP_CWMGMT
+ group-object CW-HPIM-GRP_CWMGMT
+ group-object CW-BIGSTAT-GRP_CWMGMT
+ group-object CW-MSFT-MAN-GRP_CWMGMT
+object-group network CW-AUTH-GRP_CWMGMT
+ description Authentication Servers on Management Network
+ network-object host 10.11.216.18
+ network-object host 10.11.216.32
+ network-object host 10.11.235.58
+ network-object host 10.11.235.59
+ network-object host 216.239.195.73
+ network-object host 10.225.7.23
+ network-object host 10.12.192.116
+ network-object host 10.11.235.55
+object-group network CW-HNM-SYSLOG_CWMGMT
+ description Hosting Network Management Syslog Servers
+ network-object host 10.11.216.68
+ network-object host 10.216.180.248
+ network-object host 10.225.104.154
+ network-object host 10.11.216.151
+ network-object host 10.12.192.43
+object-group network CW-HNM-TFTP_CWMGMT
+ description Hosting Network Management TFTP servers
+ network-object host 10.11.216.22
+ network-object host 10.11.216.145
+ network-object host 10.216.180.184
+ network-object host 10.225.104.167
+ network-object host 10.216.8.181
+ network-object host 10.13.10.21
+ network-object host 10.225.7.23
+object-group network CW-HNM-NTP_CWMGMT
+ description Hosting Network Management NTP servers
+ network-object host 10.11.216.20
+ network-object host 216.239.217.50
+object-group network CW-NTP-GRP_CWMGMT
+ description NTP Servers
+ group-object CW-UNIXGW-GRP_CWMGMT
+ group-object CW-NTP-SWI_CWMGMT
+ group-object CW-NTP-PRL_CWMGMT
+ group-object CW-MDC2003-GRP_CWMGMT
+ group-object CW-HNM-NTP_CWMGMT
+object-group network CW-EMAIL-GRP_CWMGMT
+ group-object CW-UNIXGW-GRP_CWMGMT
+object-group network CW-ICMP-GRP_CWMGMT
+ group-object CW-NETISM-GRP_CWMGMT
+ group-object CW-BMC-GRP_CWMGMT
+ group-object CW-EMCSMARTS-GRP_CWMGMT
+ group-object CW-BMC-RSM-GRP_CWMGMT
+ group-object CW-BMC-RT-GRP_CWMGMT
+ group-object CW-NETPROBE-GRP_CWMGMT
+ group-object CW-UNIXGW-GRP_CWMGMT
+ group-object CW-HPIM-GRP_CWMGMT
+ group-object CW-MDC2003-GRP_CWMGMT
+ group-object CW-STOR-MSL_CWMGMT
+ group-object CW-AVMGMT-GRP_CWMGMT
+ group-object CW-AVUPDATE-GRP_CWMGMT
+ group-object CW-BASTION-MAN-GRP_CWMGMT
+ group-object CW-USUS-GRP_CWMGMT
+ group-object CW-MSUS-GRP_CWMGMT
+ group-object CW-AUTH-GRP_CWMGMT
+object-group service CW-BMC-IN_TCP tcp
+ description BMC Console and Distribution Server inbound TCP ports
+ port-object eq 3181
+ port-object eq 50005
+object-group service CW-BMC-OUT_TCP tcp
+ description BMC Distribution Server outbound TCP ports
+ port-object eq www
+object-group service CW-BMC-RT-OUT_TCP tcp
+ description BMC Patrol RT Server outbound TCP ports
+ port-object eq 2059
+object-group service CW-BMCPROBE-IN_TCP tcp
+ description BMC Probe inbound TCP ports
+ port-object eq 3181
+object-group service CW-STOR-IN_TCP tcp
+ description EMC Control Centre TCP services
+ port-object eq 5798
+ port-object eq 10222
+ port-object eq 10444
+ port-object eq 10555
+ port-object eq 10667
+ port-object eq 11000
+ port-object eq 11011
+ port-object eq 11041
+object-group service CW-STOR-OUT_TCP tcp
+ description EMC Control Centre TCP services
+ port-object eq 5799
+ port-object eq 5801
+ port-object eq 30730
+object-group service CW-AVMGMT_TCP tcp
+ description SOHOS Anti Virus Management TCP ports
+ port-object eq 8192
+ port-object eq 8193
+ port-object eq 8194
+object-group service CW-AVUPDATE-OUT_TCP tcp
+ port-object eq www
+object-group service CW-HPIM-IN_TCP tcp
+ description HP Insight Manager inbound TCP ports
+ port-object eq 2301
+ port-object eq 2381
+ port-object eq ssh
+ port-object eq 5988
+ port-object eq 5989
+ port-object eq 50000
+object-group service CW-HPIM-OUT_TCP tcp
+ description HP Insight Manager outbound TCP ports
+ port-object eq 2381
+ port-object eq 280
+ port-object eq 2301
+ port-object eq www
+ port-object eq https
+ port-object eq 50004
+object-group service CW-MAN-IN_TCP tcp
+ description TCP Services required for Network, Server, iLO and ILOM/ALOM management
+ port-object eq ftp
+ port-object eq ssh
+ port-object eq telnet
+ port-object eq www
+ port-object eq https
+ port-object eq 3389
+ port-object eq 17988
+ port-object eq 902
+ port-object eq 903
+ port-object eq 17990
+ port-object eq 9443
+ port-object eq 5480
+object-group service CW-USUS-IN_TCP tcp
+ description Solaris Update Server TCP services
+ port-object eq 8200
+object-group service CW-USUS-OUT_TCP tcp
+ description Solaris Update Server TCP services
+ port-object eq 8002
+ port-object eq 8100
+object-group service CW-DRAC-MAN_TCP tcp
+ description Inbound TCP ports for Dell Remote Access Cards
+ port-object eq 5869
+ port-object range 5900 5901
+ port-object range 3668 3669
+object-group service CW-MDC2003-IN_TCP tcp
+ description Inbound TCP port used by Microsoft Domain Controllers
+ port-object eq 445
+ port-object eq 135
+object-group service CW-MDC2003-OUT_TCP tcp
+ description Outbound TCP port used by Micosoft Domain Controllers
+ port-object eq 445
+ port-object eq 88
+ port-object eq ldap
+ port-object eq 135
+ port-object eq 1025
+object-group service CW-MDC2003-OUT_UDP udp
+ description Outbound UDP ports used by Microsoft Domain Controllers
+ port-object eq 88
+ port-object eq 389
+object-group service CW-MVA2008-IN_TCP tcp
+ description Inbound TCP services used by Microsoft Volume Activation Servers
+ port-object eq 135
+ port-object range 5000 5100
+object-group network Cortex_CW_CSS_MGMT
+ network-object object hst-148.185.143.149
+ network-object object hst-148.185.183.33
+ network-object object hst-148.185.143.147
+object-group network Centrica_Cortex_SNMP_Access
+ network-object object censwipprosip01
+ network-object object censwipprosip02
+ network-object object censwipprosip03
+ network-object object censwipprosip04
+ network-object object censwipprormg01
+ network-object object censwipprormg02
+ network-object object censwippronan01
+ network-object object censwippronan02
+ network-object object censwippromcp01
+ network-object object censwippromcp02
+ network-object object censwippromcp03
+ network-object object censwippromcp04
+ network-object object censwippromcp05
+ network-object object censwippromcp06
+ network-object object censwipprocms02
+object-group service g-CWW-AUTHACC-IN_TCP tcp
+ description HMS Authentication Protocols
+ port-object eq 135
+ port-object eq 445
+object-group service g-CWW-AUTHACC-IN_UDP udp
+ description HMS Authentication Protocols
+ port-object eq netbios-ns
+ port-object eq netbios-dgm
+object-group service g-CWW-BMCADDM-IN_TCP tcp
+ description HMS ADDM Protocols
+ port-object eq 4
+ port-object eq ssh
+ port-object eq 135
+ port-object range 902 903
+ port-object eq 1433
+ port-object eq sqlnet
+ port-object range 1024 65000
+ port-object eq 445
+ port-object eq 49153
+ port-object eq telnet
+ port-object eq www
+ port-object eq ftp
+ port-object eq https
+object-group service g-CWW-BMCADDM-IN_UDP udp
+ description HMS ADDM Protocols
+ port-object eq snmp
+ port-object eq 902
+object-group service g-CWW-BMCPERF-IN_TCP tcp
+ description HMS BMC Perf Protocols
+ port-object eq www
+ port-object eq https
+ port-object range 902 903
+ port-object eq 5989
+ port-object range 6767 6768
+ port-object eq 10128
+object-group service g-CWW-BMCBPPM-IN_TCP tcp
+ description HMS PNET Protocols
+ port-object eq ssh
+ port-object eq smtp
+ port-object eq domain
+ port-object eq www
+ port-object eq pop3
+ port-object eq https
+ port-object range 902 903
+ port-object range 3181 3185
+ port-object eq 8083
+ port-object range 8888 8890
+ port-object eq 50005
+ port-object range 32080 32090
+ port-object range 32080 32099
+ port-object eq 9443
+ port-object eq 8443
+object-group service g-CWW-BMCBPPM-IN_UDP udp
+ description HMS PNET Protocols
+ port-object eq domain
+ port-object eq snmp
+ port-object eq 902
+object-group service g-CWW-CHECKPOINT-IN_TCP tcp
+ description HMS Provider-1 Protocols
+ port-object eq 256
+ port-object eq 257
+ port-object eq 1024
+ port-object eq 8989
+ port-object range 18183 18184
+ port-object eq 18187
+ port-object range 18190 18192
+ port-object eq 18196
+ port-object range 18208 18210
+ port-object eq 18221
+ port-object eq 18211
+ port-object range 18264 18265
+object-group service g-CWW-EMCCC-IN_TCP tcp
+ description EMC Protocols
+ port-object eq 5798
+ port-object eq 10222
+ port-object eq 10444
+ port-object eq 10555
+ port-object eq 10667
+ port-object eq 11000
+ port-object eq 11011
+ port-object eq 11041
+object-group service g-CWW-HPSIM-IN_TCP tcp
+ description HMS HPSIM Protocols
+ port-object eq ssh
+ port-object eq www
+ port-object eq https
+ port-object eq 2301
+ port-object eq 2381
+ port-object eq 5988
+ port-object eq 5889
+ port-object eq 50000
+object-group service g-CWW-HPSIM-IN_UDP udp
+ description HMS HPSIM Protocols
+ port-object eq snmp
+object-group service g-CWW-LOWLEVEL-IN_TCP tcp
+ description HMS Bastion Protocols
+ port-object eq ssh
+ port-object eq telnet
+ port-object eq domain
+ port-object eq www
+ port-object eq 135
+ port-object eq https
+ port-object range 902 903
+ port-object eq 1158
+ port-object eq 1433
+ port-object range sqlnet 1522
+ port-object eq 2068
+ port-object eq 3389
+ port-object range 5000 5100
+ port-object eq 5989
+ port-object eq 8081
+ port-object eq 8082
+ port-object eq 8443
+ port-object eq 9443
+ port-object eq 17988
+ port-object eq 17990
+ port-object eq 37233
+ port-object eq 43970
+ port-object eq 43982
+object-group service g-CWW-LOWLEVEL-IN_UDP udp
+ description HMS Bastion Protocols
+ port-object eq domain
+ port-object eq snmp
+ port-object eq 623
+ port-object eq 902
+object-group service g-CWW-PATCHINGAV-IN_TCP tcp
+ description HMS Patching and AV Protocols
+ port-object range 8192 8194
+ port-object eq 8200
+object-group service g-CWW-SYMANTECBACKUP-IN_TCP tcp
+ description HMS Backup Protocols
+ port-object eq 1556
+ port-object eq 10000
+ port-object eq 13720
+ port-object eq 13724
+ port-object eq 13782
+object-group service g-CWW-AUTHACC-OUT_TCP tcp
+ description HMS Authentication Protocols
+ port-object eq ftp-data
+ port-object eq ftp
+ port-object eq ssh
+ port-object eq tacacs
+ port-object eq domain
+ port-object eq 69
+ port-object eq 88
+ port-object eq 115
+ port-object eq 135
+ port-object eq ldap
+ port-object eq 445
+ port-object range 1025 1026
+ port-object eq 5400
+ port-object eq 5500
+ port-object eq netbios-ssn
+ port-object eq 3268
+ port-object eq 464
+ port-object eq 5050
+ port-object eq sip
+ port-object eq ldaps
+ port-object eq 3269
+ port-object eq 5055
+ port-object range 1024 65535
+object-group service g-CWW-AUTHACC-OUT_UDP udp
+ description HMS Authentication Protocols
+ port-object eq domain
+ port-object eq tftp
+ port-object eq 88
+ port-object eq ntp
+ port-object eq netbios-ns
+ port-object eq netbios-dgm
+ port-object eq 389
+ port-object eq 464
+ port-object eq radius
+ port-object range 1812 1813
+ port-object eq 5400
+ port-object eq 5500
+object-group service g-CWW-BMCPERF-OUT_TCP tcp
+ description HMS BMC Perf Protocols
+ port-object eq https
+ port-object range 6767 6768
+ port-object eq 10128
+object-group service g-CWW-BMCBPPM-OUT_TCP tcp
+ description HMS PNET Protocols
+ port-object eq www
+ port-object range 2059 2065
+ port-object range 3182 3183
+ port-object range 32080 32090
+ port-object range 32080 32099
+object-group service g-CWW-BMCBPPM-OUT_UDP udp
+ description HMS PNET Protocols
+ port-object eq snmptrap
+ port-object eq syslog
+object-group service g-CWW-CHECKPOINT-OUT_TCP tcp
+ description HMS Provider-1 Protocols
+ port-object range 256 257
+ port-object eq 1024
+ port-object eq 8989
+ port-object range 18183 18184
+ port-object eq 18187
+ port-object range 18190 18192
+ port-object eq 18196
+ port-object range 18208 18210
+ port-object eq 18221
+ port-object eq 18211
+ port-object range 18264 18265
+object-group service g-CWW-EMCCC-OUT_TCP tcp
+ description EMC Protocols
+ port-object eq 5799
+ port-object eq 5801
+ port-object eq 30730
+object-group service g-CWW-HPSIM-OUT_TCP tcp
+ description HMS HPSIM Protocols
+ port-object eq 280
+ port-object eq 2301
+ port-object eq 2381
+ port-object eq 50004
+object-group service g-CWW-HPSIM-OUT_UDP udp
+ description HMS HPSIM Protocols
+ port-object eq snmptrap
+object-group service g-CWW-LOWLEVEL-OUT_TCP tcp
+ description HMS LOWLEVEL Protocols
+ port-object eq smtp
+ port-object eq domain
+ port-object eq 8080
+object-group service g-CWW-LOWLEVEL-OUT_UDP udp
+ description HMS LOWLEVEL Protocols
+ port-object eq domain
+ port-object eq ntp
+object-group service g-CWW-PATCHINGAV-OUT_TCP tcp
+ description HMS Patching and AV Protocols
+ port-object eq www
+ port-object eq https
+ port-object eq 2967
+ port-object eq 8014
+ port-object range 8192 8194
+ port-object eq 8002
+ port-object eq 8100
+ port-object eq 9005
+object-group service g-CWW-SYMANTECBACKUP-OUT_TCP tcp
+ description HMS Backup Protocols
+ port-object eq 1556
+ port-object eq 13701
+ port-object eq 13711
+ port-object range 13720 13724
+ port-object eq 13782
+object-group network g-CWW-BMCBPPM-IN_PUB
+ description HMS BMC BPPM Servers
+ network-object host 212.62.26.188
+ network-object host 216.239.223.50
+ network-object host 212.137.64.21
+object-group network g-CWW-LOWLEVEL-IN_PUB
+ description HMS Bastion Servers
+ network-object host 195.92.180.239
+ network-object host 195.92.180.240
+ network-object host 212.137.70.68
+ network-object host 212.137.70.72
+ network-object host 212.137.70.75
+object-group network g-CWW-AUTHACC-OUT_PUB
+ description HMS Authentication Servers
+ network-object host 195.92.227.201
+ network-object host 195.92.253.37
+ network-object host 212.137.70.69
+ network-object host 216.239.195.73
+ network-object host 216.239.223.71
+object-group network g-CWW-BMCBPPM-OUT_PUB
+ description HMS BMC BPPM Servers
+ network-object host 216.239.223.51
+ network-object host 216.239.223.52
+ network-object host 216.239.223.104
+object-group network g-CWW-LOWLEVEL-OUT_PUB
+ description HMS Bastion Servers
+ network-object host 141.1.1.1
+ network-object host 195.27.1.1
+ network-object host 194.152.64.68
+ network-object host 195.92.195.92
+ network-object host 195.92.195.93
+ network-object host 195.218.112.36
+ network-object host 212.137.64.8
+ network-object host 212.137.64.11
+ network-object host 212.137.64.12
+ network-object host 212.137.64.13
+ network-object host 212.137.65.12
+ network-object host 212.137.65.14
+ network-object host 213.185.197.6
+ network-object host 213.185.197.10
+ network-object host 216.239.195.65
+ network-object host 216.239.195.66
+object-group network g-CWW-AUTHACC-IN_PRIV
+ description HMS Authentication Servers
+ network-object host 10.11.235.33
+ network-object host 10.11.235.34
+ network-object host 10.11.235.50
+ network-object host 10.12.208.66
+ network-object host 10.12.208.68
+ network-object host 10.216.4.203
+ network-object host 10.216.4.204
+ network-object host 10.216.180.183
+ network-object host 10.80.14.146
+ network-object host 10.80.14.147
+ network-object host 10.80.14.60
+ network-object host 10.80.14.122
+ network-object host 10.80.14.115
+ network-object host 10.80.14.116
+object-group network g-CWW-BMCADDM-IN_PRIV
+ description HMS BMC ADDM Servers
+ network-object host 10.11.216.209
+ network-object host 10.11.216.210
+ network-object host 10.12.198.17
+ network-object host 10.12.198.18
+ network-object host 10.216.180.112
+ network-object host 10.216.180.113
+ network-object host 10.225.104.222
+ network-object host 10.225.104.223
+ network-object host 10.11.216.101
+object-group network g-CWW-BMCPERF-IN_PRIV
+ description HMS BMC Perf Servers
+ network-object host 10.11.216.156
+ network-object host 10.12.192.36
+ network-object host 10.12.192.44
+ network-object host 10.216.180.235
+ network-object host 10.225.104.157
+ network-object host 10.80.14.14
+ network-object host 10.80.14.77
+ network-object host 10.80.14.11
+ network-object host 10.80.14.24
+object-group network g-CWW-BMCBPPM-IN_PRIV
+ description HMS BMC BPPM Servers
+ network-object host 10.11.216.134
+ network-object host 10.11.216.135
+ network-object host 10.11.216.137
+ network-object host 10.11.216.155
+ network-object host 10.11.216.158
+ network-object host 10.11.216.160
+ network-object host 10.11.216.161
+ network-object host 10.11.216.163
+ network-object host 10.11.216.172
+ network-object host 10.11.235.10
+ network-object host 10.12.192.33
+ network-object host 10.12.192.34
+ network-object host 10.12.192.35
+ network-object host 10.12.192.36
+ network-object host 10.12.192.37
+ network-object host 10.12.192.40
+ network-object host 10.12.192.49
+ network-object host 10.216.64.1
+ network-object host 10.216.180.8
+ network-object host 10.216.180.72
+ network-object host 10.216.180.75
+ network-object host 10.216.180.107
+ network-object host 10.216.180.108
+ network-object host 10.216.180.109
+ network-object host 10.216.180.211
+ network-object host 10.216.180.220
+ network-object host 10.216.180.230
+ network-object host 10.216.180.237
+ network-object host 10.216.180.243
+ network-object host 10.225.70.3
+ network-object host 10.225.104.143
+ network-object host 10.225.104.144
+ network-object host 10.225.104.159
+ network-object host 10.225.104.175
+ network-object host 10.225.104.177
+ network-object host 10.80.14.21
+ network-object host 10.80.14.3
+ network-object host 10.80.14.16
+ network-object host 10.80.14.9
+ network-object host 10.80.14.22
+ network-object host 10.80.14.4
+ network-object host 10.80.14.6
+ network-object host 10.80.14.73
+ network-object host 10.80.14.74
+ network-object host 10.80.14.10
+ network-object host 10.80.14.77
+ network-object host 10.80.14.78
+ network-object host 10.80.14.8
+ network-object host 10.80.14.5
+ network-object host 10.80.14.1
+ network-object host 10.80.14.2
+ network-object host 10.80.14.17
+ network-object host 10.80.14.18
+ network-object host 10.80.14.13
+ network-object host 10.80.14.71
+ network-object host 10.80.14.72
+ network-object host 10.80.14.103
+object-group network g-CWW-CHECKPOINT-IN_PRIV
+ description HMS Provider-1 Servers
+ network-object 10.5.0.0 255.255.254.0
+ network-object 10.6.0.0 255.255.254.0
+ network-object 10.11.244.0 255.255.254.0
+ network-object 10.12.210.0 255.255.254.0
+object-group network g-CWW-EMCCC-IN_PRIV
+ description HMS EMC Servers
+ network-object host 10.8.2.25
+ network-object host 10.12.9.129
+ network-object host 10.216.6.90
+ network-object host 10.216.6.92
+ network-object host 10.216.6.94
+ network-object host 10.216.6.96
+ network-object host 10.216.6.98
+ network-object host 10.216.6.236
+ network-object host 10.218.8.90
+ network-object host 10.80.14.91
+ network-object host 10.80.14.92
+ network-object host 10.80.14.93
+ network-object host 10.80.14.85
+ network-object host 10.80.14.83
+object-group network g-CWW-HPSIM-IN_PRIV
+ description HMS HPSIM Servers
+ network-object host 10.11.216.51
+ network-object host 10.216.180.68
+ network-object host 10.225.104.142
+ network-object host 10.80.14.28
+ network-object host 10.80.14.25
+ network-object host 10.80.14.27
+object-group network g-CWW-LOWLEVEL-IN_PRIV
+ description HMS Bastion Servers
+ network-object host 10.11.216.103
+ network-object host 10.11.216.104
+ network-object host 10.11.216.105
+ network-object host 10.11.216.107
+ network-object host 10.11.216.108
+ network-object host 10.11.216.140
+ network-object host 10.11.216.150
+ network-object host 10.12.11.33
+ network-object host 10.12.11.36
+ network-object host 10.12.11.40
+ network-object host 10.216.180.50
+ network-object host 10.216.180.51
+ network-object host 10.216.180.53
+ network-object host 10.216.180.54
+ network-object host 10.216.180.81
+ network-object host 10.216.180.98
+ network-object host 10.216.180.239
+ network-object host 10.216.180.240
+ network-object host 10.225.104.174
+ network-object host 10.80.14.84
+ network-object host 10.80.14.154
+ network-object host 10.80.14.152
+ network-object host 10.80.14.47
+ network-object host 10.80.14.40
+ network-object host 10.80.14.44
+ network-object host 10.80.14.38
+ network-object host 10.80.14.43
+ network-object host 10.80.14.130
+ network-object host 10.80.14.131
+object-group network g-CWW-PATCHINGAV-IN_PRIV
+ description HMS Patching and AV Servers
+ network-object host 10.12.9.65
+ network-object host 10.12.9.72
+ network-object host 10.12.9.73
+ network-object host 10.216.16.113
+ network-object host 10.216.180.182
+ network-object host 10.216.180.232
+ network-object host 10.80.14.52
+ network-object host 10.80.14.35
+ network-object host 10.80.14.34
+ network-object host 10.80.14.87
+ network-object host 10.80.14.50
+object-group network g-CWW-AUTHACC-OUT_PRIV
+ description HMS Authentication Servers
+ network-object host 10.11.216.18
+ network-object host 10.11.216.32
+ network-object host 10.11.216.145
+ network-object host 10.11.235.33
+ network-object host 10.11.235.34
+ network-object host 10.11.235.50
+ network-object host 10.11.235.55
+ network-object host 10.12.192.116
+ network-object host 10.12.208.66
+ network-object host 10.12.208.68
+ network-object host 10.216.4.203
+ network-object host 10.216.4.204
+ network-object host 10.216.180.183
+ network-object host 10.216.180.184
+ network-object host 10.225.104.167
+ network-object host 10.80.14.55
+ network-object host 10.80.14.58
+ network-object host 10.80.14.100
+ network-object host 10.80.14.146
+ network-object host 10.80.14.147
+ network-object host 10.80.14.60
+ network-object host 10.80.14.126
+ network-object host 10.80.14.127
+ network-object host 10.80.14.122
+ network-object host 10.80.14.115
+ network-object host 10.80.14.116
+ network-object host 10.80.14.129
+ network-object host 10.80.14.133
+object-group network g-CWW-BMCPERF-OUT_PRIV
+ description HMS BMC Perf Servers
+ network-object host 10.11.216.156
+ network-object host 10.12.192.36
+ network-object host 10.216.180.235
+ network-object host 10.225.104.157
+ network-object host 10.80.14.14
+ network-object host 10.80.14.77
+ network-object host 10.80.14.101
+object-group network g-CWW-BMCBPPM-OUT_PRIV
+ description HMS BMC BPPM Servers
+ network-object host 10.11.216.135
+ network-object host 10.11.216.151
+ network-object host 10.11.216.157
+ network-object host 10.11.216.161
+ network-object host 10.11.216.172
+ network-object host 10.11.216.173
+ network-object host 10.11.216.174
+ network-object host 10.11.235.10
+ network-object host 10.12.192.33
+ network-object host 10.12.192.34
+ network-object host 10.12.192.36
+ network-object host 10.12.192.37
+ network-object host 10.12.192.43
+ network-object host 10.12.192.48
+ network-object host 10.12.192.118
+ network-object host 10.216.64.1
+ network-object host 10.216.180.8
+ network-object host 10.216.180.75
+ network-object host 10.216.180.108
+ network-object host 10.216.180.109
+ network-object host 10.216.180.236
+ network-object host 10.216.180.243
+ network-object host 10.216.180.248
+ network-object host 10.225.104.143
+ network-object host 10.225.104.144
+ network-object host 10.225.104.154
+ network-object host 10.225.104.158
+ network-object host 10.225.104.175
+ network-object host 10.80.14.21
+ network-object host 10.80.14.123
+ network-object host 10.80.14.15
+ network-object host 10.80.14.22
+ network-object host 10.80.14.6
+ network-object host 10.80.14.19
+ network-object host 10.80.14.20
+ network-object host 10.80.14.73
+ network-object host 10.80.14.74
+ network-object host 10.80.14.77
+ network-object host 10.80.14.78
+ network-object host 10.80.14.153
+ network-object host 10.80.14.8
+ network-object host 10.80.14.5
+ network-object host 10.80.14.17
+ network-object host 10.80.14.18
+ network-object host 10.80.14.12
+ network-object host 10.80.14.124
+ network-object host 10.80.14.71
+ network-object host 10.80.14.72
+ network-object host 10.80.14.125
+ network-object host 10.80.14.102
+object-group network g-CWW-CHECKPOINT-OUT_PRIV
+ description HMS Provider-1 Servers
+ network-object 10.5.0.0 255.255.254.0
+ network-object 10.6.0.0 255.255.254.0
+ network-object 10.11.244.0 255.255.254.0
+ network-object 10.12.210.0 255.255.254.0
+object-group network g-CWW-EMCCC-OUT_PRIV
+ description HMS EMC Servers
+ network-object host 10.8.2.5
+ network-object host 10.12.9.129
+ network-object host 10.12.206.1
+ network-object host 10.216.6.90
+ network-object host 10.216.6.92
+ network-object host 10.216.6.94
+ network-object host 10.216.6.96
+ network-object host 10.216.6.98
+ network-object host 10.216.6.236
+ network-object host 10.218.8.90
+ network-object host 10.80.14.91
+ network-object host 10.80.14.92
+ network-object host 10.80.14.93
+ network-object host 10.80.14.85
+ network-object host 10.80.14.83
+object-group network g-CWW-HPSIM-OUT_PRIV
+ description HMS HPSIM Servers
+ network-object host 10.11.216.51
+ network-object host 10.216.180.68
+ network-object host 10.225.104.142
+ network-object host 10.80.14.28
+ network-object host 10.80.14.25
+ network-object host 10.80.14.27
+object-group network g-CWW-LOWLEVEL-OUT_PRIV
+ description HMS Bastion Servers
+ network-object host 10.11.216.20
+ network-object host 10.11.216.66
+ network-object host 10.11.216.67
+ network-object host 10.11.217.139
+ network-object host 10.11.217.140
+ network-object host 10.11.217.141
+ network-object host 10.11.217.142
+ network-object host 10.11.217.145
+ network-object host 10.11.217.146
+ network-object host 10.11.217.156
+ network-object host 10.11.217.158
+ network-object host 10.216.5.67
+ network-object host 10.216.5.68
+ network-object host 10.216.180.82
+ network-object host 10.225.104.147
+ network-object host 10.80.14.67
+ network-object host 10.80.14.97
+ network-object host 10.80.14.31
+ network-object host 10.80.14.32
+ network-object host 10.80.14.81
+ network-object host 10.80.14.82
+ network-object host 10.80.14.29
+ network-object host 10.80.14.30
+ network-object host 10.80.14.33
+ network-object host 10.80.14.159
+ network-object host 10.80.14.79
+ network-object host 10.80.14.80
+ network-object host 10.80.14.86
+ network-object host 10.80.14.24
+object-group network g-CWW-PATCHINGAV-OUT_PRIV
+ description HMS Patching and AV Servers
+ network-object host 10.12.9.65
+ network-object host 10.12.9.71
+ network-object host 10.12.9.72
+ network-object host 10.216.16.113
+ network-object host 10.216.16.114
+ network-object host 10.216.180.182
+ network-object host 10.216.180.232
+ network-object host 10.80.14.52
+ network-object host 10.80.14.37
+ network-object host 10.80.14.35
+ network-object host 10.80.14.34
+ network-object host 10.80.14.36
+ network-object host 10.80.14.87
+ network-object host 10.80.14.50
+object-group network g-CWW-BMCADDM-GLOBAL
+ description HMS Public Address ADDM
+ network-object 217.135.0.16 255.255.255.240
+ network-object 217.135.1.16 255.255.255.240
+ network-object 217.135.2.16 255.255.255.240
+ network-object 217.135.3.16 255.255.255.240
+ network-object 217.135.4.16 255.255.255.240
+ network-object 217.135.5.16 255.255.255.240
+object-group network g-CWW-MONITORING-GLOBAL
+ description HMS Public Address  Monitoring
+ network-object 217.135.0.32 255.255.255.224
+ network-object 217.135.1.32 255.255.255.224
+ network-object 217.135.2.32 255.255.255.224
+ network-object 217.135.3.32 255.255.255.224
+ network-object 217.135.4.32 255.255.255.224
+ network-object 217.135.5.32 255.255.255.224
+object-group network g-CWW-MANAGEMENT-GLOBAL
+ description HMS Public Address Management
+ network-object 217.135.0.64 255.255.255.224
+ network-object 217.135.1.64 255.255.255.224
+ network-object 217.135.2.64 255.255.255.224
+ network-object 217.135.3.64 255.255.255.224
+ network-object 217.135.4.64 255.255.255.224
+ network-object 217.135.5.64 255.255.255.224
+object-group network g-CWW-SERVICES-GLOBAL
+ description HMS Public Address Services
+ network-object 217.135.0.96 255.255.255.224
+ network-object 217.135.1.96 255.255.255.224
+ network-object 217.135.2.96 255.255.255.224
+ network-object 217.135.3.96 255.255.255.224
+ network-object 217.135.4.96 255.255.255.224
+ network-object 217.135.5.96 255.255.255.224
+object-group network g-CWW-LOWLEVEL-GLOBAL
+ description HMS Public Address Services
+ network-object 217.135.0.128 255.255.255.240
+ network-object 217.135.1.128 255.255.255.240
+ network-object 217.135.2.128 255.255.255.240
+ network-object 217.135.3.128 255.255.255.240
+ network-object 217.135.4.128 255.255.255.240
+ network-object 217.135.5.128 255.255.255.240
+object-group network g-CWW-DMZ-GLOBAL
+ description HMS Public Address DMZ
+ network-object 217.135.9.0 255.255.255.224
+ network-object 217.135.9.32 255.255.255.224
+ network-object 217.135.9.64 255.255.255.224
+ network-object 217.135.9.96 255.255.255.224
+ network-object 217.135.9.128 255.255.255.224
+ network-object 217.135.9.160 255.255.255.224
+object-group network g-CWW-PROVIDER-GLOBAL
+ description HMS Public Address Provider-1
+ network-object 62.25.79.0 255.255.255.0
+ network-object 62.208.150.0 255.255.255.0
+ network-object 212.62.29.0 255.255.255.0
+ network-object 216.239.220.0 255.255.255.0
+ network-object 217.135.13.0 255.255.255.0
+ network-object 217.135.37.0 255.255.255.0
+ network-object 217.135.12.0 255.255.255.0
+ network-object 212.62.28.0 255.255.255.0
+ network-object 216.239.221.0 255.255.255.0
+ network-object 217.135.14.0 255.255.255.0
+ network-object 217.135.15.0 255.255.255.0
+object-group network g-CWW-SYMANTECBACKUP-IN
+ description CWW Backup Solution
+ network-object host 172.16.6.96
+ network-object host 172.16.255.200
+ network-object host 172.16.255.205
+ network-object host 172.16.255.206
+ network-object host 172.16.255.207
+ network-object host 172.16.255.208
+ network-object host 172.16.255.209
+ network-object host 172.16.255.210
+ network-object host 172.16.255.236
+ network-object host 172.18.1.4
+ network-object host 172.18.1.6
+ network-object host 172.18.1.8
+ network-object host 172.18.1.11
+ network-object host 172.18.1.12
+ network-object host 172.18.1.15
+ network-object host 172.25.104.160
+ network-object host 172.25.104.161
+ network-object host 172.25.104.162
+ network-object host 172.25.104.163
+ network-object host 172.25.104.164
+ network-object host 172.25.104.165
+ network-object host 172.25.104.166
+ network-object host 10.12.9.49
+ network-object host 10.12.9.50
+ network-object host 10.12.9.51
+ network-object host 10.12.200.161
+ network-object host 10.12.200.162
+ network-object host 10.12.200.163
+ network-object 217.135.0.224 255.255.255.224
+ network-object 217.135.1.224 255.255.255.224
+ network-object 217.135.2.224 255.255.255.224
+ network-object 217.135.3.224 255.255.255.224
+ network-object 217.135.4.224 255.255.255.224
+ network-object 217.135.5.224 255.255.255.224
+object-group network g-CWW-SYMANTECBACKUP-OUT
+ description CWW Backup Solution
+ network-object host 10.16.6.96
+ network-object host 172.16.6.96
+ network-object host 10.16.255.200
+ network-object host 172.16.255.200
+ network-object host 10.16.255.205
+ network-object host 172.16.255.205
+ network-object host 10.16.255.206
+ network-object host 172.16.255.206
+ network-object host 10.16.255.207
+ network-object host 172.16.255.207
+ network-object host 10.16.255.208
+ network-object host 172.16.255.208
+ network-object host 10.16.255.209
+ network-object host 172.16.255.209
+ network-object host 10.16.255.210
+ network-object host 172.16.255.210
+ network-object host 10.16.255.236
+ network-object host 172.16.255.236
+ network-object host 172.18.1.4
+ network-object host 172.18.1.6
+ network-object host 172.18.1.8
+ network-object host 172.18.1.11
+ network-object host 172.18.1.12
+ network-object host 172.18.1.15
+ network-object host 172.25.104.160
+ network-object host 172.25.104.161
+ network-object host 172.25.104.162
+ network-object host 172.25.104.163
+ network-object host 172.25.104.164
+ network-object host 172.25.104.165
+ network-object host 172.25.104.166
+ network-object host 10.12.9.49
+ network-object host 10.12.9.50
+ network-object host 10.12.9.51
+ network-object host 10.12.200.161
+ network-object host 10.12.200.162
+ network-object host 10.12.200.163
+ network-object 217.135.0.224 255.255.255.224
+ network-object 217.135.1.224 255.255.255.224
+ network-object 217.135.2.224 255.255.255.224
+ network-object 217.135.3.224 255.255.255.224
+ network-object 217.135.4.224 255.255.255.224
+ network-object 217.135.5.224 255.255.255.224
+object-group network g-CWW-AUTHACC-IN
+ group-object g-CWW-AUTHACC-IN_PRIV
+ group-object g-CWW-SERVICES-GLOBAL
+object-group network g-CWW-BMCADDM-IN
+ group-object g-CWW-BMCADDM-IN_PRIV
+ group-object g-CWW-BMCADDM-GLOBAL
+object-group network g-CWW-BMCPERF-IN
+ group-object g-CWW-BMCPERF-IN_PRIV
+ group-object g-CWW-MONITORING-GLOBAL
+object-group network g-CWW-BMCBPPM-IN
+ group-object g-CWW-BMCBPPM-IN_PRIV
+ group-object g-CWW-BMCBPPM-IN_PUB
+ group-object g-CWW-MONITORING-GLOBAL
+object-group network g-CWW-CHECKPOINT-IN
+ group-object g-CWW-CHECKPOINT-IN_PRIV
+ group-object g-CWW-PROVIDER-GLOBAL
+object-group network g-CWW-EMCCC-IN
+ group-object g-CWW-EMCCC-IN_PRIV
+object-group network g-CWW-HPSIM-IN
+ group-object g-CWW-HPSIM-IN_PRIV
+ group-object g-CWW-MONITORING-GLOBAL
+object-group network g-CWW-LOWLEVEL-IN
+ group-object g-CWW-LOWLEVEL-IN_PRIV
+ group-object g-CWW-LOWLEVEL-IN_PUB
+ group-object g-CWW-MANAGEMENT-GLOBAL
+object-group network g-CWW-PATCHINGAV-IN
+ group-object g-CWW-PATCHINGAV-IN_PRIV
+ group-object g-CWW-SERVICES-GLOBAL
+object-group network g-CWW-AUTHACC-OUT
+ group-object g-CWW-AUTHACC-OUT_PRIV
+ group-object g-CWW-AUTHACC-OUT_PUB
+ group-object g-CWW-SERVICES-GLOBAL
+object-group network g-CWW-BMCPERF-OUT
+ group-object g-CWW-BMCPERF-OUT_PRIV
+ group-object g-CWW-MONITORING-GLOBAL
+object-group network g-CWW-BMCBPPM-OUT
+ group-object g-CWW-BMCBPPM-OUT_PRIV
+ group-object g-CWW-BMCBPPM-OUT_PUB
+ group-object g-CWW-MONITORING-GLOBAL
+object-group network g-CWW-CHECKPOINT-OUT
+ group-object g-CWW-CHECKPOINT-OUT_PRIV
+ group-object g-CWW-PROVIDER-GLOBAL
+object-group network g-CWW-EMCCC-OUT
+ group-object g-CWW-EMCCC-OUT_PRIV
+object-group network g-CWW-HPSIM-OUT
+ group-object g-CWW-HPSIM-OUT_PRIV
+ group-object g-CWW-MONITORING-GLOBAL
+object-group network g-CWW-LOWLEVEL-OUT
+ group-object g-CWW-LOWLEVEL-OUT_PRIV
+ group-object g-CWW-LOWLEVEL-OUT_PUB
+ group-object g-CWW-DMZ-GLOBAL
+object-group network g-CWW-PATCHINGAV-OUT
+ group-object g-CWW-PATCHINGAV-OUT_PRIV
+ group-object g-CWW-SERVICES-GLOBAL
+object-group network g-CWW-SBE-GLOBAL
+ description Public addresss for the SBE servers
+ network-object host 217.135.0.194
+ network-object host 217.135.1.194
+ network-object host 217.135.2.194
+ network-object host 217.135.3.194
+ network-object host 217.135.4.194
+ network-object host 217.135.5.194
+object-group network g-CWW-SBE-IN
+ group-object g-CWW-SBE-GLOBAL
+object-group network CEN-MSL-PATCHINGAV-OUT
+ description HMS Patching and AV Servers
+ network-object host 10.104.199.153
+ network-object host 10.104.199.154
+ network-object host 10.104.199.158
+ network-object host 10.104.199.159
+ network-object host 10.104.199.160
+ network-object host 10.12.9.65
+ network-object host 10.12.9.71
+ network-object host 10.12.9.72
+ network-object host 10.216.16.113
+object-group network CEN-MSL-BMCADDM-IN
+ description HMS BMC ADDM Servers
+ network-object host 10.104.199.143
+ network-object host 10.104.199.144
+ network-object host 10.11.216.209
+ network-object host 10.11.216.210
+ network-object host 10.12.198.17
+ network-object host 10.12.198.18
+ network-object host 10.216.180.112
+ network-object host 10.216.180.113
+ network-object host 10.225.104.222
+ network-object host 10.225.104.223
+object-group network CEN-MSL-BMCBPPM-IN
+ description HMS BMC BPPM Servers
+ network-object host 10.104.199.145
+ network-object host 10.104.199.146
+ network-object host 10.104.199.147
+ network-object host 10.104.199.151
+object-group network CEN-MSL-BMCBPPM-OUT
+ description HMS BMC BPPM Servers
+ network-object host 10.104.199.145
+ network-object host 10.104.199.146
+ network-object host 10.104.199.147
+ network-object host 10.104.199.151
+object-group service CEN-MSL-BMCADDM-IN_TCP tcp
+ description HMS ADDM Protocols
+ port-object eq 4
+ port-object eq ssh
+ port-object eq 135
+ port-object range 902 903
+ port-object eq 1433
+ port-object eq sqlnet
+object-group service CEN-MSL-BMCADDM-IN_UDP udp
+ description HMS ADDM Protocols
+ port-object eq snmp
+ port-object eq 902
+object-group service CEN-MSL-BMCBPPM-IN_UDP udp
+ description HMS PNET Protocols
+ port-object eq domain
+ port-object eq snmp
+ port-object eq 902
+object-group service CEN-MSL-BMCBPPM-OUT_UDP udp
+ description HMS PNET Protocols
+ port-object eq snmptrap
+ port-object eq syslog
+object-group service CEN-MSL-PATCHINGAV-OUT_TCP tcp
+ description HMS Patching and AV Protocols
+ port-object eq www
+ port-object eq https
+ port-object eq 2967
+ port-object eq 8014
+ port-object range 8192 8194
+ port-object eq 8002
+ port-object eq 8100
+ port-object eq 9005
+object-group service CEN-MSL-BMCBPPM-IN_TCP tcp
+ description HMS PNET Protocols
+ port-object eq ssh
+ port-object eq smtp
+ port-object eq domain
+ port-object eq www
+ port-object eq pop3
+ port-object eq https
+ port-object range 902 903
+ port-object range 3181 3185
+ port-object eq 8083
+ port-object range 8888 8890
+ port-object eq 50005
+ port-object range 32080 32099
+object-group service CEN-MSL-BMCBPPM-OUT_TCP tcp
+ description HMS PNET Protocols
+ port-object eq www
+ port-object eq https
+ port-object range 2059 2065
+ port-object range 3182 3183
+ port-object range 32080 32099
+object-group service CWW-M2M-DC2DC_TCP tcp
+ description DC to DC CUST DC to DC
+ port-object eq 135
+ port-object eq 445
+ port-object eq 137
+ port-object eq netbios-ssn
+ port-object eq 123
+ port-object eq domain
+ port-object eq 88
+ port-object eq kerberos
+ port-object eq ldap
+ port-object eq 5050
+ port-object eq sip
+ port-object eq 50
+ port-object eq 500
+ port-object eq ldaps
+ port-object eq 21151
+ port-object eq 3268
+ port-object eq 3269
+ port-object eq 464
+object-group service CWW-M2M-DC2DC_UDP udp
+ description DC to DC CUST DC to DC
+ port-object eq 135
+ port-object eq netbios-ns
+ port-object eq netbios-dgm
+ port-object eq 445
+ port-object eq ntp
+ port-object eq domain
+ port-object eq 88
+ port-object eq 389
+ port-object eq 4500
+ port-object eq isakmp
+ port-object eq 464
+object-group network Cust-Domains-ALL
+ description Customer Domain servers
+ network-object host 10.13.51.72
+ network-object host 10.13.51.74
+ network-object host 10.216.183.67
+ network-object host 10.216.183.69
+ network-object host 10.80.7.7
+ network-object host 10.80.7.9
+object-group network CWW-AUTHACC-ALL
+ group-object g-CWW-AUTHACC-IN
+ group-object g-CWW-AUTHACC-OUT
+object-group service ESRS-IN_TCP tcp
+ description ESRS in to VNX CTA RPA MDS
+ port-object eq 13456
+ port-object eq ssh
+ port-object eq 9519
+ port-object eq www
+ port-object eq https
+ port-object eq 2162
+ port-object eq 2163
+ port-object eq 8000
+ port-object eq 6391
+ port-object eq 6392
+ port-object eq 60020
+object-group network Adtech_vpn_nat
+ network-object host 10.216.1.33
+object-group network Adtech_MGMT_hosts
+ network-object object cen-swi-alb-01
+ network-object object cen-swi-alb-02
+object-group service Adtech_ports_tcp tcp
+ port-object eq 3389
+ port-object eq www
+ port-object eq https
+ port-object eq ftp
+ port-object eq ssh
+object-group network Centrica_Cortex_SNMP_Access_V11
+ network-object host 10.80.23.131
+ network-object host 10.80.23.132
+ network-object host 10.80.23.133
+ network-object host 10.80.23.134
+ network-object host 10.80.23.135
+ network-object host 10.80.23.136
+ network-object host 10.80.23.137
+ network-object host 10.80.23.141
+ network-object host 10.80.23.142
+ network-object host 10.80.3.227
+ network-object host 10.80.3.229
+ network-object host 10.80.23.196
+ network-object host 10.80.23.197
+ network-object host 10.80.23.138
+ network-object host 10.80.23.139
+ network-object host 10.80.23.180
+ network-object host 10.80.23.181
+ network-object host 10.80.23.140
+ network-object host 10.80.23.228
+ network-object host 10.80.23.229
+ network-object host 10.80.23.230
+ network-object host 10.80.23.231
+ network-object host 10.80.23.232
+ network-object host 10.80.23.233
+ network-object host 10.80.23.234
+ network-object host 10.80.23.235
+ network-object host 10.80.23.236
+ network-object host 10.80.23.237
+ network-object host 10.80.23.238
+ network-object host 10.80.23.239
+ network-object host 10.80.23.240
+ network-object host 10.80.23.164
+ network-object host 10.80.23.165
+ network-object host 10.80.23.166
+ network-object host 10.80.23.167
+ network-object host 10.80.23.168
+ network-object host 10.80.23.169
+ network-object host 10.80.23.170
+object-group service esrs-TCP tcp
+ port-object eq ftp
+ port-object eq smtp
+ port-object eq www
+ port-object eq https
+ port-object eq 2163
+ port-object range 5400 5414
+ port-object eq 6391
+ port-object eq 6392
+ port-object eq 7725
+ port-object eq 8000
+ port-object eq 9519
+ port-object eq 13456
+ port-object eq 60020
+ port-object eq ssh
+ port-object eq 2162
+object-group network EMC-SWI-ESRSS
+ network-object host 10.13.11.239
+ network-object host 10.13.11.240
+ network-object host 10.13.11.241
+object-group network CEN-ESRSS-CLIENTS_CWMGMT
+ network-object host 10.13.96.168
+ network-object host 10.13.96.169
+ network-object host 10.13.96.165
+ network-object host 10.13.96.166
+ network-object host 10.13.96.167
+ network-object host 10.80.8.14
+ network-object host 10.80.8.15
+ network-object host 10.80.8.10
+ network-object host 10.80.8.11
+ network-object host 10.80.8.12
+object-group service DPA_SERVER_PORTS_TCP tcp
+ port-object eq 9002
+ port-object eq 3741
+object-group network CENTRICA-ARRAYS
+ network-object host 10.80.8.10
+ network-object host 10.80.8.11
+ network-object host 10.80.8.33
+ network-object host 10.80.8.34
+object-group network EMC-ALL-VipR-group
+ network-object host 10.219.10.41
+ network-object host 10.219.10.42
+ network-object host 10.219.10.43
+ network-object host 10.219.10.44
+ network-object host 10.13.63.177
+ network-object host 10.13.63.178
+ network-object host 10.13.63.179
+ network-object host 10.13.63.180
+object-group network emc-access
+ network-object host 10.80.7.5
+ network-object host 10.13.51.76
+object-group network Centrica-Connect-Genesys
+ network-object host 10.216.1.32
+object-group network SWI-CEN-GENESYS-SERVERS
+ network-object host 10.80.5.14
+ network-object host 10.80.5.15
+ network-object host 10.80.5.21
+ network-object host 10.80.5.22
+ network-object host 10.80.5.23
+ network-object host 10.80.5.24
+ network-object host 10.80.5.25
+ network-object host 10.80.5.26
+ network-object host 10.80.5.27
+ network-object host 10.80.5.28
+ network-object host 10.80.5.29
+ network-object host 10.80.5.30
+ network-object host 10.80.5.31
+ network-object host 10.80.5.32
+ network-object host 10.80.5.34
+ network-object host 10.80.5.35
+ network-object host 10.207.96.1
+ network-object host 10.80.1.196
+ network-object host 10.80.1.197
+ network-object host 10.80.5.4
+ network-object host 10.80.5.5
+ network-object host 10.80.5.6
+ network-object host 10.80.5.7
+ network-object host 10.80.5.8
+ network-object host 10.80.5.9
+ network-object host 10.80.5.12
+ network-object host 10.80.5.13
+ network-object host 10.80.5.18
+ network-object host 10.80.5.19
+ network-object host 10.80.5.33
+ network-object host 10.80.6.132
+ network-object host 10.80.6.133
+ network-object host 10.80.6.134
+ network-object host 10.80.21.22
+ network-object host 10.80.30.133
+ network-object host 10.132.254.150
+object-group service CEN-GENESYS-SERVICES-TCP tcp
+ port-object eq 3389
+object-group service CEN-GENESYS-SERVICES-UDP udp
+ port-object eq 3389
+object-group service SAT-TO-VC-SERVICES-TCP tcp
+ port-object eq https
+object-group service MGMTEMC-BH-IN_TCP tcp
+ port-object eq ssh
+ port-object eq www
+ port-object eq https
+ port-object eq 3389
+ port-object eq 9002
+ port-object eq 9443
+ port-object eq 902
+ port-object eq 1556
+ port-object eq 13724
+ port-object eq 41022
+ port-object eq 161
+object-group service MGMTEMC-BH-IN_UDP udp
+ port-object eq snmp
+object-group network MGMTEMC-ALL-BHS-group
+ network-object host 10.219.10.20
+ network-object host 10.231.0.13
+ network-object host 10.13.11.238
+ network-object host 10.11.10.68
+ network-object host 10.216.255.67
+ network-object host 10.218.13.100
+ network-object host 10.225.11.74
+ network-object host 10.8.2.2
+ network-object host 10.8.1.2
+ network-object host 10.16.255.17
+ network-object host 10.18.0.18
+ network-object host 10.25.104.74
+access-list cwmgmt_acl remark <<COUPLE OF TEST RULES FOR LEE BYARD BY STUART CHESHIRE>>
+access-list cwmgmt_acl extended permit tcp host 217.135.0.82 any eq 902
+access-list cwmgmt_acl extended permit tcp host 217.135.0.82 any eq https
+access-list cwmgmt_acl remark <<GENERIC MANAGEMENT AND MONITORING>>
+access-list cwmgmt_acl extended permit icmp object-group CW-ICMP-GRP_CWMGMT any echo
+access-list cwmgmt_acl extended permit udp object-group CW-SNMPMON-GRP_CWMGMT any eq snmp
+access-list cwmgmt_acl extended permit tcp object-group CW-BASTION-MAN-GRP_CWMGMT any object-group CW-MAN-IN_TCP
+access-list cwmgmt_acl remark <<HOSTING NETWORK MONITORING>>
+access-list cwmgmt_acl extended permit tcp object-group CW-BMC-GRP_CWMGMT any object-group CW-BMC-IN_TCP
+access-list cwmgmt_acl extended permit tcp object-group CW-BMCPROBE-GRP_CWMGMT any object-group CW-BMCPROBE-IN_TCP
+access-list cwmgmt_acl extended permit tcp object-group CW-NETISM-GRP_CWMGMT any object-group CW-NETISM-IN_TCP
+access-list cwmgmt_acl extended permit udp object-group CW-NETISM-GRP_CWMGMT any object-group CW-NETISM-IN_UDP
+access-list cwmgmt_acl remark <<SHARED STORAGE REPORTING>>
+access-list cwmgmt_acl extended permit tcp object-group CW-STOR-GRP_CWMGMT any object-group CW-STOR-IN_TCP
+access-list cwmgmt_acl remark <<ANTI-VIRUS>>
+access-list cwmgmt_acl extended permit tcp object-group CW-AVMGMT-GRP_CWMGMT any object-group CW-AVMGMT_TCP
+access-list cwmgmt_acl remark <<HP SERVER MANAGEMENT AND MONITORING>>
+access-list cwmgmt_acl extended permit tcp object-group CW-HPIM-GRP_CWMGMT any object-group CW-HPIM-IN_TCP
+access-list cwmgmt_acl remark <<UNIX SERVER MANAGEMENT AND MONITORING>>
+access-list cwmgmt_acl extended permit tcp object-group CW-USUS-GRP_CWMGMT any object-group CW-USUS-IN_TCP
+access-list cwmgmt_acl remark <<MICROSOFT SERVER MANAGEMENT AND MONITORING>>
+access-list cwmgmt_acl extended permit tcp object-group CW-MDC2003-GRP_CWMGMT any object-group CW-MDC2003-IN_TCP
+access-list cwmgmt_acl extended permit tcp object-group CW-MVA2008-GRP_CWMGMT any object-group CW-MVA2008-IN_TCP
+access-list cwmgmt_acl remark <<DELL SERVER MANAGEMENT AND MONITORING>>
+access-list cwmgmt_acl extended permit tcp object-group CW-MSFT-MAN-GRP_CWMGMT any object-group CW-DRAC-MAN_TCP
+access-list cwmgmt_acl remark <<Cortex SNMP access>>
+access-list cwmgmt_acl extended permit udp object-group Cortex_CW_CSS_MGMT object-group Centrica_Cortex_SNMP_Access eq snmp
+access-list cwmgmt_acl remark <<EMC Bastion Access>>
+access-list cwmgmt_acl extended permit tcp object-group CW-STOR-MSL_CWMGMT host 10.80.7.11 eq 3389
+access-list cwmgmt_acl extended permit udp host 148.185.143.147 host 10.80.5.28 eq snmp
+access-list cwmgmt_acl extended permit udp host 148.185.143.147 host 10.80.5.28 eq snmptrap
+access-list cwmgmt_acl remark <<EMC SMTP access>>
+access-list cwmgmt_acl extended permit tcp object-group CW-EMAIL-GRP_CWMGMT any eq smtp
+access-list cwmgmt_acl extended permit tcp object-group CW-STOR-MSL_CWMGMT host 10.80.8.21 eq 3389
+access-list cwmgmt_acl extended permit tcp object-group CW-STOR-MSL_CWMGMT host 10.80.8.22 eq 3389
+access-list cwmgmt_acl extended permit tcp object-group CWW-AUTHACC-ALL object-group Cust-Domains-ALL object-group CWW-M2M-DC2DC_TCP
+access-list cwmgmt_acl extended permit udp object-group CWW-AUTHACC-ALL object-group Cust-Domains-ALL object-group CWW-M2M-DC2DC_UDP
+access-list cwmgmt_acl extended permit tcp object-group Adtech_vpn_nat object-group Adtech_MGMT_hosts object-group Adtech_ports_tcp
+access-list cwmgmt_acl extended permit tcp host 10.13.253.4 host 10.80.8.14 eq smtp
+access-list cwmgmt_acl extended permit udp object-group Cortex_CW_CSS_MGMT object-group Centrica_Cortex_SNMP_Access_V11 eq snmp
+access-list cwmgmt_acl extended permit tcp host 10.216.1.1 object cen-swi-vc-01 eq 9443
+access-list cwmgmt_acl extended permit tcp host 10.216.1.1 object cen-swi-vc-01 eq 9090
+access-list cwmgmt_acl extended permit tcp object-group EMC-SWI-ESRSS object-group CEN-ESRSS-CLIENTS_CWMGMT object-group esrs-TCP
+access-list cwmgmt_acl remark <<CHG000000279748>>
+access-list cwmgmt_acl extended permit tcp object emc-uxb-dpa-03 object cen-swi-media-01 object-group DPA_SERVER_PORTS_TCP
+access-list cwmgmt_acl extended permit tcp object emc-uxb-dpa-03 object cen-swi-media-02 object-group DPA_SERVER_PORTS_TCP
+access-list cwmgmt_acl remark <<CHG000000282248 - SMIS to Centrica Arrays>>
+access-list cwmgmt_acl extended permit tcp host 10.13.11.227 object-group CENTRICA-ARRAYS eq https
+access-list cwmgmt_acl extended permit tcp host 10.13.11.225 object cen-swi-vc-01 eq https
+access-list cwmgmt_acl extended permit tcp object-group EMC-ALL-VipR-group object-group emc-access eq https
+access-list cwmgmt_acl extended permit icmp object-group EMC-ALL-VipR-group object-group emc-access
+access-list cwmgmt_acl remark << Centrica Connect support the Genesys Server Refresh. - CHG304001 >>
+access-list cwmgmt_acl extended permit tcp object-group Centrica-Connect-Genesys object-group SWI-CEN-GENESYS-SERVERS object-group CEN-GENESYS-SERVICES-TCP
+access-list cwmgmt_acl extended permit udp object-group Centrica-Connect-Genesys object-group SWI-CEN-GENESYS-SERVERS object-group CEN-GENESYS-SERVICES-UDP
+access-list cwmgmt_acl remark << CHG310941 - hb2-swi-sat-02 to Centrica VC >>
+access-list cwmgmt_acl extended permit tcp object hb2-swi-sat-02 object cen-swi-vc-01 object-group SAT-TO-VC-SERVICES-TCP
+access-list cascade_acl remark << Cascade ACL >>
+access-list cascade_acl extended permit ip any any
+access-list global_acl extended permit tcp object-group g-CWW-AUTHACC-IN any object-group g-CWW-AUTHACC-IN_TCP
+access-list global_acl extended permit udp object-group g-CWW-AUTHACC-IN any object-group g-CWW-AUTHACC-IN_UDP
+access-list global_acl extended permit icmp object-group g-CWW-BMCADDM-IN any echo
+access-list global_acl extended permit tcp object-group g-CWW-BMCADDM-IN any object-group g-CWW-BMCADDM-IN_TCP
+access-list global_acl extended permit udp object-group g-CWW-BMCADDM-IN any object-group g-CWW-BMCADDM-IN_UDP
+access-list global_acl extended permit tcp object-group g-CWW-BMCPERF-IN any object-group g-CWW-BMCPERF-IN_TCP
+access-list global_acl extended permit icmp object-group g-CWW-BMCBPPM-IN any echo
+access-list global_acl extended permit tcp object-group g-CWW-BMCBPPM-IN any object-group g-CWW-BMCBPPM-IN_TCP
+access-list global_acl extended permit udp object-group g-CWW-BMCBPPM-IN any object-group g-CWW-BMCBPPM-IN_UDP
+access-list global_acl extended permit tcp object-group g-CWW-CHECKPOINT-IN any object-group g-CWW-CHECKPOINT-IN_TCP
+access-list global_acl extended permit tcp object-group g-CWW-EMCCC-IN any object-group g-CWW-EMCCC-IN_TCP
+access-list global_acl extended permit icmp object-group g-CWW-HPSIM-IN any echo
+access-list global_acl extended permit tcp object-group g-CWW-HPSIM-IN any object-group g-CWW-HPSIM-IN_TCP
+access-list global_acl extended permit udp object-group g-CWW-HPSIM-IN any object-group g-CWW-HPSIM-IN_UDP
+access-list global_acl extended permit icmp object-group g-CWW-LOWLEVEL-IN any echo
+access-list global_acl extended permit tcp object-group g-CWW-LOWLEVEL-IN any object-group g-CWW-LOWLEVEL-IN_TCP
+access-list global_acl extended permit udp object-group g-CWW-LOWLEVEL-IN any object-group g-CWW-LOWLEVEL-IN_UDP
+access-list global_acl extended permit tcp object-group g-CWW-PATCHINGAV-IN any object-group g-CWW-PATCHINGAV-IN_TCP
+access-list global_acl extended permit tcp object-group g-CWW-SBE-IN any eq https
+access-list global_acl extended permit tcp object-group g-CWW-SYMANTECBACKUP-IN any object-group g-CWW-SYMANTECBACKUP-IN_TCP
+access-list global_acl extended permit tcp any object-group g-CWW-AUTHACC-OUT object-group g-CWW-AUTHACC-OUT_TCP
+access-list global_acl extended permit udp any object-group g-CWW-AUTHACC-OUT object-group g-CWW-AUTHACC-OUT_UDP
+access-list global_acl extended permit icmp any object-group g-CWW-AUTHACC-OUT echo
+access-list global_acl extended permit tcp any object-group g-CWW-BMCPERF-OUT object-group g-CWW-BMCPERF-OUT_TCP
+access-list global_acl extended permit tcp any object-group g-CWW-CHECKPOINT-OUT object-group g-CWW-CHECKPOINT-OUT_TCP
+access-list global_acl extended permit tcp any object-group g-CWW-EMCCC-OUT object-group g-CWW-EMCCC-OUT_TCP
+access-list global_acl extended permit tcp any object-group g-CWW-HPSIM-OUT object-group g-CWW-HPSIM-OUT_TCP
+access-list global_acl extended permit udp any object-group g-CWW-HPSIM-OUT object-group g-CWW-HPSIM-OUT_UDP
+access-list global_acl extended permit tcp any object-group g-CWW-LOWLEVEL-OUT object-group g-CWW-LOWLEVEL-OUT_TCP
+access-list global_acl extended permit udp any object-group g-CWW-LOWLEVEL-OUT object-group g-CWW-LOWLEVEL-OUT_UDP
+access-list global_acl extended permit tcp any object-group g-CWW-PATCHINGAV-OUT object-group g-CWW-PATCHINGAV-OUT_TCP
+access-list global_acl extended permit tcp any object-group g-CWW-BMCBPPM-OUT object-group g-CWW-BMCBPPM-OUT_TCP
+access-list global_acl extended permit udp any object-group g-CWW-BMCBPPM-OUT object-group g-CWW-BMCBPPM-OUT_UDP
+access-list global_acl extended permit tcp any object-group g-CWW-SYMANTECBACKUP-OUT object-group g-CWW-SYMANTECBACKUP-OUT_TCP
+access-list global_acl extended permit icmp object-group CEN-MSL-BMCADDM-IN any echo
+access-list global_acl extended permit icmp object-group CEN-MSL-BMCBPPM-IN any echo
+access-list global_acl extended permit tcp object-group CEN-MSL-BMCBPPM-IN any object-group g-CWW-BMCBPPM-IN_TCP
+access-list global_acl extended permit udp object-group CEN-MSL-BMCBPPM-IN any object-group g-CWW-BMCBPPM-IN_UDP
+access-list global_acl extended permit tcp object-group CEN-MSL-BMCADDM-IN any object-group CEN-MSL-BMCADDM-IN_TCP
+access-list global_acl extended permit udp object-group CEN-MSL-BMCADDM-IN any object-group CEN-MSL-BMCADDM-IN_UDP
+access-list global_acl extended permit tcp any object-group CEN-MSL-BMCBPPM-OUT object-group CEN-MSL-BMCBPPM-OUT_TCP
+access-list global_acl extended permit udp any object-group CEN-MSL-BMCBPPM-OUT object-group CEN-MSL-BMCBPPM-OUT_UDP
+access-list global_acl extended permit tcp any object-group CEN-MSL-PATCHINGAV-OUT object-group CEN-MSL-PATCHINGAV-OUT_TCP
+access-list global_acl extended permit tcp object-group MGMTEMC-ALL-BHS-group any object-group MGMTEMC-BH-IN_TCP
+access-list global_acl extended permit udp object-group MGMTEMC-ALL-BHS-group any object-group MGMTEMC-BH-IN_UDP
+pager lines 23
+logging enable
+logging timestamp
+logging standby
+logging console emergencies
+logging buffered informational
+logging trap informational
+logging history alerts
+logging facility 17
+logging device-id ipaddress cascade
+logging host cwmgmt 217.135.0.45
+logging host cascade 10.80.7.136
+mtu cascade 1500
+mtu cwmgmt 1500
+ip verify reverse-path interface cascade
+ip verify reverse-path interface cwmgmt
+monitor-interface cascade
+icmp unreachable rate-limit 1 burst-size 1
+icmp permit 10.99.99.96 255.255.255.248 echo cascade
+icmp permit 10.99.99.96 255.255.255.248 echo-reply cascade
+icmp permit 10.99.99.96 255.255.255.248 unreachable cascade
+icmp permit 10.99.99.96 255.255.255.248 time-exceeded cascade
+icmp permit any echo cwmgmt
+icmp permit any echo-reply cwmgmt
+icmp permit any unreachable cwmgmt
+icmp permit any time-exceeded cwmgmt
+no asdm history enable
+arp timeout 14400
+nat (cascade,cwmgmt) source static censwipbcssyslg01 hst-10.13.96.214 destination static hst-10.80.14.31 sysm-swi-sig
+nat (cwmgmt,any) source static sysm-swi-sig hst-10.80.14.31
+nat (cascade,cwmgmt) source static cen-swi-cta-1a cen-swi-cta-1a_cwmgmt-nat destination static hst-10.80.14.31 sysm-swi-sig
+!
+object network hst-10.216.180.72
+ nat (cwmgmt,any) static 10.80.14.1
+object network hst-10.216.180.107
+ nat (cwmgmt,any) static 10.80.14.2
+object network hst-10.11.216.137
+ nat (cwmgmt,any) static 10.80.14.3
+object network hst-10.11.216.163
+ nat (cwmgmt,any) static 10.80.14.4
+object network hst-10.216.180.8
+ nat (cwmgmt,any) static 10.80.14.5
+object network hst-10.11.216.172
+ nat (cwmgmt,any) static 10.80.14.6
+object network hst-10.216.180.106
+ nat (cwmgmt,any) static 10.80.14.7
+object network hst-10.216.64.1
+ nat (cwmgmt,any) static 10.80.14.8
+object network hst-10.11.216.160
+ nat (cwmgmt,any) static 10.80.14.9
+object network hst-10.12.192.35
+ nat (cwmgmt,any) static 10.80.14.10
+object network hst-10.216.180.235
+ nat (cwmgmt,any) static 10.80.14.11
+object network hst-10.216.180.236
+ nat (cwmgmt,any) static 10.80.14.12
+object network hst-10.216.180.237
+ nat (cwmgmt,any) static 10.80.14.13
+object network hst-10.11.216.156
+ nat (cwmgmt,any) static 10.80.14.14
+object network hst-10.11.216.157
+ nat (cwmgmt,any) static 10.80.14.15
+object network hst-10.11.216.158
+ nat (cwmgmt,any) static 10.80.14.16
+object network hst-10.216.180.108
+ nat (cwmgmt,any) static 10.80.14.17
+object network hst-10.216.180.109
+ nat (cwmgmt,any) static 10.80.14.18
+object network hst-10.11.216.173
+ nat (cwmgmt,any) static 10.80.14.19
+object network hst-10.11.216.174
+ nat (cwmgmt,any) static 10.80.14.20
+object network hst-10.11.216.135
+ nat (cwmgmt,any) static 10.80.14.21
+object network hst-10.11.216.161
+ nat (cwmgmt,any) static 10.80.14.22
+object network hst-10.218.253.62
+ nat (cwmgmt,any) static 10.80.14.23
+object network hst-10.225.104.147
+ nat (cwmgmt,any) static 10.80.14.24
+object network hst-10.216.180.68
+ nat (cwmgmt,any) static 10.80.14.25
+object network hst-10.218.253.245
+ nat (cwmgmt,any) static 10.80.14.26
+object network hst-10.225.104.142
+ nat (cwmgmt,any) static 10.80.14.27
+object network hst-10.11.217.145
+ nat (cwmgmt,any) static 10.80.14.29
+object network hst-10.11.217.146
+ nat (cwmgmt,any) static 10.80.14.30
+object network hst-10.11.217.140
+ nat (cwmgmt,any) static 10.80.14.32
+object network hst-10.11.217.156
+ nat (cwmgmt,any) static 10.80.14.33
+object network hst-10.216.16.113
+ nat (cwmgmt,any) static 10.80.14.34
+object network hst-10.12.9.72
+ nat (cwmgmt,any) static 10.80.14.35
+object network hst-10.216.16.114
+ nat (cwmgmt,any) static 10.80.14.36
+object network hst-10.12.9.71
+ nat (cwmgmt,any) static 10.80.14.37
+object network hst-10.216.180.81
+ nat (cwmgmt,any) static 10.80.14.38
+object network hst-10.218.253.77
+ nat (cwmgmt,any) static 10.80.14.39
+object network hst-10.12.11.36
+ nat (cwmgmt,any) static 10.80.14.40
+object network hst-10.12.11.37
+ nat (cwmgmt,any) static 10.80.14.41
+object network hst-10.12.194.1
+ nat (cwmgmt,any) static 10.80.14.42
+object network hst-10.216.180.98
+ nat (cwmgmt,cascade) static 10.80.14.43
+object network hst-10.12.11.40
+ nat (cwmgmt,any) static 10.80.14.44
+object network hst-10.12.11.41
+ nat (cwmgmt,any) static 10.80.14.45
+object network hst-10.12.194.4
+ nat (cwmgmt,any) static 10.80.14.46
+object network hst-10.12.11.33
+ nat (cwmgmt,any) static 10.80.14.47
+object network hst-10.12.11.34
+ nat (cwmgmt,any) static 10.80.14.48
+object network hst-10.12.194.6
+ nat (cwmgmt,any) static 10.80.14.49
+object network hst-10.216.180.232
+ nat (cwmgmt,any) static 10.80.14.50
+object network hst-10.216.180.96
+ nat (cwmgmt,any) static 10.80.14.51
+object network hst-10.12.9.65
+ nat (cwmgmt,any) static 10.80.14.52
+object network hst-10.216.180.79
+ nat (cwmgmt,any) static 10.80.14.53
+object network hst-10.218.253.63
+ nat (cwmgmt,any) static 10.80.14.54
+object network hst-10.11.216.18
+ nat (cwmgmt,any) static 10.80.14.55
+object network hst-10.11.216.19
+ nat (cwmgmt,any) static 10.80.14.56
+object network hst-10.11.216.31
+ nat (cwmgmt,any) static 10.80.14.57
+object network hst-10.11.216.32
+ nat (cwmgmt,any) static 10.80.14.58
+object network hst-10.11.235.40
+ nat (cwmgmt,any) static 10.80.14.59
+object network hst-10.11.235.50
+ nat (cwmgmt,any) static 10.80.14.60
+object network hst-10.11.235.58
+ nat (cwmgmt,any) static 10.80.14.61
+object network hst-10.11.235.59
+ nat (cwmgmt,any) static 10.80.14.62
+object network hst-10.11.235.65
+ nat (cwmgmt,any) static 10.80.14.63
+object network hst-10.11.235.66
+ nat (cwmgmt,any) static 10.80.14.64
+object network hst-10.11.216.68
+ nat (cwmgmt,any) static 10.80.14.65
+object network hst-10.11.216.22
+ nat (cwmgmt,any) static 10.80.14.66
+object network hst-10.11.216.20
+ nat (cwmgmt,any) static 10.80.14.67
+object network hst-10.11.216.50
+ nat (cwmgmt,any) static 10.80.14.68
+object network hst-10.218.253.128
+ nat (cwmgmt,any) static 10.80.14.69
+object network hst-10.218.253.129
+ nat (cwmgmt,any) static 10.80.14.70
+object network hst-10.225.104.143
+ nat (cwmgmt,any) static 10.80.14.71
+object network hst-10.225.104.144
+ nat (cwmgmt,any) static 10.80.14.72
+object network hst-10.12.192.33
+ nat (cwmgmt,any) static 10.80.14.73
+object network hst-10.12.192.34
+ nat (cwmgmt,any) static 10.80.14.74
+object network hst-10.218.253.130
+ nat (cwmgmt,any) static 10.80.14.75
+object network hst-10.218.253.131
+ nat (cwmgmt,any) static 10.80.14.76
+object network hst-10.12.192.36
+ nat (cwmgmt,any) static 10.80.14.77
+object network hst-10.12.192.37
+ nat (cwmgmt,any) static 10.80.14.78
+object network hst-10.216.5.67
+ nat (cwmgmt,any) static 10.80.14.79
+object network hst-10.216.5.68
+ nat (cwmgmt,any) static 10.80.14.80
+object network hst-10.11.217.141
+ nat (cwmgmt,any) static 10.80.14.81
+object network hst-10.11.217.142
+ nat (cwmgmt,any) static 10.80.14.82
+object network hst-10.216.6.236
+ nat (cwmgmt,any) static 10.80.14.83
+object network hst-10.11.216.103
+ nat (cwmgmt,any) static 10.80.14.84
+object network hst-10.216.6.96
+ nat (cwmgmt,any) static 10.80.14.85
+object network hst-10.216.180.82
+ nat (cwmgmt,any) static 10.80.14.86
+object network hst-10.216.180.182
+ nat (cwmgmt,any) static 10.80.14.87
+object network hst-10.225.70.3
+ nat (cwmgmt,any) static 10.80.14.88
+object network hst-10.221.113.17
+ nat (cwmgmt,any) static 10.80.14.89
+object network hst-10.221.113.18
+ nat (cwmgmt,any) static 10.80.14.90
+object network hst-10.216.6.90
+ nat (cwmgmt,any) static 10.80.14.91
+object network hst-10.216.6.92
+ nat (cwmgmt,any) static 10.80.14.92
+object network hst-10.216.6.94
+ nat (cwmgmt,any) static 10.80.14.93
+object network hst-10.225.104.156
+ nat (cwmgmt,any) static 10.80.14.94
+object network hst-10.11.216.75
+ nat (cwmgmt,any) static 10.80.14.95
+object network hst-10.12.8.158
+ nat (cwmgmt,any) static 10.80.14.96
+object network hst-10.11.216.66
+ nat (cwmgmt,any) static 10.80.14.97
+object network hst-216.239.217.60
+ nat (cwmgmt,any) static 10.80.14.98
+object network hst-10.216.1.1
+ nat (cwmgmt,cascade) static 10.80.14.99
+object network hst-10.11.216.145
+ nat (cwmgmt,any) static 10.80.14.100
+object network hst-10.225.104.157
+ nat (cwmgmt,any) static 10.80.14.101
+object network hst-10.225.104.158
+ nat (cwmgmt,any) static 10.80.14.102
+object network hst-10.225.104.159
+ nat (cwmgmt,any) static 10.80.14.103
+object network hst-10.11.216.13
+ nat (cwmgmt,any) static 10.80.14.104
+object network hst-10.11.216.14
+ nat (cwmgmt,any) static 10.80.14.105
+object network hst-10.11.216.37
+ nat (cwmgmt,any) static 10.80.14.106
+object network hst-10.11.216.38
+ nat (cwmgmt,any) static 10.80.14.107
+object network hst-10.11.216.39
+ nat (cwmgmt,any) static 10.80.14.108
+object network hst-10.11.216.40
+ nat (cwmgmt,any) static 10.80.14.109
+object network hst-10.11.216.41
+ nat (cwmgmt,any) static 10.80.14.110
+object network hst-10.11.216.42
+ nat (cwmgmt,any) static 10.80.14.111
+object network hst-10.12.192.65
+ nat (cwmgmt,any) static 10.80.14.112
+object network hst-10.12.192.66
+ nat (cwmgmt,any) static 10.80.14.113
+object network hst-10.12.192.87
+ nat (cwmgmt,any) static 10.80.14.114
+object network hst-10.216.4.203
+ nat (cwmgmt,any) static 10.80.14.115
+object network hst-10.216.4.204
+ nat (cwmgmt,any) static 10.80.14.116
+object network hst-10.12.192.97
+ nat (cwmgmt,any) static 10.80.14.117
+object network hst-10.11.235.41
+ nat (cwmgmt,any) static 10.80.14.118
+object network hst-10.11.235.51
+ nat (cwmgmt,any) static 10.80.14.119
+object network hst-10.11.235.60
+ nat (cwmgmt,any) static 10.80.14.120
+object network hst-10.12.208.65
+ nat (cwmgmt,any) static 10.80.14.121
+object network hst-10.12.208.66
+ nat (cwmgmt,any) static 10.80.14.122
+object network hst-10.11.216.151
+ nat (cwmgmt,any) static 10.80.14.123
+object network hst-10.216.180.248
+ nat (cwmgmt,any) static 10.80.14.124
+object network hst-10.225.104.154
+ nat (cwmgmt,any) static 10.80.14.125
+object network hst-10.11.235.55
+ nat (cwmgmt,any) static 10.80.14.126
+object network hst-10.12.192.116
+ nat (cwmgmt,any) static 10.80.14.127
+object network hst-10.13.10.21
+ nat (cwmgmt,any) static 10.80.14.128
+object network hst-10.216.180.184
+ nat (cwmgmt,any) static 10.80.14.129
+object network hst-10.216.180.239
+ nat (cwmgmt,any) static 10.80.14.130
+object network hst-10.216.180.240
+ nat (cwmgmt,any) static 10.80.14.131
+object network hst-10.216.8.181
+ nat (cwmgmt,any) static 10.80.14.132
+object network hst-10.225.104.167
+ nat (cwmgmt,any) static 10.80.14.133
+object network hst-10.225.7.23
+ nat (cwmgmt,any) static 10.80.14.135
+object network hst-216.239.195.65
+ nat (cwmgmt,any) static 10.80.14.136
+object network hst-216.239.195.66
+ nat (cwmgmt,any) static 10.80.14.137
+object network hst-216.239.195.73
+ nat (cwmgmt,any) static 10.80.14.138
+object network hst-216.239.217.50
+ nat (cwmgmt,any) static 10.80.14.139
+object network hst-10.11.135.33
+ nat (cwmgmt,any) static 10.80.14.140
+object network hst-10.11.135.34
+ nat (cwmgmt,any) static 10.80.14.141
+object network hst-10.11.135.35
+ nat (cwmgmt,any) static 10.80.14.142
+object network hst-10.11.135.36
+ nat (cwmgmt,any) static 10.80.14.143
+object network hst-10.11.135.37
+ nat (cwmgmt,any) static 10.80.14.144
+object network hst-10.11.135.38
+ nat (cwmgmt,any) static 10.80.14.145
+object network hst-10.11.235.33
+ nat (cwmgmt,any) static 10.80.14.146
+object network hst-10.11.235.34
+ nat (cwmgmt,any) static 10.80.14.147
+object network hst-10.11.235.35
+ nat (cwmgmt,any) static 10.80.14.148
+object network hst-10.11.235.36
+ nat (cwmgmt,any) static 10.80.14.149
+object network hst-10.11.235.37
+ nat (cwmgmt,any) static 10.80.14.150
+object network hst-10.11.235.38
+ nat (cwmgmt,any) static 10.80.14.151
+object network hst-10.11.216.150
+ nat (cwmgmt,any) static 10.80.14.152
+object network hst-10.12.192.43
+ nat (cwmgmt,any) static 10.80.14.153
+object network hst-10.11.216.140
+ nat (cwmgmt,any) static 10.80.14.154
+object network hst-10.12.194.9
+ nat (cwmgmt,any) static 10.80.14.155
+object network cen-swi-bigip-01
+ nat (cascade,cwmgmt) static 10.13.51.4
+object network cen-swi-bigip-02
+ nat (cascade,cwmgmt) static 10.13.51.5
+object network cen-swi-gtm-01
+ nat (cascade,cwmgmt) static 10.13.51.7
+object network cen-swi-sw-03
+ nat (cascade,cwmgmt) static 10.13.51.11
+object network cen-swi-sw-04
+ nat (cascade,cwmgmt) static 10.13.51.12
+object network cen-swi-sw-05
+ nat (cascade,cwmgmt) static 10.13.51.13
+object network cen-swi-sw-06
+ nat (cascade,cwmgmt) static 10.13.51.14
+object network cen-swi-sw-07
+ nat (cascade,cwmgmt) static 10.13.51.15
+object network cen-swi-sw-08
+ nat (cascade,cwmgmt) static 10.13.51.16
+object network cen-swi-sw-09
+ nat (cascade,cwmgmt) static 10.13.51.17
+object network cen-swi-sw-10
+ nat (cascade,cwmgmt) static 10.13.51.18
+object network cen-swi-sw-11
+ nat (cascade,cwmgmt) static 10.13.51.19
+object network cen-swi-sw-12
+ nat (cascade,cwmgmt) static 10.13.51.20
+object network cen-swi-ids-01
+ nat (cascade,cwmgmt) static 10.13.51.6
+object network censwipprosip01
+ nat (cascade,cwmgmt) static 10.13.51.21
+object network censwipprosip02
+ nat (cascade,cwmgmt) static 10.13.51.22
+object network censwipprosip03
+ nat (cascade,cwmgmt) static 10.13.51.23
+object network censwipprosip04
+ nat (cascade,cwmgmt) static 10.13.51.24
+object network censwipprormg01
+ nat (cascade,cwmgmt) static 10.13.51.25
+object network censwipprormg02
+ nat (cascade,cwmgmt) static 10.13.51.26
+object network censwipproweb01
+ nat (cascade,cwmgmt) static 10.13.51.27
+object network censwipproweb02
+ nat (cascade,cwmgmt) static 10.13.51.28
+object network censwipproswb01
+ nat (cascade,cwmgmt) static 10.13.51.29
+object network censwipproswb02
+ nat (cascade,cwmgmt) static 10.13.51.30
+object network censwippronan01
+ nat (cascade,cwmgmt) static 10.13.51.31
+object network censwippronan02
+ nat (cascade,cwmgmt) static 10.13.51.32
+object network censwippromcp01
+ nat (cascade,cwmgmt) static 10.13.51.33
+object network censwippromcp02
+ nat (cascade,cwmgmt) static 10.13.51.34
+object network censwippromcp03
+ nat (cascade,cwmgmt) static 10.13.51.35
+object network censwippromcp04
+ nat (cascade,cwmgmt) static 10.13.51.36
+object network censwipprosta01
+ nat (cascade,cwmgmt) static 10.13.51.37
+object network censwipprosta02
+ nat (cascade,cwmgmt) static 10.13.51.38
+object network censwipproico01
+ nat (cascade,cwmgmt) static 10.13.51.39
+object network censwipproico02
+ nat (cascade,cwmgmt) static 10.13.51.40
+object network censwipprogim01
+ nat (cascade,cwmgmt) static 10.13.51.41
+object network censwipprocms01
+ nat (cascade,cwmgmt) static 10.13.51.42
+object network censwipprours01
+ nat (cascade,cwmgmt) static 10.13.51.43
+object network censwipprours02
+ nat (cascade,cwmgmt) static 10.13.51.44
+object network censwippromcp05
+ nat (cascade,cwmgmt) static 10.13.51.45
+object network censwippromcp06
+ nat (cascade,cwmgmt) static 10.13.51.46
+object network censwipproiis01
+ nat (cascade,cwmgmt) static 10.13.51.47
+object network censwipproadv02
+ nat (cascade,cwmgmt) static 10.13.51.49
+object network censwipproadv03
+ nat (cascade,cwmgmt) static 10.13.51.50
+object network censwipproadv04
+ nat (cascade,cwmgmt) static 10.13.51.51
+object network censwipproadv05
+ nat (cascade,cwmgmt) static 10.13.51.52
+object network censwipproadv06
+ nat (cascade,cwmgmt) static 10.13.51.53
+object network censwipproadv07
+ nat (cascade,cwmgmt) static 10.13.51.54
+object network censwipprocms02
+ nat (cascade,cwmgmt) static 10.13.51.55
+object network censwipprocat01
+ nat (cascade,cwmgmt) static 10.13.51.56
+object network censwipprocat02
+ nat (cascade,cwmgmt) static 10.13.51.57
+object network censwipprocat04
+ nat (cascade,cwmgmt) static 10.13.51.59
+object network censwipproora02
+ nat (cascade,cwmgmt) static 10.13.51.66
+object network censwipproads01
+ nat (cascade,cwmgmt) static 10.13.51.68
+object network censwipproads01-iLO
+ nat (cascade,cwmgmt) static 10.13.51.69
+object network censwipproads02
+ nat (cascade,cwmgmt) static 10.13.51.70
+object network censwipproads02-iLO
+ nat (cascade,cwmgmt) static 10.13.51.71
+object network cen-swi-dc-01
+ nat (cascade,cwmgmt) static 10.13.51.72
+object network cen-swi-dc-01-iLO
+ nat (cascade,cwmgmt) static 10.13.51.73
+object network cen-swi-dc-02
+ nat (cascade,cwmgmt) static 10.13.51.74
+object network cen-swi-dc-02-iLO
+ nat (cascade,cwmgmt) static 10.13.51.75
+object network cen-swi-vc-01
+ nat (cascade,cwmgmt) static 10.13.51.76
+object network cen-swi-sim-01
+ nat (cascade,cwmgmt) static 10.13.51.78
+object network cen-swi-sim-01-iLO
+ nat (cascade,cwmgmt) static 10.13.51.79
+object network cen-swi-bh-01
+ nat (cascade,cwmgmt) static 10.13.51.80
+object network cen-swi-bh-01-iLO
+ nat (cascade,cwmgmt) static 10.13.51.81
+object network cen-swi-prob-01
+ nat (cascade,cwmgmt) static 10.13.51.82
+object network cen-swi-prob-0-iLO
+ nat (cascade,cwmgmt) static 10.13.51.83
+object network cen-swi-media-01
+ nat (cascade,cwmgmt) static 10.13.51.84
+object network cen-swi-media-01-iLO
+ nat (cascade,cwmgmt) static 10.13.51.85
+object network cen-swi-media-02
+ nat (cascade,cwmgmt) static 10.13.51.86
+object network cen-swi-media-02-iLO
+ nat (cascade,cwmgmt) static 10.13.51.87
+object network censwivpresip01
+ nat (cascade,cwmgmt) static 10.13.51.88
+object network censwivpresip02
+ nat (cascade,cwmgmt) static 10.13.51.89
+object network censwivpresip03
+ nat (cascade,cwmgmt) static 10.13.51.90
+object network censwivpresip04
+ nat (cascade,cwmgmt) static 10.13.51.91
+object network censwivprermg01
+ nat (cascade,cwmgmt) static 10.13.51.92
+object network censwivprermg02
+ nat (cascade,cwmgmt) static 10.13.51.93
+object network censwivprenan01
+ nat (cascade,cwmgmt) static 10.13.51.94
+object network censwivprenan02
+ nat (cascade,cwmgmt) static 10.13.51.95
+object network censwivpremcp01
+ nat (cascade,cwmgmt) static 10.13.51.96
+object network censwivpremcp02
+ nat (cascade,cwmgmt) static 10.13.51.97
+object network censwivpreico01
+ nat (cascade,cwmgmt) static 10.13.51.98
+object network censwivprecms01
+ nat (cascade,cwmgmt) static 10.13.51.99
+object network censwivprecms02
+ nat (cascade,cwmgmt) static 10.13.51.100
+object network censwivpreurs01
+ nat (cascade,cwmgmt) static 10.13.51.101
+object network censwivpreurs02
+ nat (cascade,cwmgmt) static 10.13.51.102
+object network censwivpreivr01
+ nat (cascade,cwmgmt) static 10.13.51.103
+object network censwivpreivr02
+ nat (cascade,cwmgmt) static 10.13.51.104
+object network censwivpresql01
+ nat (cascade,cwmgmt) static 10.13.51.105
+object network censwivprevht01
+ nat (cascade,cwmgmt) static 10.13.51.106
+object network censwivprevht02
+ nat (cascade,cwmgmt) static 10.13.51.107
+object network censwivpreiis01
+ nat (cascade,cwmgmt) static 10.13.51.108
+object network censwivpreadv01
+ nat (cascade,cwmgmt) static 10.13.51.109
+object network censwivpreadv02
+ nat (cascade,cwmgmt) static 10.13.51.110
+object network censwivpreadv03
+ nat (cascade,cwmgmt) static 10.13.51.111
+object network censwipre-esx01
+ nat (cascade,cwmgmt) static 10.13.51.60
+object network censwipre-esx02
+ nat (cascade,cwmgmt) static 10.13.51.62
+object network esx02console
+ nat (cascade,cwmgmt) static 10.13.51.62
+object network cen-swi-sw-01-VSS-BackMgmt
+ nat (cascade,cwmgmt) static 10.13.51.1
+object network censwipproora01-iLo
+ nat (cascade,cwmgmt) static 10.13.51.65
+object network censwipproora02-iLo
+ nat (cascade,cwmgmt) static 10.13.51.67
+object network censwipproora01
+ nat (cascade,cwmgmt) static 10.13.51.64
+object network censwipprocat03
+ nat (cascade,cwmgmt) static 10.13.51.58
+object network cen-swi-vc-01-iLO
+ nat (cascade,cwmgmt) static 10.13.51.77
+object network censwipre-esx01-iLO
+ nat (cascade,cwmgmt) static 10.13.51.61
+object network censwipre-esx02-iLO
+ nat (cascade,cwmgmt) static 10.13.51.63
+object network hst-10.11.217.158
+ nat (cwmgmt,any) static 10.80.14.159
+object network cen-swi-asa-02-inside-pri
+ nat (cascade,cwmgmt) static 10.250.95.149
+object network cen-swi-asa-02-inside-sec
+ nat (cascade,cwmgmt) static 10.250.95.150
+object network censwipiptesx01
+ nat (cascade,cwmgmt) static 10.13.51.163
+object network censwipiptesx02
+ nat (cascade,cwmgmt) static 10.13.51.164
+object network censwipproadv01
+ nat (cascade,cwmgmt) static 10.13.51.48
+object network censwipaspavp01
+ nat (cascade,cwmgmt) static 10.13.51.112
+object network censwipaspavp01_iLO
+ nat (cascade,cwmgmt) static 10.13.51.113
+object network censwipaspavp02
+ nat (cascade,cwmgmt) static 10.13.51.114
+object network censwipaspavp02_iLO
+ nat (cascade,cwmgmt) static 10.13.51.115
+object network censwipaspavp03
+ nat (cascade,cwmgmt) static 10.13.51.116
+object network censwipaspavp03_iLO
+ nat (cascade,cwmgmt) static 10.13.51.117
+object network censwipaspavp04
+ nat (cascade,cwmgmt) static 10.13.51.118
+object network censwipaspavp04_iLO
+ nat (cascade,cwmgmt) static 10.13.51.119
+object network censwipaspavp05
+ nat (cascade,cwmgmt) static 10.13.51.120
+object network censwipaspavp05_iLO
+ nat (cascade,cwmgmt) static 10.13.51.121
+object network censwipaspavp06
+ nat (cascade,cwmgmt) static 10.13.51.122
+object network censwipaspavp06_iLO
+ nat (cascade,cwmgmt) static 10.13.51.123
+object network censwipaspts01
+ nat (cascade,cwmgmt) static 10.13.51.124
+object network censwipaspts01_iLO
+ nat (cascade,cwmgmt) static 10.13.51.125
+object network censwipaspwa01
+ nat (cascade,cwmgmt) static 10.13.51.126
+object network censwipaspwa01_iLO
+ nat (cascade,cwmgmt) static 10.13.51.127
+object network censwipaspalm01
+ nat (cascade,cwmgmt) static 10.13.51.128
+object network censwipaspalm01_iLO
+ nat (cascade,cwmgmt) static 10.13.51.129
+object network censwivaspaod01
+ nat (cascade,cwmgmt) static 10.13.51.130
+object network censwivaspawcs01
+ nat (cascade,cwmgmt) static 10.13.51.131
+object network censwivasppdm01
+ nat (cascade,cwmgmt) static 10.13.51.132
+object network censwivasprdm02
+ nat (cascade,cwmgmt) static 10.13.51.133
+object network censwivaspexs01
+ nat (cascade,cwmgmt) static 10.13.51.134
+object network censwivaspexs02
+ nat (cascade,cwmgmt) static 10.13.51.135
+object network censwivaspexs03
+ nat (cascade,cwmgmt) static 10.13.51.136
+object network censwivaspexs04
+ nat (cascade,cwmgmt) static 10.13.51.137
+object network censwivaspexs05
+ nat (cascade,cwmgmt) static 10.13.51.138
+object network censwivaspexd01
+ nat (cascade,cwmgmt) static 10.13.51.139
+object network censwivaspcs01
+ nat (cascade,cwmgmt) static 10.13.51.140
+object network censwivaspcs02
+ nat (cascade,cwmgmt) static 10.13.51.141
+object network censwivasptas05
+ nat (cascade,cwmgmt) static 10.13.51.154
+object network censwivaspcti01
+ nat (cascade,cwmgmt) static 10.13.51.143
+object network censwivaspcti02
+ nat (cascade,cwmgmt) static 10.13.51.144
+object network censwivaspucc02
+ nat (cascade,cwmgmt) static 10.13.51.146
+object network censwivasppc01
+ nat (cascade,cwmgmt) static 10.13.51.147
+object network censwivaspalb01
+ nat (cascade,cwmgmt) static 10.13.51.148
+object network censwivasprec01
+ nat (cascade,cwmgmt) static 10.13.51.149
+object network censwivasptas01
+ nat (cascade,cwmgmt) static 10.13.51.150
+object network censwivasptas02
+ nat (cascade,cwmgmt) static 10.13.51.151
+object network censwivasptas03
+ nat (cascade,cwmgmt) static 10.13.51.152
+object network censwivasptas04
+ nat (cascade,cwmgmt) static 10.13.51.153
+object network censwipaspesx01
+ nat (cascade,cwmgmt) static 10.13.51.155
+object network censwipaspesx02
+ nat (cascade,cwmgmt) static 10.13.51.156
+object network censwipaspesx03
+ nat (cascade,cwmgmt) static 10.13.51.157
+object network censwipaspesx04
+ nat (cascade,cwmgmt) static 10.13.51.158
+object network censwipaspesx05
+ nat (cascade,cwmgmt) static 10.13.51.159
+object network censwipaspesx06
+ nat (cascade,cwmgmt) static 10.13.51.160
+object network hst-148.185.143.149
+ nat (cwmgmt,cascade) static 10.80.14.156
+object network hst-148.185.183.33
+ nat (cwmgmt,cascade) static 10.80.14.157
+object network hst-148.185.143.147
+ nat (cwmgmt,cascade) static 10.80.14.158
+object network hst-10.250.94.137
+ nat (cwmgmt,cascade) static 10.80.14.160
+object network hst-10.250.94.154
+ nat (cwmgmt,cascade) static 10.80.14.161
+object network hst-10.250.94.160
+ nat (cwmgmt,cascade) static 10.80.14.162
+object network censwipiptesx03
+ nat (cascade,cwmgmt) static 10.13.51.175
+object network censwipiptesx04
+ nat (cascade,cwmgmt) static 10.13.51.176
+object network cen-swi-cuc01
+ nat (cascade,cwmgmt) static 10.13.51.161
+object network cen-swi-ccm01
+ nat (cascade,cwmgmt) static 10.13.51.162
+object network cen-swi-ccm02
+ nat (cascade,cwmgmt) static 10.13.51.169
+object network cen-swi-iprec-01
+ nat (cascade,cwmgmt) static 10.13.51.172
+object network cen-swi-t-svr-01
+ nat (cascade,cwmgmt) static 10.13.51.173
+object network cen-swi-mtp-01
+ nat (cascade,cwmgmt) static 10.13.51.174
+object network cen-swi-unify-1
+ nat (cascade,cwmgmt) static 10.13.51.177
+object network censwippreora01
+ nat (cascade,cwmgmt) static 10.13.51.165
+object network censwippreora01-ilo
+ nat (cascade,cwmgmt) static 10.13.51.200
+object network censwippreora02
+ nat (cascade,cwmgmt) static 10.13.51.166
+object network censwippreora02-ilo
+ nat (cascade,cwmgmt) static 10.13.96.213
+object network censwisanmg01
+ nat (cascade,cwmgmt) static 10.13.51.167
+object network censwisanmg01-iLo
+ nat (cascade,cwmgmt) static 10.13.51.168
+object network cen-swi-vnx_spa
+ nat (cascade,cwmgmt) static 10.13.51.178
+object network cen-swi-vnx_spb
+ nat (cascade,cwmgmt) static 10.13.51.179
+object network censwipmtpesx01
+ nat (cascade,cwmgmt) static 10.13.51.183
+object network censwivmtpwcs01
+ nat (cascade,cwmgmt) static 10.13.51.180
+object network censwipmtpacs01
+ nat (cascade,cwmgmt) static 10.13.51.184
+object network censwipmtpckp01
+ nat (cascade,cwmgmt) static 10.13.51.185
+object network cen-swi-iprec-2
+ nat (cascade,cwmgmt) static 10.13.51.181
+object network cen-swi-iprec-2-iLO
+ nat (cascade,cwmgmt) static 10.13.51.182
+object network cen-swi-anlyz-1
+ nat (cascade,cwmgmt) static 10.13.51.187
+object network cen-swi-anlyz-1-ilo
+ nat (cascade,cwmgmt) static 10.13.51.188
+object network hst-10.80.28.4
+ nat (cascade,cwmgmt) static 10.13.51.112
+object network hst-10.80.28.5
+ nat (cascade,cwmgmt) static 10.13.51.114
+object network hst-10.80.28.6
+ nat (cascade,cwmgmt) static 10.13.51.116
+object network hst-10.80.28.7
+ nat (cascade,cwmgmt) static 10.13.51.118
+object network hst-10.80.28.8
+ nat (cascade,cwmgmt) static 10.13.51.120
+object network hst-10.80.28.9
+ nat (cascade,cwmgmt) static 10.13.51.122
+object network hst-10.80.28.10
+ nat (cascade,cwmgmt) static 10.13.51.124
+object network hst-10.80.28.11
+ nat (cascade,cwmgmt) static 10.13.51.126
+object network hst-10.80.28.12
+ nat (cascade,cwmgmt) static 10.13.51.128
+object network hst-10.80.28.13
+ nat (cascade,cwmgmt) static 10.13.51.130
+object network hst-10.80.28.14
+ nat (cascade,cwmgmt) static 10.13.51.131
+object network hst-10.80.28.15
+ nat (cascade,cwmgmt) static 10.13.51.132
+object network hst-10.80.28.16
+ nat (cascade,cwmgmt) static 10.13.51.133
+object network hst-10.80.28.17
+ nat (cascade,cwmgmt) static 10.13.51.134
+object network hst-10.80.28.18
+ nat (cascade,cwmgmt) static 10.13.51.135
+object network hst-10.80.28.19
+ nat (cascade,cwmgmt) static 10.13.51.136
+object network hst-10.80.28.20
+ nat (cascade,cwmgmt) static 10.13.51.137
+object network hst-10.80.28.21
+ nat (cascade,cwmgmt) static 10.13.51.138
+object network hst-10.80.28.22
+ nat (cascade,cwmgmt) static 10.13.51.139
+object network hst-10.80.28.23
+ nat (cascade,cwmgmt) static 10.13.51.140
+object network hst-10.80.28.24
+ nat (cascade,cwmgmt) static 10.13.51.141
+object network hst-10.80.28.26
+ nat (cascade,cwmgmt) static 10.13.51.143
+object network hst-10.80.28.27
+ nat (cascade,cwmgmt) static 10.13.51.144
+object network hst-10.80.28.29
+ nat (cascade,cwmgmt) static 10.13.51.146
+object network hst-10.80.28.30
+ nat (cascade,cwmgmt) static 10.13.51.147
+object network hst-10.80.28.31
+ nat (cascade,cwmgmt) static 10.13.51.148
+object network hst-10.80.28.32
+ nat (cascade,cwmgmt) static 10.13.51.149
+object network cen-swi-mgt-01
+ nat (cascade,cwmgmt) static 10.13.51.186
+object network cen-swi-iprec-3
+ nat (cascade,cwmgmt) static 10.13.51.189
+object network cen-swi-iprec-3-ilo
+ nat (cascade,cwmgmt) static 10.13.51.190
+object network cen-swi-iprec-4
+ nat (cascade,cwmgmt) static 10.13.51.191
+object network cen-swi-iprec-4-ilo
+ nat (cascade,cwmgmt) static 10.13.51.192
+object network cen-swi-iprec-5
+ nat (cascade,cwmgmt) static 10.13.51.193
+object network cen-swi-iprec-5-ilo
+ nat (cascade,cwmgmt) static 10.13.51.194
+object network cen-swi-iprec-6
+ nat (cascade,cwmgmt) static 10.13.51.195
+object network cen-swi-iprec-6-ilo
+ nat (cascade,cwmgmt) static 10.13.51.196
+object network cen-swi-mtp-02
+ nat (cascade,cwmgmt) static 10.13.51.197
+object network censwivaspucc01
+ nat (cascade,cwmgmt) static 10.13.51.145
+object network cen-swi-ccm03
+ nat (cascade,cwmgmt) static 10.13.51.199
+object network cen-swi-mtp-03
+ nat (cascade,cwmgmt) static 10.13.51.198
+object network hst-10.80.5.33
+ nat (cascade,cwmgmt) static 10.13.51.201
+object network censwipprocat05
+ nat (cascade,cwmgmt) static 10.13.51.202
+object network censwipprocat06
+ nat (cascade,cwmgmt) static 10.13.51.203
+object network cen-swi-ccm04
+ nat (cascade,cwmgmt) static 10.13.51.204
+object network cen-swi-ccm05
+ nat (cascade,cwmgmt) static 10.13.51.205
+object network cen-swi-mtp-04
+ nat (cascade,cwmgmt) static 10.13.51.216
+object network cen-swi-mtp-05
+ nat (cascade,cwmgmt) static 10.13.51.217
+object network cen-swi-iprec-7
+ nat (cascade,cwmgmt) static 10.13.51.206
+object network cen-swi-iprec-7-ilo
+ nat (cascade,cwmgmt) static 10.13.51.207
+object network cen-swi-iprec-8
+ nat (cascade,cwmgmt) static 10.13.51.208
+object network cen-swi-iprec-8-ilo
+ nat (cascade,cwmgmt) static 10.13.51.209
+object network cen-swi-iprec-9
+ nat (cascade,cwmgmt) static 10.13.51.210
+object network cen-swi-iprec-9-ilo
+ nat (cascade,cwmgmt) static 10.13.51.211
+object network cen-swi-iprec-10
+ nat (cascade,cwmgmt) static 10.13.51.212
+object network cen-swi-iprec-10-ilo
+ nat (cascade,cwmgmt) static 10.13.51.213
+object network cen-swi-iprec-11
+ nat (cascade,cwmgmt) static 10.13.51.214
+object network cen-swi-iprec-11-ilo
+ nat (cascade,cwmgmt) static 10.13.51.215
+object network hst-10.80.22.138
+ nat (cascade,cwmgmt) static 10.13.51.227
+object network hst-10.80.22.139
+ nat (cascade,cwmgmt) static 10.13.51.228
+object network cen-swi-sw-17_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.239
+object network cen-swi-sw-18_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.240
+object network cen-swi-sw-15_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.237
+object network cen-swi-sw-16_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.238
+object network cen-swi-nok-01-pri_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.235
+object network cen-swi-nok-01-sec_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.236
+object network cen-swi-asa-01-pri-admin_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.241
+object network cen-swi-asa-01-sec-admin_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.242
+object network cen-swi-asa-01-pri-sig_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.231
+object network cen-swi-asa-01-sec-sig_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.232
+object network cen-swi-asa-01-pri-mvccolo_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.233
+object network cen-swi-asa-01-sec-mvccolo_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.234
+object network censwipiptesx-05_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.230
+object network censwivmvcsub01_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.229
+object network censwivmvctms01_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.244
+object network censwivmvcsql01_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.243
+object network cen-swi-unify-2
+ nat (cascade,cwmgmt) static 10.13.51.253
+object network cen-swi-unify-3
+ nat (cascade,cwmgmt) static 10.13.51.254
+object network censwipiptesx06_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.245
+object network censwipiptesx07_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.246
+object network cen-swi-ccm06_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.247
+object network cen-swi-moh01_mgmt
+ nat (cascade,cwmgmt) static 10.13.51.249
+object network centverswncam
+ nat (cascade,cwmgmt) static 10.13.51.219
+object network centverswndb
+ nat (cascade,cwmgmt) static 10.13.51.220
+object network centverswndc
+ nat (cascade,cwmgmt) static 10.13.51.221
+object network centverswndp1
+ nat (cascade,cwmgmt) static 10.13.51.222
+object network centverswndp2
+ nat (cascade,cwmgmt) static 10.13.51.223
+object network centverswndpd
+ nat (cascade,cwmgmt) static 10.13.51.224
+object network centverswnsr
+ nat (cascade,cwmgmt) static 10.13.51.225
+object network centverswnufy
+ nat (cascade,cwmgmt) static 10.13.51.226
+object network censwipiptesx08
+ nat (cascade,cwmgmt) static 10.13.51.250
+object network censwipiptesx09
+ nat (cascade,cwmgmt) static 10.13.51.251
+object network censwipmvresx01
+ nat (cascade,cwmgmt) static 10.13.51.252
+object network censwipmvresx02
+ nat (cascade,cwmgmt) static 10.13.96.1
+object network censwipmvresx03
+ nat (cascade,cwmgmt) static 10.13.96.2
+object network censwipmvresx04
+ nat (cascade,cwmgmt) static 10.13.96.3
+object network censwipmvresx05
+ nat (cascade,cwmgmt) static 10.13.96.4
+object network censwipmvresx05-ilo
+ nat (cascade,cwmgmt) static 10.13.96.5
+object network censwipmvresx06
+ nat (cascade,cwmgmt) static 10.13.96.6
+object network censwipmvresx06-ilo
+ nat (cascade,cwmgmt) static 10.13.96.7
+object network censwipmvresx07
+ nat (cascade,cwmgmt) static 10.13.96.8
+object network censwipmvresx07-ilo
+ nat (cascade,cwmgmt) static 10.13.96.9
+object network censwipmvresx08
+ nat (cascade,cwmgmt) static 10.13.96.10
+object network censwipmvresx08-ilo
+ nat (cascade,cwmgmt) static 10.13.96.11
+object network censwipmvresx09
+ nat (cascade,cwmgmt) static 10.13.96.12
+object network censwipmvresx09-ilo
+ nat (cascade,cwmgmt) static 10.13.96.13
+object network censwipmvresx10
+ nat (cascade,cwmgmt) static 10.13.96.14
+object network censwipmvresx10-ilo
+ nat (cascade,cwmgmt) static 10.13.96.15
+object network cen-swi-ccmb01
+ nat (cascade,cwmgmt) static 10.13.96.16
+object network cen-swi-ccmb02
+ nat (cascade,cwmgmt) static 10.13.96.17
+object network cen-swi-ccmb03
+ nat (cascade,cwmgmt) static 10.13.96.18
+object network cen-swi-ccmb04
+ nat (cascade,cwmgmt) static 10.13.96.19
+object network cen-swi-ccmb05
+ nat (cascade,cwmgmt) static 10.13.96.20
+object network cen-swi-ccmt01
+ nat (cascade,cwmgmt) static 10.13.96.21
+object network cen-swi-mohb01
+ nat (cascade,cwmgmt) static 10.13.96.22
+object network cen-swi-tsvr-02
+ nat (cascade,cwmgmt) static 10.13.51.248
+object network cen-swi-mtpb-01
+ nat (cascade,cwmgmt) static 10.13.96.23
+object network cen-swi-mtpb-02
+ nat (cascade,cwmgmt) static 10.13.96.24
+object network cen-swi-mtpb-03
+ nat (cascade,cwmgmt) static 10.13.96.25
+object network cen-swi-mtpb-04
+ nat (cascade,cwmgmt) static 10.13.96.26
+object network cen-swi-mtpt-01
+ nat (cascade,cwmgmt) static 10.13.96.27
+object network censwipmvrprs01
+ nat (cascade,cwmgmt) static 10.13.96.28
+object network censwipmvrprs01-ilo
+ nat (cascade,cwmgmt) static 10.13.96.29
+object network censwipmvrprs02
+ nat (cascade,cwmgmt) static 10.13.96.30
+object network censwipmvrprs02-ilo
+ nat (cascade,cwmgmt) static 10.13.96.31
+object network censwipmvrprs03
+ nat (cascade,cwmgmt) static 10.13.96.32
+object network censwipmvrprs03-ilo
+ nat (cascade,cwmgmt) static 10.13.96.33
+object network censwipmvrprs04
+ nat (cascade,cwmgmt) static 10.13.96.34
+object network censwipmvrprs04-ilo
+ nat (cascade,cwmgmt) static 10.13.96.35
+object network censwipmvrprs05
+ nat (cascade,cwmgmt) static 10.13.96.36
+object network censwipmvrprs05-ilo
+ nat (cascade,cwmgmt) static 10.13.96.37
+object network censwipmvrprs06
+ nat (cascade,cwmgmt) static 10.13.96.38
+object network censwipmvrprs06-ilo
+ nat (cascade,cwmgmt) static 10.13.96.39
+object network censwipmvrprs07
+ nat (cascade,cwmgmt) static 10.13.96.40
+object network censwipmvrprs07-ilo
+ nat (cascade,cwmgmt) static 10.13.96.41
+object network censwipmvrprs11
+ nat (cascade,cwmgmt) static 10.13.96.42
+object network censwipmvrprs11-ilo
+ nat (cascade,cwmgmt) static 10.13.96.43
+object network censwipmvrprs12
+ nat (cascade,cwmgmt) static 10.13.96.44
+object network censwipmvrprs12-ilo
+ nat (cascade,cwmgmt) static 10.13.96.45
+object network censwipmvrtad01
+ nat (cascade,cwmgmt) static 10.13.96.48
+object network censwipmvrtad01-ilo
+ nat (cascade,cwmgmt) static 10.13.96.49
+object network censwipmvrtad02
+ nat (cascade,cwmgmt) static 10.13.96.50
+object network censwipmvrtad02-ilo
+ nat (cascade,cwmgmt) static 10.13.96.51
+object network censwivmvrprs08
+ nat (cascade,cwmgmt) static 10.13.96.52
+object network censwivmvrprs09
+ nat (cascade,cwmgmt) static 10.13.96.53
+object network censwivmvrpas01
+ nat (cascade,cwmgmt) static 10.13.96.54
+object network censwivmvrpas02
+ nat (cascade,cwmgmt) static 10.13.96.55
+object network censwivmvrprs10
+ nat (cascade,cwmgmt) static 10.13.96.56
+object network censwivmvrpdb01
+ nat (cascade,cwmgmt) static 10.13.96.57
+object network censwivmvrpdb02
+ nat (cascade,cwmgmt) static 10.13.96.58
+object network censwivmvrpdb03
+ nat (cascade,cwmgmt) static 10.13.96.59
+object network censwivmvrpdb04
+ nat (cascade,cwmgmt) static 10.13.96.60
+object network censwivmvrpdb05
+ nat (cascade,cwmgmt) static 10.13.96.61
+object network censwivmvrpdb06
+ nat (cascade,cwmgmt) static 10.13.96.62
+object network censwivmvrpdb07
+ nat (cascade,cwmgmt) static 10.13.96.63
+object network censwivmvrpdb08
+ nat (cascade,cwmgmt) static 10.13.96.64
+object network censwivmvrpdb09
+ nat (cascade,cwmgmt) static 10.13.96.65
+object network censwivmvrpdb10
+ nat (cascade,cwmgmt) static 10.13.96.66
+object network censwivmvrpdb11
+ nat (cascade,cwmgmt) static 10.13.96.67
+object network censwivmvrpdb12
+ nat (cascade,cwmgmt) static 10.13.96.68
+object network censwivmvrpdb13
+ nat (cascade,cwmgmt) static 10.13.96.69
+object network censwivmvrpap01
+ nat (cascade,cwmgmt) static 10.13.96.70
+object network censwivmvrpap02
+ nat (cascade,cwmgmt) static 10.13.96.71
+object network censwivmvrpap03
+ nat (cascade,cwmgmt) static 10.13.96.72
+object network censwivmvrpap04
+ nat (cascade,cwmgmt) static 10.13.96.73
+object network censwivmvrpap05
+ nat (cascade,cwmgmt) static 10.13.96.74
+object network hst-10.80.15.20
+ nat (cascade,cwmgmt) static 10.13.96.77
+object network hst-10.132.254.168
+ nat (cascade,cwmgmt) static 10.13.96.78
+object network cen-swi-rm01_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.81
+object network cen-swi-rm01_ilo
+ nat (cascade,cwmgmt) static 10.13.96.82
+object network cen-swi-rpa01_mgt
+ nat (cascade,cwmgmt) static 10.13.96.79
+object network cen-swi-rpa02_mgt
+ nat (cascade,cwmgmt) static 10.13.96.80
+object network cen-swi-vnx1_CSVIPmgmt
+ nat (cascade,cwmgmt) static 10.13.96.85
+object network cen-swi-vnx1_CS0mgmt
+ nat (cascade,cwmgmt) static 10.13.96.86
+object network cen-swi-vnx1_CS1mgmt
+ nat (cascade,cwmgmt) static 10.13.96.87
+object network cen-swi-vnx1_Spamgmt
+ nat (cascade,cwmgmt) static 10.13.96.88
+object network cen-swi-vnx1_Spbmgmt
+ nat (cascade,cwmgmt) static 10.13.96.89
+object network cen-swi-asa-04-pri
+ nat (cascade,cwmgmt) static 10.13.96.99
+object network cen-swi-asa-04-sec
+ nat (cascade,cwmgmt) static 10.13.96.100
+object network hst-10.80.8.36
+ nat (cascade,cwmgmt) static 10.13.96.90
+object network cen-swi-asa-01-pri-pci_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.91
+object network cen-swi-asa-01-sec-pci_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.92
+object network censwipmvresx11
+ nat (cascade,cwmgmt) static 10.13.96.123
+object network censwivmvrpap06
+ nat (cascade,cwmgmt) static 10.13.96.124
+object network censwivmvrpap07
+ nat (cascade,cwmgmt) static 10.13.96.125
+object network cen-swi-alb-01
+ nat (cascade,cwmgmt) static 10.13.96.126
+object network cen-swi-alb-02
+ nat (cascade,cwmgmt) static 10.13.96.127
+object network censwipaspesx07
+ nat (cascade,cwmgmt) static 10.13.96.101
+object network censwipaspesx08
+ nat (cascade,cwmgmt) static 10.13.96.102
+object network censwipaspesx09
+ nat (cascade,cwmgmt) static 10.13.96.103
+object network censwipaspesx10
+ nat (cascade,cwmgmt) static 10.13.96.104
+object network censwipewfmdb01
+ nat (cascade,cwmgmt) static 10.13.96.105
+object network censwipewfmdb02
+ nat (cascade,cwmgmt) static 10.13.96.106
+object network censwivewfmas01
+ nat (cascade,cwmgmt) static 10.13.96.107
+object network censwivewfmas02
+ nat (cascade,cwmgmt) static 10.13.96.108
+object network censwivewfmas03
+ nat (cascade,cwmgmt) static 10.13.96.109
+object network censwivewfmce01
+ nat (cascade,cwmgmt) static 10.13.96.110
+object network censwivewfmce02
+ nat (cascade,cwmgmt) static 10.13.96.111
+object network censwivewfmce03
+ nat (cascade,cwmgmt) static 10.13.96.112
+object network censwivewfmce04
+ nat (cascade,cwmgmt) static 10.13.96.113
+object network censwivewfmce05
+ nat (cascade,cwmgmt) static 10.13.96.114
+object network censwivewfmse01
+ nat (cascade,cwmgmt) static 10.13.96.115
+object network censwivewfmse02
+ nat (cascade,cwmgmt) static 10.13.96.116
+object network censwivewfmbu01
+ nat (cascade,cwmgmt) static 10.13.96.117
+object network censwivewfmbu02
+ nat (cascade,cwmgmt) static 10.13.96.118
+object network censwivewfmbu03
+ nat (cascade,cwmgmt) static 10.13.96.119
+object network censwivewfmce06
+ nat (cascade,cwmgmt) static 10.13.96.120
+object network censwivewfmas04
+ nat (cascade,cwmgmt) static 10.13.96.121
+object network censwipaspesx11
+ nat (cascade,cwmgmt) static 10.13.96.122
+object network cen-msl-tsvr-03
+ nat (cascade,cwmgmt) static 10.13.96.128
+object network cen-sw-asa-01-phj-pri
+ nat (cascade,cwmgmt) static 10.13.96.129
+object network cen-sw-asa-01-phj-sec
+ nat (cascade,cwmgmt) static 10.13.96.130
+object network cen-swi-cta-1a
+ nat (cascade,cwmgmt) static 10.13.96.83
+object network cen-swi-cta-1b
+ nat (cascade,cwmgmt) static 10.13.96.84
+object network censwippcispw01
+ nat (cascade,cwmgmt) static 10.13.96.95
+object network hst-10.80.9.37
+ nat (cascade,cwmgmt) static 10.13.96.93
+object network hst-10.80.9.38
+ nat (cascade,cwmgmt) static 10.13.96.94
+object network censwippcispw01-ilo
+ nat (cascade,cwmgmt) static 10.13.96.96
+object network cenmslppcispw02
+ nat (cascade,cwmgmt) static 10.216.182.249
+object network cenmslppcispw02-ilo
+ nat (cascade,cwmgmt) static 10.216.182.250
+object network censwippremag01
+ nat (cascade,cwmgmt) static 10.13.96.131
+object network censwippremag01_ilo
+ nat (cascade,cwmgmt) static 10.13.96.132
+object network censwivmvctms02_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.135
+object network censwivmvcsql02_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.133
+object network censwivmvcsql03_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.134
+object network censwipprovtt01
+ nat (cascade,cwmgmt) static 10.13.96.136
+object network censwipprovtt02
+ nat (cascade,cwmgmt) static 10.13.96.137
+object network cen-swi-rtr-01
+ nat (cascade,cwmgmt) static 10.13.96.138
+object network cen-swi-rtr-02
+ nat (cascade,cwmgmt) static 10.13.96.139
+object network hst-217.135.0.39
+ nat (cwmgmt,any) static 10.80.14.28
+object network censwipmvrprs21_ILO
+ nat (cascade,cwmgmt) static 10.13.96.143
+object network censwipmvrprs22_ILO
+ nat (cascade,cwmgmt) static 10.13.96.145
+object network censwipmvrprs23_ILO
+ nat (cascade,cwmgmt) static 10.13.96.147
+object network censwipmvrprs24_ILO
+ nat (cascade,cwmgmt) static 10.13.96.149
+object network censwipmvrprs25_ILO
+ nat (cascade,cwmgmt) static 10.13.96.151
+object network censwipmvrprs26_ILO
+ nat (cascade,cwmgmt) static 10.13.96.153
+object network censwipmvrprs27_ILO
+ nat (cascade,cwmgmt) static 10.13.96.155
+object network censwipmvrtad06_ILO
+ nat (cascade,cwmgmt) static 10.13.96.157
+object network censwipmvrtad06
+ nat (cascade,cwmgmt) static 10.13.96.156
+object network cen-swi-tsvr-04
+ nat (cascade,cwmgmt) static 10.13.96.158
+object network cen-swi-tsvr-05
+ nat (cascade,cwmgmt) static 10.13.96.159
+object network cen-swi-tsvr-06
+ nat (cascade,cwmgmt) static 10.13.96.160
+object network censwipmvrvrs21
+ nat (cascade,cwmgmt) static 10.13.96.161
+object network censwipmvrtad07
+ nat (cascade,cwmgmt) static 10.13.96.162
+object network censwipmvrvrs22
+ nat (cascade,cwmgmt) static 10.13.96.163
+object network censwipmvrtad08
+ nat (cascade,cwmgmt) static 10.13.96.164
+object network censwipmvrprs21
+ nat (cascade,cwmgmt) static 10.13.96.142
+object network censwipmvrprs22
+ nat (cascade,cwmgmt) static 10.13.96.144
+object network censwipmvrprs23
+ nat (cascade,cwmgmt) static 10.13.96.146
+object network censwipmvrprs24
+ nat (cascade,cwmgmt) static 10.13.96.148
+object network censwipmvrprs25
+ nat (cascade,cwmgmt) static 10.13.96.150
+object network censwipmvrprs26
+ nat (cascade,cwmgmt) static 10.13.96.152
+object network censwipmvrprs27
+ nat (cascade,cwmgmt) static 10.13.96.154
+object network cen-swi-ssl-asa-01
+ nat (cascade,cwmgmt) static 10.13.96.141
+object network censwippcispw02
+ nat (cascade,cwmgmt) static 10.13.96.97
+object network censwippcispw02-ilo
+ nat (cascade,cwmgmt) static 10.13.96.98
+object network cen-swi-cta-1a_cwmgmt
+ nat (cascade,cwmgmt) static 10.13.96.168
+object network cen-swi-cta-1b_cwmgmt
+ nat (cascade,cwmgmt) static 10.13.96.169
+object network CallRec-SWI-VNX-CSOa_cwmgmt
+ nat (cascade,cwmgmt) static 10.13.96.165
+object network CallRec-SWI-VNX-CSOb_cwmgmt
+ nat (cascade,cwmgmt) static 10.13.96.166
+object network CallRec-SWI-VNX-CSOc_cwmgmt
+ nat (cascade,cwmgmt) static 10.13.96.167
+object network cen-swi-coesx01
+ nat (cascade,cwmgmt) static 10.13.96.172
+object network cen-swi-vcon-01
+ nat (cascade,cwmgmt) static 10.13.96.171
+object network hst-10.202.253.13
+ nat (cascade,cwmgmt) static 10.13.96.200
+object network hst-10.202.252.71
+ nat (cascade,cwmgmt) static 10.13.96.191
+object network hst-10.202.252.72
+ nat (cascade,cwmgmt) static 10.13.96.192
+object network censwipgapesx01
+ nat (cascade,cwmgmt) static 10.13.96.203
+object network cenmslpgapesx02
+ nat (cascade,cwmgmt) static 10.13.96.204
+object network cen-swi-ucm-DMZ01-a
+ nat (cascade,cwmgmt) static 10.13.96.208
+object network censwiedgdmzesx03
+ nat (cascade,cwmgmt) static 10.13.96.212
+object network censwipbcmsgdb01
+ nat (cascade,cwmgmt) static 10.13.96.222
+object network censwivprogvp01
+ nat (cascade,cwmgmt) static 10.13.96.193
+object network cen-swi-ucm-DMZ01-VIP
+ nat (cascade,cwmgmt) static 10.13.96.227
+object network hst_censwipbcmsapp01
+ nat (cascade,cwmgmt) static 10.13.96.199
+object network cen-swi-ucm-DMZ01-b
+ nat (cascade,cwmgmt) static 10.13.96.209
+object network censwivprovht01
+ nat (cascade,cwmgmt) static 10.13.96.219
+object network censwivprovht02
+ nat (cascade,cwmgmt) static 10.13.96.220
+object network censwivprovht03
+ nat (cascade,cwmgmt) static 10.13.96.221
+object network censwivprovht04
+ nat (cascade,cwmgmt) static 10.13.96.223
+object network censwivprovht05
+ nat (cascade,cwmgmt) static 10.13.96.224
+object network censwivprovht06
+ nat (cascade,cwmgmt) static 10.13.96.225
+object network censwivprovht07
+ nat (cascade,cwmgmt) static 10.13.96.226
+object network censwivprovht08
+ nat (cascade,cwmgmt) static 10.13.96.229
+object network censwiedgdmzesx01
+ nat (cascade,cwmgmt) static 10.13.96.210
+object network censwiedgdmzesx02
+ nat (cascade,cwmgmt) static 10.13.96.211
+object network censg-swi-sw-01
+ nat (cascade,cwmgmt) static 10.13.96.173
+object network censg-swi-sw-02
+ nat (cascade,cwmgmt) static 10.13.96.174
+object network censg-swimsl-nok-01-pri
+ nat (cascade,cwmgmt) static 10.13.96.175
+object network censg-swimsl-nok-01-sec
+ nat (cascade,cwmgmt) static 10.13.96.176
+object network censg-swimsl-nok-01-pri-ilo
+ nat (cascade,cwmgmt) static 10.13.96.177
+object network censg-swimsl-nok-01-sec-ilo
+ nat (cascade,cwmgmt) static 10.13.96.178
+object network cen-swi-pp-asa-01-Mgmt-pri
+ nat (cascade,cwmgmt) static 10.13.109.132
+object network cen-swi-pp-asa-01-Mgmt-sec
+ nat (cascade,cwmgmt) static 10.13.109.133
+object network cen-swi-pp-asa-01-PrePod-pri
+ nat (cascade,cwmgmt) static 10.13.109.134
+object network cen-swi-pp-asa-01-PrePod-sec
+ nat (cascade,cwmgmt) static 10.13.109.135
+object network cen-swi-pp-asa-01-BackUp-sec
+ nat (cascade,cwmgmt) static 10.13.109.139
+object network cen-swi-pp-sw-26-1
+ nat (cascade,cwmgmt) static 10.13.109.130
+object network cen-swi-pp-sw-26-2
+ nat (cascade,cwmgmt) static 10.13.109.131
+object network cen-swi-pp-esx01
+ nat (cascade,cwmgmt) static 10.13.109.140
+object network cen-swi-pp-esx01-ilo
+ nat (cascade,cwmgmt) static 10.13.109.141
+object network cen-swi-pp-esx02
+ nat (cascade,cwmgmt) static 10.13.109.142
+object network cen-swi-pp-esx02-ilo
+ nat (cascade,cwmgmt) static 10.13.109.143
+object network cen-swi-pp-esx03
+ nat (cascade,cwmgmt) static 10.13.109.144
+object network cen-swi-pp-esx03-ilo
+ nat (cascade,cwmgmt) static 10.13.109.145
+object network cen-swi-pp-esx04
+ nat (cascade,cwmgmt) static 10.13.109.146
+object network cen-swi-pp-esx04-ilo
+ nat (cascade,cwmgmt) static 10.13.109.147
+object network cen-swi-v-pre-v-app1-site1
+ nat (cascade,cwmgmt) static 10.13.109.148
+object network cen-swi-v-pre-v-app2-site1
+ nat (cascade,cwmgmt) static 10.13.109.149
+object network cen-swi-v-pre-v-dpa1-site1
+ nat (cascade,cwmgmt) static 10.13.109.150
+object network cen-swi-v-pre-v-dpa2-site1
+ nat (cascade,cwmgmt) static 10.13.109.151
+object network cen-swi-v-pre-v-ris1-site1
+ nat (cascade,cwmgmt) static 10.13.109.152
+object network cen-swi-v-pre-v-ris2-site1
+ nat (cascade,cwmgmt) static 10.13.109.153
+object network cen-swi-v-pre-v-ems-site1
+ nat (cascade,cwmgmt) static 10.13.109.154
+object network cen-swi-v-pre-v-rec1-site1
+ nat (cascade,cwmgmt) static 10.13.109.155
+object network cen-swi-v-pre-v-rec2-site1
+ nat (cascade,cwmgmt) static 10.13.109.156
+object network cen-swi-v-pre-v-arch-site1
+ nat (cascade,cwmgmt) static 10.13.109.157
+object network cen-swi-v-pre-v-dpadb1-site1
+ nat (cascade,cwmgmt) static 10.13.109.158
+object network cen-swi-v-pre-v-dpadb2-site1
+ nat (cascade,cwmgmt) static 10.13.109.159
+object network cen-swi-v-pre-v-db1-site1
+ nat (cascade,cwmgmt) static 10.13.109.160
+object network cen-swi-v-pre-v-db2-site1
+ nat (cascade,cwmgmt) static 10.13.109.161
+object network cen-swi-v-pre-v-dc1-site1
+ nat (cascade,cwmgmt) static 10.13.109.162
+object network cen-swi-v-pre-v-dc2-site1
+ nat (cascade,cwmgmt) static 10.13.109.163
+object network cen-swi-v-pre-v-bst-site1
+ nat (cascade,cwmgmt) static 10.13.109.164
+object network cen-swi-v-pre-v-dbms-site1
+ nat (cascade,cwmgmt) static 10.13.109.166
+object network cen-swi-v-pre-v-adplus-site1
+ nat (cascade,cwmgmt) static 10.13.109.168
+object network cen-swi-p-pre-med-serv
+ nat (cascade,cwmgmt) static 10.13.109.169
+object network cen-swi-v-pre-v-app1-site2
+ nat (cascade,cwmgmt) static 10.13.109.170
+object network cen-swi-v-pre-v-app2-site2
+ nat (cascade,cwmgmt) static 10.13.109.171
+object network cen-swi-v-pre-v-dpa1-site2
+ nat (cascade,cwmgmt) static 10.13.109.172
+object network cen-swi-v-pre-v-dpa2-site2
+ nat (cascade,cwmgmt) static 10.13.109.173
+object network cen-swi-v-pre-v-ris1-site2
+ nat (cascade,cwmgmt) static 10.13.109.174
+object network cen-swi-v-pre-v-ris2-site2
+ nat (cascade,cwmgmt) static 10.13.109.175
+object network cen-swi-v-pre-v-ems-site2
+ nat (cascade,cwmgmt) static 10.13.109.176
+object network cen-swi-v-pre-v-rec1-site2
+ nat (cascade,cwmgmt) static 10.13.109.177
+object network cen-swi-v-pre-v-rec2-site2
+ nat (cascade,cwmgmt) static 10.13.109.178
+object network cen-swi-v-pre-v-arch-site2
+ nat (cascade,cwmgmt) static 10.13.109.179
+object network cen-swi-v-pre-v-dpadb1-site2
+ nat (cascade,cwmgmt) static 10.13.109.180
+object network cen-swi-v-pre-v-dpadb2-site2
+ nat (cascade,cwmgmt) static 10.13.109.181
+object network cen-swi-v-pre-v-db1-site2
+ nat (cascade,cwmgmt) static 10.13.109.182
+object network cen-swi-v-pre-v-db2-site2
+ nat (cascade,cwmgmt) static 10.13.109.183
+object network cen-swi-v-pre-v-dc1-site2
+ nat (cascade,cwmgmt) static 10.13.109.184
+object network cen-swi-v-pre-v-dc2-site2
+ nat (cascade,cwmgmt) static 10.13.109.185
+object network cen-swi-v-pre-v-bst-site2
+ nat (cascade,cwmgmt) static 10.13.109.186
+object network cen-swi-v-pre-v-dbms-site2
+ nat (cascade,cwmgmt) static 10.13.109.188
+object network cen-swi-v-pre-v-adplus-site2
+ nat (cascade,cwmgmt) static 10.13.109.190
+object network cen-swi-v-pre-lb-site1
+ nat (cascade,cwmgmt) static 10.13.109.165
+object network cen-swi-pp-v-lb-site2
+ nat (cascade,cwmgmt) static 10.13.109.187
+object network cen-swi-pp-v-swire-site1
+ nat (cascade,cwmgmt) static 10.13.109.167
+object network cen-swi-pp-v-swire-site2
+ nat (cascade,cwmgmt) static 10.13.109.189
+object network censwivmvrvrs23
+ nat (cascade,cwmgmt) static 10.13.96.170
+object network cen-swi-p-pre-med-serv-ilo
+ nat (cascade,cwmgmt) static 10.13.109.192
+object network censwipbcssyslg01
+ nat (cascade,cwmgmt) static 10.13.96.214
+object network censwivasppc02
+ nat (cascade,cwmgmt) static 10.13.96.231
+object network censwivproadlds01
+ nat (cascade,cwmgmt) static 10.13.96.232
+object network censwivproadlds02
+ nat (cascade,cwmgmt) static 10.13.96.233
+object network censwivprowwb01_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.194
+object network hst-10.132.255.134
+ nat (cascade,cwmgmt) static 10.13.96.180
+object network hst-10.132.255.135
+ nat (cascade,cwmgmt) static 10.13.96.181
+object network hst-10.80.21.43
+ nat (cascade,cwmgmt) static 10.13.96.182
+object network hst-10.132.254.176
+ nat (cascade,cwmgmt) static 10.13.96.183
+object network cen-swi-sw-21_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.228
+object network cen-swi-sw-22_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.230
+object network cen-swi-sw-23_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.234
+object network cen-swi-sw-24_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.235
+object network cen-swi-sw-25_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.236
+object network cen-swi-esx-m03
+ nat (cascade,cwmgmt) static 10.13.96.187
+object network cen-swi-esx-m03-ILO
+ nat (cascade,cwmgmt) static 10.13.96.188
+object network cen-swi-esx-m04
+ nat (cascade,cwmgmt) static 10.13.96.189
+object network cen-swi-esx-m04-ILO
+ nat (cascade,cwmgmt) static 10.13.96.190
+object network cen-swi-asa-01-pri-intrdm_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.184
+object network cen-swi-asa-01-sec-intrdm_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.196
+object network censwivprogap01
+ nat (cascade,cwmgmt) static 10.13.96.201
+object network censwivprogap02
+ nat (cascade,cwmgmt) static 10.13.96.202
+object network censwivprogap03
+ nat (cascade,cwmgmt) static 10.13.96.206
+object network censwivprogap04
+ nat (cascade,cwmgmt) static 10.13.96.205
+object network censwiiptldsca01
+ nat (cascade,cwmgmt) static 10.13.96.237
+object network censg-swi-coll-01
+ nat (cascade,cwmgmt) static 10.13.96.46
+object network censwivasppdm02
+ nat (cascade,cwmgmt) static 10.13.96.198
+object network cen-swi-pp-27
+ nat (cascade,cwmgmt) static 10.13.109.136
+object network cen-swi-pp-28
+ nat (cascade,cwmgmt) static 10.13.109.137
+object network cen-swi-v-pre-lbs12
+ nat (cascade,cwmgmt) static 10.13.109.138
+object network cen-swi-sw-09-new
+ nat (cascade,cwmgmt) static 10.13.96.240
+object network hst-10.216.1.32
+ nat (cwmgmt,cascade) static 10.80.14.134
+object network censwivjmp02
+ nat (cascade,cwmgmt) static 10.13.96.179
+object network cen-swi-gtm-01-new
+ nat (cascade,cwmgmt) static 10.13.96.241
+object network cen-swi-bigip-01-new
+ nat (cascade,cwmgmt) static 10.13.96.242
+object network cen-swi-bigip-02-new
+ nat (cascade,cwmgmt) static 10.13.96.243
+object network cen-swi-asa-05-pri-admin_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.195
+object network cen-swi-asa-05-sec-admin_mgmt
+ nat (cascade,cwmgmt) static 10.13.96.197
+object network cen-swi-asa-05-pri-sig_mgmt
+ nat (cascade,cwmgmt) static 10.13.247.13
+object network cen-swi-asa-05-sec-sig_mgmt
+ nat (cascade,cwmgmt) static 10.13.247.14
+object network cen-swi-asa-05-pri-intrdm_mgmt
+ nat (cascade,cwmgmt) static 10.13.247.15
+object network cen-swi-asa-05-sec-intrdm_mgmt
+ nat (cascade,cwmgmt) static 10.13.247.16
+object network cen-swi-ucm-01-aNew
+ nat (cascade,cwmgmt) static 10.13.247.20
+object network cen-swi-ucm-01-bNew
+ nat (cascade,cwmgmt) static 10.13.247.21
+object network censwipproswb01-tmp
+ nat (cascade,cwmgmt) static 10.13.247.24
+object network cen-swimsl-sw-27
+ nat (cascade,cwmgmt) static 10.13.247.2
+object network hst-10.80.15.22
+ nat (cascade,cwmgmt) static 10.13.247.18
+object network hst-10.80.15.21
+ nat (cascade,cwmgmt) static 10.13.247.17
+object network censwivpronan01
+ nat (cascade,cwmgmt) static 10.13.96.244
+object network censwivpronan02
+ nat (cascade,cwmgmt) static 10.13.96.245
+object network censwivpronan03
+ nat (cascade,cwmgmt) static 10.13.96.246
+object network censwivpronan04
+ nat (cascade,cwmgmt) static 10.13.96.247
+object network censwivpronan05
+ nat (cascade,cwmgmt) static 10.13.96.248
+object network censwivpronan06
+ nat (cascade,cwmgmt) static 10.13.96.249
+object network censwipgapesx04
+ nat (cascade,cwmgmt) static 10.13.96.250
+object network censwipgapesx05
+ nat (cascade,cwmgmt) static 10.13.96.251
+object network censg-swi-fmc-01
+ nat (cascade,cwmgmt) static 10.13.96.47
+object network cen-swi-bigip-03
+ nat (cascade,cwmgmt) static 10.13.96.185
+object network cen-swi-bigip-04
+ nat (cascade,cwmgmt) static 10.13.96.186
+object network hst-10.80.7.136
+ nat (cascade,cwmgmt) static 10.13.247.64
+object network cen-swi-sw-13
+ nat (cascade,cwmgmt) static 10.13.51.170
+object network cen-swi-sw-13-temp
+ nat (cascade,cwmgmt) static 10.13.247.11
+object network cen-swi-sw-14
+ nat (cascade,cwmgmt) static 10.13.51.171
+object network cen-swi-sw-14-temp
+ nat (cascade,cwmgmt) static 10.13.247.12
+object network CENSWIPPROWEB01-TMP
+ nat (cascade,cwmgmt) static 10.13.247.26
+object network CENSWIPPROWEB02-TMP
+ nat (cascade,cwmgmt) static 10.13.247.27
+object network CENSWIPPROSIP02-TMP
+ nat (cascade,cwmgmt) static 10.13.247.29
+object network CENSWIPPROSIP01-TMP
+ nat (cascade,cwmgmt) static 10.13.247.28
+object network CENSWIPPRORMG02-TMP
+ nat (cascade,cwmgmt) static 10.13.247.59
+object network CENSWIPPRORMG01-TMP
+ nat (cascade,cwmgmt) static 10.13.247.58
+object network CENSWIPPROMCP01-TMP
+ nat (cascade,cwmgmt) static 10.13.247.44
+object network CENSWIPPROMCP02-TMP
+ nat (cascade,cwmgmt) static 10.13.247.45
+object network censg-swi-sw-03
+ nat (cascade,cwmgmt) static 10.13.247.19
+object network censg-swi-sw-04
+ nat (cascade,cwmgmt) static 10.13.247.22
+object network censg-swi-sw-05
+ nat (cascade,cwmgmt) static 10.13.247.65
+object network censg-swi-sw-06
+ nat (cascade,cwmgmt) static 10.13.247.66
+object network cen-swi-ucm-01
+ nat (cascade,cwmgmt) static 10.13.51.8
+object network cen-swi-ucm-02
+ nat (cascade,cwmgmt) static 10.13.51.9
+object network cen-swi-ucm-01-02VIP
+ nat (cascade,cwmgmt) static 10.13.51.10
+object network CENSWIPPROMCP03-TMP
+ nat (cascade,cwmgmt) static 10.13.247.46
+object network CENSWIPPROMCP04-TMP
+ nat (cascade,cwmgmt) static 10.13.247.47
+object network cenmslvmvctms05-mgmt
+ nat (cascade,cwmgmt) static 10.13.247.73
+object network censwivmvcsx01-mgmt
+ nat (cascade,cwmgmt) static 10.13.247.75
+object network censwimvcpub02-mgmt
+ nat (cascade,cwmgmt) static 10.13.247.76
+object network censwimvcpub01-mgmt
+ nat (cascade,cwmgmt) static 10.13.247.77
+object network CENSWIPPROMCP05-TMP
+ nat (cascade,cwmgmt) static 10.13.247.48
+object network CENSWIPPROMCP06-TMP
+ nat (cascade,cwmgmt) static 10.13.247.49
+object network CENSWIPPROMCP07-TMP
+ nat (cascade,cwmgmt) static 10.13.247.50
+object network hst-10.104.199.132
+ nat (cascade,cwmgmt) static 10.216.183.140
+object network hst-10.80.7.132
+ nat (cascade,cwmgmt) static 10.13.51.2
+object network CENSWIPPROGIM01-TMP
+ nat (cascade,cwmgmt) static 10.13.247.41
+access-group cascade_acl in interface cascade
+access-group cwmgmt_acl in interface cwmgmt
+access-group global_acl global
+route cascade 0.0.0.0 0.0.0.0 10.99.99.97 1
+route cwmgmt 10.11.10.0 255.255.255.0 10.250.94.4 1
+route cwmgmt 10.11.216.0 255.255.254.0 10.250.94.4 1
+route cwmgmt 10.11.217.141 255.255.255.255 10.250.94.4 1
+route cwmgmt 10.11.217.142 255.255.255.255 10.250.94.4 1
+route cwmgmt 10.11.235.0 255.255.255.192 10.250.94.4 1
+route cwmgmt 10.12.9.64 255.255.255.224 10.250.94.4 1
+route cwmgmt 10.12.11.32 255.255.255.224 10.250.94.4 1
+route cwmgmt 10.12.192.0 255.255.255.0 10.250.94.4 1
+route cwmgmt 10.12.194.0 255.255.255.0 10.250.94.4 1
+route cwmgmt 10.12.208.64 255.255.255.224 10.250.94.4 1
+route cwmgmt 10.13.0.0 255.255.0.0 10.250.94.4 1
+route cwmgmt 10.13.11.225 255.255.255.255 10.250.94.128 1
+route cwmgmt 10.216.0.0 255.255.0.0 10.250.94.4 1
+route cwmgmt 10.218.0.0 255.255.0.0 10.250.94.4 1
+route cwmgmt 10.219.10.0 255.255.255.0 10.250.94.4 1
+route cwmgmt 10.221.0.0 255.255.0.0 10.250.94.4 1
+route cwmgmt 10.225.0.0 255.255.0.0 10.250.94.4 1
+route cwmgmt 10.231.0.0 255.255.255.0 10.250.94.4 1
+route cwmgmt 10.231.0.43 255.255.255.255 10.250.94.4 1
+route cwmgmt 62.208.150.0 255.255.255.0 10.250.94.4 1
+route cwmgmt 148.185.143.147 255.255.255.255 10.250.94.4 1
+route cwmgmt 148.185.143.149 255.255.255.255 10.250.94.4 1
+route cwmgmt 148.185.183.33 255.255.255.255 10.250.94.4 1
+route cwmgmt 212.62.28.0 255.255.255.0 10.250.94.4 1
+route cwmgmt 212.62.29.0 255.255.255.0 10.250.94.4 1
+route cwmgmt 216.239.221.0 255.255.255.0 10.250.94.4 1
+route cwmgmt 217.135.0.0 255.255.248.0 10.250.94.4 1
+route cwmgmt 217.135.9.0 255.255.255.0 10.250.94.4 1
+route cwmgmt 217.135.37.0 255.255.255.0 10.250.94.4 1
+timeout xlate 3:00:00
+timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02
+timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00
+timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00
+timeout sip-provisional-media 0:02:00 uauth 0:05:00 absolute
+timeout tcp-proxy-reassembly 0:01:00
+timeout floating-conn 0:00:00
+aaa-server TACACS+ protocol tacacs+
+ accounting-mode simultaneous
+ reactivation-mode depletion deadtime 1
+aaa-server TACACS+ (cwmgmt) host 217.135.0.104
+ timeout 3
+ key eMUgQw9qWt
+aaa-server TACACS+ (cwmgmt) host 217.135.1.104
+ timeout 3
+ key eMUgQw9qWt
+user-identity default-domain LOCAL
+aaa authentication ssh console LOCAL
+aaa authentication enable console LOCAL
+aaa accounting command TACACS+
+snmp-server host cascade 10.104.199.143 poll community 6ad4pLz5vyT4INKa
+snmp-server host cascade 10.104.199.146 poll community 6ad4pLz5vyT4INKa
+snmp-server host cascade 10.104.199.147 poll community 6ad4pLz5vyT4INKa
+snmp-server host cwmgmt 10.11.216.137 poll community 6ad4pLz5vyT4INKa
+snmp-server host cwmgmt 10.11.216.160 community 6ad4pLz5vyT4INKa
+snmp-server host cwmgmt 10.11.216.163 poll community 6ad4pLz5vyT4INKa
+snmp-server host cwmgmt 10.250.94.137 poll community 6ad4pLz5vyT4INKa
+snmp-server host cwmgmt 10.250.94.160 community 6ad4pLz5vyT4INKa
+snmp-server host cwmgmt 10.250.94.163 poll community 6ad4pLz5vyT4INKa
+snmp-server host cwmgmt 217.135.0.19 poll community 6ad4pLz5vyT4INKa
+snmp-server host cwmgmt 217.135.0.20 poll community 6ad4pLz5vyT4INKa
+snmp-server host cwmgmt 217.135.0.36 poll community 6ad4pLz5vyT4INKa
+snmp-server host cwmgmt 217.135.0.37 trap community 6ad4pLz5vyT4INKa
+snmp-server host cwmgmt 217.135.0.38 trap community 6ad4pLz5vyT4INKa
+snmp-server host cwmgmt 217.135.0.49 poll community 6ad4pLz5vyT4INKa
+snmp-server host cwmgmt 217.135.0.50 poll community 6ad4pLz5vyT4INKa
+snmp-server host cwmgmt 217.135.0.21 poll community h2vf0Uqen9cStly2
+snmp-server host cwmgmt 217.135.0.22 poll community h2vf0Uqen9cStly2
+no snmp-server location
+snmp-server contact HSS-Security-Support
+snmp-server community 6ad4pLz5vyT4INKa
+snmp-server enable traps snmp authentication linkup linkdown coldstart warmstart
+snmp-server enable traps syslog
+no service resetoutbound
+telnet timeout 1
+ssh 10.11.216.103 255.255.255.255 cwmgmt
+ssh 10.216.180.239 255.255.255.255 cwmgmt
+ssh 10.11.216.150 255.255.255.255 cwmgmt
+ssh 10.216.1.1 255.255.255.255 cwmgmt
+ssh 217.135.0.67 255.255.255.255 cwmgmt
+ssh 217.135.0.77 255.255.255.255 cwmgmt
+ssh 217.135.2.67 255.255.255.255 cwmgmt
+ssh 217.135.0.21 255.255.255.255 cwmgmt
+ssh 217.135.5.67 255.255.255.255 cwmgmt
+ssh 217.135.0.22 255.255.255.255 cwmgmt
+ssh 217.135.0.85 255.255.255.255 cwmgmt
+ssh timeout 9
+ssh version 2
+no threat-detection statistics tcp-intercept
+username sso-admin password no.w4y-in privilege 15
+!
+class-map default-inspection
+ description Default traffic inspection
+ match default-inspection-traffic
+class-map dcerpc_class
+ match port tcp eq 135
+!
+!
+policy-map type inspect dns dns_inspect
+ parameters
+  message-length maximum 1280
+policy-map type inspect dcerpc dcerpc_inspect
+ parameters
+  endpoint-mapper lookup-operation
+policy-map global-policy
+ class default-inspection
+  inspect dns dns_inspect
+  inspect ftp
+  inspect h323 h225
+  inspect h323 ras
+  inspect http
+  inspect ils
+  inspect netbios
+  inspect rsh
+  inspect rtsp
+  inspect skinny
+  inspect icmp
+  inspect sqlnet
+  inspect sunrpc
+  inspect tftp
+  inspect xdmcp
+ class dcerpc_class
+  inspect dcerpc dcerpc_inspect
+!
+service-policy global-policy global

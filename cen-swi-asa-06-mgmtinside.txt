@@ -1,0 +1,2945 @@
+cen-swi-asa-02/sec/act# more disk0:/inside.cfg
+: Saved
+: Written by w131899 at 08:52:53.819 UTC Fri Sep 21 2018
+!
+ASA Version 8.4(2)8 <context>
+!
+terminal width 250
+hostname inside
+domain-name vodafone.com
+enable password no.w4y-in
+passwd no.w4y-in
+no names
+!
+interface GigabitEthernet0/0
+ nameif mgmt-fw-core-access
+ security-level 50
+ ip address 10.80.8.166 255.255.255.248 standby 10.80.8.165
+!
+interface Port-channel1.92
+ nameif service-console
+ security-level 50
+ ip address 10.80.8.193 255.255.255.192 standby 10.80.8.194
+!
+interface Port-channel1.902
+ nameif mgmt-pod-backmgmt
+ security-level 50
+ ip address 10.80.7.1 255.255.255.128 standby 10.80.7.2
+!
+interface Port-channel1.1000
+ mac-address 503d.e5a2.95a3 standby 703d.e5a2.91cb
+ nameif cascade
+ security-level 35
+ ip address 10.99.99.97 255.255.255.248 standby 10.99.99.98
+!
+interface Port-channel1.903
+ nameif ids-sim-access
+ security-level 50
+ ip address 10.80.8.177 255.255.255.240 standby 10.80.8.178
+!
+interface Port-channel1.904
+ nameif ids-mgmt-backup
+ security-level 50
+ ip address 10.80.0.65 255.255.255.240 standby 10.80.0.66
+!
+interface Port-channel1.1119
+ nameif swi-MAG-mgmt
+ security-level 50
+ ip address 10.80.15.233 255.255.255.248 standby 10.80.15.234
+!
+interface GigabitEthernet1/0
+ nameif mgmt-fw-bk-access
+ security-level 50
+ ip address 10.80.8.174 255.255.255.248 standby 10.80.8.173
+!
+interface Port-channel1.194
+ description <<str-sg-secure-nw-mgt>>
+ nameif str-sg-secure-nw-mgt
+ security-level 50
+ ip address 10.206.112.163 255.255.255.224 standby 10.206.112.164
+!
+interface Port-channel1.806
+ description <<swi-mgmt-internetsw>>
+ nameif swi-mgmt-internetsw
+ security-level 50
+ ip address 10.202.252.161 255.255.255.240 standby 10.202.252.162
+!
+interface Port-channel1.835
+ nameif swi-pp-prod-preprodmgmt-transit
+ security-level 50
+ ip address 10.232.193.65 255.255.255.240 standby 10.232.193.66
+!
+interface Port-channel1.905
+ nameif secure-networks-kvm
+ security-level 50
+ ip address 10.80.9.1 255.255.255.0 standby 10.80.9.2
+!
+interface Port-channel1.906
+ nameif fwl-virtual-contexts
+ security-level 50
+ ip address 10.80.13.129 255.255.255.128 standby 10.80.13.130
+!
+interface Port-channel1.915
+ nameif swi-secure-ucm-kvm
+ security-level 50
+ ip address 10.232.206.1 255.255.254.0 standby 10.232.206.2
+!
+interface Port-channel1.1511
+ description << connected to cen-swi-sw-11&12 1/0/44 >>
+ nameif SWI-DMZ-UCMMGMT-VLAN
+ security-level 50
+ ip address 10.232.193.1 255.255.255.192 standby 10.232.193.2
+!
+interface Port-channel1.901
+ nameif mgmt-pod-access
+ security-level 50
+ ip address 10.80.7.129 255.255.255.128 standby 10.80.7.130
+!
+banner login ********************************************************************************
+banner login *                                                                              *
+banner login * This computer system is the property of Vodafone Limited.                    *
+banner login *                                                                              *
+banner login * Only authorised users are entitled to connect and/or login to this           *
+banner login * computer system. If you are not sure whether you are authorised, then you    *
+banner login * should DISCONNECT IMMEDIATELY and seek advice from your line manager.        *
+banner login *                                                                              *
+banner login ********************************************************************************
+dns server-group DefaultDNS
+ domain-name vodafone.com
+same-security-traffic permit inter-interface
+object network cen-swi-vc-01
+ host 10.80.7.132
+object network sysm-cen-prx-01
+ host 10.104.199.150
+ description << BMC Performance Assurance Proxy >>
+object network censwipaspalm01
+ host 10.80.28.12
+object network hst-10.80.8.133
+ host 10.80.8.133
+object network cen-swi-ucm-01-aNew
+ host 10.80.9.241
+object network cen-msl-nbh-01
+ host 10.232.209.67
+object-group network CW-NETISM-MSL_CWMGMT
+ description Netcool ISM Servers at Melbourne Street
+ network-object host 10.80.14.1
+ network-object host 10.80.14.2
+object-group network CW-NETISM-GRL_CWMGMT
+ description Netcool ISM Servers at Gotts Road
+ network-object host 10.80.14.69
+ network-object host 10.80.14.70
+object-group network CW-NETISM-IWW_CWMGMT
+ description Netcool ISM Servers at Watford
+ network-object host 10.80.14.71
+ network-object host 10.80.14.72
+object-group network CW-NETISM-DUB_CWMGMT
+ description Netcool ISM Servers at Dublin
+ network-object host 10.80.14.89
+ network-object host 10.80.14.90
+object-group network CW-NETISM-SWI_CWMGMT
+ description Netcool ISM Servers at Swindon
+ network-object host 10.80.14.3
+ network-object host 10.80.14.4
+object-group network CW-NETISM-PRL_CWMGMT
+ description Netcool ISM Servers at Park Royal
+ network-object host 10.80.14.73
+ network-object host 10.80.14.74
+object-group network CW-NETISM-GRP_CWMGMT
+ description Netcool ISM Servers at all locations
+ group-object CW-NETISM-MSL_CWMGMT
+ group-object CW-NETISM-GRL_CWMGMT
+ group-object CW-NETISM-IWW_CWMGMT
+ group-object CW-NETISM-DUB_CWMGMT
+ group-object CW-NETISM-SWI_CWMGMT
+ group-object CW-NETISM-PRL_CWMGMT
+object-group network CW-BMC-GRP_CWMGMT
+ description BMC Console and Distribution Servers
+ network-object host 10.80.14.5
+ network-object host 10.80.14.6
+object-group network CW-EMCSMARTS-GRP_CWMGMT
+ description EMC Smarts and BMC Dashboard collectors
+ network-object host 10.80.14.7
+ network-object host 10.80.14.8
+ network-object host 10.80.14.88
+ network-object host 10.80.14.9
+ network-object host 10.80.14.10
+object-group network CW-BMC-RSM-MSL_CWMGMT
+ description BMC Remote Service Monitor Servers at Melbourne Street
+ network-object host 10.80.14.11
+ network-object host 10.80.14.12
+ network-object host 10.80.14.13
+object-group network CW-BMC-RSM-IWW_CWMGMT
+ description BMC Remote Service Monitor Servers at Watford
+ network-object host 10.80.14.101
+ network-object host 10.80.14.102
+ network-object host 10.80.14.103
+object-group network CW-BMC-RSM-SWI_CWMGMT
+ description BMC Remote Service Monitor Servers at Swindon
+ network-object host 10.80.14.14
+ network-object host 10.80.14.15
+ network-object host 10.80.14.16
+object-group network CW-BMC-RSM-GRP_CWMGMT
+ description BMC Remote Service Monitor Servers at all locations
+ group-object CW-BMC-RSM-MSL_CWMGMT
+ group-object CW-BMC-RSM-IWW_CWMGMT
+ group-object CW-BMC-RSM-SWI_CWMGMT
+object-group network CW-BMC-RT-MSL_CWMGMT
+ description BMC RT servers at Melbourne Street
+ network-object host 10.80.14.17
+ network-object host 10.80.14.18
+object-group network CW-BMC-RT-GRL_CWMGMT
+ description BMC RT servers at Gotts Road
+ network-object host 10.80.14.75
+ network-object host 10.80.14.76
+object-group network CW-BMC-RT-IWW_CWMGMT
+ description BMC RT servers at Watford
+ network-object host 10.80.14.71
+ network-object host 10.80.14.72
+object-group network CW-BMC-RT-DUB_CWMGMT
+ description BMC RT servers at Dublin
+ network-object host 10.80.14.89
+ network-object host 10.80.14.90
+object-group network CW-BMC-RT-SWI_CWMGMT
+ description BMC RT servers at Swindon
+ network-object host 10.80.14.19
+ network-object host 10.80.14.20
+object-group network CW-BMC-RT-PRL_CWMGMT
+ description BMC RT servers at Park Royal
+ network-object host 10.80.14.77
+ network-object host 10.80.14.78
+object-group network CW-BMC-RT-GRP_CWMGMT
+ description BMC RT Servers at all locations
+ group-object CW-BMC-RT-MSL_CWMGMT
+ group-object CW-BMC-RT-GRL_CWMGMT
+ group-object CW-BMC-RT-IWW_CWMGMT
+ group-object CW-BMC-RT-DUB_CWMGMT
+ group-object CW-BMC-RT-SWI_CWMGMT
+ group-object CW-BMC-RT-PRL_CWMGMT
+object-group network CW-NETPROBE-MSL_CWMGMT
+ description Netcool Probe servers at Melbourne Street
+ network-object host 10.80.14.17
+ network-object host 10.80.14.18
+object-group network CW-NETPROBE-GRL_CWMGMT
+ description Netcool Probe servers at Gotts Road
+ network-object host 10.80.14.75
+ network-object host 10.80.14.76
+object-group network CW-NETPROBE-IWW_CWMGMT
+ description Netcool Probe servers at Watford
+ network-object host 10.80.14.71
+ network-object host 10.80.14.72
+object-group network CW-NETPROBE-DUB_CWMGMT
+ description Netcool Probe servers at Dublin
+ network-object host 10.80.14.89
+ network-object host 10.80.14.90
+object-group network CW-NETPROBE-SWI_CWMGMT
+ description Netcool Probe servers at Swindon
+ network-object host 10.80.14.21
+ network-object host 10.80.14.22
+object-group network CW-NETPROBE-PRL_CWMGMT
+ description Netcool Probe servers at Park Royal
+ network-object host 10.80.14.73
+ network-object host 10.80.14.74
+object-group network CW-NETPROBE-GRP_CWMGMT
+ description Netcool Probe Servers at all locations
+ group-object CW-NETPROBE-MSL_CWMGMT
+ group-object CW-NETPROBE-GRL_CWMGMT
+ group-object CW-NETPROBE-IWW_CWMGMT
+ group-object CW-NETPROBE-DUB_CWMGMT
+ group-object CW-NETPROBE-SWI_CWMGMT
+ group-object CW-NETPROBE-PRL_CWMGMT
+object-group network CW-UNIXGW-GRP_CWMGMT
+ description UNIX Gateway Servers
+ network-object host 10.80.14.52
+ network-object host 10.80.14.23
+ network-object host 10.80.14.24
+ network-object host 10.80.14.156
+ network-object host 10.80.14.86
+ network-object host 10.80.14.159
+ network-object host 10.80.14.31
+ network-object host 10.80.14.33
+object-group network CW-BMCPROBE-GRP_CWMGMT
+ group-object CW-NETPROBE-GRP_CWMGMT
+ group-object CW-BMC-RSM-GRP_CWMGMT
+object-group network CW-SYSLOG-GRP_CWMGMT
+ description Syslog Servers
+ group-object CW-NETPROBE-GRP_CWMGMT
+ group-object CW-UNIXGW-GRP_CWMGMT
+object-group network CW-HPIM-GRP_CWMGMT
+ description HP Systems Insight Manager Servers
+ network-object host 10.80.14.25
+ network-object host 10.80.14.26
+ network-object host 10.80.14.27
+ network-object host 10.80.14.28
+object-group network CW-SNMPTRAP-GRP_CWMGMT
+ description SNMP Trap Servers
+ group-object CW-NETPROBE-GRP_CWMGMT
+ group-object CW-HPIM-GRP_CWMGMT
+ group-object CW-EMCSMARTS-GRP_CWMGMT
+object-group network CW-NTP-SWI_CWMGMT
+ description NTP Servers in Swindon
+ network-object host 10.80.14.29
+ network-object host 10.80.14.30
+ network-object host 10.80.14.31
+ network-object host 10.80.14.32
+ network-object host 10.80.14.33
+ network-object host 10.80.14.97
+ network-object host 10.80.14.86
+object-group network CW-NTP-PRL_CWMGMT
+ description NTP Servers in Park Royal
+ network-object host 10.80.14.136
+ network-object host 10.80.14.137
+object-group network CW-MDC2003-SWI_CWMGMT
+ description Microsoft Windows 2003 domain controllers in Swindon
+ network-object 10.11.235.32 255.255.255.248
+ network-object host 10.80.14.59
+ network-object host 10.80.14.60
+ network-object host 10.80.14.63
+ network-object host 10.80.14.64
+object-group network CW-MDC2003-MSL_CWMGMT
+ description Microsoft Windows 2003 domain controllers in Melbourne Street
+ network-object host 10.80.14.115
+ network-object host 10.80.14.116
+object-group network CW-MDC2003-GRP_CWMGMT
+ group-object CW-MDC2003-SWI_CWMGMT
+ group-object CW-MDC2003-MSL_CWMGMT
+object-group network CW-MVA2008-SWI_CWMGMT
+ description Microsoft Windows 2008 Volume Activation Servers in Swindon
+ network-object host 10.80.14.118
+object-group network CW-MVA2008-GRP_CWMGMT
+ group-object CW-MVA2008-SWI_CWMGMT
+object-group network CW-DNS-MSL_CWMGMT
+ network-object host 10.80.14.79
+ network-object host 10.80.14.80
+object-group network CW-DNS-SWI_CWMGMT
+ network-object host 10.80.14.81
+ network-object host 10.80.14.82
+ network-object host 10.80.14.29
+ network-object host 10.80.14.30
+object-group network CW-DNS-GRP_CWMGMT
+ description DNS Servers
+ group-object CW-UNIXGW-GRP_CWMGMT
+ group-object CW-DNS-MSL_CWMGMT
+ group-object CW-DNS-SWI_CWMGMT
+ group-object CW-MDC2003-GRP_CWMGMT
+object-group network CW-STOR-MSL_CWMGMT
+ description Shared Storage Reporting Servers in Melbourne Street
+ network-object host 10.80.14.91
+ network-object host 10.80.14.92
+ network-object host 10.80.14.93
+ network-object host 10.80.14.85
+object-group network CW-STOR-GRP_CWMGMT
+ group-object CW-STOR-MSL_CWMGMT
+object-group network CW-AVMGMT-GRP_CWMGMT
+ description SOHOS Anti-Virus Management Servers
+ network-object host 10.80.14.34
+ network-object host 10.80.14.35
+object-group network CW-AVUPDATE-GRP_CWMGMT
+ description SOHOS Anti-Virus Update Servers
+ network-object host 10.80.14.36
+ network-object host 10.80.14.37
+object-group network CW-UNIX-MAN-GRP_CWMGMT
+ description UNIX Bastion Hosts
+ network-object host 10.80.14.51
+ network-object host 10.80.14.39
+ network-object host 10.80.14.40
+ network-object host 10.80.14.41
+ network-object host 10.80.14.42
+object-group network CW-MSFT-MAN-GRP_CWMGMT
+ description Microsoft Team Bastion Hosts
+ network-object host 10.80.14.43
+ network-object host 10.80.14.44
+ network-object host 10.80.14.45
+ network-object host 10.80.14.46
+object-group network CW-NETSEC-MAN-GRP_CWMGMT
+ description Network and Security Bastion Hosts
+ network-object host 10.80.14.47
+ network-object host 10.80.14.48
+ network-object host 10.80.14.49
+ network-object host 10.80.14.98
+ network-object host 10.80.14.84
+ network-object host 10.80.14.130
+ network-object host 10.80.14.131
+ network-object host 10.80.14.152
+object-group network CW-ADMIN-GRP_CWMGMT
+ description Admin Network PAT addresses
+ network-object host 10.80.14.99
+object-group network CW-BASTION-MAN-GRP_CWMGMT
+ description All Bastion hosts on management network
+ group-object CW-UNIX-MAN-GRP_CWMGMT
+ group-object CW-MSFT-MAN-GRP_CWMGMT
+ group-object CW-NETSEC-MAN-GRP_CWMGMT
+ group-object CW-ADMIN-GRP_CWMGMT
+object-group network CW-USUS-GRP_CWMGMT
+ description UNIX Secure Update Servers
+ network-object host 10.80.14.50
+object-group network CW-MSUS-GRP_CWMGMT
+ description Microsoft Secure Update Server
+ network-object host 10.80.14.51
+ network-object host 10.80.14.87
+ network-object host 10.80.14.52
+object-group network CW-BIGSTAT-GRP_CWMGMT
+ network-object host 10.80.14.53
+ network-object host 10.80.14.54
+object-group network CW-SNMPMON-GRP_CWMGMT
+ description SNMP Monitoring Server Groups
+ group-object CW-NETISM-GRP_CWMGMT
+ group-object CW-EMCSMARTS-GRP_CWMGMT
+ group-object CW-BMC-RSM-GRP_CWMGMT
+ group-object CW-HPIM-GRP_CWMGMT
+ group-object CW-BIGSTAT-GRP_CWMGMT
+ group-object CW-MSFT-MAN-GRP_CWMGMT
+object-group network CW-AUTH-GRP_CWMGMT
+ description Authentication Servers on Management Network
+ network-object host 10.80.14.55
+ network-object host 10.80.14.58
+ network-object host 10.80.14.61
+ network-object host 10.80.14.62
+ network-object host 10.80.14.138
+ network-object host 10.80.14.134
+ network-object host 10.80.14.127
+ network-object host 10.80.14.126
+object-group network CW-HNM-SYSLOG_CWMGMT
+ description Hosting Network Management Syslog Servers
+ network-object host 10.80.14.65
+ network-object host 10.80.14.124
+ network-object host 10.80.14.125
+ network-object host 10.80.14.123
+ network-object host 10.80.14.153
+object-group network CW-HNM-TFTP_CWMGMT
+ description Hosting Network Management TFTP servers
+ network-object host 10.80.14.66
+ network-object host 10.80.14.100
+ network-object host 10.80.14.129
+ network-object host 10.80.14.133
+ network-object host 10.80.14.132
+ network-object host 10.80.14.128
+ network-object host 10.80.14.134
+object-group network CW-HNM-NTP_CWMGMT
+ description Hosting Network Management NTP servers
+ network-object host 10.80.14.67
+ network-object host 10.80.14.139
+object-group network CW-NTP-GRP_CWMGMT
+ description NTP Servers
+ group-object CW-UNIXGW-GRP_CWMGMT
+ group-object CW-NTP-SWI_CWMGMT
+ group-object CW-NTP-PRL_CWMGMT
+ group-object CW-MDC2003-GRP_CWMGMT
+ group-object CW-HNM-NTP_CWMGMT
+object-group network CW-EMAIL-GRP_CWMGMT
+ group-object CW-UNIXGW-GRP_CWMGMT
+object-group network CW-ICMP-GRP_CWMGMT
+ group-object CW-NETISM-GRP_CWMGMT
+ group-object CW-BMC-GRP_CWMGMT
+ group-object CW-EMCSMARTS-GRP_CWMGMT
+ group-object CW-BMC-RSM-GRP_CWMGMT
+ group-object CW-BMC-RT-GRP_CWMGMT
+ group-object CW-NETPROBE-GRP_CWMGMT
+ group-object CW-UNIXGW-GRP_CWMGMT
+ group-object CW-HPIM-GRP_CWMGMT
+ group-object CW-MDC2003-GRP_CWMGMT
+ group-object CW-STOR-MSL_CWMGMT
+ group-object CW-AVMGMT-GRP_CWMGMT
+ group-object CW-AVUPDATE-GRP_CWMGMT
+ group-object CW-BASTION-MAN-GRP_CWMGMT
+ group-object CW-USUS-GRP_CWMGMT
+ group-object CW-MSUS-GRP_CWMGMT
+ group-object CW-AUTH-GRP_CWMGMT
+object-group service CW-BMC-IN_TCP tcp
+ description BMC Console and Distribution Server inbound TCP ports
+ port-object eq 3181
+ port-object eq 50005
+object-group service CW-BMC-OUT_TCP tcp
+ description BMC Distribution Server outbound TCP ports
+ port-object eq www
+object-group service CW-BMC-RT-OUT_TCP tcp
+ description BMC Patrol RT Server outbound TCP ports
+ port-object eq 2059
+object-group service CW-BMCPROBE-IN_TCP tcp
+ description BMC Probe inbound TCP ports
+ port-object eq 3181
+object-group service CW-STOR-IN_TCP tcp
+ description EMC Control Centre TCP services
+ port-object eq 5798
+ port-object eq 10222
+ port-object eq 10444
+ port-object eq 10555
+ port-object eq 10667
+ port-object eq 11000
+ port-object eq 11011
+ port-object eq 11041
+object-group service CW-STOR-OUT_TCP tcp
+ description EMC Control Centre TCP services
+ port-object eq 5799
+ port-object eq 5801
+ port-object eq 30730
+object-group service CW-AVMGMT_TCP tcp
+ description SOHOS Anti Virus Management TCP ports
+ port-object eq 8192
+ port-object eq 8193
+ port-object eq 8194
+object-group service CW-AVUPDATE-OUT_TCP tcp
+ port-object eq www
+object-group service CW-HPIM-IN_TCP tcp
+ description HP Insight Manager inbound TCP ports
+ port-object eq 2301
+ port-object eq 2381
+ port-object eq ssh
+ port-object eq 5988
+ port-object eq 5989
+ port-object eq 50000
+object-group service CW-HPIM-OUT_TCP tcp
+ description HP Insight Manager outbound TCP ports
+ port-object eq 2381
+ port-object eq 280
+ port-object eq 2301
+ port-object eq www
+ port-object eq https
+ port-object eq 50004
+object-group service CW-MAN-IN_TCP tcp
+ description TCP Services required for Network, Server, iLO and ILOM/ALOM management
+ port-object eq ftp
+ port-object eq ssh
+ port-object eq telnet
+ port-object eq www
+ port-object eq https
+ port-object eq 3389
+ port-object eq 17988
+object-group service CW-USUS-IN_TCP tcp
+ description Solaris Update Server TCP services
+ port-object eq 8200
+object-group service CW-USUS-OUT_TCP tcp
+ description Solaris Update Server TCP services
+ port-object eq 8002
+ port-object eq 8100
+object-group service CW-DRAC-MAN_TCP tcp
+ description Inbound TCP ports for Dell Remote Access Cards
+ port-object eq 5869
+ port-object range 5900 5901
+ port-object range 3668 3669
+object-group service CW-MDC2003-IN_TCP tcp
+ description Inbound TCP port used by Microsoft Domain Controllers
+ port-object eq 445
+ port-object eq 135
+object-group service CW-MDC2003-OUT_TCP tcp
+ description Outbound TCP port used by Micosoft Domain Controllers
+ port-object eq 445
+ port-object eq 88
+ port-object eq ldap
+ port-object eq 135
+ port-object eq 1025
+object-group service CW-MDC2003-OUT_UDP udp
+ description Outbound UDP ports used by Microsoft Domain Controllers
+ port-object eq 88
+ port-object eq 389
+object-group service CW-MVA2008-IN_TCP tcp
+ description Inbound TCP services used by Microsoft Volume Activation Servers
+ port-object eq 135
+ port-object range 5000 5100
+object-group service HTTP-HTTPS_TCP tcp
+ port-object eq www
+ port-object eq https
+object-group service NOISE-AND-DENIED-SERVICES_UDP udp
+ port-object eq bootps
+ port-object eq 136
+object-group service CW-AUTH_TCP tcp
+ description Standard TCP authentication service ports
+ port-object eq 5500
+ port-object eq 5400
+ port-object eq ldap
+ port-object eq tacacs
+object-group service CW-AUTH_UDP udp
+ description Standard UDP authentication service ports
+ port-object eq 5500
+ port-object eq 5400
+ port-object eq 1812
+ port-object eq radius
+object-group service CW-NETISM-IN_TCP tcp
+ description TCP services monitored as standard via Netcool ISMs
+ port-object eq www
+ port-object eq https
+ port-object eq smtp
+ port-object eq pop3
+ port-object eq nntp
+ port-object eq ftp
+object-group service CW-NETISM-IN_UDP udp
+ description UDP services monitored as standard via Netcool ISMs
+ port-object eq domain
+ port-object eq ntp
+object-group network CEN-MSL-DCS
+ description MSL Domain Controllers
+ network-object host 10.104.199.133
+ network-object host 10.104.199.134
+object-group network CEN-SWI-DCS
+ description SWI Domain Controllers
+ network-object host 10.80.7.133
+ network-object host 10.80.7.134
+ network-object host 10.80.7.132
+object-group service DC_tcp tcp
+ description Domain controller traffic (TCP)
+ port-object eq 135
+ port-object eq 5050
+ port-object eq sip
+ port-object eq 5055
+ port-object eq 445
+ port-object eq ldap
+ port-object eq ldaps
+ port-object eq 3268
+ port-object eq 3269
+ port-object eq 88
+ port-object eq domain
+ port-object eq 137
+ port-object eq netbios-ssn
+object-group service DC_udp udp
+ description Domain controller traffic (UDP)
+ port-object eq 135
+ port-object eq netbios-ns
+ port-object eq netbios-dgm
+ port-object eq 445
+ port-object eq 389
+ port-object eq 88
+ port-object eq domain
+object-group service VC-ESX_TCP tcp
+ description VC-ESX access (TCP)
+ port-object eq www
+ port-object eq ldap
+ port-object eq ldaps
+ port-object eq https
+ port-object eq 902
+ port-object eq 903
+ port-object eq 5989
+ port-object eq 8080
+ port-object eq 8443
+ port-object eq 60099
+ port-object eq 88
+ port-object eq 445
+ port-object eq domain
+object-group service VC-ESX_UDP udp
+ description VC-ESX (UDP)
+ port-object eq 902
+ port-object eq 445
+ port-object eq 88
+ port-object eq domain
+object-group network cen-swi-vc
+ description VCS
+ network-object host 10.80.7.132
+object-group network cen-swi-esx
+ description ESX server network
+ network-object 10.80.15.0 255.255.255.128
+object-group network CEN-SWI-BH-01
+ description << CEN-SWI-BH-01 >>
+ network-object host 10.80.7.135
+object-group network CEN-SWI-PIPT-ESX-SERVERS
+ description << CEN-SWI-PIPT-ESX SERVERS >>
+ network-object host 10.80.15.11
+ network-object host 10.80.15.10
+object-group service ESX-CONTROL_TCP tcp
+ description << ESX control >>
+ port-object eq 902
+ port-object eq 903
+object-group network cen-swi-vc_ESX
+ description VCS_ESX
+ network-object host 10.80.7.5
+object-group network Cortex_CW_CSS_MGMT
+ network-object host 10.80.14.156
+ network-object host 10.80.14.157
+ network-object host 10.80.14.158
+object-group network Centrica_Cortex_SNMP_Access
+ network-object host 10.80.6.132
+ network-object host 10.80.6.133
+ network-object host 10.80.6.134
+ network-object host 10.80.6.135
+ network-object host 10.80.1.196
+ network-object host 10.80.1.197
+ network-object host 10.80.5.4
+ network-object host 10.80.5.5
+ network-object host 10.80.5.6
+ network-object host 10.80.5.7
+ network-object host 10.80.5.8
+ network-object host 10.80.5.9
+ network-object host 10.80.5.18
+ network-object host 10.80.5.19
+ network-object host 10.80.5.28
+ network-object host 10.80.21.23
+ network-object host 10.80.21.24
+ network-object host 10.80.21.26
+ network-object host 10.80.5.34
+ network-object host 10.80.5.35
+ network-object host 10.80.21.28
+ network-object host 10.80.21.30
+ network-object host 10.80.21.32
+ network-object host 10.80.21.34
+ network-object host 10.80.5.33
+ network-object host 10.80.21.44
+ network-object host 10.80.21.45
+ network-object host 10.80.21.46
+ network-object host 10.80.21.47
+ network-object host 10.80.21.48
+object-group network cen-swi-esx-hosts
+ description ESX server hosts
+ network-object 10.80.8.192 255.255.255.192
+object-group service ESX-VC_tcp tcp
+ description ESX to VC TCP ports
+ port-object eq www
+ port-object eq https
+ port-object eq 903
+ port-object eq 88
+ port-object eq 445
+ port-object eq ldap
+ port-object eq ldaps
+ port-object eq domain
+ port-object eq 902
+ port-object eq 5989
+object-group network CEN-SWI-ESX
+ description SWI ESX Hosts
+ network-object 10.80.8.192 255.255.255.192
+object-group network CEN-SWI-VC
+ description SWI VC devices
+ network-object host 10.80.7.132
+object-group service ESX-VC_udp udp
+ description ESX to VC UDP ports
+ port-object eq 88
+ port-object eq 902
+ port-object eq domain
+object-group network CW-BACKMAS-SWI_BAK
+ description Backup Master Servers at Swindon
+ network-object host 10.80.8.129
+ network-object host 10.80.8.130
+ network-object host 10.80.8.131
+ network-object host 10.80.3.132
+ network-object host 10.80.3.134
+ network-object host 10.80.8.4
+ network-object host 10.80.8.6
+object-group network CW-BACKMED-SWI_BAK
+ description Backup Media Servers at Swindon
+ network-object host 10.80.8.130
+ network-object host 10.80.8.131
+object-group network CW-BACKMED-GRP_BAK
+ description All Backup Media Servers
+ group-object CW-BACKMED-SWI_BAK
+object-group network CW-ICMP-GRP_BAK
+ group-object CW-BACKMAS-SWI_BAK
+ group-object CW-BACKMED-GRP_BAK
+object-group service CW-BACKMAS-IN_TCP tcp
+ description Inbound TCP Services used by Master Servers
+ port-object eq 13720
+ port-object eq 13782
+ port-object eq 13724
+object-group service CW-BACKMAS-OUT_TCP tcp
+ description Outbound TCP Services used by Master Servers
+ port-object eq 13782
+ port-object eq 13724
+object-group service CW-BACKMED-IN_TCP tcp
+ description Inbound TCP Services used by Media Servers
+ port-object eq 13782
+ port-object eq 13724
+object-group service CW-BACKMED-OUT_TCP tcp
+ description Outbound TCP Services used by Media Servers
+ port-object eq 13782
+ port-object eq 13724
+object-group service PRX-VC_tcp tcp
+ description PRX to VC TCP ports
+ port-object eq https
+ port-object eq 903
+ port-object eq 902
+object-group network CEN-SWI-NETWORK
+ description <<Centrica SWI Network (all VLANs) >>
+ network-object 10.80.0.0 255.255.0.0
+object-group network SYSM-CEN-MGMT-MON-SRVS
+ description << centrica MSL mgmt pod servers >>
+ network-object 10.104.199.128 255.255.255.128
+object-group service EMC-SAN-PATH-MONITORING_TCP tcp
+ port-object eq 5798
+ port-object eq 10444
+ port-object eq 11011
+ port-object eq 10667
+ port-object eq 11041
+ port-object eq 5799
+ port-object eq 5801
+ port-object eq 10799
+ port-object eq 10801
+object-group service g-CWW-AUTHACC-IN_TCP tcp
+ description HMS Authentication Protocols
+ port-object eq 135
+ port-object eq 445
+object-group service g-CWW-AUTHACC-IN_UDP udp
+ description HMS Authentication Protocols
+ port-object eq netbios-ns
+ port-object eq netbios-dgm
+object-group service g-CWW-BMCADDM-IN_TCP tcp
+ description HMS ADDM Protocols
+ port-object eq 4
+ port-object eq ssh
+ port-object eq 135
+ port-object range 902 903
+ port-object eq 1433
+ port-object eq sqlnet
+ port-object eq 445
+ port-object eq 49153
+ port-object eq telnet
+ port-object eq www
+ port-object eq ftp
+ port-object eq https
+ port-object range 1024 65000
+object-group service g-CWW-BMCADDM-IN_UDP udp
+ description HMS ADDM Protocols
+ port-object eq snmp
+ port-object eq 902
+object-group service g-CWW-BMCPERF-IN_TCP tcp
+ description HMS BMC Perf Protocols
+ port-object eq www
+ port-object eq https
+ port-object range 902 903
+ port-object eq 5989
+ port-object range 6767 6768
+ port-object eq 10128
+object-group service g-CWW-BMCBPPM-IN_TCP tcp
+ description HMS PNET Protocols
+ port-object eq ssh
+ port-object eq smtp
+ port-object eq domain
+ port-object eq www
+ port-object eq pop3
+ port-object eq https
+ port-object range 902 903
+ port-object range 3181 3185
+ port-object eq 8083
+ port-object range 8888 8890
+ port-object eq 50005
+ port-object range 32080 32099
+ port-object eq 9443
+ port-object eq 8443
+object-group service g-CWW-BMCBPPM-IN_UDP udp
+ description HMS PNET Protocols
+ port-object eq domain
+ port-object eq snmp
+ port-object eq 902
+object-group service g-CWW-CHECKPOINT-IN_TCP tcp
+ description HMS Provider-1 Protocols
+ port-object eq 256
+ port-object eq 257
+ port-object eq 1024
+ port-object eq 8989
+ port-object range 18183 18184
+ port-object eq 18187
+ port-object range 18190 18192
+ port-object eq 18196
+ port-object range 18208 18210
+ port-object eq 18221
+ port-object eq 18211
+ port-object range 18264 18265
+object-group service g-CWW-EMCCC-IN_TCP tcp
+ description EMC Protocols
+ port-object eq 5798
+ port-object eq 10222
+ port-object eq 10444
+ port-object eq 10555
+ port-object eq 10667
+ port-object eq 11000
+ port-object eq 11011
+ port-object eq 11041
+object-group service g-CWW-HPSIM-IN_TCP tcp
+ description HMS HPSIM Protocols
+ port-object eq ssh
+ port-object eq www
+ port-object eq https
+ port-object eq 2301
+ port-object eq 2381
+ port-object eq 5988
+ port-object eq 5889
+ port-object eq 50000
+object-group service g-CWW-HPSIM-IN_UDP udp
+ description HMS HPSIM Protocols
+ port-object eq snmp
+object-group service g-CWW-LOWLEVEL-IN_TCP tcp
+ description HMS Bastion Protocols
+ port-object eq ssh
+ port-object eq telnet
+ port-object eq domain
+ port-object eq www
+ port-object eq 135
+ port-object eq https
+ port-object range 902 903
+ port-object eq 1158
+ port-object eq 1433
+ port-object range sqlnet 1522
+ port-object eq 2068
+ port-object eq 3389
+ port-object range 5000 5100
+ port-object eq 5989
+ port-object eq 8081
+ port-object eq 8082
+ port-object eq 8443
+ port-object eq 9443
+ port-object eq 17988
+ port-object eq 17990
+ port-object eq 37233
+ port-object eq 43970
+ port-object eq 43982
+object-group service g-CWW-LOWLEVEL-IN_UDP udp
+ description HMS Bastion Protocols
+ port-object eq domain
+ port-object eq snmp
+ port-object eq 623
+ port-object eq 902
+object-group service g-CWW-PATCHINGAV-IN_TCP tcp
+ description HMS Patching and AV Protocols
+ port-object range 8192 8194
+ port-object eq 8200
+object-group service g-CWW-SYMANTECBACKUP-IN_TCP tcp
+ description HMS Backup Protocols
+ port-object eq 1556
+ port-object eq 10000
+ port-object eq 13720
+ port-object eq 13724
+ port-object eq 13782
+object-group service g-CWW-AUTHACC-OUT_TCP tcp
+ description HMS Authentication Protocols
+ port-object eq ftp-data
+ port-object eq ftp
+ port-object eq ssh
+ port-object eq tacacs
+ port-object eq domain
+ port-object eq 69
+ port-object eq 88
+ port-object eq 115
+ port-object eq 135
+ port-object eq ldap
+ port-object eq 445
+ port-object range 1025 1026
+ port-object eq 5400
+ port-object eq 5500
+ port-object eq netbios-ssn
+ port-object eq 3268
+ port-object eq 464
+ port-object eq 5050
+ port-object eq sip
+ port-object eq ldaps
+ port-object eq 3269
+ port-object eq 5055
+ port-object range 1024 65535
+object-group service g-CWW-AUTHACC-OUT_UDP udp
+ description HMS Authentication Protocols
+ port-object eq domain
+ port-object eq tftp
+ port-object eq 88
+ port-object eq ntp
+ port-object eq netbios-ns
+ port-object eq netbios-dgm
+ port-object eq 389
+ port-object eq 464
+ port-object eq radius
+ port-object range 1812 1813
+ port-object eq 5400
+ port-object eq 5500
+object-group service g-CWW-BMCPERF-OUT_TCP tcp
+ description HMS BMC Perf Protocols
+ port-object eq https
+ port-object range 6767 6768
+ port-object eq 10128
+object-group service g-CWW-BMCBPPM-OUT_TCP tcp
+ description HMS PNET Protocols
+ port-object eq www
+ port-object range 2059 2065
+ port-object range 3182 3183
+ port-object range 32080 32099
+object-group service g-CWW-BMCBPPM-OUT_UDP udp
+ description HMS PNET Protocols
+ port-object eq snmptrap
+ port-object eq syslog
+object-group service g-CWW-CHECKPOINT-OUT_TCP tcp
+ description HMS Provider-1 Protocols
+ port-object range 256 257
+ port-object eq 1024
+ port-object eq 8989
+ port-object range 18183 18184
+ port-object eq 18187
+ port-object range 18190 18192
+ port-object eq 18196
+ port-object range 18208 18210
+ port-object eq 18221
+ port-object eq 18211
+ port-object range 18264 18265
+object-group service g-CWW-EMCCC-OUT_TCP tcp
+ description EMC Protocols
+ port-object eq 5799
+ port-object eq 5801
+ port-object eq 30730
+object-group service g-CWW-HPSIM-OUT_TCP tcp
+ description HMS HPSIM Protocols
+ port-object eq 280
+ port-object eq 2301
+ port-object eq 2381
+ port-object eq 50004
+object-group service g-CWW-HPSIM-OUT_UDP udp
+ description HMS HPSIM Protocols
+ port-object eq snmptrap
+object-group service g-CWW-LOWLEVEL-OUT_TCP tcp
+ description HMS LOWLEVEL Protocols
+ port-object eq smtp
+ port-object eq domain
+ port-object eq 8080
+object-group service g-CWW-LOWLEVEL-OUT_UDP udp
+ description HMS LOWLEVEL Protocols
+ port-object eq domain
+ port-object eq ntp
+object-group service g-CWW-PATCHINGAV-OUT_TCP tcp
+ description HMS Patching and AV Protocols
+ port-object eq www
+ port-object eq https
+ port-object eq 2967
+ port-object eq 8014
+ port-object range 8192 8194
+ port-object eq 8002
+ port-object eq 8100
+ port-object eq 9005
+object-group service g-CWW-SYMANTECBACKUP-OUT_TCP tcp
+ description HMS Backup Protocols
+ port-object eq 1556
+ port-object eq 13701
+ port-object eq 13711
+ port-object range 13720 13724
+ port-object eq 13782
+object-group network g-CWW-BMCBPPM-IN_PUB
+ description HMS BMC BPPM Servers
+ network-object host 212.62.26.188
+ network-object host 216.239.223.50
+ network-object host 212.137.64.21
+object-group network g-CWW-LOWLEVEL-IN_PUB
+ description HMS Bastion Servers
+ network-object host 195.92.180.239
+ network-object host 195.92.180.240
+ network-object host 212.137.70.68
+ network-object host 212.137.70.72
+ network-object host 212.137.70.75
+object-group network g-CWW-AUTHACC-OUT_PUB
+ description HMS Authentication Servers
+ network-object host 195.92.227.201
+ network-object host 195.92.253.37
+ network-object host 212.137.70.69
+ network-object host 216.239.195.73
+ network-object host 216.239.223.71
+object-group network g-CWW-BMCBPPM-OUT_PUB
+ description HMS BMC BPPM Servers
+ network-object host 216.239.223.51
+ network-object host 216.239.223.52
+ network-object host 216.239.223.104
+object-group network g-CWW-LOWLEVEL-OUT_PUB
+ description HMS Bastion Servers
+ network-object host 141.1.1.1
+ network-object host 195.27.1.1
+ network-object host 194.152.64.68
+ network-object host 195.92.195.92
+ network-object host 195.92.195.93
+ network-object host 195.218.112.36
+ network-object host 212.137.64.8
+ network-object host 212.137.64.11
+ network-object host 212.137.64.12
+ network-object host 212.137.64.13
+ network-object host 212.137.65.12
+ network-object host 212.137.65.14
+ network-object host 213.185.197.6
+ network-object host 213.185.197.10
+ network-object host 216.239.195.65
+ network-object host 216.239.195.66
+object-group network g-CWW-AUTHACC-IN_PRIV
+ description HMS Authentication Servers
+ network-object host 10.11.235.33
+ network-object host 10.11.235.34
+ network-object host 10.11.235.50
+ network-object host 10.12.208.66
+ network-object host 10.12.208.68
+ network-object host 10.216.4.203
+ network-object host 10.216.4.204
+ network-object host 10.216.180.183
+ network-object host 10.80.14.146
+ network-object host 10.80.14.147
+ network-object host 10.80.14.60
+ network-object host 10.80.14.122
+ network-object host 10.80.14.115
+ network-object host 10.80.14.116
+object-group network g-CWW-BMCADDM-IN_PRIV
+ description HMS BMC ADDM Servers
+ network-object host 10.11.216.209
+ network-object host 10.11.216.210
+ network-object host 10.12.198.17
+ network-object host 10.12.198.18
+ network-object host 10.216.180.112
+ network-object host 10.216.180.113
+ network-object host 10.225.104.222
+ network-object host 10.225.104.223
+ network-object host 10.11.216.101
+object-group network g-CWW-BMCPERF-IN_PRIV
+ description HMS BMC Perf Servers
+ network-object host 10.11.216.156
+ network-object host 10.12.192.36
+ network-object host 10.12.192.44
+ network-object host 10.216.180.235
+ network-object host 10.225.104.157
+ network-object host 10.80.14.14
+ network-object host 10.80.14.77
+ network-object host 10.80.14.11
+ network-object host 10.80.14.24
+object-group network g-CWW-BMCBPPM-IN_PRIV
+ description HMS BMC BPPM Servers
+ network-object host 10.11.216.134
+ network-object host 10.11.216.135
+ network-object host 10.11.216.137
+ network-object host 10.11.216.155
+ network-object host 10.11.216.158
+ network-object host 10.11.216.160
+ network-object host 10.11.216.161
+ network-object host 10.11.216.163
+ network-object host 10.11.216.172
+ network-object host 10.11.235.10
+ network-object host 10.12.192.33
+ network-object host 10.12.192.34
+ network-object host 10.12.192.35
+ network-object host 10.12.192.36
+ network-object host 10.12.192.37
+ network-object host 10.12.192.40
+ network-object host 10.12.192.49
+ network-object host 10.216.64.1
+ network-object host 10.216.180.8
+ network-object host 10.216.180.72
+ network-object host 10.216.180.75
+ network-object host 10.216.180.107
+ network-object host 10.216.180.108
+ network-object host 10.216.180.109
+ network-object host 10.216.180.211
+ network-object host 10.216.180.220
+ network-object host 10.216.180.230
+ network-object host 10.216.180.237
+ network-object host 10.216.180.243
+ network-object host 10.225.70.3
+ network-object host 10.225.104.143
+ network-object host 10.225.104.144
+ network-object host 10.225.104.159
+ network-object host 10.225.104.175
+ network-object host 10.225.104.177
+ network-object host 10.80.14.21
+ network-object host 10.80.14.3
+ network-object host 10.80.14.16
+ network-object host 10.80.14.9
+ network-object host 10.80.14.22
+ network-object host 10.80.14.4
+ network-object host 10.80.14.6
+ network-object host 10.80.14.73
+ network-object host 10.80.14.74
+ network-object host 10.80.14.10
+ network-object host 10.80.14.77
+ network-object host 10.80.14.78
+ network-object host 10.80.14.8
+ network-object host 10.80.14.5
+ network-object host 10.80.14.1
+ network-object host 10.80.14.2
+ network-object host 10.80.14.17
+ network-object host 10.80.14.18
+ network-object host 10.80.14.13
+ network-object host 10.80.14.71
+ network-object host 10.80.14.72
+ network-object host 10.80.14.103
+object-group network g-CWW-CHECKPOINT-IN_PRIV
+ description HMS Provider-1 Servers
+ network-object 10.5.0.0 255.255.254.0
+ network-object 10.6.0.0 255.255.254.0
+ network-object 10.11.244.0 255.255.254.0
+ network-object 10.12.210.0 255.255.254.0
+object-group network g-CWW-EMCCC-IN_PRIV
+ description HMS EMC Servers
+ network-object host 10.8.2.25
+ network-object host 10.12.9.129
+ network-object host 10.216.6.90
+ network-object host 10.216.6.92
+ network-object host 10.216.6.94
+ network-object host 10.216.6.96
+ network-object host 10.216.6.98
+ network-object host 10.216.6.236
+ network-object host 10.218.8.90
+ network-object host 10.80.14.91
+ network-object host 10.80.14.92
+ network-object host 10.80.14.93
+ network-object host 10.80.14.85
+ network-object host 10.80.14.83
+object-group network g-CWW-HPSIM-IN_PRIV
+ description HMS HPSIM Servers
+ network-object host 10.11.216.51
+ network-object host 10.216.180.68
+ network-object host 10.225.104.142
+ network-object host 10.80.14.28
+ network-object host 10.80.14.25
+ network-object host 10.80.14.27
+object-group network g-CWW-LOWLEVEL-IN_PRIV
+ description HMS Bastion Servers
+ network-object host 10.11.216.103
+ network-object host 10.11.216.104
+ network-object host 10.11.216.105
+ network-object host 10.11.216.107
+ network-object host 10.11.216.108
+ network-object host 10.11.216.140
+ network-object host 10.11.216.150
+ network-object host 10.12.11.33
+ network-object host 10.12.11.36
+ network-object host 10.12.11.40
+ network-object host 10.216.180.50
+ network-object host 10.216.180.51
+ network-object host 10.216.180.53
+ network-object host 10.216.180.54
+ network-object host 10.216.180.81
+ network-object host 10.216.180.98
+ network-object host 10.216.180.239
+ network-object host 10.216.180.240
+ network-object host 10.225.104.174
+ network-object host 10.80.14.84
+ network-object host 10.80.14.154
+ network-object host 10.80.14.152
+ network-object host 10.80.14.47
+ network-object host 10.80.14.40
+ network-object host 10.80.14.44
+ network-object host 10.80.14.38
+ network-object host 10.80.14.43
+ network-object host 10.80.14.130
+ network-object host 10.80.14.131
+object-group network g-CWW-PATCHINGAV-IN_PRIV
+ description HMS Patching and AV Servers
+ network-object host 10.12.9.65
+ network-object host 10.12.9.72
+ network-object host 10.12.9.73
+ network-object host 10.216.16.113
+ network-object host 10.216.180.182
+ network-object host 10.216.180.232
+ network-object host 10.80.14.52
+ network-object host 10.80.14.35
+ network-object host 10.80.14.34
+ network-object host 10.80.14.87
+ network-object host 10.80.14.50
+object-group network g-CWW-AUTHACC-OUT_PRIV
+ description HMS Authentication Servers
+ network-object host 10.11.216.18
+ network-object host 10.11.216.32
+ network-object host 10.11.216.145
+ network-object host 10.11.235.33
+ network-object host 10.11.235.34
+ network-object host 10.11.235.50
+ network-object host 10.11.235.55
+ network-object host 10.12.192.116
+ network-object host 10.12.208.66
+ network-object host 10.12.208.68
+ network-object host 10.216.4.203
+ network-object host 10.216.4.204
+ network-object host 10.216.180.183
+ network-object host 10.216.180.184
+ network-object host 10.225.104.167
+ network-object host 10.80.14.55
+ network-object host 10.80.14.58
+ network-object host 10.80.14.100
+ network-object host 10.80.14.146
+ network-object host 10.80.14.147
+ network-object host 10.80.14.60
+ network-object host 10.80.14.126
+ network-object host 10.80.14.127
+ network-object host 10.80.14.122
+ network-object host 10.80.14.115
+ network-object host 10.80.14.116
+ network-object host 10.80.14.129
+ network-object host 10.80.14.133
+object-group network g-CWW-BMCPERF-OUT_PRIV
+ description HMS BMC Perf Servers
+ network-object host 10.11.216.156
+ network-object host 10.12.192.36
+ network-object host 10.216.180.235
+ network-object host 10.225.104.157
+ network-object host 10.80.14.14
+ network-object host 10.80.14.77
+ network-object host 10.80.14.101
+object-group network g-CWW-BMCBPPM-OUT_PRIV
+ description HMS BMC BPPM Servers
+ network-object host 10.11.216.135
+ network-object host 10.11.216.151
+ network-object host 10.11.216.157
+ network-object host 10.11.216.161
+ network-object host 10.11.216.172
+ network-object host 10.11.216.173
+ network-object host 10.11.216.174
+ network-object host 10.11.235.10
+ network-object host 10.12.192.33
+ network-object host 10.12.192.34
+ network-object host 10.12.192.36
+ network-object host 10.12.192.37
+ network-object host 10.12.192.43
+ network-object host 10.12.192.48
+ network-object host 10.12.192.118
+ network-object host 10.216.64.1
+ network-object host 10.216.180.8
+ network-object host 10.216.180.75
+ network-object host 10.216.180.108
+ network-object host 10.216.180.109
+ network-object host 10.216.180.236
+ network-object host 10.216.180.243
+ network-object host 10.216.180.248
+ network-object host 10.225.104.143
+ network-object host 10.225.104.144
+ network-object host 10.225.104.154
+ network-object host 10.225.104.158
+ network-object host 10.225.104.175
+ network-object host 10.80.14.21
+ network-object host 10.80.14.123
+ network-object host 10.80.14.15
+ network-object host 10.80.14.22
+ network-object host 10.80.14.6
+ network-object host 10.80.14.19
+ network-object host 10.80.14.20
+ network-object host 10.80.14.73
+ network-object host 10.80.14.74
+ network-object host 10.80.14.77
+ network-object host 10.80.14.78
+ network-object host 10.80.14.153
+ network-object host 10.80.14.8
+ network-object host 10.80.14.5
+ network-object host 10.80.14.17
+ network-object host 10.80.14.18
+ network-object host 10.80.14.12
+ network-object host 10.80.14.124
+ network-object host 10.80.14.71
+ network-object host 10.80.14.72
+ network-object host 10.80.14.125
+ network-object host 10.80.14.102
+object-group network g-CWW-CHECKPOINT-OUT_PRIV
+ description HMS Provider-1 Servers
+ network-object 10.5.0.0 255.255.254.0
+ network-object 10.6.0.0 255.255.254.0
+ network-object 10.11.244.0 255.255.254.0
+ network-object 10.12.210.0 255.255.254.0
+object-group network g-CWW-EMCCC-OUT_PRIV
+ description HMS EMC Servers
+ network-object host 10.8.2.5
+ network-object host 10.12.9.129
+ network-object host 10.12.206.1
+ network-object host 10.216.6.90
+ network-object host 10.216.6.92
+ network-object host 10.216.6.94
+ network-object host 10.216.6.96
+ network-object host 10.216.6.98
+ network-object host 10.216.6.236
+ network-object host 10.218.8.90
+ network-object host 10.80.14.91
+ network-object host 10.80.14.92
+ network-object host 10.80.14.93
+ network-object host 10.80.14.85
+ network-object host 10.80.14.83
+object-group network g-CWW-HPSIM-OUT_PRIV
+ description HMS HPSIM Servers
+ network-object host 10.11.216.51
+ network-object host 10.216.180.68
+ network-object host 10.225.104.142
+ network-object host 10.80.14.28
+ network-object host 10.80.14.25
+ network-object host 10.80.14.27
+object-group network g-CWW-LOWLEVEL-OUT_PRIV
+ description HMS Bastion Servers
+ network-object host 10.11.216.20
+ network-object host 10.11.216.66
+ network-object host 10.11.216.67
+ network-object host 10.11.217.139
+ network-object host 10.11.217.140
+ network-object host 10.11.217.141
+ network-object host 10.11.217.142
+ network-object host 10.11.217.145
+ network-object host 10.11.217.146
+ network-object host 10.11.217.156
+ network-object host 10.11.217.158
+ network-object host 10.216.5.67
+ network-object host 10.216.5.68
+ network-object host 10.216.180.82
+ network-object host 10.225.104.147
+ network-object host 10.80.14.67
+ network-object host 10.80.14.97
+ network-object host 10.80.14.31
+ network-object host 10.80.14.32
+ network-object host 10.80.14.81
+ network-object host 10.80.14.82
+ network-object host 10.80.14.29
+ network-object host 10.80.14.30
+ network-object host 10.80.14.33
+ network-object host 10.80.14.159
+ network-object host 10.80.14.79
+ network-object host 10.80.14.80
+ network-object host 10.80.14.86
+ network-object host 10.80.14.24
+object-group network g-CWW-PATCHINGAV-OUT_PRIV
+ description HMS Patching and AV Servers
+ network-object host 10.12.9.65
+ network-object host 10.12.9.71
+ network-object host 10.12.9.72
+ network-object host 10.216.16.113
+ network-object host 10.216.16.114
+ network-object host 10.216.180.182
+ network-object host 10.216.180.232
+ network-object host 10.80.14.52
+ network-object host 10.80.14.37
+ network-object host 10.80.14.35
+ network-object host 10.80.14.34
+ network-object host 10.80.14.36
+ network-object host 10.80.14.87
+ network-object host 10.80.14.50
+object-group network g-CWW-BMCADDM-GLOBAL
+ description HMS Public Address ADDM
+ network-object 217.135.0.16 255.255.255.240
+ network-object 217.135.1.16 255.255.255.240
+ network-object 217.135.2.16 255.255.255.240
+ network-object 217.135.3.16 255.255.255.240
+ network-object 217.135.4.16 255.255.255.240
+ network-object 217.135.5.16 255.255.255.240
+object-group network g-CWW-MONITORING-GLOBAL
+ description HMS Public Address  Monitoring
+ network-object 217.135.0.32 255.255.255.224
+ network-object 217.135.1.32 255.255.255.224
+ network-object 217.135.2.32 255.255.255.224
+ network-object 217.135.3.32 255.255.255.224
+ network-object 217.135.4.32 255.255.255.224
+ network-object 217.135.5.32 255.255.255.224
+object-group network g-CWW-MANAGEMENT-GLOBAL
+ description HMS Public Address Management
+ network-object 217.135.0.64 255.255.255.224
+ network-object 217.135.1.64 255.255.255.224
+ network-object 217.135.2.64 255.255.255.224
+ network-object 217.135.3.64 255.255.255.224
+ network-object 217.135.4.64 255.255.255.224
+ network-object 217.135.5.64 255.255.255.224
+object-group network g-CWW-SERVICES-GLOBAL
+ description HMS Public Address Services
+ network-object 217.135.0.96 255.255.255.224
+ network-object 217.135.1.96 255.255.255.224
+ network-object 217.135.2.96 255.255.255.224
+ network-object 217.135.3.96 255.255.255.224
+ network-object 217.135.4.96 255.255.255.224
+ network-object 217.135.5.96 255.255.255.224
+object-group network g-CWW-LOWLEVEL-GLOBAL
+ description HMS Public Address Services
+ network-object 217.135.0.128 255.255.255.240
+ network-object 217.135.1.128 255.255.255.240
+ network-object 217.135.2.128 255.255.255.240
+ network-object 217.135.3.128 255.255.255.240
+ network-object 217.135.4.128 255.255.255.240
+ network-object 217.135.5.128 255.255.255.240
+object-group network g-CWW-DMZ-GLOBAL
+ description HMS Public Address DMZ
+ network-object 217.135.9.0 255.255.255.224
+ network-object 217.135.9.32 255.255.255.224
+ network-object 217.135.9.64 255.255.255.224
+ network-object 217.135.9.96 255.255.255.224
+ network-object 217.135.9.128 255.255.255.224
+ network-object 217.135.9.160 255.255.255.224
+object-group network g-CWW-PROVIDER-GLOBAL
+ description HMS Public Address Provider-1
+ network-object 62.25.79.0 255.255.255.0
+ network-object 62.208.150.0 255.255.255.0
+ network-object 212.62.29.0 255.255.255.0
+ network-object 212.62.28.0 255.255.255.0
+ network-object 216.239.220.0 255.255.255.0
+ network-object 216.239.221.0 255.255.255.0
+ network-object 217.135.12.0 255.255.255.0
+ network-object 217.135.13.0 255.255.255.0
+ network-object 217.135.14.0 255.255.255.0
+ network-object 217.135.15.0 255.255.255.0
+ network-object 217.135.37.0 255.255.255.0
+object-group network g-CWW-SBE-GLOBAL
+ description Public addresss for the SBE servers
+ network-object host 217.135.0.194
+ network-object host 217.135.1.194
+ network-object host 217.135.2.194
+ network-object host 217.135.3.194
+ network-object host 217.135.4.194
+ network-object host 217.135.5.194
+object-group network g-CWW-SYMANTECBACKUP-IN
+ description CWW Backup Solution
+ network-object host 172.16.6.96
+ network-object host 172.16.255.200
+ network-object host 172.16.255.205
+ network-object host 172.16.255.206
+ network-object host 172.16.255.207
+ network-object host 172.16.255.208
+ network-object host 172.16.255.209
+ network-object host 172.16.255.210
+ network-object host 172.16.255.236
+ network-object host 172.18.1.4
+ network-object host 172.18.1.6
+ network-object host 172.18.1.8
+ network-object host 172.18.1.11
+ network-object host 172.18.1.12
+ network-object host 172.18.1.15
+ network-object host 172.25.104.160
+ network-object host 172.25.104.161
+ network-object host 172.25.104.162
+ network-object host 172.25.104.163
+ network-object host 172.25.104.164
+ network-object host 172.25.104.165
+ network-object host 172.25.104.166
+ network-object host 10.12.9.49
+ network-object host 10.12.9.50
+ network-object host 10.12.9.51
+ network-object host 10.12.200.161
+ network-object host 10.12.200.162
+ network-object host 10.12.200.163
+ network-object 217.135.0.224 255.255.255.224
+ network-object 217.135.1.224 255.255.255.224
+ network-object 217.135.2.224 255.255.255.224
+ network-object 217.135.3.224 255.255.255.224
+ network-object 217.135.4.224 255.255.255.224
+ network-object 217.135.5.224 255.255.255.224
+object-group network g-CWW-SYMANTECBACKUP-OUT
+ description CWW Backup Solution
+ network-object host 172.16.6.96
+ network-object host 172.16.255.200
+ network-object host 172.16.255.205
+ network-object host 172.16.255.206
+ network-object host 172.16.255.207
+ network-object host 172.16.255.208
+ network-object host 172.16.255.209
+ network-object host 172.16.255.210
+ network-object host 172.16.255.236
+ network-object host 172.18.1.4
+ network-object host 172.18.1.6
+ network-object host 172.18.1.8
+ network-object host 172.18.1.11
+ network-object host 172.18.1.12
+ network-object host 172.18.1.15
+ network-object host 172.25.104.160
+ network-object host 172.25.104.161
+ network-object host 172.25.104.162
+ network-object host 172.25.104.163
+ network-object host 172.25.104.164
+ network-object host 172.25.104.165
+ network-object host 172.25.104.166
+ network-object host 10.12.9.49
+ network-object host 10.12.9.50
+ network-object host 10.12.9.51
+ network-object host 10.12.200.161
+ network-object host 10.12.200.162
+ network-object host 10.12.200.163
+ network-object 217.135.0.224 255.255.255.224
+ network-object 217.135.1.224 255.255.255.224
+ network-object 217.135.2.224 255.255.255.224
+ network-object 217.135.3.224 255.255.255.224
+ network-object 217.135.4.224 255.255.255.224
+ network-object 217.135.5.224 255.255.255.224
+object-group network g-CWW-AUTHACC-IN
+ group-object g-CWW-AUTHACC-IN_PRIV
+ group-object g-CWW-SERVICES-GLOBAL
+object-group network g-CWW-BMCADDM-IN
+ group-object g-CWW-BMCADDM-IN_PRIV
+ group-object g-CWW-BMCADDM-GLOBAL
+object-group network g-CWW-BMCPERF-IN
+ group-object g-CWW-BMCPERF-IN_PRIV
+ group-object g-CWW-MONITORING-GLOBAL
+object-group network g-CWW-BMCBPPM-IN
+ group-object g-CWW-BMCBPPM-IN_PRIV
+ group-object g-CWW-BMCBPPM-IN_PUB
+ group-object g-CWW-MONITORING-GLOBAL
+object-group network g-CWW-CHECKPOINT-IN
+ group-object g-CWW-CHECKPOINT-IN_PRIV
+ group-object g-CWW-PROVIDER-GLOBAL
+object-group network g-CWW-EMCCC-IN
+ group-object g-CWW-EMCCC-IN_PRIV
+object-group network g-CWW-HPSIM-IN
+ group-object g-CWW-HPSIM-IN_PRIV
+ group-object g-CWW-MONITORING-GLOBAL
+object-group network g-CWW-LOWLEVEL-IN
+ group-object g-CWW-LOWLEVEL-IN_PRIV
+ group-object g-CWW-LOWLEVEL-IN_PUB
+ group-object g-CWW-MANAGEMENT-GLOBAL
+object-group network g-CWW-PATCHINGAV-IN
+ group-object g-CWW-PATCHINGAV-IN_PRIV
+ group-object g-CWW-SERVICES-GLOBAL
+object-group network g-CWW-SBE-IN
+ group-object g-CWW-SBE-GLOBAL
+object-group network g-CWW-AUTHACC-OUT
+ group-object g-CWW-AUTHACC-OUT_PRIV
+ group-object g-CWW-AUTHACC-OUT_PUB
+ group-object g-CWW-SERVICES-GLOBAL
+object-group network g-CWW-BMCPERF-OUT
+ group-object g-CWW-BMCPERF-OUT_PRIV
+ group-object g-CWW-MONITORING-GLOBAL
+object-group network g-CWW-BMCBPPM-OUT
+ group-object g-CWW-BMCBPPM-OUT_PRIV
+ group-object g-CWW-BMCBPPM-OUT_PUB
+ group-object g-CWW-MONITORING-GLOBAL
+object-group network g-CWW-CHECKPOINT-OUT
+ group-object g-CWW-CHECKPOINT-OUT_PRIV
+ group-object g-CWW-PROVIDER-GLOBAL
+object-group network g-CWW-EMCCC-OUT
+ group-object g-CWW-EMCCC-OUT_PRIV
+object-group network g-CWW-HPSIM-OUT
+ group-object g-CWW-HPSIM-OUT_PRIV
+ group-object g-CWW-MONITORING-GLOBAL
+object-group network g-CWW-LOWLEVEL-OUT
+ group-object g-CWW-LOWLEVEL-OUT_PRIV
+ group-object g-CWW-LOWLEVEL-OUT_PUB
+ group-object g-CWW-DMZ-GLOBAL
+object-group network g-CWW-PATCHINGAV-OUT
+ group-object g-CWW-PATCHINGAV-OUT_PRIV
+ group-object g-CWW-SERVICES-GLOBAL
+object-group service CEN-BMCADDM-IN_TCP tcp
+ description HMS ADDM Protocols
+ port-object eq 4
+ port-object eq ssh
+ port-object eq 135
+ port-object range 902 903
+ port-object eq 1433
+ port-object eq sqlnet
+object-group service CEN-BMCADDM-IN_UDP udp
+ description HMS ADDM Protocols
+ port-object eq snmp
+ port-object eq 902
+object-group network CEN-BMCADDM-IN
+ description HMS BMC ADDM Servers
+ network-object host 10.80.7.143
+ network-object host 10.80.7.144
+object-group service CEN-BMCBPPM-IN_TCP tcp
+ description HMS PNET Protocols
+ port-object eq ssh
+ port-object eq smtp
+ port-object eq domain
+ port-object eq www
+ port-object eq pop3
+ port-object eq https
+ port-object range 902 903
+ port-object range 3181 3185
+ port-object eq 8083
+ port-object range 8888 8890
+ port-object eq 50005
+ port-object range 32080 32099
+object-group service CEN-BMCBPPM-IN_UDP udp
+ description HMS PNET Protocols
+ port-object eq domain
+ port-object eq snmp
+ port-object eq 902
+object-group network CEN-BMCBPPM-IN
+ description HMS BMC BPPM Servers
+ network-object host 10.80.7.145
+ network-object host 10.80.7.146
+ network-object host 10.80.7.147
+ network-object host 10.80.7.151
+object-group service CEN-BMCBPPM-OUT_TCP tcp
+ description HMS PNET Protocols
+ port-object eq www
+ port-object eq https
+ port-object range 2059 2065
+ port-object range 3182 3183
+ port-object range 32080 32099
+object-group service CEN-BMCBPPM-OUT_UDP udp
+ description HMS PNET Protocols
+ port-object eq snmptrap
+ port-object eq syslog
+object-group network CEN-BMCBPPM-OUT
+ description HMS BMC BPPM Servers
+ network-object host 10.80.7.146
+ network-object host 10.80.7.147
+ network-object host 10.80.7.151
+object-group service CEN-PATCHINGAV-IN_TCP tcp
+ description HMS Patching and AV Protocols
+ port-object range 8192 8194
+ port-object eq 8200
+object-group service CEN-PATCHINGAV-OUT_TCP tcp
+ description HMS Patching and AV Protocols
+ port-object eq www
+ port-object eq https
+ port-object eq 2967
+ port-object eq 8014
+ port-object range 8192 8194
+ port-object eq 8002
+ port-object eq 8100
+ port-object eq 9005
+ port-object eq 7070
+object-group network CEN-PATCHINGAV-OUT
+ description HMS Patching and AV Servers
+ network-object host 10.80.7.153
+ network-object host 10.80.7.154
+ network-object host 10.80.7.158
+ network-object host 10.80.7.159
+ network-object host 10.80.7.160
+object-group network CEN-MSL-BMCADDM-IN
+ description HMS BMC ADDM Servers
+ network-object host 10.11.216.209
+ network-object host 10.11.216.210
+ network-object host 10.12.198.17
+ network-object host 10.12.198.18
+ network-object host 10.216.180.112
+ network-object host 10.216.180.113
+ network-object host 10.225.104.222
+ network-object host 10.225.104.223
+ network-object host 10.104.199.143
+ network-object host 10.104.199.144
+object-group network CEN-MSL-BMCBPPM-IN
+ description HMS BMC BPPM Servers
+ network-object host 10.11.216.134
+ network-object host 10.11.216.135
+ network-object host 10.11.216.137
+ network-object host 10.11.216.155
+ network-object host 10.104.199.145
+ network-object host 10.104.199.146
+ network-object host 10.104.199.147
+ network-object host 10.104.199.151
+ network-object host 10.104.199.148
+object-group network CEN-MSL-BMCBPPM-OUT
+ description HMS BMC BPPM Servers
+ network-object host 10.11.216.135
+ network-object host 10.11.216.151
+ network-object host 10.11.216.157
+ network-object host 10.11.216.161
+ network-object host 10.104.199.145
+ network-object host 10.104.199.146
+ network-object host 10.104.199.147
+ network-object host 10.104.199.151
+ network-object host 10.104.199.148
+object-group network CEN-MSL-PATCHINGAV-OUT
+ description HMS Patching and AV Servers
+ network-object host 10.12.9.65
+ network-object host 10.12.9.71
+ network-object host 10.12.9.72
+ network-object host 10.216.16.113
+ network-object host 10.104.199.153
+ network-object host 10.104.199.154
+ network-object host 10.104.199.158
+ network-object host 10.104.199.159
+ network-object host 10.104.199.160
+object-group network CWW-AUTHACC-ALL
+ group-object g-CWW-AUTHACC-IN
+ group-object g-CWW-AUTHACC-OUT
+object-group network CWW-BMCADDM-ALL
+ group-object g-CWW-BMCADDM-IN
+object-group network CWW-BMCPERF-ALL
+ group-object g-CWW-BMCPERF-IN
+ group-object g-CWW-BMCPERF-OUT
+object-group network CWW-BMCBPPM-ALL
+ group-object g-CWW-BMCBPPM-IN
+ group-object g-CWW-BMCBPPM-OUT
+object-group network CWW-CHECKPOINT-ALL
+ group-object g-CWW-CHECKPOINT-IN
+ group-object g-CWW-CHECKPOINT-OUT
+object-group network CWW-EMCCC-ALL
+ group-object g-CWW-EMCCC-IN
+ group-object g-CWW-EMCCC-OUT
+object-group network CWW-HPSIM-ALL
+ group-object g-CWW-HPSIM-IN
+ group-object g-CWW-HPSIM-OUT
+object-group network CWW-LOWLEVEL-IN
+ group-object g-CWW-LOWLEVEL-IN
+object-group network CWW-LOWLEVEL-OUT
+ group-object g-CWW-LOWLEVEL-OUT
+object-group network CWW-PATCHINGAV-ALL
+ group-object g-CWW-PATCHINGAV-IN
+ group-object g-CWW-PATCHINGAV-OUT
+object-group service CWW-M2M-DC2DC_TCP tcp
+ description DC to DC CUST DC to DC
+ port-object eq 135
+ port-object eq 445
+ port-object eq 137
+ port-object eq netbios-ssn
+ port-object eq 123
+ port-object eq domain
+ port-object eq 88
+ port-object eq kerberos
+ port-object eq ldap
+ port-object eq 5050
+ port-object eq sip
+ port-object eq 50
+ port-object eq 500
+ port-object eq ldaps
+ port-object eq 21151
+ port-object eq 3268
+ port-object eq 3269
+ port-object eq 464
+object-group service CWW-M2M-DC2DC_UDP udp
+ description DC to DC CUST DC to DC
+ port-object eq 135
+ port-object eq netbios-ns
+ port-object eq netbios-dgm
+ port-object eq 445
+ port-object eq ntp
+ port-object eq domain
+ port-object eq 88
+ port-object eq 389
+ port-object eq 4500
+ port-object eq isakmp
+ port-object eq 464
+object-group network Cust-Domains-ALL
+ description Customer Domain servers
+ network-object host 10.13.51.72
+ network-object host 10.13.51.74
+ network-object host 10.216.183.67
+ network-object host 10.216.183.69
+ network-object host 10.80.7.7
+ network-object host 10.80.7.9
+object-group network CWMGMT-DMZ-NTP
+ network-object host 217.135.9.9
+ network-object host 217.135.9.10
+ network-object host 217.135.9.102
+ network-object host 217.135.9.103
+ network-object host 217.135.9.168
+ network-object host 217.135.9.169
+object-group network CENTRICA-MON-POD
+ description Centrica dedicated monitoring pod
+ network-object 10.104.199.128 255.255.255.128
+object-group network CEN-SWI-DNS-PROD
+ description SWI Domain Controllers
+ network-object host 10.80.3.196
+ network-object host 10.80.3.197
+object-group network SWI-ASPECT-eWFM-BACKMGMT
+ network-object 10.80.30.128 255.255.255.128
+object-group network Centrica_Cortex_SNMP_Access_V11
+ network-object host 10.80.23.131
+ network-object host 10.80.23.132
+ network-object host 10.80.23.133
+ network-object host 10.80.23.134
+ network-object host 10.80.23.135
+ network-object host 10.80.23.136
+ network-object host 10.80.23.137
+ network-object host 10.80.23.141
+ network-object host 10.80.23.142
+ network-object host 10.80.3.227
+ network-object host 10.80.3.229
+ network-object host 10.80.23.196
+ network-object host 10.80.23.197
+ network-object host 10.80.23.138
+ network-object host 10.80.23.139
+ network-object host 10.80.23.180
+ network-object host 10.80.23.181
+ network-object host 10.80.23.140
+ network-object host 10.80.23.228
+ network-object host 10.80.23.229
+ network-object host 10.80.23.230
+ network-object host 10.80.23.231
+ network-object host 10.80.23.232
+ network-object host 10.80.23.233
+ network-object host 10.80.23.234
+ network-object host 10.80.23.235
+ network-object host 10.80.23.236
+ network-object host 10.80.23.237
+ network-object host 10.80.23.238
+ network-object host 10.80.23.239
+ network-object host 10.80.23.240
+ network-object host 10.80.23.164
+ network-object host 10.80.23.165
+ network-object host 10.80.23.166
+ network-object host 10.80.23.167
+ network-object host 10.80.23.168
+ network-object host 10.80.23.169
+ network-object host 10.80.23.170
+object-group service esrs-TCP tcp
+ port-object eq ftp
+ port-object eq smtp
+ port-object eq www
+ port-object eq https
+ port-object eq 2163
+ port-object range 5400 5414
+ port-object eq 6391
+ port-object eq 6392
+ port-object eq 7725
+ port-object eq 8000
+ port-object eq 9519
+ port-object eq 13456
+ port-object eq 60020
+object-group network EMC-SWI-ESRSS
+ network-object host 10.13.11.239
+ network-object host 10.13.11.240
+ network-object host 10.13.11.241
+object-group network CEN-ESRSS-CLIENTS
+ network-object host 10.80.8.14
+ network-object host 10.80.8.15
+ network-object host 10.80.8.10
+ network-object host 10.80.8.11
+ network-object host 10.80.8.12
+object-group network SWI-MGMT-POD
+ description Swindon VC
+ network-object 10.80.7.128 255.255.255.128
+object-group network SWI-MVCCOLO-FRONT
+ description Swindon TP
+ network-object 10.202.253.0 255.255.255.128
+object-group service colo_VC_tp_tcp tcp
+ description Swindon TP
+ port-object eq https
+ port-object range 902 903
+object-group network MSL-MVCCOLO-FRONT
+ description MSL
+ network-object 10.202.255.64 255.255.255.192
+object-group service CEN-SWI-EDGE-VCENTR_UDP udp
+ description Acano DMZ Vcenter UDP Connectivity
+ port-object eq domain
+ port-object eq 902
+ port-object eq 903
+object-group service CEN-SWI-EDGE-VCENTR_TCP tcp
+ description Acano DMZ Vcenter TCP Connectivity
+ port-object eq https
+ port-object range 902 903
+ port-object eq 5989
+ port-object eq www
+ port-object eq domain
+object-group network CEN-SWI-EDGE-ESX_MGT
+ description ESX Management Connections in DMZ
+ network-object host 10.232.192.227
+ network-object host 10.232.192.229
+object-group network CEN-SWI-EDGE-VCENTR_MGMT
+ description Vcenter  Console Connection
+ network-object 10.80.7.128 255.255.255.128
+object-group network CEN-IPT-VERINT-PREPROD_ESX
+ description IPT Phase 2 ESX IPs
+ network-object host 10.232.193.228
+ network-object host 10.232.193.229
+ network-object host 10.232.194.92
+ network-object host 10.232.194.93
+object-group network CEN-FIREWALL-hosts
+ description Centrica ASA host IPs
+ network-object host 10.80.9.39
+ network-object host 10.80.9.31
+ network-object host 10.80.9.25
+ network-object host 10.80.9.27
+ network-object host 10.80.9.29
+ network-object host 10.80.9.33
+ network-object host 10.80.9.35
+ network-object host 10.80.9.48
+ network-object host 10.80.9.83
+ network-object host 10.80.9.81
+object-group network censg-swi-coll-01
+ description SWI Arcsight Collector
+ network-object host 10.80.7.136
+object-group network censg-msl-esm-01
+ description MSL Arcsight Manager
+ network-object host 10.104.199.137
+object-group network censg-msl-alg-01
+ description MSL Arcsight Logger
+ network-object host 10.104.199.136
+object-group network CEN-BIGIP-hosts
+ description centrica swi-BIGIP IPs
+ network-object host 10.80.9.61
+ network-object host 10.80.9.62
+ network-object host 10.80.9.63
+object-group network MGMTEMC-ALL-BHS-group
+ network-object host 10.80.14.40
+object-group service MGMTEMC-BH-IN_UDP udp
+ port-object eq snmp
+object-group service MGMTEMC-BH-IN_TCP tcp
+ port-object eq ssh
+ port-object eq www
+ port-object eq https
+ port-object eq 3389
+ port-object eq 9002
+ port-object eq 9443
+ port-object eq 902
+ port-object eq 1556
+ port-object eq 13724
+ port-object eq 161
+object-group network CAPSULE-SERVERS
+ network-object host 217.135.0.107
+ network-object host 217.135.3.107
+object-group service CAPSULE-SERVER-PORTS-TCP tcp
+ port-object eq www
+ port-object eq https
+ port-object eq 8443
+ port-object eq 5647
+object-group network CEN-SWI-PRODUCTION-FIREWALLS
+ network-object host 10.80.9.25
+ network-object host 10.80.9.26
+ network-object host 10.80.9.29
+ network-object host 10.80.9.30
+ network-object host 10.80.9.33
+ network-object host 10.80.9.34
+ network-object host 10.80.9.35
+ network-object host 10.80.9.36
+ network-object host 10.80.9.31
+ network-object host 10.80.9.32
+ network-object host 10.80.9.115
+ network-object host 10.80.9.110
+ network-object host 10.80.9.83
+ network-object host 10.80.9.84
+ network-object host 10.80.9.81
+ network-object host 10.80.9.82
+ network-object host 10.232.193.67
+ network-object host 10.232.193.68
+ network-object host 10.80.9.39
+object-group service CEN-READONLY-SERVICES-UDP udp
+ port-object eq syslog
+object-group network cen-swi-internet-switches
+ network-object host 10.202.252.165
+ network-object host 10.202.252.166
+object-group service VADP-Backup-ports
+ service-object tcp destination eq https
+ service-object udp destination eq 902
+ service-object tcp destination eq 902
+access-list cascade_acl remark << Cascade ACL >>
+access-list cascade_acl remark << Trust all >>
+access-list cascade_acl extended permit ip any any
+access-list mgmt-fw-core-access_acl remark <<GENERIC MANAGEMENT AND MONITORING>>
+access-list mgmt-fw-core-access_acl extended deny udp any any object-group NOISE-AND-DENIED-SERVICES_UDP
+access-list mgmt-fw-core-access_acl extended permit icmp any object-group CW-ICMP-GRP_CWMGMT echo
+access-list mgmt-fw-core-access_acl extended permit udp any object-group CW-NTP-GRP_CWMGMT eq ntp
+access-list mgmt-fw-core-access_acl extended permit udp any object-group CW-SYSLOG-GRP_CWMGMT eq syslog
+access-list mgmt-fw-core-access_acl extended permit udp any object-group CW-SNMPTRAP-GRP_CWMGMT eq snmptrap
+access-list mgmt-fw-core-access_acl extended permit udp any object-group CW-DNS-GRP_CWMGMT eq domain
+access-list mgmt-fw-core-access_acl extended permit udp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_UDP
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_TCP
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group CW-EMAIL-GRP_CWMGMT eq smtp
+access-list mgmt-fw-core-access_acl remark <<HOSTING NETWORK MONITORING>>
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group CW-BMC-RT-GRP_CWMGMT object-group CW-BMC-RT-OUT_TCP
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group CW-BMC-GRP_CWMGMT object-group CW-BMC-OUT_TCP
+access-list mgmt-fw-core-access_acl remark <<SHARED STORAGE REPORTING>>
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group CW-STOR-GRP_CWMGMT object-group CW-STOR-OUT_TCP
+access-list mgmt-fw-core-access_acl remark <<ANTI-VIRUS>>
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group CW-AVMGMT-GRP_CWMGMT object-group CW-AVMGMT_TCP
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group CW-AVUPDATE-GRP_CWMGMT object-group CW-AVUPDATE-OUT_TCP
+access-list mgmt-fw-core-access_acl remark <<HP SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group CW-HPIM-GRP_CWMGMT object-group CW-HPIM-OUT_TCP
+access-list mgmt-fw-core-access_acl remark <<UNIX SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group CW-USUS-GRP_CWMGMT object-group CW-USUS-OUT_TCP
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group CW-UNIXGW-GRP_CWMGMT eq 8080
+access-list mgmt-fw-core-access_acl extended permit tcp any host 10.11.217.130 eq ftp
+access-list mgmt-fw-core-access_acl remark <<MICROSOFT SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group CW-MSUS-GRP_CWMGMT object-group HTTP-HTTPS_TCP
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_TCP
+access-list mgmt-fw-core-access_acl extended permit udp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_UDP
+access-list mgmt-fw-core-access_acl remark <<DELL SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group CW-MSFT-MAN-GRP_CWMGMT object-group CW-DRAC-MAN_TCP
+access-list mgmt-fw-core-access_acl remark << swan_ipt interfac to Bastion >>
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.20.0 255.255.255.0 host 10.80.7.135 eq ssh
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.20.0 255.255.255.0 host 10.80.7.135 eq www
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.20.0 255.255.255.0 host 10.80.7.135 eq https
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.20.0 255.255.255.0 host 10.80.7.135 eq 8443
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.28.0 255.255.255.128 object-group CW-BACKMAS-SWI_BAK object-group CW-BACKMAS-IN_TCP
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.28.0 255.255.255.128 object-group CW-BACKMED-GRP_BAK object-group CW-BACKMED-IN_TCP
+access-list mgmt-fw-core-access_acl extended permit icmp 10.80.28.0 255.255.255.128 object-group CW-ICMP-GRP_BAK echo
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.28.0 255.255.255.0 host 10.11.216.51 eq 2381
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.28.0 255.255.255.0 host 10.11.216.51 eq 2301
+access-list mgmt-fw-core-access_acl extended permit icmp 10.80.28.0 255.255.255.0 host 10.11.216.51
+access-list mgmt-fw-core-access_acl extended permit tcp object censwipaspalm01 object hst-10.80.8.133 object-group EMC-SAN-PATH-MONITORING_TCP
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group g-CWW-AUTHACC-OUT object-group g-CWW-AUTHACC-OUT_TCP
+access-list mgmt-fw-core-access_acl extended permit udp any object-group g-CWW-AUTHACC-OUT object-group g-CWW-AUTHACC-OUT_UDP
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group g-CWW-BMCPERF-OUT object-group g-CWW-BMCPERF-OUT_TCP
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group g-CWW-CHECKPOINT-OUT object-group g-CWW-CHECKPOINT-OUT_TCP
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group g-CWW-EMCCC-OUT object-group g-CWW-EMCCC-OUT_TCP
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group g-CWW-HPSIM-OUT object-group g-CWW-HPSIM-OUT_TCP
+access-list mgmt-fw-core-access_acl extended permit udp any object-group g-CWW-HPSIM-OUT object-group g-CWW-HPSIM-OUT_UDP
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group g-CWW-LOWLEVEL-OUT object-group g-CWW-LOWLEVEL-OUT_TCP
+access-list mgmt-fw-core-access_acl extended permit udp any object-group g-CWW-LOWLEVEL-OUT object-group g-CWW-LOWLEVEL-OUT_UDP
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group g-CWW-PATCHINGAV-OUT object-group g-CWW-PATCHINGAV-OUT_TCP
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group g-CWW-BMCBPPM-OUT object-group g-CWW-BMCBPPM-OUT_TCP
+access-list mgmt-fw-core-access_acl extended permit udp any object-group g-CWW-BMCBPPM-OUT object-group g-CWW-BMCBPPM-OUT_UDP
+access-list mgmt-fw-core-access_acl extended permit tcp any object-group g-CWW-SYMANTECBACKUP-OUT object-group g-CWW-SYMANTECBACKUP-OUT_TCP
+access-list mgmt-fw-core-access_acl extended permit tcp host 10.80.28.28 host 10.104.199.146 eq 2059
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.20.0 255.255.255.0 host 10.104.199.146 eq 2059
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.20.0 255.255.255.0 host 10.104.199.147 eq 2059
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.20.0 255.255.255.0 host 10.104.199.146 eq www
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.20.0 255.255.255.0 host 10.104.199.147 eq www
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.20.0 255.255.255.0 host 10.104.199.151 eq www
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.28.0 255.255.255.0 host 10.104.199.146 eq 2059
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.28.0 255.255.255.0 host 10.104.199.147 eq 2059
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.28.0 255.255.255.0 host 10.104.199.146 eq www
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.28.0 255.255.255.0 host 10.104.199.147 eq www
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.28.0 255.255.255.0 host 10.104.199.151 eq www
+access-list mgmt-fw-core-access_acl remark << SPT Interface to the Bastion >>
+access-list mgmt-fw-core-access_acl extended permit tcp 10.132.255.0 255.255.255.128 host 10.80.7.135 eq ssh
+access-list mgmt-fw-core-access_acl extended permit tcp 10.132.255.0 255.255.255.128 host 10.80.7.135 eq www
+access-list mgmt-fw-core-access_acl extended permit tcp 10.132.255.0 255.255.255.128 host 10.80.7.135 eq https
+access-list mgmt-fw-core-access_acl extended permit tcp 10.132.254.0 255.255.255.128 host 10.80.7.135 eq ssh
+access-list mgmt-fw-core-access_acl extended permit tcp 10.132.254.0 255.255.255.128 host 10.80.7.135 eq www
+access-list mgmt-fw-core-access_acl extended permit tcp 10.132.254.0 255.255.255.128 host 10.80.7.135 eq https
+access-list mgmt-fw-core-access_acl remark << SPT Interface to the Bastion - ICMP >>
+access-list mgmt-fw-core-access_acl extended permit icmp 10.132.255.0 255.255.255.128 host 10.80.7.135 echo
+access-list mgmt-fw-core-access_acl extended permit icmp 10.132.254.0 255.255.255.128 host 10.80.7.135 echo
+access-list mgmt-fw-core-access_acl remark <<CHG000000241634>>
+access-list mgmt-fw-core-access_acl extended permit tcp 10.80.28.0 255.255.255.0 host 10.104.199.151 eq 2059
+access-list mgmt-fw-core-access_acl extended permit udp host 10.80.3.166 host 217.135.9.9 eq ntp
+access-list mgmt-fw-core-access_acl extended permit udp host 10.80.3.166 host 217.135.9.10 eq ntp
+access-list mgmt-fw-core-access_acl remark <<Additional VC Capacity 2 VM-1 ESX >>
+access-list mgmt-fw-core-access_acl extended permit tcp object-group SWI-MVCCOLO-FRONT object-group SWI-MGMT-POD object-group colo_VC_tp_tcp
+access-list mgmt-fw-core-access_acl extended permit udp object-group SWI-MVCCOLO-FRONT object-group SWI-MGMT-POD eq 902
+access-list mgmt-fw-core-access_acl extended permit tcp object-group MSL-MVCCOLO-FRONT object-group SWI-MGMT-POD object-group colo_VC_tp_tcp
+access-list mgmt-fw-core-access_acl extended permit udp object-group MSL-MVCCOLO-FRONT object-group SWI-MGMT-POD eq 902
+access-list mgmt-fw-core-access_acl extended permit udp object-group CEN-SWI-EDGE-ESX_MGT object-group CEN-SWI-EDGE-VCENTR_MGMT object-group CEN-SWI-EDGE-VCENTR_UDP
+access-list mgmt-fw-core-access_acl extended permit tcp object-group CEN-SWI-EDGE-ESX_MGT object-group CEN-SWI-EDGE-VCENTR_MGMT object-group CEN-SWI-EDGE-VCENTR_TCP
+access-list service-console_acl remark <<GENERIC MANAGEMENT AND MONITORING>>
+access-list service-console_acl extended deny udp any any object-group NOISE-AND-DENIED-SERVICES_UDP
+access-list service-console_acl extended permit icmp any object-group CW-ICMP-GRP_CWMGMT echo
+access-list service-console_acl extended permit udp any object-group CW-NTP-GRP_CWMGMT eq ntp
+access-list service-console_acl extended permit udp any object-group CW-SYSLOG-GRP_CWMGMT eq syslog
+access-list service-console_acl extended permit udp any object-group CW-SNMPTRAP-GRP_CWMGMT eq snmptrap
+access-list service-console_acl extended permit udp any object-group CW-DNS-GRP_CWMGMT eq domain
+access-list service-console_acl extended permit udp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_UDP
+access-list service-console_acl extended permit tcp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_TCP
+access-list service-console_acl extended permit tcp any object-group CW-EMAIL-GRP_CWMGMT eq smtp
+access-list service-console_acl remark <<HOSTING NETWORK MONITORING>>
+access-list service-console_acl extended permit tcp any object-group CW-BMC-RT-GRP_CWMGMT object-group CW-BMC-RT-OUT_TCP
+access-list service-console_acl extended permit tcp any object-group CW-BMC-GRP_CWMGMT object-group CW-BMC-OUT_TCP
+access-list service-console_acl remark <<SHARED STORAGE REPORTING>>
+access-list service-console_acl extended permit tcp any object-group CW-STOR-GRP_CWMGMT object-group CW-STOR-OUT_TCP
+access-list service-console_acl remark <<ANTI-VIRUS>>
+access-list service-console_acl extended permit tcp any object-group CW-AVMGMT-GRP_CWMGMT object-group CW-AVMGMT_TCP
+access-list service-console_acl extended permit tcp any object-group CW-AVUPDATE-GRP_CWMGMT object-group CW-AVUPDATE-OUT_TCP
+access-list service-console_acl remark <<HP SERVER MANAGEMENT AND MONITORING>>
+access-list service-console_acl extended permit tcp any object-group CW-HPIM-GRP_CWMGMT object-group CW-HPIM-OUT_TCP
+access-list service-console_acl remark <<UNIX SERVER MANAGEMENT AND MONITORING>>
+access-list service-console_acl extended permit tcp any object-group CW-USUS-GRP_CWMGMT object-group CW-USUS-OUT_TCP
+access-list service-console_acl extended permit tcp any object-group CW-UNIXGW-GRP_CWMGMT eq 8080
+access-list service-console_acl extended permit tcp any host 10.11.217.130 eq ftp
+access-list service-console_acl remark <<MICROSOFT SERVER MANAGEMENT AND MONITORING>>
+access-list service-console_acl extended permit tcp any object-group CW-MSUS-GRP_CWMGMT object-group HTTP-HTTPS_TCP
+access-list service-console_acl extended permit tcp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_TCP
+access-list service-console_acl extended permit udp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_UDP
+access-list service-console_acl remark <<DELL SERVER MANAGEMENT AND MONITORING>>
+access-list service-console_acl extended permit tcp any object-group CW-MSFT-MAN-GRP_CWMGMT object-group CW-DRAC-MAN_TCP
+access-list service-console_acl extended permit tcp object-group CEN-SWI-ESX object-group CEN-SWI-VC object-group ESX-VC_tcp
+access-list service-console_acl extended permit udp object-group CEN-SWI-ESX object-group CEN-SWI-VC object-group ESX-VC_udp
+access-list service-console_acl extended permit icmp object-group CEN-SWI-ESX object-group CEN-SWI-VC echo
+access-list mgmt-pod-backmgmt_acl remark <<GENERIC MANAGEMENT AND MONITORING>>
+access-list mgmt-pod-backmgmt_acl extended deny udp any any object-group NOISE-AND-DENIED-SERVICES_UDP
+access-list mgmt-pod-backmgmt_acl extended permit icmp any object-group CW-ICMP-GRP_CWMGMT echo
+access-list mgmt-pod-backmgmt_acl extended permit udp any object-group CW-NTP-GRP_CWMGMT eq ntp
+access-list mgmt-pod-backmgmt_acl extended permit udp any object-group CW-SYSLOG-GRP_CWMGMT eq syslog
+access-list mgmt-pod-backmgmt_acl extended permit udp any object-group CW-SNMPTRAP-GRP_CWMGMT eq snmptrap
+access-list mgmt-pod-backmgmt_acl extended permit udp any object-group CW-DNS-GRP_CWMGMT eq domain
+access-list mgmt-pod-backmgmt_acl extended permit udp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_UDP
+access-list mgmt-pod-backmgmt_acl extended permit tcp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_TCP
+access-list mgmt-pod-backmgmt_acl extended permit tcp any object-group CW-EMAIL-GRP_CWMGMT eq smtp
+access-list mgmt-pod-backmgmt_acl remark <<HOSTING NETWORK MONITORING>>
+access-list mgmt-pod-backmgmt_acl extended permit tcp any object-group CW-BMC-RT-GRP_CWMGMT object-group CW-BMC-RT-OUT_TCP
+access-list mgmt-pod-backmgmt_acl extended permit tcp any object-group CW-BMC-GRP_CWMGMT object-group CW-BMC-OUT_TCP
+access-list mgmt-pod-backmgmt_acl remark <<SHARED STORAGE REPORTING>>
+access-list mgmt-pod-backmgmt_acl extended permit tcp any object-group CW-STOR-GRP_CWMGMT object-group CW-STOR-OUT_TCP
+access-list mgmt-pod-backmgmt_acl remark <<ANTI-VIRUS>>
+access-list mgmt-pod-backmgmt_acl extended permit tcp any object-group CW-AVMGMT-GRP_CWMGMT object-group CW-AVMGMT_TCP
+access-list mgmt-pod-backmgmt_acl extended permit tcp any object-group CW-AVUPDATE-GRP_CWMGMT object-group CW-AVUPDATE-OUT_TCP
+access-list mgmt-pod-backmgmt_acl remark <<HP SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-pod-backmgmt_acl extended permit tcp any object-group CW-HPIM-GRP_CWMGMT object-group CW-HPIM-OUT_TCP
+access-list mgmt-pod-backmgmt_acl remark <<UNIX SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-pod-backmgmt_acl extended permit tcp any object-group CW-USUS-GRP_CWMGMT object-group CW-USUS-OUT_TCP
+access-list mgmt-pod-backmgmt_acl extended permit tcp any object-group CW-UNIXGW-GRP_CWMGMT eq 8080
+access-list mgmt-pod-backmgmt_acl extended permit tcp any host 10.11.217.130 eq ftp
+access-list mgmt-pod-backmgmt_acl remark <<MICROSOFT SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-pod-backmgmt_acl extended permit tcp any object-group CW-MSUS-GRP_CWMGMT object-group HTTP-HTTPS_TCP
+access-list mgmt-pod-backmgmt_acl extended permit tcp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_TCP
+access-list mgmt-pod-backmgmt_acl extended permit udp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_UDP
+access-list mgmt-pod-backmgmt_acl remark <<DELL SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-pod-backmgmt_acl extended permit tcp any object-group CW-MSFT-MAN-GRP_CWMGMT object-group CW-DRAC-MAN_TCP
+access-list mgmt-pod-backmgmt_acl remark << VC_to_ESX_access >>
+access-list mgmt-pod-backmgmt_acl extended permit tcp object-group cen-swi-vc_ESX object-group cen-swi-esx object-group VC-ESX_TCP
+access-list mgmt-pod-backmgmt_acl extended permit udp object-group cen-swi-vc_ESX object-group cen-swi-esx object-group VC-ESX_UDP
+access-list mgmt-pod-backmgmt_acl extended permit tcp object-group Cust-Domains-ALL object-group CWW-AUTHACC-ALL object-group CWW-M2M-DC2DC_TCP
+access-list mgmt-pod-backmgmt_acl extended permit udp object-group Cust-Domains-ALL object-group CWW-AUTHACC-ALL object-group CWW-M2M-DC2DC_UDP
+access-list mgmt-pod-backmgmt_acl extended permit icmp object-group Cust-Domains-ALL object-group CWW-AUTHACC-ALL echo
+access-list ids-sim-access_acl remark <<GENERIC MANAGEMENT AND MONITORING>>
+access-list ids-sim-access_acl extended deny udp any any object-group NOISE-AND-DENIED-SERVICES_UDP
+access-list ids-sim-access_acl extended permit icmp any object-group CW-ICMP-GRP_CWMGMT echo
+access-list ids-sim-access_acl extended permit udp any object-group CW-NTP-GRP_CWMGMT eq ntp
+access-list ids-sim-access_acl extended permit udp any object-group CW-SYSLOG-GRP_CWMGMT eq syslog
+access-list ids-sim-access_acl extended permit udp any object-group CW-SNMPTRAP-GRP_CWMGMT eq snmptrap
+access-list ids-sim-access_acl extended permit udp any object-group CW-DNS-GRP_CWMGMT eq domain
+access-list ids-sim-access_acl extended permit udp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_UDP
+access-list ids-sim-access_acl extended permit tcp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_TCP
+access-list ids-sim-access_acl extended permit tcp any object-group CW-EMAIL-GRP_CWMGMT eq smtp
+access-list ids-sim-access_acl remark <<HOSTING NETWORK MONITORING>>
+access-list ids-sim-access_acl extended permit tcp any object-group CW-BMC-RT-GRP_CWMGMT object-group CW-BMC-RT-OUT_TCP
+access-list ids-sim-access_acl extended permit tcp any object-group CW-BMC-GRP_CWMGMT object-group CW-BMC-OUT_TCP
+access-list ids-sim-access_acl remark <<SHARED STORAGE REPORTING>>
+access-list ids-sim-access_acl extended permit tcp any object-group CW-STOR-GRP_CWMGMT object-group CW-STOR-OUT_TCP
+access-list ids-sim-access_acl remark <<ANTI-VIRUS>>
+access-list ids-sim-access_acl extended permit tcp any object-group CW-AVMGMT-GRP_CWMGMT object-group CW-AVMGMT_TCP
+access-list ids-sim-access_acl extended permit tcp any object-group CW-AVUPDATE-GRP_CWMGMT object-group CW-AVUPDATE-OUT_TCP
+access-list ids-sim-access_acl remark <<HP SERVER MANAGEMENT AND MONITORING>>
+access-list ids-sim-access_acl extended permit tcp any object-group CW-HPIM-GRP_CWMGMT object-group CW-HPIM-OUT_TCP
+access-list ids-sim-access_acl remark <<UNIX SERVER MANAGEMENT AND MONITORING>>
+access-list ids-sim-access_acl extended permit tcp any object-group CW-USUS-GRP_CWMGMT object-group CW-USUS-OUT_TCP
+access-list ids-sim-access_acl extended permit tcp any object-group CW-UNIXGW-GRP_CWMGMT eq 8080
+access-list ids-sim-access_acl extended permit tcp any host 10.11.217.130 eq ftp
+access-list ids-sim-access_acl remark <<MICROSOFT SERVER MANAGEMENT AND MONITORING>>
+access-list ids-sim-access_acl extended permit tcp any object-group CW-MSUS-GRP_CWMGMT object-group HTTP-HTTPS_TCP
+access-list ids-sim-access_acl extended permit tcp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_TCP
+access-list ids-sim-access_acl extended permit udp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_UDP
+access-list ids-sim-access_acl remark <<DELL SERVER MANAGEMENT AND MONITORING>>
+access-list ids-sim-access_acl extended permit tcp any object-group CW-MSFT-MAN-GRP_CWMGMT object-group CW-DRAC-MAN_TCP
+access-list ids-mgmt-backup_acl remark <<GENERIC MANAGEMENT AND MONITORING>>
+access-list ids-mgmt-backup_acl extended deny udp any any object-group NOISE-AND-DENIED-SERVICES_UDP
+access-list ids-mgmt-backup_acl extended permit icmp any object-group CW-ICMP-GRP_CWMGMT echo
+access-list ids-mgmt-backup_acl extended permit udp any object-group CW-NTP-GRP_CWMGMT eq ntp
+access-list ids-mgmt-backup_acl extended permit udp any object-group CW-SYSLOG-GRP_CWMGMT eq syslog
+access-list ids-mgmt-backup_acl extended permit udp any object-group CW-SNMPTRAP-GRP_CWMGMT eq snmptrap
+access-list ids-mgmt-backup_acl extended permit udp any object-group CW-DNS-GRP_CWMGMT eq domain
+access-list ids-mgmt-backup_acl extended permit udp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_UDP
+access-list ids-mgmt-backup_acl extended permit tcp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_TCP
+access-list ids-mgmt-backup_acl extended permit tcp any object-group CW-EMAIL-GRP_CWMGMT eq smtp
+access-list ids-mgmt-backup_acl remark <<HOSTING NETWORK MONITORING>>
+access-list ids-mgmt-backup_acl extended permit tcp any object-group CW-BMC-RT-GRP_CWMGMT object-group CW-BMC-RT-OUT_TCP
+access-list ids-mgmt-backup_acl extended permit tcp any object-group CW-BMC-GRP_CWMGMT object-group CW-BMC-OUT_TCP
+access-list ids-mgmt-backup_acl remark <<SHARED STORAGE REPORTING>>
+access-list ids-mgmt-backup_acl extended permit tcp any object-group CW-STOR-GRP_CWMGMT object-group CW-STOR-OUT_TCP
+access-list ids-mgmt-backup_acl remark <<ANTI-VIRUS>>
+access-list ids-mgmt-backup_acl extended permit tcp any object-group CW-AVMGMT-GRP_CWMGMT object-group CW-AVMGMT_TCP
+access-list ids-mgmt-backup_acl extended permit tcp any object-group CW-AVUPDATE-GRP_CWMGMT object-group CW-AVUPDATE-OUT_TCP
+access-list ids-mgmt-backup_acl remark <<HP SERVER MANAGEMENT AND MONITORING>>
+access-list ids-mgmt-backup_acl extended permit tcp any object-group CW-HPIM-GRP_CWMGMT object-group CW-HPIM-OUT_TCP
+access-list ids-mgmt-backup_acl remark <<UNIX SERVER MANAGEMENT AND MONITORING>>
+access-list ids-mgmt-backup_acl extended permit tcp any object-group CW-USUS-GRP_CWMGMT object-group CW-USUS-OUT_TCP
+access-list ids-mgmt-backup_acl extended permit tcp any object-group CW-UNIXGW-GRP_CWMGMT eq 8080
+access-list ids-mgmt-backup_acl extended permit tcp any host 10.11.217.130 eq ftp
+access-list ids-mgmt-backup_acl remark <<MICROSOFT SERVER MANAGEMENT AND MONITORING>>
+access-list ids-mgmt-backup_acl extended permit tcp any object-group CW-MSUS-GRP_CWMGMT object-group HTTP-HTTPS_TCP
+access-list ids-mgmt-backup_acl extended permit tcp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_TCP
+access-list ids-mgmt-backup_acl extended permit udp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_UDP
+access-list ids-mgmt-backup_acl remark <<DELL SERVER MANAGEMENT AND MONITORING>>
+access-list ids-mgmt-backup_acl extended permit tcp any object-group CW-MSFT-MAN-GRP_CWMGMT object-group CW-DRAC-MAN_TCP
+access-list mgmt-fw-bk-access_acl remark <<GENERIC MANAGEMENT AND MONITORING>>
+access-list mgmt-fw-bk-access_acl extended deny udp any any object-group NOISE-AND-DENIED-SERVICES_UDP
+access-list mgmt-fw-bk-access_acl extended permit icmp any object-group CW-ICMP-GRP_CWMGMT echo
+access-list mgmt-fw-bk-access_acl extended permit udp any object-group CW-NTP-GRP_CWMGMT eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp any object-group CW-SYSLOG-GRP_CWMGMT eq syslog
+access-list mgmt-fw-bk-access_acl extended permit udp any object-group CW-SNMPTRAP-GRP_CWMGMT eq snmptrap
+access-list mgmt-fw-bk-access_acl extended permit udp any object-group CW-DNS-GRP_CWMGMT eq domain
+access-list mgmt-fw-bk-access_acl extended permit udp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_UDP
+access-list mgmt-fw-bk-access_acl extended permit tcp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_TCP
+access-list mgmt-fw-bk-access_acl extended permit tcp any object-group CW-EMAIL-GRP_CWMGMT eq smtp
+access-list mgmt-fw-bk-access_acl remark <<HOSTING NETWORK MONITORING>>
+access-list mgmt-fw-bk-access_acl extended permit tcp any object-group CW-BMC-RT-GRP_CWMGMT object-group CW-BMC-RT-OUT_TCP
+access-list mgmt-fw-bk-access_acl extended permit tcp any object-group CW-BMC-GRP_CWMGMT object-group CW-BMC-OUT_TCP
+access-list mgmt-fw-bk-access_acl remark <<SHARED STORAGE REPORTING>>
+access-list mgmt-fw-bk-access_acl extended permit tcp any object-group CW-STOR-GRP_CWMGMT object-group CW-STOR-OUT_TCP
+access-list mgmt-fw-bk-access_acl remark <<ANTI-VIRUS>>
+access-list mgmt-fw-bk-access_acl extended permit tcp any object-group CW-AVMGMT-GRP_CWMGMT object-group CW-AVMGMT_TCP
+access-list mgmt-fw-bk-access_acl extended permit tcp any object-group CW-AVUPDATE-GRP_CWMGMT object-group CW-AVUPDATE-OUT_TCP
+access-list mgmt-fw-bk-access_acl remark <<HP SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-fw-bk-access_acl extended permit tcp any object-group CW-HPIM-GRP_CWMGMT object-group CW-HPIM-OUT_TCP
+access-list mgmt-fw-bk-access_acl remark <<UNIX SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-fw-bk-access_acl extended permit tcp any object-group CW-USUS-GRP_CWMGMT object-group CW-USUS-OUT_TCP
+access-list mgmt-fw-bk-access_acl extended permit tcp any object-group CW-UNIXGW-GRP_CWMGMT eq 8080
+access-list mgmt-fw-bk-access_acl extended permit tcp any host 10.11.217.130 eq ftp
+access-list mgmt-fw-bk-access_acl remark <<MICROSOFT SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-fw-bk-access_acl extended permit tcp any object-group CW-MSUS-GRP_CWMGMT object-group HTTP-HTTPS_TCP
+access-list mgmt-fw-bk-access_acl extended permit tcp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_TCP
+access-list mgmt-fw-bk-access_acl extended permit udp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_UDP
+access-list mgmt-fw-bk-access_acl remark <<DELL SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-fw-bk-access_acl extended permit tcp any object-group CW-MSFT-MAN-GRP_CWMGMT object-group CW-DRAC-MAN_TCP
+access-list mgmt-fw-bk-access_acl remark <<NETWORK DEVICE MANAGEMENT AND MONITORING>>
+access-list mgmt-fw-bk-access_acl extended permit udp any object-group CW-HNM-SYSLOG_CWMGMT eq syslog
+access-list mgmt-fw-bk-access_acl extended permit udp any object-group CW-HNM-TFTP_CWMGMT eq tftp
+access-list mgmt-fw-bk-access_acl extended permit tcp any object-group CW-HNM-TFTP_CWMGMT eq ftp
+access-list mgmt-fw-bk-access_acl extended permit tcp any object-group CW-HNM-TFTP_CWMGMT eq ssh
+access-list mgmt-fw-bk-access_acl extended permit ip host 10.104.199.133 host 10.80.7.133
+access-list mgmt-fw-bk-access_acl extended permit ip host 10.104.199.134 host 10.80.7.133
+access-list mgmt-fw-bk-access_acl extended permit ip host 10.104.199.134 host 10.80.7.134
+access-list mgmt-fw-bk-access_acl extended permit ip host 10.104.199.133 host 10.80.7.134
+access-list mgmt-fw-bk-access_acl remark << DC Traffic >>
+access-list mgmt-fw-bk-access_acl extended permit tcp object-group CEN-MSL-DCS object-group CEN-SWI-DCS object-group DC_tcp
+access-list mgmt-fw-bk-access_acl extended permit udp object-group CEN-MSL-DCS object-group CEN-SWI-DCS object-group DC_udp
+access-list mgmt-fw-bk-access_acl extended permit icmp object-group CEN-MSL-DCS object-group CEN-SWI-DCS echo
+access-list mgmt-fw-bk-access_acl remark <<ESX TO VC HOSTS>>
+access-list mgmt-fw-bk-access_acl extended permit tcp object-group cen-swi-esx object-group cen-swi-vc object-group VC-ESX_TCP
+access-list mgmt-fw-bk-access_acl extended permit udp object-group cen-swi-esx object-group cen-swi-vc object-group VC-ESX_UDP
+access-list mgmt-fw-bk-access_acl extended permit tcp object-group cen-swi-esx-hosts object-group cen-swi-vc object-group VC-ESX_TCP
+access-list mgmt-fw-bk-access_acl extended permit udp object-group cen-swi-esx-hosts object-group cen-swi-vc object-group VC-ESX_UDP
+access-list mgmt-fw-bk-access_acl remark << ESX_to_VC_access >>
+access-list mgmt-fw-bk-access_acl extended permit tcp object-group cen-swi-esx object-group cen-swi-vc_ESX object-group VC-ESX_TCP
+access-list mgmt-fw-bk-access_acl extended permit udp object-group cen-swi-esx object-group cen-swi-vc_ESX object-group VC-ESX_UDP
+access-list mgmt-fw-bk-access_acl remark <<Cortex SNMP access>>
+access-list mgmt-fw-bk-access_acl extended permit udp object-group Centrica_Cortex_SNMP_Access object-group Cortex_CW_CSS_MGMT eq snmptrap
+access-list mgmt-fw-bk-access_acl extended permit tcp object-group CW-BACKMAS-SWI_BAK 10.80.28.0 255.255.255.128 object-group CW-BACKMAS-OUT_TCP
+access-list mgmt-fw-bk-access_acl extended permit tcp object-group CW-BACKMED-GRP_BAK 10.80.28.0 255.255.255.128 object-group CW-BACKMED-OUT_TCP
+access-list mgmt-fw-bk-access_acl extended permit icmp object-group CW-ICMP-GRP_BAK 10.80.28.0 255.255.255.128 echo
+access-list mgmt-fw-bk-access_acl extended permit icmp object-group SYSM-CEN-MGMT-MON-SRVS object-group CEN-SWI-NETWORK
+access-list mgmt-fw-bk-access_acl extended permit tcp object sysm-cen-prx-01 object cen-swi-vc-01 object-group PRX-VC_tcp
+access-list mgmt-fw-bk-access_acl extended permit tcp object hst-10.80.8.133 object censwipaspalm01 object-group EMC-SAN-PATH-MONITORING_TCP
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.3.227 object-group CWMGMT-DMZ-NTP eq ntp
+access-list mgmt-fw-bk-access_acl remark <<CHG000000240176>>
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.30 host 217.135.9.9 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.31 host 217.135.9.9 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.32 host 217.135.9.9 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.33 host 217.135.9.9 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.34 host 217.135.9.9 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.14 host 217.135.9.9 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.15 host 217.135.9.9 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.26 host 217.135.9.9 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.27 host 217.135.9.9 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.36 host 217.135.9.9 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.30 host 217.135.9.10 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.31 host 217.135.9.10 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.32 host 217.135.9.10 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.33 host 217.135.9.10 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.34 host 217.135.9.10 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.14 host 217.135.9.10 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.15 host 217.135.9.10 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.26 host 217.135.9.10 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.27 host 217.135.9.10 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.36 host 217.135.9.10 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit tcp host 10.80.8.30 host 10.13.253.4 eq smtp
+access-list mgmt-fw-bk-access_acl extended permit tcp host 10.80.8.31 host 10.13.253.4 eq smtp
+access-list mgmt-fw-bk-access_acl extended permit tcp host 10.80.8.32 host 10.13.253.4 eq smtp
+access-list mgmt-fw-bk-access_acl extended permit tcp host 10.80.8.33 host 10.13.253.4 eq smtp
+access-list mgmt-fw-bk-access_acl extended permit tcp host 10.80.8.34 host 10.13.253.4 eq smtp
+access-list mgmt-fw-bk-access_acl extended permit tcp host 10.80.8.35 host 10.13.253.4 eq smtp
+access-list mgmt-fw-bk-access_acl extended permit tcp host 10.80.8.14 host 10.13.253.4 eq smtp
+access-list mgmt-fw-bk-access_acl extended permit tcp host 10.80.8.15 host 10.13.253.4 eq smtp
+access-list mgmt-fw-bk-access_acl extended permit tcp host 10.80.8.26 host 10.13.253.4 eq smtp
+access-list mgmt-fw-bk-access_acl extended permit tcp host 10.80.8.27 host 10.13.253.4 eq smtp
+access-list mgmt-fw-bk-access_acl extended permit tcp host 10.80.8.36 host 10.13.253.4 eq smtp
+access-list mgmt-fw-bk-access_acl extended permit tcp 10.80.8.0 255.255.255.128 object-group CEN-SWI-DCS object-group DC_tcp
+access-list mgmt-fw-bk-access_acl extended permit udp 10.80.8.0 255.255.255.128 object-group CEN-SWI-DCS object-group DC_udp
+access-list mgmt-fw-bk-access_acl extended permit udp host 10.80.8.28 host 10.80.7.133 eq ntp
+access-list mgmt-fw-bk-access_acl extended permit tcp 10.80.8.0 255.255.255.128 object-group CEN-SWI-DNS-PROD object-group DC_tcp
+access-list mgmt-fw-bk-access_acl extended permit udp 10.80.8.0 255.255.255.128 object-group CEN-SWI-DNS-PROD object-group DC_udp
+access-list mgmt-fw-bk-access_acl extended permit tcp object-group SWI-ASPECT-eWFM-BACKMGMT host 10.13.253.4 eq 8080
+access-list mgmt-fw-bk-access_acl remark Client to SNMP server
+access-list mgmt-fw-bk-access_acl extended permit udp object-group Centrica_Cortex_SNMP_Access_V11 object-group Cortex_CW_CSS_MGMT eq snmptrap
+access-list mgmt-fw-bk-access_acl extended permit tcp object-group CEN-ESRSS-CLIENTS object-group EMC-SWI-ESRSS object-group esrs-TCP
+access-list mgmt-fw-bk-access_acl extended permit object-group VADP-Backup-ports object-group CW-BACKMAS-SWI_BAK host 10.80.7.132
+access-list secure-networks_acl remark <<GENERIC MANAGEMENT AND MONITORING>>
+access-list secure-networks_acl extended deny udp any any object-group NOISE-AND-DENIED-SERVICES_UDP
+access-list secure-networks_acl extended permit icmp any object-group CW-ICMP-GRP_CWMGMT echo
+access-list secure-networks_acl extended permit udp any object-group CW-NTP-GRP_CWMGMT eq ntp
+access-list secure-networks_acl extended permit udp any object-group CW-SYSLOG-GRP_CWMGMT eq syslog
+access-list secure-networks_acl extended permit udp any object-group CW-SNMPTRAP-GRP_CWMGMT eq snmptrap
+access-list secure-networks_acl extended permit udp any object-group CW-DNS-GRP_CWMGMT eq domain
+access-list secure-networks_acl extended permit udp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_UDP
+access-list secure-networks_acl extended permit tcp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_TCP
+access-list secure-networks_acl extended permit tcp any object-group CW-EMAIL-GRP_CWMGMT eq smtp
+access-list secure-networks_acl remark <<HOSTING NETWORK MONITORING>>
+access-list secure-networks_acl extended permit tcp any object-group CW-BMC-RT-GRP_CWMGMT object-group CW-BMC-RT-OUT_TCP
+access-list secure-networks_acl extended permit tcp any object-group CW-BMC-GRP_CWMGMT object-group CW-BMC-OUT_TCP
+access-list secure-networks_acl remark <<SHARED STORAGE REPORTING>>
+access-list secure-networks_acl extended permit tcp any object-group CW-STOR-GRP_CWMGMT object-group CW-STOR-OUT_TCP
+access-list secure-networks_acl remark <<ANTI-VIRUS>>
+access-list secure-networks_acl extended permit tcp any object-group CW-AVMGMT-GRP_CWMGMT object-group CW-AVMGMT_TCP
+access-list secure-networks_acl extended permit tcp any object-group CW-AVUPDATE-GRP_CWMGMT object-group CW-AVUPDATE-OUT_TCP
+access-list secure-networks_acl remark <<HP SERVER MANAGEMENT AND MONITORING>>
+access-list secure-networks_acl extended permit tcp any object-group CW-HPIM-GRP_CWMGMT object-group CW-HPIM-OUT_TCP
+access-list secure-networks_acl remark <<UNIX SERVER MANAGEMENT AND MONITORING>>
+access-list secure-networks_acl extended permit tcp any object-group CW-USUS-GRP_CWMGMT object-group CW-USUS-OUT_TCP
+access-list secure-networks_acl extended permit tcp any object-group CW-UNIXGW-GRP_CWMGMT eq 8080
+access-list secure-networks_acl extended permit tcp any host 10.11.217.130 eq ftp
+access-list secure-networks_acl remark <<MICROSOFT SERVER MANAGEMENT AND MONITORING>>
+access-list secure-networks_acl extended permit tcp any object-group CW-MSUS-GRP_CWMGMT object-group HTTP-HTTPS_TCP
+access-list secure-networks_acl extended permit tcp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_TCP
+access-list secure-networks_acl extended permit udp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_UDP
+access-list secure-networks_acl remark <<DELL SERVER MANAGEMENT AND MONITORING>>
+access-list secure-networks_acl extended permit tcp any object-group CW-MSFT-MAN-GRP_CWMGMT object-group CW-DRAC-MAN_TCP
+access-list secure-networks_acl remark <<NETWORK DEVICE MANAGEMENT AND MONITORING>>
+access-list secure-networks_acl extended permit udp any object-group CW-HNM-SYSLOG_CWMGMT eq syslog
+access-list secure-networks_acl extended permit udp any object-group CW-HNM-TFTP_CWMGMT eq tftp
+access-list secure-networks_acl extended permit tcp any object-group CW-HNM-TFTP_CWMGMT eq ftp
+access-list secure-networks_acl extended permit tcp any object-group CW-HNM-TFTP_CWMGMT eq ssh
+access-list mgmt-pod-access_acl remark <<GENERIC MANAGEMENT AND MONITORING>>
+access-list mgmt-pod-access_acl extended deny udp any any object-group NOISE-AND-DENIED-SERVICES_UDP
+access-list mgmt-pod-access_acl extended permit icmp any object-group CW-ICMP-GRP_CWMGMT echo
+access-list mgmt-pod-access_acl extended permit udp any object-group CW-NTP-GRP_CWMGMT eq ntp
+access-list mgmt-pod-access_acl extended permit udp any object-group CW-SYSLOG-GRP_CWMGMT eq syslog
+access-list mgmt-pod-access_acl extended permit udp any object-group CW-SNMPTRAP-GRP_CWMGMT eq snmptrap
+access-list mgmt-pod-access_acl extended permit udp any object-group CW-DNS-GRP_CWMGMT eq domain
+access-list mgmt-pod-access_acl extended permit udp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_UDP
+access-list mgmt-pod-access_acl extended permit tcp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_TCP
+access-list mgmt-pod-access_acl extended permit tcp any object-group CW-EMAIL-GRP_CWMGMT eq smtp
+access-list mgmt-pod-access_acl remark <<HOSTING NETWORK MONITORING>>
+access-list mgmt-pod-access_acl extended permit tcp any object-group CW-BMC-RT-GRP_CWMGMT object-group CW-BMC-RT-OUT_TCP
+access-list mgmt-pod-access_acl extended permit tcp any object-group CW-BMC-GRP_CWMGMT object-group CW-BMC-OUT_TCP
+access-list mgmt-pod-access_acl remark <<SHARED STORAGE REPORTING>>
+access-list mgmt-pod-access_acl extended permit tcp any object-group CW-STOR-GRP_CWMGMT object-group CW-STOR-OUT_TCP
+access-list mgmt-pod-access_acl remark <<ANTI-VIRUS>>
+access-list mgmt-pod-access_acl extended permit tcp any object-group CW-AVMGMT-GRP_CWMGMT object-group CW-AVMGMT_TCP
+access-list mgmt-pod-access_acl extended permit tcp any object-group CW-AVUPDATE-GRP_CWMGMT object-group CW-AVUPDATE-OUT_TCP
+access-list mgmt-pod-access_acl remark <<HP SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-pod-access_acl extended permit tcp any object-group CW-HPIM-GRP_CWMGMT object-group CW-HPIM-OUT_TCP
+access-list mgmt-pod-access_acl remark <<UNIX SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-pod-access_acl extended permit tcp any object-group CW-USUS-GRP_CWMGMT object-group CW-USUS-OUT_TCP
+access-list mgmt-pod-access_acl extended permit tcp any object-group CW-UNIXGW-GRP_CWMGMT eq 8080
+access-list mgmt-pod-access_acl extended permit tcp any host 10.11.217.130 eq ftp
+access-list mgmt-pod-access_acl remark <<MICROSOFT SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-pod-access_acl extended permit tcp any object-group CW-MSUS-GRP_CWMGMT object-group HTTP-HTTPS_TCP
+access-list mgmt-pod-access_acl extended permit tcp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_TCP
+access-list mgmt-pod-access_acl extended permit udp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_UDP
+access-list mgmt-pod-access_acl remark <<DELL SERVER MANAGEMENT AND MONITORING>>
+access-list mgmt-pod-access_acl extended permit tcp any object-group CW-MSFT-MAN-GRP_CWMGMT object-group CW-DRAC-MAN_TCP
+access-list mgmt-pod-access_acl extended permit ip host 10.80.7.134 host 10.104.199.134
+access-list mgmt-pod-access_acl extended permit ip host 10.80.7.133 host 10.104.199.134
+access-list mgmt-pod-access_acl extended permit ip host 10.80.7.134 host 10.104.199.133
+access-list mgmt-pod-access_acl extended permit ip host 10.80.7.133 host 10.104.199.133
+access-list mgmt-pod-access_acl remark << DC Traffic >>
+access-list mgmt-pod-access_acl extended permit tcp object-group CEN-SWI-DCS object-group CEN-MSL-DCS object-group DC_tcp
+access-list mgmt-pod-access_acl extended permit udp object-group CEN-SWI-DCS object-group CEN-MSL-DCS object-group DC_udp
+access-list mgmt-pod-access_acl extended permit icmp object-group CEN-SWI-DCS object-group CEN-MSL-DCS echo
+access-list mgmt-pod-access_acl remark <<VC TO ESX HOSTS>>
+access-list mgmt-pod-access_acl extended permit tcp object-group cen-swi-vc object-group cen-swi-esx object-group VC-ESX_TCP
+access-list mgmt-pod-access_acl extended permit udp object-group cen-swi-vc object-group cen-swi-esx object-group VC-ESX_UDP
+access-list mgmt-pod-access_acl remark <<CEN-MSL-BH-01 TO ESX HOSTS>>
+access-list mgmt-pod-access_acl extended permit tcp object-group CEN-SWI-BH-01 object-group CEN-SWI-PIPT-ESX-SERVERS object-group ESX-CONTROL_TCP
+access-list mgmt-pod-access_acl extended permit tcp object-group cen-swi-vc object-group cen-swi-esx-hosts object-group VC-ESX_TCP
+access-list mgmt-pod-access_acl extended permit udp object-group cen-swi-vc object-group cen-swi-esx-hosts object-group VC-ESX_UDP
+access-list mgmt-pod-access_acl remark << Bastion to swan_ipt interface >>
+access-list mgmt-pod-access_acl extended permit tcp host 10.80.7.135 10.232.193.0 255.255.255.192
+access-list mgmt-pod-access_acl extended permit tcp host 10.80.7.135 10.80.20.0 255.255.255.0 eq ssh
+access-list mgmt-pod-access_acl extended permit tcp host 10.80.7.135 10.80.20.0 255.255.255.0 eq www
+access-list mgmt-pod-access_acl extended permit tcp host 10.80.7.135 10.80.20.0 255.255.255.0 eq https
+access-list mgmt-pod-access_acl extended permit tcp host 10.80.7.135 10.80.20.0 255.255.255.0 eq 8443
+access-list mgmt-pod-access_acl extended permit icmp any object-group SYSM-CEN-MGMT-MON-SRVS
+access-list mgmt-pod-access_acl extended permit tcp 10.80.7.0 255.255.255.0 host 10.104.199.146 eq 2059
+access-list mgmt-pod-access_acl extended permit tcp 10.80.7.0 255.255.255.0 host 10.104.199.147 eq 2059
+access-list mgmt-pod-access_acl extended permit tcp 10.80.7.0 255.255.255.0 host 10.104.199.151 eq www
+access-list mgmt-pod-access_acl remark << Bastion access to the front end interface >>
+access-list mgmt-pod-access_acl extended permit tcp host 10.80.7.135 10.132.255.0 255.255.255.128 eq ssh
+access-list mgmt-pod-access_acl extended permit tcp host 10.80.7.135 10.132.255.0 255.255.255.128 eq www
+access-list mgmt-pod-access_acl extended permit tcp host 10.80.7.135 10.132.255.0 255.255.255.128 eq https
+access-list mgmt-pod-access_acl extended permit tcp host 10.80.7.135 10.132.254.0 255.255.255.128 eq ssh
+access-list mgmt-pod-access_acl extended permit tcp host 10.80.7.135 10.132.254.0 255.255.255.128 eq www
+access-list mgmt-pod-access_acl extended permit tcp host 10.80.7.135 10.132.254.0 255.255.255.128 eq https
+access-list mgmt-pod-access_acl remark << Bastion access to the front end interface - ICMP >>
+access-list mgmt-pod-access_acl extended permit icmp host 10.80.7.135 10.132.255.0 255.255.255.128 echo
+access-list mgmt-pod-access_acl extended permit icmp host 10.80.7.135 10.132.254.0 255.255.255.128 echo
+access-list mgmt-pod-access_acl remark <<Additional VC Capacity 2 VM-1 ESX >>
+access-list mgmt-pod-access_acl extended permit tcp object-group SWI-MGMT-POD object-group SWI-MVCCOLO-FRONT object-group colo_VC_tp_tcp
+access-list mgmt-pod-access_acl extended permit udp object-group SWI-MGMT-POD object-group SWI-MVCCOLO-FRONT eq 902
+access-list mgmt-pod-access_acl extended permit tcp object-group SWI-MGMT-POD object-group MSL-MVCCOLO-FRONT object-group colo_VC_tp_tcp
+access-list mgmt-pod-access_acl extended permit udp object-group SWI-MGMT-POD object-group MSL-MVCCOLO-FRONT eq 902
+access-list mgmt-pod-access_acl extended permit udp object-group CEN-SWI-EDGE-VCENTR_MGMT object-group CEN-SWI-EDGE-ESX_MGT object-group CEN-SWI-EDGE-VCENTR_UDP
+access-list mgmt-pod-access_acl extended permit udp object-group CEN-SWI-EDGE-VCENTR_MGMT object-group CEN-IPT-VERINT-PREPROD_ESX object-group CEN-SWI-EDGE-VCENTR_UDP
+access-list mgmt-pod-access_acl extended permit tcp object-group CEN-SWI-EDGE-VCENTR_MGMT object-group CEN-SWI-EDGE-ESX_MGT object-group CEN-SWI-EDGE-VCENTR_TCP
+access-list mgmt-pod-access_acl extended permit tcp object-group CEN-SWI-EDGE-VCENTR_MGMT object-group CEN-IPT-VERINT-PREPROD_ESX object-group CEN-SWI-EDGE-VCENTR_TCP
+access-list mgmt-pod-access_acl extended permit tcp object-group censg-swi-coll-01 object-group censg-msl-esm-01 eq 8443
+access-list mgmt-pod-access_acl extended permit tcp object-group censg-swi-coll-01 object-group censg-msl-alg-01 eq https
+access-list mgmt-pod-access_acl remark << CHG000000310526  Checkpoint ArcSight Logging >>
+access-list mgmt-pod-access_acl extended permit udp object-group censg-swi-coll-01 any
+access-list secure-networks-kvm_acl remark <<GENERIC MANAGEMENT AND MONITORING>>
+access-list secure-networks-kvm_acl extended deny udp any any object-group NOISE-AND-DENIED-SERVICES_UDP
+access-list secure-networks-kvm_acl extended permit icmp any object-group CW-ICMP-GRP_CWMGMT echo
+access-list secure-networks-kvm_acl extended permit udp any object-group CW-NTP-GRP_CWMGMT eq ntp
+access-list secure-networks-kvm_acl extended permit udp any object-group CW-SYSLOG-GRP_CWMGMT eq syslog
+access-list secure-networks-kvm_acl extended permit udp any object-group CW-SNMPTRAP-GRP_CWMGMT eq snmptrap
+access-list secure-networks-kvm_acl extended permit udp any object-group CW-DNS-GRP_CWMGMT eq domain
+access-list secure-networks-kvm_acl extended permit udp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_UDP
+access-list secure-networks-kvm_acl extended permit tcp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_TCP
+access-list secure-networks-kvm_acl extended permit tcp any object-group CW-EMAIL-GRP_CWMGMT eq smtp
+access-list secure-networks-kvm_acl remark <<HOSTING NETWORK MONITORING>>
+access-list secure-networks-kvm_acl extended permit tcp any object-group CW-BMC-RT-GRP_CWMGMT object-group CW-BMC-RT-OUT_TCP
+access-list secure-networks-kvm_acl extended permit tcp any object-group CW-BMC-GRP_CWMGMT object-group CW-BMC-OUT_TCP
+access-list secure-networks-kvm_acl remark <<SHARED STORAGE REPORTING>>
+access-list secure-networks-kvm_acl extended permit tcp any object-group CW-STOR-GRP_CWMGMT object-group CW-STOR-OUT_TCP
+access-list secure-networks-kvm_acl remark <<ANTI-VIRUS>>
+access-list secure-networks-kvm_acl extended permit tcp any object-group CW-AVMGMT-GRP_CWMGMT object-group CW-AVMGMT_TCP
+access-list secure-networks-kvm_acl extended permit tcp any object-group CW-AVUPDATE-GRP_CWMGMT object-group CW-AVUPDATE-OUT_TCP
+access-list secure-networks-kvm_acl remark <<HP SERVER MANAGEMENT AND MONITORING>>
+access-list secure-networks-kvm_acl extended permit tcp any object-group CW-HPIM-GRP_CWMGMT object-group CW-HPIM-OUT_TCP
+access-list secure-networks-kvm_acl remark <<UNIX SERVER MANAGEMENT AND MONITORING>>
+access-list secure-networks-kvm_acl extended permit tcp any object-group CW-USUS-GRP_CWMGMT object-group CW-USUS-OUT_TCP
+access-list secure-networks-kvm_acl extended permit tcp any object-group CW-UNIXGW-GRP_CWMGMT eq 8080
+access-list secure-networks-kvm_acl extended permit tcp any host 10.11.217.130 eq ftp
+access-list secure-networks-kvm_acl remark <<MICROSOFT SERVER MANAGEMENT AND MONITORING>>
+access-list secure-networks-kvm_acl extended permit tcp any object-group CW-MSUS-GRP_CWMGMT object-group HTTP-HTTPS_TCP
+access-list secure-networks-kvm_acl extended permit tcp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_TCP
+access-list secure-networks-kvm_acl extended permit udp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_UDP
+access-list secure-networks-kvm_acl remark <<DELL SERVER MANAGEMENT AND MONITORING>>
+access-list secure-networks-kvm_acl extended permit tcp any object-group CW-MSFT-MAN-GRP_CWMGMT object-group CW-DRAC-MAN_TCP
+access-list secure-networks-kvm_acl remark <<NETWORK DEVICE MANAGEMENT AND MONITORING>>
+access-list secure-networks-kvm_acl extended permit udp any object-group CW-HNM-SYSLOG_CWMGMT eq syslog
+access-list secure-networks-kvm_acl extended permit udp any object-group CW-HNM-TFTP_CWMGMT eq tftp
+access-list secure-networks-kvm_acl extended permit tcp any object-group CW-HNM-TFTP_CWMGMT eq ftp
+access-list secure-networks-kvm_acl extended permit tcp any object-group CW-HNM-TFTP_CWMGMT eq ssh
+access-list secure-networks-kvm_acl extended permit udp object-group CEN-FIREWALL-hosts object-group censg-swi-coll-01 eq syslog
+access-list secure-networks-kvm_acl extended permit udp object-group CEN-BIGIP-hosts object-group censg-swi-coll-01 eq syslog
+access-list secure-networks-kvm_acl remark << Centrica Read Only Access and Services >>
+access-list secure-networks-kvm_acl extended permit udp object-group CEN-SWI-PRODUCTION-FIREWALLS object cen-msl-nbh-01 object-group CEN-READONLY-SERVICES-UDP
+access-list fwl-virtual-contexts_acl extended permit udp any host 10.80.14.123 eq syslog
+access-list global_acl extended permit tcp object-group g-CWW-AUTHACC-IN any object-group g-CWW-AUTHACC-IN_TCP
+access-list global_acl extended permit udp object-group g-CWW-AUTHACC-IN any object-group g-CWW-AUTHACC-IN_UDP
+access-list global_acl extended permit icmp object-group g-CWW-BMCADDM-IN any echo
+access-list global_acl extended permit tcp object-group g-CWW-BMCADDM-IN any object-group g-CWW-BMCADDM-IN_TCP
+access-list global_acl extended permit udp object-group g-CWW-BMCADDM-IN any object-group g-CWW-BMCADDM-IN_UDP
+access-list global_acl extended permit tcp object-group g-CWW-BMCPERF-IN any object-group g-CWW-BMCPERF-IN_TCP
+access-list global_acl extended permit icmp object-group g-CWW-BMCBPPM-IN any echo
+access-list global_acl extended permit tcp object-group g-CWW-BMCBPPM-IN any object-group g-CWW-BMCBPPM-IN_TCP
+access-list global_acl extended permit udp object-group g-CWW-BMCBPPM-IN any object-group g-CWW-BMCBPPM-IN_UDP
+access-list global_acl extended permit tcp object-group g-CWW-CHECKPOINT-IN any object-group g-CWW-CHECKPOINT-IN_TCP
+access-list global_acl extended permit tcp object-group g-CWW-EMCCC-IN any object-group g-CWW-EMCCC-IN_TCP
+access-list global_acl extended permit icmp object-group g-CWW-HPSIM-IN any echo
+access-list global_acl extended permit tcp object-group g-CWW-HPSIM-IN any object-group g-CWW-HPSIM-IN_TCP
+access-list global_acl extended permit udp object-group g-CWW-HPSIM-IN any object-group g-CWW-HPSIM-IN_UDP
+access-list global_acl extended permit icmp object-group g-CWW-LOWLEVEL-IN any echo
+access-list global_acl extended permit tcp object-group g-CWW-LOWLEVEL-IN any object-group g-CWW-LOWLEVEL-IN_TCP
+access-list global_acl extended permit udp object-group g-CWW-LOWLEVEL-IN any object-group g-CWW-LOWLEVEL-IN_UDP
+access-list global_acl extended permit tcp object-group g-CWW-PATCHINGAV-IN any object-group g-CWW-PATCHINGAV-IN_TCP
+access-list global_acl extended permit tcp object-group g-CWW-SBE-IN any eq https
+access-list global_acl extended permit tcp any object-group g-CWW-AUTHACC-OUT object-group g-CWW-AUTHACC-OUT_TCP
+access-list global_acl extended permit udp any object-group g-CWW-AUTHACC-OUT object-group g-CWW-AUTHACC-OUT_UDP
+access-list global_acl extended permit icmp any object-group g-CWW-AUTHACC-OUT echo
+access-list global_acl extended permit tcp any object-group g-CWW-BMCPERF-OUT object-group g-CWW-BMCPERF-OUT_TCP
+access-list global_acl extended permit tcp any object-group g-CWW-CHECKPOINT-OUT object-group g-CWW-CHECKPOINT-OUT_TCP
+access-list global_acl extended permit tcp any object-group g-CWW-EMCCC-OUT object-group g-CWW-EMCCC-OUT_TCP
+access-list global_acl extended permit tcp any object-group g-CWW-HPSIM-OUT object-group g-CWW-HPSIM-OUT_TCP
+access-list global_acl extended permit udp any object-group g-CWW-HPSIM-OUT object-group g-CWW-HPSIM-OUT_UDP
+access-list global_acl extended permit tcp any object-group g-CWW-LOWLEVEL-OUT object-group g-CWW-LOWLEVEL-OUT_TCP
+access-list global_acl extended permit udp any object-group g-CWW-LOWLEVEL-OUT object-group g-CWW-LOWLEVEL-OUT_UDP
+access-list global_acl extended permit tcp any object-group g-CWW-PATCHINGAV-OUT object-group g-CWW-PATCHINGAV-OUT_TCP
+access-list global_acl extended permit icmp object-group CEN-BMCADDM-IN any echo
+access-list global_acl extended permit tcp object-group CEN-BMCADDM-IN any object-group CEN-BMCADDM-IN_TCP
+access-list global_acl extended permit udp object-group CEN-BMCADDM-IN any object-group CEN-BMCADDM-IN_UDP
+access-list global_acl extended permit icmp object-group CEN-BMCBPPM-IN any echo
+access-list global_acl extended permit tcp object-group CEN-BMCBPPM-IN any object-group CEN-BMCBPPM-IN_TCP
+access-list global_acl extended permit udp object-group CEN-BMCBPPM-IN any object-group CEN-BMCBPPM-IN_UDP
+access-list global_acl extended permit tcp any object-group CEN-BMCBPPM-OUT object-group CEN-BMCBPPM-OUT_TCP
+access-list global_acl extended permit udp any object-group CEN-BMCBPPM-OUT object-group CEN-BMCBPPM-OUT_UDP
+access-list global_acl extended permit tcp any object-group CEN-PATCHINGAV-OUT object-group CEN-PATCHINGAV-OUT_TCP
+access-list global_acl extended permit icmp object-group CEN-MSL-BMCADDM-IN any echo
+access-list global_acl extended permit tcp object-group CEN-MSL-BMCADDM-IN any object-group CEN-BMCADDM-IN_TCP
+access-list global_acl extended permit udp object-group CEN-MSL-BMCADDM-IN any object-group CEN-BMCADDM-IN_UDP
+access-list global_acl extended permit icmp object-group CEN-MSL-BMCBPPM-IN any echo
+access-list global_acl extended permit tcp object-group CEN-MSL-BMCBPPM-IN any object-group g-CWW-BMCBPPM-IN_TCP
+access-list global_acl extended permit udp object-group CEN-MSL-BMCBPPM-IN any object-group g-CWW-BMCBPPM-IN_UDP
+access-list global_acl extended permit tcp any object-group g-CWW-BMCBPPM-OUT object-group g-CWW-BMCBPPM-OUT_TCP
+access-list global_acl extended permit udp any object-group g-CWW-BMCBPPM-OUT object-group g-CWW-BMCBPPM-OUT_UDP
+access-list global_acl extended permit tcp any object-group CEN-MSL-PATCHINGAV-OUT object-group CEN-PATCHINGAV-OUT_TCP
+access-list global_acl remark <<Centrica dedicated monitoring>>
+access-list global_acl extended permit udp object-group CENTRICA-MON-POD any eq snmp
+access-list global_acl extended permit udp object-group CENTRICA-MON-POD any eq snmptrap
+access-list global_acl extended permit icmp object-group CENTRICA-MON-POD any echo
+access-list global_acl extended permit icmp any object-group CENTRICA-MON-POD echo
+access-list global_acl extended permit udp any object-group CENTRICA-MON-POD eq snmp
+access-list global_acl extended permit udp any object-group CENTRICA-MON-POD eq snmptrap
+access-list global_acl extended permit tcp object-group MGMTEMC-ALL-BHS-group any object-group MGMTEMC-BH-IN_TCP
+access-list global_acl extended permit udp object-group MGMTEMC-ALL-BHS-group any object-group MGMTEMC-BH-IN_UDP
+access-list global_acl extended permit tcp any object-group CAPSULE-SERVERS object-group CAPSULE-SERVER-PORTS-TCP
+access-list swi-mgmt-internetsw_acl remark <<GENERIC MANAGEMENT AND MONITORING>>
+access-list swi-mgmt-internetsw_acl extended deny udp any any object-group NOISE-AND-DENIED-SERVICES_UDP
+access-list swi-mgmt-internetsw_acl extended permit icmp any object-group CW-ICMP-GRP_CWMGMT echo
+access-list swi-mgmt-internetsw_acl extended permit udp any object-group CW-NTP-GRP_CWMGMT eq ntp
+access-list swi-mgmt-internetsw_acl extended permit udp any object-group CW-SYSLOG-GRP_CWMGMT eq syslog
+access-list swi-mgmt-internetsw_acl extended permit udp any object-group CW-SNMPTRAP-GRP_CWMGMT eq snmptrap
+access-list swi-mgmt-internetsw_acl extended permit udp any object-group CW-DNS-GRP_CWMGMT eq domain
+access-list swi-mgmt-internetsw_acl extended permit udp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_UDP
+access-list swi-mgmt-internetsw_acl extended permit tcp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_TCP
+access-list swi-mgmt-internetsw_acl extended permit tcp any object-group CW-EMAIL-GRP_CWMGMT eq smtp
+access-list swi-mgmt-internetsw_acl remark <<HOSTING NETWORK MONITORING>>
+access-list swi-mgmt-internetsw_acl extended permit tcp any object-group CW-BMC-RT-GRP_CWMGMT object-group CW-BMC-RT-OUT_TCP
+access-list swi-mgmt-internetsw_acl extended permit tcp any object-group CW-BMC-GRP_CWMGMT object-group CW-BMC-OUT_TCP
+access-list swi-mgmt-internetsw_acl remark <<SHARED STORAGE REPORTING>>
+access-list swi-mgmt-internetsw_acl extended permit tcp any object-group CW-STOR-GRP_CWMGMT object-group CW-STOR-OUT_TCP
+access-list swi-mgmt-internetsw_acl remark <<ANTI-VIRUS>>
+access-list swi-mgmt-internetsw_acl extended permit tcp any object-group CW-AVMGMT-GRP_CWMGMT object-group CW-AVMGMT_TCP
+access-list swi-mgmt-internetsw_acl extended permit tcp any object-group CW-AVUPDATE-GRP_CWMGMT object-group CW-AVUPDATE-OUT_TCP
+access-list swi-mgmt-internetsw_acl remark <<HP SERVER MANAGEMENT AND MONITORING>>
+access-list swi-mgmt-internetsw_acl extended permit tcp any object-group CW-HPIM-GRP_CWMGMT object-group CW-HPIM-OUT_TCP
+access-list swi-mgmt-internetsw_acl remark <<UNIX SERVER MANAGEMENT AND MONITORING>>
+access-list swi-mgmt-internetsw_acl extended permit tcp any object-group CW-USUS-GRP_CWMGMT object-group CW-USUS-OUT_TCP
+access-list swi-mgmt-internetsw_acl extended permit tcp any object-group CW-UNIXGW-GRP_CWMGMT eq 8080
+access-list swi-mgmt-internetsw_acl extended permit tcp any host 10.11.217.130 eq ftp
+access-list swi-mgmt-internetsw_acl remark <<MICROSOFT SERVER MANAGEMENT AND MONITORING>>
+access-list swi-mgmt-internetsw_acl extended permit tcp any object-group CW-MSUS-GRP_CWMGMT object-group HTTP-HTTPS_TCP
+access-list swi-mgmt-internetsw_acl extended permit tcp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_TCP
+access-list swi-mgmt-internetsw_acl extended permit udp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_UDP
+access-list swi-mgmt-internetsw_acl remark <<DELL SERVER MANAGEMENT AND MONITORING>>
+access-list swi-mgmt-internetsw_acl extended permit tcp any object-group CW-MSFT-MAN-GRP_CWMGMT object-group CW-DRAC-MAN_TCP
+access-list swi-mgmt-internetsw_acl remark <<NETWORK DEVICE MANAGEMENT AND MONITORING>>
+access-list swi-mgmt-internetsw_acl extended permit udp any object-group CW-HNM-SYSLOG_CWMGMT eq syslog
+access-list swi-mgmt-internetsw_acl extended permit udp any object-group CW-HNM-TFTP_CWMGMT eq tftp
+access-list swi-mgmt-internetsw_acl extended permit tcp any object-group CW-HNM-TFTP_CWMGMT eq ftp
+access-list swi-mgmt-internetsw_acl extended permit tcp any object-group CW-HNM-TFTP_CWMGMT eq ssh
+access-list swi-mgmt-internetsw_acl extended permit udp any object-group CW-HNM-NTP_CWMGMT eq ntp
+access-list swi-mgmt-internetsw_acl remark << CHG000000310526  Checkpoint ArcSight Logging >>
+access-list swi-mgmt-internetsw_acl extended permit udp any object-group censg-swi-coll-01 eq syslog
+access-list swi-mgmt-internetsw_acl remark <<Internet SW to Arcsight Collector>>
+access-list swi-mgmt-internetsw_acl extended permit udp object-group cen-swi-internet-switches object-group censg-swi-coll-01 eq 714
+access-list swi-MAG-mgmt_acl extended permit tcp 10.80.15.232 255.255.255.248 host 10.104.199.146 eq 2059
+access-list swi-MAG-mgmt_acl extended permit tcp 10.80.15.232 255.255.255.248 host 10.104.199.147 eq 2059
+access-list swi-MAG-mgmt_acl extended permit tcp 10.80.15.232 255.255.255.248 host 10.104.199.151 eq www
+access-list SWI-DMZ-UCMMGMT-VLAN_acl remark <<GENERIC MANAGEMENT AND MONITORING>>
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended deny udp any any object-group NOISE-AND-DENIED-SERVICES_UDP
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit icmp any object-group CW-ICMP-GRP_CWMGMT echo
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit udp any object-group CW-NTP-GRP_CWMGMT eq ntp
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit udp any object-group CW-SYSLOG-GRP_CWMGMT eq syslog
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit udp any object-group CW-SNMPTRAP-GRP_CWMGMT eq snmptrap
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit udp any object-group CW-DNS-GRP_CWMGMT eq domain
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit udp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_UDP
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_TCP
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any object-group CW-EMAIL-GRP_CWMGMT eq smtp
+access-list SWI-DMZ-UCMMGMT-VLAN_acl remark <<HOSTING NETWORK MONITORING>>
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any object-group CW-BMC-RT-GRP_CWMGMT object-group CW-BMC-RT-OUT_TCP
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any object-group CW-BMC-GRP_CWMGMT object-group CW-BMC-OUT_TCP
+access-list SWI-DMZ-UCMMGMT-VLAN_acl remark <<SHARED STORAGE REPORTING>>
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any object-group CW-STOR-GRP_CWMGMT object-group CW-STOR-OUT_TCP
+access-list SWI-DMZ-UCMMGMT-VLAN_acl remark <<ANTI-VIRUS>>
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any object-group CW-AVMGMT-GRP_CWMGMT object-group CW-AVMGMT_TCP
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any object-group CW-AVUPDATE-GRP_CWMGMT object-group CW-AVUPDATE-OUT_TCP
+access-list SWI-DMZ-UCMMGMT-VLAN_acl remark <<HP SERVER MANAGEMENT AND MONITORING>>
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any object-group CW-HPIM-GRP_CWMGMT object-group CW-HPIM-OUT_TCP
+access-list SWI-DMZ-UCMMGMT-VLAN_acl remark <<UNIX SERVER MANAGEMENT AND MONITORING>>
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any object-group CW-USUS-GRP_CWMGMT object-group CW-USUS-OUT_TCP
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any object-group CW-UNIXGW-GRP_CWMGMT eq 8080
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any host 10.11.217.130 eq ftp
+access-list SWI-DMZ-UCMMGMT-VLAN_acl remark <<MICROSOFT SERVER MANAGEMENT AND MONITORING>>
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any object-group CW-MSUS-GRP_CWMGMT object-group HTTP-HTTPS_TCP
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_TCP
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit udp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_UDP
+access-list SWI-DMZ-UCMMGMT-VLAN_acl remark <<DELL SERVER MANAGEMENT AND MONITORING>>
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any object-group CW-MSFT-MAN-GRP_CWMGMT object-group CW-DRAC-MAN_TCP
+access-list SWI-DMZ-UCMMGMT-VLAN_acl remark <<NETWORK DEVICE MANAGEMENT AND MONITORING>>
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit udp any object-group CW-HNM-SYSLOG_CWMGMT eq syslog
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit udp any object-group CW-HNM-TFTP_CWMGMT eq tftp
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any object-group CW-HNM-TFTP_CWMGMT eq ftp
+access-list SWI-DMZ-UCMMGMT-VLAN_acl extended permit tcp any object-group CW-HNM-TFTP_CWMGMT eq ssh
+access-list str-sg-secure-nw-mgt_acl extended deny udp any any object-group NOISE-AND-DENIED-SERVICES_UDP
+access-list str-sg-secure-nw-mgt_acl remark <<please review ip deny any any above once acls created>>
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit udp object-group CEN-IPT-VERINT-PREPROD_ESX object-group CEN-SWI-EDGE-VCENTR_MGMT object-group CEN-SWI-EDGE-VCENTR_UDP
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp object-group CEN-IPT-VERINT-PREPROD_ESX object-group CEN-SWI-EDGE-VCENTR_MGMT object-group CEN-SWI-EDGE-VCENTR_TCP
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<GENERIC MANAGEMENT AND MONITORING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl extended deny udp any any object-group NOISE-AND-DENIED-SERVICES_UDP
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit icmp any object-group CW-ICMP-GRP_CWMGMT echo
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit udp any object-group CW-NTP-GRP_CWMGMT eq ntp
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit udp any object-group CW-SYSLOG-GRP_CWMGMT eq syslog
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit udp any object-group CW-SNMPTRAP-GRP_CWMGMT eq snmptrap
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit udp any object-group CW-DNS-GRP_CWMGMT eq domain
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit udp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_UDP
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any object-group CW-AUTH-GRP_CWMGMT object-group CW-AUTH_TCP
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any object-group CW-EMAIL-GRP_CWMGMT eq smtp
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<HOSTING NETWORK MONITORING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any object-group CW-BMC-RT-GRP_CWMGMT object-group CW-BMC-RT-OUT_TCP
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any object-group CW-BMC-GRP_CWMGMT object-group CW-BMC-OUT_TCP
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<SHARED STORAGE REPORTING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any object-group CW-STOR-GRP_CWMGMT object-group CW-STOR-OUT_TCP
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<ANTI-VIRUS>>
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any object-group CW-AVMGMT-GRP_CWMGMT object-group CW-AVMGMT_TCP
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any object-group CW-AVUPDATE-GRP_CWMGMT object-group CW-AVUPDATE-OUT_TCP
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<HP SERVER MANAGEMENT AND MONITORING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any object-group CW-HPIM-GRP_CWMGMT object-group CW-HPIM-OUT_TCP
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<UNIX SERVER MANAGEMENT AND MONITORING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any object-group CW-USUS-GRP_CWMGMT object-group CW-USUS-OUT_TCP
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any object-group CW-UNIXGW-GRP_CWMGMT eq 8080
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any host 10.11.217.130 eq ftp
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<MICROSOFT SERVER MANAGEMENT AND MONITORING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any object-group CW-MSUS-GRP_CWMGMT object-group HTTP-HTTPS_TCP
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_TCP
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit udp any object-group CW-MDC2003-GRP_CWMGMT object-group CW-MDC2003-OUT_UDP
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<DELL SERVER MANAGEMENT AND MONITORING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any object-group CW-MSFT-MAN-GRP_CWMGMT object-group CW-DRAC-MAN_TCP
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<NETWORK DEVICE MANAGEMENT AND MONITORING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit udp any object-group CW-HNM-SYSLOG_CWMGMT eq syslog
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit udp any object-group CW-HNM-TFTP_CWMGMT eq tftp
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any object-group CW-HNM-TFTP_CWMGMT eq ftp
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit tcp any object-group CW-HNM-TFTP_CWMGMT eq ssh
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit udp any object-group CW-HNM-NTP_CWMGMT eq ntp
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<GENERIC MANAGEMENT AND MONITORING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<HOSTING NETWORK MONITORING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<SHARED STORAGE REPORTING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<ANTI-VIRUS>>
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<HP SERVER MANAGEMENT AND MONITORING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<UNIX SERVER MANAGEMENT AND MONITORING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<MICROSOFT SERVER MANAGEMENT AND MONITORING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<DELL SERVER MANAGEMENT AND MONITORING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl remark <<NETWORK DEVICE MANAGEMENT AND MONITORING>>
+access-list swi-pp-prod-preprodmgmt-transit_acl remark << Centrica Read Only Access and Services >>
+access-list swi-pp-prod-preprodmgmt-transit_acl extended permit udp object-group CEN-SWI-PRODUCTION-FIREWALLS object cen-msl-nbh-01 object-group CEN-READONLY-SERVICES-UDP
+pager lines 23
+logging enable
+logging timestamp
+logging standby
+logging console emergencies
+logging buffered informational
+logging trap informational
+logging history alerts
+logging facility 17
+logging device-id ipaddress mgmt-pod-access
+logging host cascade 217.135.0.45
+logging host mgmt-pod-access 10.80.7.136
+mtu mgmt-fw-core-access 1500
+mtu service-console 1500
+mtu mgmt-pod-backmgmt 1500
+mtu cascade 1500
+mtu ids-sim-access 1500
+mtu ids-mgmt-backup 1500
+mtu swi-MAG-mgmt 1500
+mtu mgmt-fw-bk-access 1500
+mtu swi-mgmt-internetsw 1500
+mtu secure-networks-kvm 1500
+mtu fwl-virtual-contexts 1500
+mtu mgmt-pod-access 1500
+mtu SWI-DMZ-UCMMGMT-VLAN 1500
+mtu str-sg-secure-nw-mgt 1500
+mtu swi-pp-prod-preprodmgmt-transit 1500
+mtu swi-secure-ucm-kvm 1500
+ip verify reverse-path interface mgmt-fw-core-access
+ip verify reverse-path interface service-console
+ip verify reverse-path interface mgmt-pod-backmgmt
+ip verify reverse-path interface cascade
+ip verify reverse-path interface ids-sim-access
+ip verify reverse-path interface ids-mgmt-backup
+ip verify reverse-path interface swi-MAG-mgmt
+ip verify reverse-path interface mgmt-fw-bk-access
+ip verify reverse-path interface swi-mgmt-internetsw
+ip verify reverse-path interface secure-networks-kvm
+ip verify reverse-path interface fwl-virtual-contexts
+ip verify reverse-path interface mgmt-pod-access
+ip verify reverse-path interface SWI-DMZ-UCMMGMT-VLAN
+ip verify reverse-path interface str-sg-secure-nw-mgt
+ip verify reverse-path interface swi-pp-prod-preprodmgmt-transit
+ip verify reverse-path interface swi-secure-ucm-kvm
+monitor-interface service-console
+monitor-interface mgmt-pod-backmgmt
+monitor-interface cascade
+monitor-interface ids-sim-access
+monitor-interface ids-mgmt-backup
+monitor-interface swi-MAG-mgmt
+monitor-interface swi-mgmt-internetsw
+monitor-interface secure-networks-kvm
+monitor-interface fwl-virtual-contexts
+monitor-interface SWI-DMZ-UCMMGMT-VLAN
+monitor-interface str-sg-secure-nw-mgt
+monitor-interface swi-pp-prod-preprodmgmt-transit
+monitor-interface swi-secure-ucm-kvm
+icmp unreachable rate-limit 1 burst-size 1
+icmp permit 10.80.8.160 255.255.255.248 echo-reply mgmt-fw-core-access
+icmp permit 10.80.8.160 255.255.255.248 unreachable mgmt-fw-core-access
+icmp permit 10.80.8.160 255.255.255.248 echo mgmt-fw-core-access
+icmp permit 10.80.8.160 255.255.255.248 time-exceeded mgmt-fw-core-access
+icmp permit 10.80.8.192 255.255.255.192 echo-reply service-console
+icmp permit 10.80.8.192 255.255.255.192 unreachable service-console
+icmp permit 10.80.8.192 255.255.255.192 echo service-console
+icmp permit 10.80.8.192 255.255.255.192 time-exceeded service-console
+icmp permit 10.80.7.0 255.255.255.128 echo-reply mgmt-pod-backmgmt
+icmp permit 10.80.7.0 255.255.255.128 unreachable mgmt-pod-backmgmt
+icmp permit 10.80.7.0 255.255.255.128 echo mgmt-pod-backmgmt
+icmp permit 10.80.7.0 255.255.255.128 time-exceeded mgmt-pod-backmgmt
+icmp permit any echo cascade
+icmp permit any echo-reply cascade
+icmp permit any unreachable cascade
+icmp permit any time-exceeded cascade
+icmp permit 10.80.8.176 255.255.255.240 echo-reply ids-sim-access
+icmp permit 10.80.8.176 255.255.255.240 unreachable ids-sim-access
+icmp permit 10.80.8.176 255.255.255.240 echo ids-sim-access
+icmp permit 10.80.8.176 255.255.255.240 time-exceeded ids-sim-access
+icmp permit 10.80.0.64 255.255.255.240 echo-reply ids-mgmt-backup
+icmp permit 10.80.0.64 255.255.255.240 unreachable ids-mgmt-backup
+icmp permit 10.80.0.64 255.255.255.240 echo ids-mgmt-backup
+icmp permit 10.80.0.64 255.255.255.240 time-exceeded ids-mgmt-backup
+icmp permit 10.80.15.232 255.255.255.248 echo swi-MAG-mgmt
+icmp permit 10.80.15.232 255.255.255.248 echo-reply swi-MAG-mgmt
+icmp permit 10.80.15.232 255.255.255.248 unreachable swi-MAG-mgmt
+icmp permit 10.80.15.232 255.255.255.248 time-exceeded swi-MAG-mgmt
+icmp permit 10.80.6.168 255.255.255.248 echo-reply mgmt-fw-bk-access
+icmp permit 10.80.6.168 255.255.255.248 unreachable mgmt-fw-bk-access
+icmp permit 10.80.6.168 255.255.255.248 echo mgmt-fw-bk-access
+icmp permit 10.80.6.168 255.255.255.248 time-exceeded mgmt-fw-bk-access
+icmp permit 10.202.252.160 255.255.255.240 echo swi-mgmt-internetsw
+icmp permit 10.202.252.160 255.255.255.240 echo-reply swi-mgmt-internetsw
+icmp permit 10.202.252.160 255.255.255.240 unreachable swi-mgmt-internetsw
+icmp permit 10.202.252.160 255.255.255.240 time-exceeded swi-mgmt-internetsw
+icmp permit 10.80.9.0 255.255.255.0 echo-reply secure-networks-kvm
+icmp permit 10.80.9.0 255.255.255.0 unreachable secure-networks-kvm
+icmp permit 10.80.9.0 255.255.255.0 echo secure-networks-kvm
+icmp permit 10.80.9.0 255.255.255.0 time-exceeded secure-networks-kvm
+icmp permit 10.80.13.128 255.255.255.128 echo-reply fwl-virtual-contexts
+icmp permit 10.80.13.128 255.255.255.128 unreachable fwl-virtual-contexts
+icmp permit 10.80.13.128 255.255.255.128 echo fwl-virtual-contexts
+icmp permit 10.80.13.128 255.255.255.128 time-exceeded fwl-virtual-contexts
+icmp permit 10.80.7.128 255.255.255.128 echo-reply mgmt-pod-access
+icmp permit 10.80.7.128 255.255.255.128 unreachable mgmt-pod-access
+icmp permit 10.80.7.128 255.255.255.128 echo mgmt-pod-access
+icmp permit 10.80.7.128 255.255.255.128 time-exceeded mgmt-pod-access
+icmp permit 10.232.193.0 255.255.255.192 echo SWI-DMZ-UCMMGMT-VLAN
+icmp permit 10.232.193.0 255.255.255.192 echo-reply SWI-DMZ-UCMMGMT-VLAN
+icmp permit 10.232.193.0 255.255.255.192 unreachable SWI-DMZ-UCMMGMT-VLAN
+icmp permit 10.232.193.0 255.255.255.192 time-exceeded SWI-DMZ-UCMMGMT-VLAN
+icmp permit 10.206.112.160 255.255.255.224 echo-reply str-sg-secure-nw-mgt
+icmp permit 10.206.112.160 255.255.255.224 unreachable str-sg-secure-nw-mgt
+icmp permit 10.206.112.160 255.255.255.224 echo str-sg-secure-nw-mgt
+icmp permit 10.206.112.160 255.255.255.224 time-exceeded str-sg-secure-nw-mgt
+icmp permit 10.232.193.128 255.255.255.192 echo swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.128 255.255.255.192 echo-reply swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.128 255.255.255.192 unreachable swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.128 255.255.255.192 time-exceeded swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.64 255.255.255.240 echo swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.64 255.255.255.240 echo-reply swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.64 255.255.255.240 unreachable swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.64 255.255.255.240 time-exceeded swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.192 255.255.255.224 echo swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.192 255.255.255.224 echo-reply swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.192 255.255.255.224 unreachable swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.192 255.255.255.224 time-exceeded swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.224 255.255.255.240 echo swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.224 255.255.255.240 echo-reply swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.224 255.255.255.240 unreachable swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.224 255.255.255.240 time-exceeded swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.240 255.255.255.248 echo swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.240 255.255.255.248 echo-reply swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.240 255.255.255.248 unreachable swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.193.240 255.255.255.248 time-exceeded swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.194.0 255.255.255.192 echo swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.194.0 255.255.255.192 echo-reply swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.194.0 255.255.255.192 unreachable swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.194.0 255.255.255.192 time-exceeded swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.194.64 255.255.255.224 echo swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.194.64 255.255.255.224 echo-reply swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.194.64 255.255.255.224 unreachable swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.194.64 255.255.255.224 time-exceeded swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.194.96 255.255.255.240 echo swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.194.96 255.255.255.240 echo-reply swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.194.96 255.255.255.240 unreachable swi-pp-prod-preprodmgmt-transit
+icmp permit 10.232.194.96 255.255.255.240 time-exceeded swi-pp-prod-preprodmgmt-transit
+icmp permit any echo swi-secure-ucm-kvm
+icmp permit any echo-reply swi-secure-ucm-kvm
+icmp permit any unreachable swi-secure-ucm-kvm
+icmp permit any time-exceeded swi-secure-ucm-kvm
+no asdm history enable
+arp timeout 14400
+access-group mgmt-fw-core-access_acl in interface mgmt-fw-core-access
+access-group service-console_acl in interface service-console
+access-group mgmt-pod-backmgmt_acl in interface mgmt-pod-backmgmt
+access-group cascade_acl in interface cascade
+access-group ids-sim-access_acl in interface ids-sim-access
+access-group ids-mgmt-backup_acl in interface ids-mgmt-backup
+access-group swi-MAG-mgmt_acl in interface swi-MAG-mgmt
+access-group mgmt-fw-bk-access_acl in interface mgmt-fw-bk-access
+access-group swi-mgmt-internetsw_acl in interface swi-mgmt-internetsw
+access-group secure-networks-kvm_acl in interface secure-networks-kvm
+access-group fwl-virtual-contexts_acl in interface fwl-virtual-contexts
+access-group mgmt-pod-access_acl in interface mgmt-pod-access
+access-group SWI-DMZ-UCMMGMT-VLAN_acl in interface SWI-DMZ-UCMMGMT-VLAN
+access-group str-sg-secure-nw-mgt_acl in interface str-sg-secure-nw-mgt
+access-group swi-pp-prod-preprodmgmt-transit_acl in interface swi-pp-prod-preprodmgmt-transit
+access-group global_acl global
+route cascade 0.0.0.0 0.0.0.0 10.99.99.99 1
+route mgmt-fw-bk-access 10.80.1.192 255.255.255.192 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.3.64 255.255.255.192 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.3.128 255.255.255.128 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.3.128 255.255.255.224 10.80.8.169 1
+route mgmt-fw-core-access 10.80.3.160 255.255.255.224 10.80.8.161 1
+route mgmt-fw-core-access 10.80.3.192 255.255.255.224 10.80.8.161 1
+route mgmt-fw-bk-access 10.80.3.224 255.255.255.224 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.5.0 255.255.255.0 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.6.128 255.255.255.128 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.8.0 255.255.255.128 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.8.128 255.255.255.224 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.11.0 255.255.255.0 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.12.0 255.255.255.0 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.15.0 255.255.255.128 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.16.80 255.255.255.240 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.16.192 255.255.255.224 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.17.128 255.255.255.128 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.18.128 255.255.255.128 10.80.8.169 1
+route mgmt-fw-core-access 10.80.20.0 255.255.255.0 10.80.8.161 1
+route mgmt-fw-bk-access 10.80.21.0 255.255.255.0 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.22.128 255.255.255.128 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.23.128 255.255.255.128 10.80.8.169 1
+route mgmt-fw-core-access 10.80.24.0 255.255.255.224 10.80.8.161 1
+route mgmt-fw-core-access 10.80.28.0 255.255.255.192 10.80.8.161 1
+route mgmt-fw-bk-access 10.80.30.0 255.255.255.128 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.30.128 255.255.255.128 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.31.0 255.255.255.128 10.80.8.169 1
+route mgmt-fw-bk-access 10.80.191.0 255.255.255.0 10.80.8.169 1
+route mgmt-fw-bk-access 10.104.199.128 255.255.255.128 10.80.8.169 1
+route mgmt-fw-core-access 10.132.254.0 255.255.255.128 10.80.8.161 1
+route mgmt-fw-bk-access 10.132.254.128 255.255.255.128 10.80.8.169 1
+route mgmt-fw-core-access 10.132.255.0 255.255.255.128 10.80.8.161 1
+route mgmt-fw-bk-access 10.132.255.128 255.255.255.128 10.80.8.169 1
+route mgmt-fw-bk-access 10.202.252.32 255.255.255.224 10.80.8.169 1
+route mgmt-fw-core-access 10.202.252.64 255.255.255.240 10.80.8.161 1
+route mgmt-fw-bk-access 10.202.252.80 255.255.255.240 10.80.8.169 1
+route mgmt-fw-core-access 10.202.252.96 255.255.255.240 10.80.8.161 1
+route mgmt-fw-bk-access 10.202.252.176 255.255.255.240 10.80.8.169 1
+route mgmt-fw-core-access 10.202.253.0 255.255.255.128 10.80.8.161 1
+route mgmt-fw-core-access 10.202.255.64 255.255.255.192 10.80.8.161 1
+route mgmt-fw-bk-access 10.207.96.0 255.255.255.224 10.80.8.169 1
+route mgmt-fw-bk-access 10.232.192.208 255.255.255.240 10.80.8.169 1
+route mgmt-fw-core-access 10.232.192.224 255.255.255.240 10.80.8.161 1
+route mgmt-fw-bk-access 10.232.192.240 255.255.255.240 10.80.8.169 1
+route swi-pp-prod-preprodmgmt-transit 10.232.193.128 255.255.255.192 10.232.193.67 1
+route swi-pp-prod-preprodmgmt-transit 10.232.193.192 255.255.255.224 10.232.193.67 1
+route swi-pp-prod-preprodmgmt-transit 10.232.193.224 255.255.255.240 10.232.193.67 1
+route swi-pp-prod-preprodmgmt-transit 10.232.193.240 255.255.255.248 10.232.193.67 1
+route swi-pp-prod-preprodmgmt-transit 10.232.194.0 255.255.255.192 10.232.193.67 1
+route swi-pp-prod-preprodmgmt-transit 10.232.194.64 255.255.255.224 10.232.193.67 1
+route swi-pp-prod-preprodmgmt-transit 10.232.194.96 255.255.255.240 10.232.193.67 1
+route mgmt-fw-bk-access 10.232.208.0 255.255.255.0 10.80.8.169 1
+timeout xlate 3:00:00
+timeout conn 1:00:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02
+timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00
+timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00
+timeout sip-provisional-media 0:02:00 uauth 0:05:00 absolute
+timeout tcp-proxy-reassembly 0:01:00
+timeout floating-conn 0:00:00
+aaa-server TACACS+ protocol tacacs+
+ accounting-mode simultaneous
+ reactivation-mode depletion deadtime 1
+aaa-server TACACS+ (cascade) host 217.135.0.104
+ timeout 3
+ key eMUgQw9qWt
+aaa-server TACACS+ (cascade) host 217.135.1.104
+ timeout 3
+ key eMUgQw9qWt
+user-identity default-domain LOCAL
+aaa authentication ssh console LOCAL
+aaa authentication enable console LOCAL
+snmp-server host mgmt-pod-access 10.104.199.143 poll community PXPmeVeW5m
+snmp-server host mgmt-pod-access 10.104.199.146 poll community PXPmeVeW5m
+snmp-server host mgmt-pod-access 10.104.199.147 poll community PXPmeVeW5m
+snmp-server host cascade 10.104.199.143 poll community aC3nTr1c421
+snmp-server host cascade 10.104.199.146 poll community aC3nTr1c421
+snmp-server host cascade 10.104.199.147 poll community aC3nTr1c421
+snmp-server host cascade 10.80.14.160 poll community aC3nTr1c421
+snmp-server host cascade 10.80.14.161 poll community aC3nTr1c421
+snmp-server host cascade 10.80.14.3 poll community aC3nTr1c421
+snmp-server host cascade 10.80.14.4 poll community aC3nTr1c421
+snmp-server host cascade 217.135.0.19 poll community aC3nTr1c421
+snmp-server host cascade 217.135.0.20 poll community aC3nTr1c421
+snmp-server host cascade 217.135.0.21 poll community aC3nTr1c421
+snmp-server host cascade 217.135.0.36 poll community aC3nTr1c421
+snmp-server host cascade 217.135.0.37 trap community aC3nTr1c421
+snmp-server host cascade 217.135.0.38 trap community aC3nTr1c421
+snmp-server host cascade 217.135.0.49 poll community aC3nTr1c421
+snmp-server host cascade 217.135.0.50 poll community aC3nTr1c421
+snmp-server host cascade 217.135.0.22 poll community h2vf0Uqen9cStly2
+no snmp-server location
+snmp-server contact HSS-Security-Support
+snmp-server community aC3nTr1c421
+snmp-server enable traps snmp authentication linkup linkdown coldstart
+snmp-server enable traps syslog
+no service resetoutbound
+telnet timeout 5
+ssh 10.80.14.84 255.255.255.255 cascade
+ssh 10.80.14.130 255.255.255.255 cascade
+ssh 10.80.14.152 255.255.255.255 cascade
+ssh 10.80.14.99 255.255.255.255 cascade
+ssh 217.135.0.67 255.255.255.255 cascade
+ssh 217.135.0.77 255.255.255.255 cascade
+ssh 217.135.2.67 255.255.255.255 cascade
+ssh 217.135.0.21 255.255.255.255 cascade
+ssh 217.135.5.67 255.255.255.255 cascade
+ssh 217.135.0.22 255.255.255.255 cascade
+ssh 217.135.0.85 255.255.255.255 cascade
+ssh timeout 9
+ssh version 2
+no threat-detection statistics tcp-intercept
+username sso-admin password no.w4y-in privilege 15
+!
+class-map default-inspection
+ description Default traffic inspection
+ match default-inspection-traffic
+class-map dcerpc_class
+ match port tcp eq 135
+!
+!
+policy-map type inspect dns dns_inspect
+ parameters
+  message-length maximum 1280
+policy-map type inspect dcerpc dcerpc_inspect
+ parameters
+  endpoint-mapper lookup-operation
+policy-map global-policy
+ class default-inspection
+  inspect dns dns_inspect
+  inspect ftp
+  inspect h323 h225
+  inspect h323 ras
+  inspect http
+  inspect ils
+  inspect netbios
+  inspect rsh
+  inspect rtsp
+  inspect skinny
+  inspect icmp
+  inspect sqlnet
+  inspect sunrpc
+  inspect tftp
+  inspect xdmcp
+ class dcerpc_class
+  inspect dcerpc dcerpc_inspect
+!
+service-policy global-policy global
+
